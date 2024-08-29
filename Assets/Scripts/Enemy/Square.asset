@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Square
   m_EditorClassIdentifier: 
+  enemyName: Dep
+  health: 1000
+  attackPower: 10
+  movementSpeed: 10
