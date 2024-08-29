@@ -11,7 +11,6 @@ public class DummyAI : MonoBehaviour
     }
 
     
-    // Update is called once per frame
     void Update()
     {
         var camera = Camera.main;
