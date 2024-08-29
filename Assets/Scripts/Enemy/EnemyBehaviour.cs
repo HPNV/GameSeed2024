@@ -10,11 +10,11 @@ namespace Enemy
         private Transform target;
         [SerializeField] 
         private Vector3 healthBarOffset = new(0, 1, 0);
-        [SerializeField]
-        private float moveSpeed = 0.005f;
-    
+
         [SerializeField] 
-        private GameObject healthBarObject;
+        private EnemyData enemyData;
+
+        private float currentHealth;    
     
         private HealthBar _healthBar;
         
@@ -34,11 +34,11 @@ namespace Enemy
             
             var direction = (targetPosition - transform.position).normalized;
             
-            transform.position += direction * (moveSpeed * Time.deltaTime);
+            transform.position += direction * (enemyData.movementSpeed * Time.deltaTime);
     
             if (Input.GetKeyDown(KeyCode.A))
             {
-                _healthBar.Health -= 1;
+                Damage(1);
             }
         }
         
@@ -51,17 +51,28 @@ namespace Enemy
     
         private void SetupHealthBar()
         {
-            var healthBar = Instantiate(healthBarObject, transform);
-            healthBar.transform.SetParent(transform);
-            healthBar.transform.localPosition = healthBarOffset;
+            _healthBar = GetComponentInChildren<HealthBar>();
             
-            _healthBar = healthBar.GetComponent<HealthBar>();
-            _healthBar.MaxHealth = 100;
+            _healthBar.gameObject.transform.SetParent(transform);
+            _healthBar.gameObject.transform.localPosition = healthBarOffset;
+            
+            _healthBar.MaxHealth = enemyData.health;
         }
     
         public void Damage(float value)
         {
             _healthBar.Health -= value;
+            currentHealth -= value;
+            
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            
         }
     }
 }

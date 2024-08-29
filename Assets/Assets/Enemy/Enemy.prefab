@@ -144,10 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d23bd940e1aa24e810294a40586c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 5369653111922330869, guid: d9c7bee8cad0b5241bc3f78421349155, type: 3}
   healthBarOffset: {x: 0, y: 2, z: 0}
   moveSpeed: 2
-  healthBarObject: {fileID: 0}
+  healthBarObject: {fileID: 4302435778539466141, guid: 2313589c29755d1449f8555d6b4f0253, type: 3}
 --- !u!50 &7660395613001402454
 Rigidbody2D:
   serializedVersion: 4

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DummyAI : MonoBehaviour
 {
-    
+    [SerializeField] private GameObject enemyObject;
     void Start()
     {
         
@@ -20,5 +20,13 @@ public class DummyAI : MonoBehaviour
         
         transform.position = cursorPosition;
         
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            var x = Random.Range(-10, 10);
+            var y = Random.Range(-10, 10);
+            
+            var position = transform.position + new Vector3(x, y, 0);
+            Instantiate(enemyObject, transform);
+        }
     }
 }
