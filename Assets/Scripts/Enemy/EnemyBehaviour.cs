@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.States;
 using Manager;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Enemy
@@ -9,20 +9,31 @@ namespace Enemy
     public class EnemyBehaviour : MonoBehaviour
     {
         [SerializeField]
-        private Transform target;
+        public Transform target;
         [SerializeField] 
         private Vector3 healthBarOffset = new(0, 1, 0);
 
         [SerializeField] 
-        private EnemyData enemyData;
+        public EnemyData enemyData;
 
-        private float currentHealth;    
+        private float _currentHealth;    
     
         private HealthBar _healthBar;
+        
+        private IState _currentState;
+        private Dictionary<State, IState> _states;
       
     
         private void Start()
         { 
+            _states = new Dictionary<State, IState>
+            {
+                {State.Move, new MoveState()},
+                {State.Attack, new AttackState()},
+                {State.Die, new DieState()}
+            };
+            _currentState = _states[State.Move];
+            _currentHealth = enemyData.health;
             SetupHealthBar();
         }
     
@@ -30,19 +41,11 @@ namespace Enemy
         private void Update()
         {
             KeepZValue();
-            
-            var targetPosition = target.position;
-            
-            var direction = (targetPosition - transform.position).normalized;
-            
-            transform.position += direction * (enemyData.movementSpeed * Time.deltaTime);
+            _currentState.OnUpdate(this);
     
             if (Input.GetKeyDown(KeyCode.A))
             {
-                var newPos = transform.position;
-                
-                SpawnerManager.Spawn(SpawnType.ExperienceOrb, new Vector3(newPos.x, newPos.y, newPos.z));
-                Damage(1);
+                Damage(10);
             }
         }
         
@@ -66,17 +69,20 @@ namespace Enemy
         public void Damage(float value)
         {
             _healthBar.Health -= value;
-            currentHealth -= value;
+            _currentHealth -= value;
             
-            if (currentHealth <= 0)
+            if (_currentHealth <= 0)
             {
-                Die();
+                Debug.Log($"CurrentHealth: {_currentHealth}");
+                ChangeState(State.Die);
             }
         }
 
-        public void Die()
+        public void ChangeState(State state)
         {
-            
+            _currentState.OnExit(this);
+            _currentState = _states[state];
+            _currentState.OnEnter(this);
         }
     }
 }

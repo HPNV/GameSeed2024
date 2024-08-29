@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Square
   m_EditorClassIdentifier: 
   enemyName: Dep
-  health: 1000
+  health: 100
   attackPower: 10
   movementSpeed: 10
