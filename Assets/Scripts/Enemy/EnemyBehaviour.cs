@@ -8,24 +8,22 @@ namespace Enemy
 {
     public class EnemyBehaviour : MonoBehaviour
     {
-        [SerializeField]
-        public Transform target;
         [SerializeField] 
         private Vector3 healthBarOffset = new(0, 1, 0);
 
         [SerializeField] 
         public EnemyData enemyData;
-
-        private float _currentHealth;    
-    
-        private HealthBar _healthBar;
+        public float CurrentHealth { get; set; }
+        public Transform Target { get; set; }
         
+        private HealthBar _healthBar;
         private IState _currentState;
         private Dictionary<State, IState> _states;
       
     
         private void Start()
-        { 
+        {
+            Target = GameObject.FindWithTag("Dummy").transform;
             _states = new Dictionary<State, IState>
             {
                 {State.Move, new MoveState()},
@@ -33,7 +31,7 @@ namespace Enemy
                 {State.Die, new DieState()}
             };
             _currentState = _states[State.Move];
-            _currentHealth = enemyData.health;
+            CurrentHealth = enemyData.health;
             SetupHealthBar();
         }
     
@@ -69,11 +67,11 @@ namespace Enemy
         public void Damage(float value)
         {
             _healthBar.Health -= value;
-            _currentHealth -= value;
+            CurrentHealth -= value;
             
-            if (_currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
-                Debug.Log($"CurrentHealth: {_currentHealth}");
+                Debug.Log($"CurrentHealth: {CurrentHealth}");
                 ChangeState(State.Die);
             }
         }
