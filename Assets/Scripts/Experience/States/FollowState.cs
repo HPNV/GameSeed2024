@@ -28,22 +28,10 @@ namespace Experience.States
             var direction = orb.Target - orb.transform.position;
             
             var distance = direction.magnitude;
-
-
+            
             var forceMagnitude = Mathf.Clamp(100 * orb.maxForce / Mathf.Pow(distance, 3), 0, orb.maxForce);
-            Debug.Log($"{forceMagnitude} {distance} {orb.Target} {orb.transform.position}");
             var force = direction.normalized * forceMagnitude;
             orb.Rigidbody.AddForce(force);
-        }
-
-        public void OnEnter(ExperienceOrbBehaviour orb)
-        {
-            
-        }
-
-        public void OnExit(ExperienceOrbBehaviour orb)
-        {
-           
         }
     }
 }

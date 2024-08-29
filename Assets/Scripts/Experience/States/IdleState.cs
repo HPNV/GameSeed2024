@@ -18,15 +18,5 @@
         {
           
         }
-
-        public void OnEnter(ExperienceOrbBehaviour orb)
-        {
-       
-        }
-
-        public void OnExit(ExperienceOrbBehaviour orb)
-        {
-            
-        }
     }
 }

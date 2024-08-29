@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Manager;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Enemy
@@ -17,11 +19,10 @@ namespace Enemy
         private float currentHealth;    
     
         private HealthBar _healthBar;
-        
       
     
         private void Start()
-        {
+        { 
             SetupHealthBar();
         }
     
@@ -38,6 +39,9 @@ namespace Enemy
     
             if (Input.GetKeyDown(KeyCode.A))
             {
+                var newPos = transform.position;
+                
+                SpawnerManager.Spawn(SpawnType.ExperienceOrb, new Vector3(newPos.x, newPos.y, newPos.z));
                 Damage(1);
             }
         }

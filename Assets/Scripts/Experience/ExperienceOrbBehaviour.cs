@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Experience.States;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Experience
 {
     public class ExperienceOrbBehaviour : MonoBehaviour
     {
         [SerializeField] 
-        public float maxForce = 100f;
+        public float maxForce = 500f;
         [SerializeField] 
         public float minimumDistance = 1000;
         [SerializeField] 
@@ -28,19 +29,19 @@ namespace Experience
         
         private void Start()
         {
-            maxForce = 100f;
-            collectDistance = 10;
             Rigidbody = GetComponent<Rigidbody2D>();
+            
+            var randomForce = new Vector2(Random.Range(-maxForce, maxForce), Random.Range(-maxForce, maxForce));
+            Rigidbody.AddForce(randomForce);
+            Rigidbody.drag = 1;
+            
             _camera = Camera.main;
             _states = new Dictionary<State, IState>
             {
                 {State.Idle, new IdleState()},
                 {State.Follow, new FollowState()},
-                {State.Collected, new CollectedState()}
             };
             _currentState = _states[State.Idle];
-            _currentState.OnEnter(this);
-            
         }
     
         private void Update()
@@ -53,17 +54,10 @@ namespace Experience
         { 
             _currentState.OnFixedUpdate(this);
         }
-
-        private void OnDestroy()
-        {
-            _currentState.OnExit(this);
-        }
         
         public void ChangeState(State state)
         {
-            _currentState.OnExit(this);
             _currentState = _states[state];
-            _currentState.OnEnter(this);
         }
         
         public void Destroy()
