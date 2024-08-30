@@ -19,6 +19,7 @@ namespace Experience.States
             
             if (distance < orb.collectDistance)
             {
+                SIngletonGame.Instance.homeBase.GainExp(orb.experienceValue);
                 orb.Destroy();
             }
         }

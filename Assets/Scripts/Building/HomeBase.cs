@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Manager;
+using UnityEditor;
 using UnityEngine;
 
 public class HomeBase : MonoBehaviour
@@ -24,7 +26,10 @@ public class HomeBase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GainExp(20);
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            mousePosition.z = -2;
+            ExperienceManager.Spawn(1,mousePosition);
         }
         
         SetExpBar();
@@ -40,12 +45,12 @@ public class HomeBase : MonoBehaviour
         }
     }
 
-    private void GainExp(int exp) {
+    public void GainExp(int exp) {
         currentExp += exp;
     }
 
 
-    private void SetExpBar() {
+    public void SetExpBar() {
         expBar.Exp = currentExp;
         expBar.setMaxExp(expToNextLevel);
     }

@@ -15,8 +15,12 @@ namespace Experience
         public float minimumDistance = 1000;
         [SerializeField] 
         public float collectDistance = 1;
+
+        [SerializeField] public HomeBase homeBase;
         
         public int ExperienceCount { get; set; }
+
+        public int experienceValue;
 
         public Vector3 Target { get; set; }
         public Rigidbody2D Rigidbody  { get; set; }
@@ -25,10 +29,10 @@ namespace Experience
         private Dictionary<State, IState> _states;
         private Camera _camera;
         
-        
-        
         private void Start()
         {
+            experienceValue = Random.Range(5, 11);
+
             Rigidbody = GetComponent<Rigidbody2D>();
             
             var randomForce = new Vector2(Random.Range(-maxForce, maxForce), Random.Range(-maxForce, maxForce));
