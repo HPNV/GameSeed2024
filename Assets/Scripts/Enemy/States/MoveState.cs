@@ -6,7 +6,7 @@ namespace Enemy.States
     {
         public void OnUpdate(EnemyBehaviour enemy)
         {
-            var targetPosition = enemy.target.position;
+            var targetPosition = enemy.Target.position;
             
             var direction = (targetPosition - enemy.transform.position).normalized;
             

@@ -15,4 +15,4 @@ MonoBehaviour:
   enemyName: Dep
   health: 100
   attackPower: 10
-  movementSpeed: 10
+  movementSpeed: 3

@@ -24,8 +24,8 @@ public class DummyAI : MonoBehaviour
             var x = Random.Range(-10, 10);
             var y = Random.Range(-10, 10);
             
-            var position = transform.position + new Vector3(x, y, 0);
-            Instantiate(enemyObject, transform);
+            var position = transform.position;
+            Instantiate(enemyObject, new Vector3(position.x, position.y, position.z), Quaternion.identity);
         }
     }
 }
