@@ -5,7 +5,7 @@ using UnityEngine;
 public class SIngletonGame : MonoBehaviour
 {
     public static SIngletonGame Instance { get; private set; }
-    public  int experiencePoint;
+    public  int ExpPoint;
     private void Awake()
     {
         if (Instance == null)
@@ -20,12 +20,10 @@ public class SIngletonGame : MonoBehaviour
     }
 
     void Start() {
-        experiencePoint = 0;
+        ExpPoint = 0;
     }
 
     public void setExp(int exp) {
-        experiencePoint = exp;
+        ExpPoint = exp;
     }
-
-    
 }
