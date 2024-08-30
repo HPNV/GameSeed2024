@@ -6,18 +6,13 @@ public class TileProviderService : TileService
 {
     private Tile _currTile;
 
-    void Start()
+    public void setCurrTile(Tile tile)
     {
-        _currTile = GetComponent<Tile>();
-
-        if (_currTile == null)
-        {
-            Debug.LogError("TileProvider fail to find Tile component not found on the GameObject.");
-        }
+        this._currTile = tile;
     }
 
     public override Tile GetCurrTile()
     {
-        return _currTile;
+        return this._currTile;
     }
 }
