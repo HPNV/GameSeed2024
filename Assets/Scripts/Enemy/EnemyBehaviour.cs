@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy.States;
+using Manager;
 using UnityEngine;
 
 namespace Enemy
@@ -7,21 +9,31 @@ namespace Enemy
     public class EnemyBehaviour : MonoBehaviour
     {
         [SerializeField]
-        private Transform target;
+        public Transform target;
         [SerializeField] 
         private Vector3 healthBarOffset = new(0, 1, 0);
-        [SerializeField]
-        private float moveSpeed = 0.005f;
-    
+
         [SerializeField] 
-        private GameObject healthBarObject;
+        public EnemyData enemyData;
+
+        private float _currentHealth;    
     
         private HealthBar _healthBar;
         
+        private IState _currentState;
+        private Dictionary<State, IState> _states;
       
     
         private void Start()
-        {
+        { 
+            _states = new Dictionary<State, IState>
+            {
+                {State.Move, new MoveState()},
+                {State.Attack, new AttackState()},
+                {State.Die, new DieState()}
+            };
+            _currentState = _states[State.Move];
+            _currentHealth = enemyData.health;
             SetupHealthBar();
         }
     
@@ -29,16 +41,11 @@ namespace Enemy
         private void Update()
         {
             KeepZValue();
-            
-            var targetPosition = target.position;
-            
-            var direction = (targetPosition - transform.position).normalized;
-            
-            transform.position += direction * (moveSpeed * Time.deltaTime);
+            _currentState.OnUpdate(this);
     
             if (Input.GetKeyDown(KeyCode.A))
             {
-                _healthBar.Health -= 1;
+                Damage(10);
             }
         }
         
@@ -51,17 +58,31 @@ namespace Enemy
     
         private void SetupHealthBar()
         {
-            var healthBar = Instantiate(healthBarObject, transform);
-            healthBar.transform.SetParent(transform);
-            healthBar.transform.localPosition = healthBarOffset;
+            _healthBar = GetComponentInChildren<HealthBar>();
             
-            _healthBar = healthBar.GetComponent<HealthBar>();
-            _healthBar.MaxHealth = 100;
+            _healthBar.gameObject.transform.SetParent(transform);
+            _healthBar.gameObject.transform.localPosition = healthBarOffset;
+            
+            _healthBar.MaxHealth = enemyData.health;
         }
     
         public void Damage(float value)
         {
             _healthBar.Health -= value;
+            _currentHealth -= value;
+            
+            if (_currentHealth <= 0)
+            {
+                Debug.Log($"CurrentHealth: {_currentHealth}");
+                ChangeState(State.Die);
+            }
+        }
+
+        public void ChangeState(State state)
+        {
+            _currentState.OnExit(this);
+            _currentState = _states[state];
+            _currentState.OnEnter(this);
         }
     }
 }
