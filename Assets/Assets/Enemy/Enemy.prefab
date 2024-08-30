@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarOffset: {x: 0, y: 2, z: 0}
-  enemyData: {fileID: 11400000, guid: 1503fe80d24725c4e8a4ac48bdf75433, type: 2}
+  enemyData: {fileID: 11400000, guid: 5112ab7be98c82c4c80cfa48da910789, type: 2}
 --- !u!50 &7660395613001402454
 Rigidbody2D:
   serializedVersion: 4

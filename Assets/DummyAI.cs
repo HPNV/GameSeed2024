@@ -13,6 +13,7 @@ public class DummyAI : MonoBehaviour
     
     void Update()
     {
+        // TEMPORARY
         var camera = Camera.main;
         var cursorPosition = camera!.ScreenToWorldPoint(Input.mousePosition);
         cursorPosition.z = -0.8f;    

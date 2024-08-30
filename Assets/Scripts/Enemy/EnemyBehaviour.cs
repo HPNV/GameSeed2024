@@ -43,7 +43,7 @@ namespace Enemy
     
             if (Input.GetKeyDown(KeyCode.A))
             {
-                Damage(10);
+                Damage(1000);
             }
         }
         
@@ -71,7 +71,6 @@ namespace Enemy
             
             if (CurrentHealth <= 0)
             {
-                Debug.Log($"CurrentHealth: {CurrentHealth}");
                 ChangeState(State.Die);
             }
         }

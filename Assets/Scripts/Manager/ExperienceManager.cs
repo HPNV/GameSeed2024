@@ -5,10 +5,16 @@ namespace Manager
 {
     public class ExperienceManager
     {
-        private static GameObject _experienceOrbPrefab = Resources.Load<GameObject>("Prefabs/ExperienceOrb");
+        private GameObject _experienceOrbPrefab;
         
-        public static void Spawn(int spawnAmount, Vector3 position)
+        public void Initialize()
         {
+            _experienceOrbPrefab = Resources.Load<GameObject>("Prefabs/ExperienceOrb");
+        }
+        
+        public void Spawn(int spawnAmount, Vector3 position)
+        {
+            Debug.Log(_experienceOrbPrefab);
             for (var i = 0; i < spawnAmount; i++)
             {
                 Object.Instantiate(_experienceOrbPrefab, position, Quaternion.identity);   

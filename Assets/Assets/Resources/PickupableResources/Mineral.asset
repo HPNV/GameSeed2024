@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22223ce57c0fa1e478c25850178d563b, type: 3}
+  m_Name: Mineral
+  m_EditorClassIdentifier: 
+  resourceName: Mineral
+  pickupDistance: 1.5
+  sprite: {fileID: 7482667652216324306, guid: 13bb5d7449274074eac8615345061abc, type: 3}
+  dropChance: 50
