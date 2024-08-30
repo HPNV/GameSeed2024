@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameGrid : MonoBehaviour
 {
     [SerializeField] 
-    private int _width, _height;
+    private int width, height;
     
     [SerializeField]
-    private Transform _cam;
+    private Transform cam;
 
     [SerializeField] 
-    private Tile _tilePrefab;
+    private Tile tilePrefab;
     private Dictionary<Vector2, Tile> _tiles;
     
     void Start()
@@ -22,11 +22,11 @@ public class GameGrid : MonoBehaviour
     private void GenerateGrid()
     {
         _tiles = new Dictionary<Vector2, Tile>();
-        for (int x = 0; x < _width; x++)
+        for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < _height; y++)
+            for (int y = 0; y < height; y++)
             {
-                var spawnedTile = Instantiate(_tilePrefab, new Vector2(x, y), Quaternion.identity);
+                var spawnedTile = Instantiate(tilePrefab, new Vector2(x, y), Quaternion.identity);
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 spawnedTile.Init(isOffset);
@@ -36,6 +36,6 @@ public class GameGrid : MonoBehaviour
             }
         }
 
-        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+        cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
     }
 }
