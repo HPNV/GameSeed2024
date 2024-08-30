@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
     public Card card;
-    public Text cardNameText;
+    public TextMeshPro cardNameText;
     public Sprite cardImageHolder;
-    public Text descriptionText;
+    public TextMeshPro descriptionText;
     void Start()
     {
         cardNameText.text = card.cardName;
