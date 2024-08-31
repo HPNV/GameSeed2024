@@ -8,6 +8,15 @@ public class NewBehaviourScript : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera1;
     public CinemachineVirtualCamera virtualCamera2;
 
+    public void SwitchCinemachineCameras()
+    {
+        if (virtualCamera1 != null && virtualCamera2 != null)
+        {
+            virtualCamera1.Priority = 0;
+            virtualCamera2.Priority = 10;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
