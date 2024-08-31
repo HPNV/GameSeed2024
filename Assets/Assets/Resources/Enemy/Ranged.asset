@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Dep Ranged
   health: 100
   attackPower: 1
-  attackRange: 10
+  attackRange: 5
   movementSpeed: 2
-  animatorController: {fileID: 0}
-  enemyType: 0
+  animatorController: {fileID: 9100000, guid: 8ef5ec7814e2a3047909e6c80b18b724, type: 2}
+  enemyType: 1
