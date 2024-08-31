@@ -20,7 +20,7 @@ public class CardDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void setCard(Card card) {
@@ -28,12 +28,5 @@ public class CardDisplay : MonoBehaviour
         cardNameText.text = card.cardName;
         descriptionText.text = card.description;
         cardImageHolder = card.cardImage;
-    }
-
-    private void OnMouseDown() {
-        if (SIngletonGame.Instance != null) {
-            SIngletonGame.Instance.AddToInventory(card);
-            Destroy(gameObject);
-        }
     }
 }

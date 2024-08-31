@@ -64,9 +64,4 @@ public class SIngletonGame : MonoBehaviour
             availableCard.Add(dummyCard);
         }
     }
-
-    public void AddToInventory(Card card) {
-        inventory.items.Add(card);
-        inventory.PopulateInventoryUI();
-    }
 }

@@ -11,10 +11,19 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         PopulateInventoryUI();
+        for (int i=0;i<3;i++){
+            Card dummyCard = ScriptableObject.CreateInstance<Card>();
+            dummyCard.cardName = "Dummy Card" + i;
+            dummyCard.description = "This is a dummy card description.";
+            dummyCard.cardImage = Resources.Load<Sprite>("dummy");
+            items.Add(dummyCard);
+        }
+
+        PopulateInventoryUI();
     }
 
     // Method to populate the inventory UI
-    public void PopulateInventoryUI()
+    void PopulateInventoryUI()
     {
         foreach (var card in items)
         {
