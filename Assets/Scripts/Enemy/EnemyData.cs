@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    [CreateAssetMenu(fileName = "New Enemy", menuName = "Enemy/Enemy Data")]
+    [CreateAssetMenu(fileName = "New Enemy", menuName = "Data/Enemy Data")]
     public class EnemyData : ScriptableObject
     {
         public string enemyName;
