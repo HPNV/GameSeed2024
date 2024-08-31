@@ -29,7 +29,7 @@ public class HomeBase : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             mousePosition.z = -2;
-            ExperienceManager.Spawn(1,mousePosition);
+            SingletonGame.Instance.ExperienceManager.Spawn(1,mousePosition);
         }
         
         SetExpBar();
