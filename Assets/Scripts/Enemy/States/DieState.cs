@@ -6,11 +6,6 @@ namespace Enemy.States
     public class DieState : BaseState
     {
         public DieState(EnemyBehaviour enemy) : base(enemy){} 
-        
-        public override void OnUpdate()
-        {
-           
-        }
 
         public override void OnEnter()
         {
@@ -19,15 +14,6 @@ namespace Enemy.States
             SingletonGame.Instance.ResourceManager.Spawn(1, new Vector3(position.x, position.y, position.z));
             
             Object.Destroy(Enemy.gameObject);
-        }
-
-        public override void OnExit()
-        {
-           
-        }
-
-        public override void OnCollisionStay2D(Collision2D collision)
-        {
         }
     }
 }

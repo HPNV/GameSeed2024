@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Enemy.States;
-using Manager;
+using Enemy.States.Melee;
+using Enemy.States.Ranged;
 using UnityEngine;
 
 namespace Enemy
@@ -19,12 +18,12 @@ namespace Enemy
         public Animator Animator { get; set; }
         public SpriteRenderer SpriteRenderer { get; set; }
         
-        private HealthBar _healthBar;
-        private IState _currentState;
-        private Dictionary<State, IState> _states;
+        protected HealthBar HealthBar;
+        protected IState CurrentState;
+        protected Dictionary<State, IState> States;
       
     
-        private void Start()
+        protected void Start()
         {
             Target = GameObject.FindWithTag("Dummy").transform;
             Animator = GetComponent<Animator>();
@@ -32,19 +31,18 @@ namespace Enemy
             CurrentHealth = enemyData.health;
             SetupHealthBar();
             SetupStates();
+            SetupAnimationController();
         }
 
-        private void OnCollisionStay2D(Collision2D other)
+        protected void OnCollisionStay2D(Collision2D other)
         {
-            _currentState.OnCollisionStay2D(other);
+            CurrentState.OnCollisionStay2D(other);
         }
 
         // Update is called once per frame
-        private void Update()
+        protected void Update()
         {
-            Debug.Log($"HELLO {_currentState}");
-            _currentState.OnUpdate();
-    
+            CurrentState.OnUpdate();
             
             if (Input.GetKeyDown(KeyCode.A))
             {
@@ -55,48 +53,52 @@ namespace Enemy
     
         private void SetupHealthBar()
         {
-            _healthBar = GetComponentInChildren<HealthBar>();
+            HealthBar = GetComponentInChildren<HealthBar>();
             
-            _healthBar.gameObject.transform.SetParent(transform);
-            _healthBar.gameObject.transform.localPosition = healthBarOffset;
+            HealthBar.gameObject.transform.SetParent(transform);
+            HealthBar.gameObject.transform.localPosition = healthBarOffset;
             // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
-            _healthBar.MaxHealth = enemyData.health;
+            HealthBar.MaxHealth = enemyData.health;
         }
 
         private void SetupStates()
         {
-            _states = new Dictionary<State, IState>
+            States = enemyData.enemyType switch
             {
-                {State.Move, new MoveState(this)},
-                {State.Die, new DieState(this)}
+                EnemyType.Melee => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.Ranged => new Dictionary<State, IState>
+                {
+                    { State.Move, new RangedMoveState(this) },
+                    { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                _ => States
             };
 
-            switch (enemyData.enemyType)
-            {
-                case EnemyType.Melee:
-                    _states.Add(State.Attack, new MeleeAttackState(this));
-                    break;
-                case EnemyType.Ranged:
-                    _states.Add(State.Attack, new MeleeAttackState(this));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            
-            _currentState = _states[State.Move];
+            CurrentState = States[State.Move];
         }
-    
-        public void Damage(float value)
+
+        private void SetupAnimationController()
         {
-            _healthBar.Health -= value;
+            Animator.runtimeAnimatorController = enemyData.animatorController;
+        }
+
+        private void Damage(float value)
+        {
+            HealthBar.Health -= value;
             CurrentHealth -= value;
         }
 
         public void ChangeState(State state)
         {
-            _currentState.OnExit();
-            _currentState = _states[state];
-            _currentState.OnEnter();
+            CurrentState.OnExit();
+            CurrentState = States[state];
+            CurrentState.OnEnter();
         }
     }
 }

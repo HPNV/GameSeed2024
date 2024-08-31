@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Enemy
@@ -7,11 +5,13 @@ namespace Enemy
     [CreateAssetMenu(fileName = "New Enemy", menuName = "Data/Enemy Data")]
     public class EnemyData : ScriptableObject
     {
-        public string enemyName;
-        public int health;
-        public float attackPower;
-        public float movementSpeed;
-        public EnemyType enemyType;
+        public string enemyName = "Dep";
+        public int health = 100;
+        public float attackPower = 1;
+        public float attackRange = 1;
+        public float movementSpeed = 10;
+        public RuntimeAnimatorController animatorController;
+        public EnemyType enemyType = EnemyType.Melee;
 
         public int Experience
         {
