@@ -11,11 +11,18 @@ namespace Enemy
         public int health;
         public float attackPower;
         public float movementSpeed;
+        public EnemyType enemyType;
 
         public int Experience
         {
             get => (int)(health * attackPower * movementSpeed / 100);
         }
+    }
+
+    public enum EnemyType
+    {
+        Melee,
+        Ranged,
     }
 }
 

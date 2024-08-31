@@ -27,17 +27,11 @@ namespace Enemy
         private void Start()
         {
             Target = GameObject.FindWithTag("Dummy").transform;
-            _states = new Dictionary<State, IState>
-            {
-                {State.Move, new MoveState(this)},
-                {State.Attack, new AttackState(this)},
-                {State.Die, new DieState(this)}
-            };
-            _currentState = _states[State.Move];
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
             SetupHealthBar();
+            SetupStates();
         }
 
         private void OnCollisionStay2D(Collision2D other)
@@ -48,7 +42,6 @@ namespace Enemy
         // Update is called once per frame
         private void Update()
         {
-            KeepZValue();
             _currentState.OnUpdate();
     
             
@@ -58,12 +51,6 @@ namespace Enemy
             }
         }
         
-        private void KeepZValue()
-        {
-            var position = transform.position;
-            position.z = 0;
-            transform.position = position;
-        }
     
         private void SetupHealthBar()
         {
@@ -73,6 +60,29 @@ namespace Enemy
             _healthBar.gameObject.transform.localPosition = healthBarOffset;
             // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
             _healthBar.MaxHealth = enemyData.health;
+        }
+
+        private void SetupStates()
+        {
+            _states = new Dictionary<State, IState>
+            {
+                {State.Move, new MoveState(this)},
+                {State.Die, new DieState(this)}
+            };
+
+            switch (enemyData.enemyType)
+            {
+                case EnemyType.Melee:
+                    _states.Add(State.Attack, new MeleeAttackState(this));
+                    break;
+                case EnemyType.Ranged:
+                    _states.Add(State.Attack, new MeleeAttackState(this));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            _currentState = _states[State.Move];
         }
     
         public void Damage(float value)

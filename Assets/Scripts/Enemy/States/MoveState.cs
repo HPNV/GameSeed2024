@@ -2,54 +2,45 @@
 
 namespace Enemy.States
 {
-    public class MoveState : IState
+    public class MoveState : BaseState
     {
-        private readonly EnemyBehaviour enemy;
+        public MoveState(EnemyBehaviour enemy) : base(enemy){} 
         
-        public MoveState(EnemyBehaviour enemy)
+        public new void OnUpdate()
         {
-            this.enemy = enemy;
-        }
-        
-        public void OnUpdate()
-        {
-            var targetPosition = enemy.Target.position;
+            var targetPosition = Enemy.Target.position;
             
-            var direction = (targetPosition - enemy.transform.position).normalized;
+            var direction = (targetPosition - Enemy.transform.position).normalized;
+             
+            Enemy.transform.position = Vector2.MoveTowards(
+                Enemy.transform.position, 
+                targetPosition, 
+                Enemy.enemyData.movementSpeed * Time.deltaTime);
             
-            enemy.transform.position += direction * (enemy.enemyData.movementSpeed * Time.deltaTime);
+            Enemy.SpriteRenderer.flipX = direction.x > 0;
             
-            if (direction.x > 0)
+            if (Enemy.CurrentHealth <= 0)
             {
-                enemy.SpriteRenderer.flipX = true;
-            }
-            else
-            {
-                enemy.SpriteRenderer.flipX = false;
-            }
-            
-            if (enemy.CurrentHealth <= 0)
-            {
-                enemy.ChangeState(State.Die);
+                Enemy.ChangeState(State.Die);
             }
         }
 
-        public void OnEnter()
+        public new void OnEnter()
         {
             
         }
 
-        public void OnExit()
+        public new void OnExit()
         {
 
         }
 
-        public void OnCollisionStay2D(Collision2D collision)
+        public new void OnCollisionStay2D(Collision2D collision)
         {
             // TODO CHANGE TO PLANT
             if (collision.gameObject.CompareTag("Dummy"))
             {
-                enemy.ChangeState(State.Attack);
+                Enemy.ChangeState(State.Attack);
                 Debug.Log("Change to attack");
             }   
         }
