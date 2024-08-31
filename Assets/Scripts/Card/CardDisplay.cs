@@ -17,6 +17,7 @@ public class CardDisplay : MonoBehaviour
         cardImageHolder = card.cardImage;   
     }
 
+    // Update is called once per frame
     void Update()
     {
 

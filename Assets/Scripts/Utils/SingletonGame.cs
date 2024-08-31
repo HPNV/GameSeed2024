@@ -7,7 +7,7 @@ public class SIngletonGame : MonoBehaviour
 {
     public static SIngletonGame Instance { get; private set; }
     private List<Card> availableCard = new List<Card>();
-    [SerializeField] public Inventory inventory;
+    [SerializeField] private Inventory inventory;
     [SerializeField] public HomeBase homeBase;
     [SerializeField] private GameObject CardDisplayPrefab;
     private void Awake()
