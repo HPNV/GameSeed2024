@@ -17,9 +17,15 @@ public class CardDisplay : MonoBehaviour
         cardImageHolder = card.cardImage;   
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+        cardNameText.text = card.cardName;
+        descriptionText.text = card.description;
+        cardImageHolder = card.cardImage;
     }
 }
