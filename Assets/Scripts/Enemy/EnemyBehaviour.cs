@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Enemy.States;
+using Enemy.States.Explosive;
 using Enemy.States.Melee;
 using Enemy.States.Ranged;
 using UnityEngine;
@@ -75,6 +76,12 @@ namespace Enemy
                 {
                     { State.Move, new RangedMoveState(this) },
                     { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.Explosive => new Dictionary<State, IState>
+                {
+                    { State.Move, new ExplosiveMoveState(this) },
+                    { State.Attack, new ExplosiveAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
                 _ => States

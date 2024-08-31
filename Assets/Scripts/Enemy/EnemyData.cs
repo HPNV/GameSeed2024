@@ -23,6 +23,7 @@ namespace Enemy
     {
         Melee,
         Ranged,
+        Explosive
     }
 }
 

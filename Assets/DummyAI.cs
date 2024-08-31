@@ -13,7 +13,8 @@ public class DummyAI : MonoBehaviour
         _enemyData = new Dictionary<EnemyType, EnemyData>
         {
             {EnemyType.Melee, Resources.Load<EnemyData>("Enemy/Melee")},
-            {EnemyType.Ranged, Resources.Load<EnemyData>("Enemy/Ranged")}
+            {EnemyType.Ranged, Resources.Load<EnemyData>("Enemy/Ranged")},
+            {EnemyType.Explosive, Resources.Load<EnemyData>("Enemy/Explosive")}
         };
     }
 
@@ -36,6 +37,17 @@ public class DummyAI : MonoBehaviour
             var enemy = Instantiate(enemyObject, new Vector3(position.x + x, position.y + y, position.z), Quaternion.identity);
             var behaviour = enemy.GetComponent<EnemyBehaviour>();
             behaviour.enemyData = _enemyData[EnemyType.Melee];
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            var x = Random.Range(-10, 10);
+            var y = Random.Range(-10, 10);
+            
+            var position = transform.position;
+            var enemy = Instantiate(enemyObject, new Vector3(position.x + x, position.y + y, position.z), Quaternion.identity);
+            var behaviour = enemy.GetComponent<EnemyBehaviour>();
+            behaviour.enemyData = _enemyData[EnemyType.Explosive];
         }
         
         if (Input.GetKeyDown(KeyCode.R))
