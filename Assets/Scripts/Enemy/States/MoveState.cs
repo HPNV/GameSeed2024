@@ -6,7 +6,7 @@ namespace Enemy.States
     {
         public MoveState(EnemyBehaviour enemy) : base(enemy){} 
         
-        public new void OnUpdate()
+        public override void OnUpdate()
         {
             var targetPosition = Enemy.Target.position;
             
@@ -25,17 +25,17 @@ namespace Enemy.States
             }
         }
 
-        public new void OnEnter()
+        public override void OnEnter()
         {
             
         }
 
-        public new void OnExit()
+        public override void OnExit()
         {
 
         }
 
-        public new void OnCollisionStay2D(Collision2D collision)
+        public override void OnCollisionStay2D(Collision2D collision)
         {
             // TODO CHANGE TO PLANT
             if (collision.gameObject.CompareTag("Dummy"))

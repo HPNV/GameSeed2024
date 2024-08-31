@@ -7,7 +7,7 @@ namespace Enemy.States
         public MeleeAttackState(EnemyBehaviour enemy) : base(enemy){} 
         
         
-        public new void OnUpdate()
+        public override void OnUpdate()
         {
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             
@@ -22,19 +22,19 @@ namespace Enemy.States
             }
         }
 
-        public new void OnEnter()
+        public override void OnEnter()
         {
             Debug.Log("Enter attack state");
             Enemy.Animator.SetBool("IsAttacking", true);
         }
 
-        public new void OnExit()
+        public override void OnExit()
         {
             Debug.Log("Exit attack state");
             Enemy.Animator.SetBool("IsAttacking", false);
         }
 
-        public new void OnCollisionStay2D(Collision2D collision)
+        public override void OnCollisionStay2D(Collision2D collision)
         {
         }
     }

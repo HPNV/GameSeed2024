@@ -7,12 +7,12 @@ namespace Enemy.States
     {
         public DieState(EnemyBehaviour enemy) : base(enemy){} 
         
-        public new void OnUpdate()
+        public override void OnUpdate()
         {
            
         }
 
-        public new void OnEnter()
+        public override void OnEnter()
         {
             var position = Enemy.transform.position;
             SingletonGame.Instance.ExperienceManager.Spawn(3, new Vector3(position.x, position.y, position.z));
@@ -21,12 +21,12 @@ namespace Enemy.States
             Object.Destroy(Enemy.gameObject);
         }
 
-        public new void OnExit()
+        public override void OnExit()
         {
            
         }
 
-        public new void OnCollisionStay2D(Collision2D collision)
+        public override void OnCollisionStay2D(Collision2D collision)
         {
         }
     }

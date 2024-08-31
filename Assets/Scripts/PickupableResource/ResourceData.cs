@@ -14,7 +14,7 @@ namespace PickupableResource
         public Sprite sprite;
 
         public float dropChance;
-        public Vector3 scale;
+        public Vector3 scale = new(2, 2, 2);
     }
 }
 

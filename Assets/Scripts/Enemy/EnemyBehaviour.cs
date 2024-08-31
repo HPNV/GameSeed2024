@@ -42,6 +42,7 @@ namespace Enemy
         // Update is called once per frame
         private void Update()
         {
+            Debug.Log($"HELLO {_currentState}");
             _currentState.OnUpdate();
     
             

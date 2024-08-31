@@ -11,22 +11,22 @@ namespace Enemy.States
             Enemy = enemy;
         }
 
-        public void OnUpdate()
+        public virtual void OnUpdate()
         {
             
         }
 
-        public void OnEnter()
+        public virtual void OnEnter()
         {
            
         }
 
-        public void OnExit()
+        public virtual void OnExit()
         {
            
         }
 
-        public void OnCollisionStay2D(Collision2D collision)
+        public virtual void OnCollisionStay2D(Collision2D collision)
         {
             
         }
