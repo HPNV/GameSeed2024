@@ -8,7 +8,7 @@ namespace Experience.States
     {
         public void OnUpdate(ExperienceOrbBehaviour orb)
         {
-            var direction = orb.Target - orb.transform.position;
+            var direction = (Vector2)(orb.Target - orb.transform.position);
             
             var distance = direction.magnitude;
             

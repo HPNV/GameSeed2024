@@ -14,7 +14,7 @@ namespace PickupableResource
         public Sprite sprite;
 
         public float dropChance;
-        //TODO ADD RESOURCE ASSETS
+        public Vector3 scale;
     }
 }
 

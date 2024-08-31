@@ -127,4 +127,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxForce: 1000
   minimumDistance: 100
-  collectDistance: 11
+  collectDistance: 2

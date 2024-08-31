@@ -8,18 +8,18 @@ namespace PickupableResource
     {
         [SerializeField] 
         public ResourceData resourceData;
-        public Vector3 Target { get; set; }
         
         private Camera _camera;
-        // Start is called before the first frame update
+
         private void Start()
         {
             _camera = Camera.main;
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = resourceData.sprite;
+            transform.localScale = resourceData.scale;
         }
 
-        // Update is called once per frame
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))

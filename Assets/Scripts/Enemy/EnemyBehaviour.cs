@@ -54,7 +54,7 @@ namespace Enemy
             
             if (Input.GetKeyDown(KeyCode.A))
             {
-                Damage(1000);
+                Damage(10);
             }
         }
         
