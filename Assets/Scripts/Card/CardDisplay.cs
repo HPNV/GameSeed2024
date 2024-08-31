@@ -14,7 +14,7 @@ public class CardDisplay : MonoBehaviour
     {
         cardNameText.text = card.cardName;
         descriptionText.text = card.description;
-        cardImageHolder = card.cardImage;
+        cardImageHolder = card.cardImage;   
     }
 
     // Update is called once per frame

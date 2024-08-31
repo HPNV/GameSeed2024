@@ -6,12 +6,13 @@ using UnityEngine;
 public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
+    [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
     
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
-    
-    
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -28,10 +29,6 @@ public class SingletonGame : MonoBehaviour
     }
 
     void Start() {
-        ExpPoint = 0;
-    }
 
-    public void setExp(int exp) {
-        ExpPoint = exp;
     }
 }
