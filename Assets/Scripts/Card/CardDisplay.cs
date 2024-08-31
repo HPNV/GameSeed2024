@@ -31,8 +31,6 @@ public class CardDisplay : MonoBehaviour
     }
 
     public void OnMouseDown() {
-        Debug.Log("Card clicked: " + card.cardName);
-        SIngletonGame.Instance.inventory.AddCard(card);
-        Destroy(gameObject);
+        SIngletonGame.Instance.PickCard(this.card);
     }
 }

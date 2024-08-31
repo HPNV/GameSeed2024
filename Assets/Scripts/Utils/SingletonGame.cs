@@ -57,4 +57,19 @@ public class SIngletonGame : MonoBehaviour
             availableCard.Add(dummyCard);
         }
     }
+
+    public void PickCard(Card card)
+    {
+        inventory.AddCard(card);
+        DestroyRemainingCards();
+    }
+
+    private void DestroyRemainingCards()
+    {
+        foreach (var cardDisplay in FindObjectsOfType<CardDisplay>()) {
+            if (cardDisplay.card != null) {
+                Destroy(cardDisplay.gameObject);
+            }
+        }
+    }
 }
