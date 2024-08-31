@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemy.States;
@@ -15,6 +16,8 @@ namespace Enemy
         public EnemyData enemyData;
         public float CurrentHealth { get; set; }
         public Transform Target { get; set; }
+        public Animator Animator { get; set; }
+        public SpriteRenderer SpriteRenderer { get; set; }
         
         private HealthBar _healthBar;
         private IState _currentState;
@@ -26,21 +29,29 @@ namespace Enemy
             Target = GameObject.FindWithTag("Dummy").transform;
             _states = new Dictionary<State, IState>
             {
-                {State.Move, new MoveState()},
-                {State.Attack, new AttackState()},
-                {State.Die, new DieState()}
+                {State.Move, new MoveState(this)},
+                {State.Attack, new AttackState(this)},
+                {State.Die, new DieState(this)}
             };
             _currentState = _states[State.Move];
+            Animator = GetComponent<Animator>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
             SetupHealthBar();
         }
-    
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            _currentState.OnCollisionStay2D(other);
+        }
+
         // Update is called once per frame
         private void Update()
         {
             KeepZValue();
-            _currentState.OnUpdate(this);
+            _currentState.OnUpdate();
     
+            
             if (Input.GetKeyDown(KeyCode.A))
             {
                 Damage(1000);
@@ -60,7 +71,7 @@ namespace Enemy
             
             _healthBar.gameObject.transform.SetParent(transform);
             _healthBar.gameObject.transform.localPosition = healthBarOffset;
-            
+            // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
             _healthBar.MaxHealth = enemyData.health;
         }
     
@@ -68,18 +79,13 @@ namespace Enemy
         {
             _healthBar.Health -= value;
             CurrentHealth -= value;
-            
-            if (CurrentHealth <= 0)
-            {
-                ChangeState(State.Die);
-            }
         }
 
         public void ChangeState(State state)
         {
-            _currentState.OnExit(this);
+            _currentState.OnExit();
             _currentState = _states[state];
-            _currentState.OnEnter(this);
+            _currentState.OnEnter();
         }
     }
 }
