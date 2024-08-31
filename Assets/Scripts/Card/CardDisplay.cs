@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,7 +18,6 @@ public class CardDisplay : MonoBehaviour
         cardImageHolder = card.cardImage;   
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -28,5 +28,11 @@ public class CardDisplay : MonoBehaviour
         cardNameText.text = card.cardName;
         descriptionText.text = card.description;
         cardImageHolder = card.cardImage;
+    }
+
+    public void OnMouseDown() {
+        Debug.Log("Card clicked: " + card.cardName);
+        SIngletonGame.Instance.inventory.AddCard(card);
+        Destroy(gameObject);
     }
 }

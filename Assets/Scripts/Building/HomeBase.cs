@@ -11,13 +11,10 @@ public class HomeBase : MonoBehaviour
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
-    private SpriteRenderer spriteRenderer;
 
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Resources.Load<Sprite>("yggdrasil_0");
         SetExpBar();
     }
 

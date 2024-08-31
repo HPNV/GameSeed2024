@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1727313366601276733}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.38, y: -0.16, z: 0.012424218}
+  m_LocalPosition: {x: 0, y: 0, z: 0.012424218}
   m_LocalScale: {x: 2.2493465, y: 2.2155, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.3634, y: 1.4685}
+  m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 3.9989, y: 1.283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5689496681004512153
@@ -281,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 4112159320856595810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3418, y: -0.5973, z: 0.012424218}
+  m_LocalPosition: {x: 0, y: 0, z: 0.012424218}
   m_LocalScale: {x: 4.0364, y: 5.5546, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,7 +373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.38, y: -1.87}
+  m_AnchoredPosition: {x: 0, y: -2}
   m_SizeDelta: {x: 3.9989, y: 1.283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4205967087753732899
@@ -520,6 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5050347813947185855}
   - component: {fileID: 339891508947060935}
+  - component: {fileID: 3432856185910998104}
   m_Layer: 0
   m_Name: CardHolder
   m_TagString: Untagged
@@ -536,7 +537,7 @@ Transform:
   m_GameObject: {fileID: 7938450433688461391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.46382773, y: 0.30320638, z: -0.012424218}
+  m_LocalPosition: {x: -6.420936, y: -2.6225116, z: -0.012424218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -562,3 +563,24 @@ MonoBehaviour:
   cardNameText: {fileID: 2670323909976856927}
   cardImageHolder: {fileID: 7482667652216324306, guid: 13bb5d7449274074eac8615345061abc, type: 3}
   descriptionText: {fileID: 5916773154208808303}
+--- !u!65 &3432856185910998104
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7938450433688461391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.0360456, y: 5.5384183, z: 1}
+  m_Center: {x: -0.00000023841858, y: 0, z: 0}
