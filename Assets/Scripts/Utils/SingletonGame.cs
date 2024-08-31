@@ -7,7 +7,7 @@ public class SIngletonGame : MonoBehaviour
 {
     public static SIngletonGame Instance { get; private set; }
     private List<Card> availableCard = new List<Card>();
-    private Inventory inventory;
+    [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
     [SerializeField] private GameObject CardDisplayPrefab;
     private void Awake()
@@ -63,5 +63,10 @@ public class SIngletonGame : MonoBehaviour
             dummyCard.cardImage = Resources.Load<Sprite>("dummy");
             availableCard.Add(dummyCard);
         }
+    }
+
+    public void AddToInventory(Card card) {
+        inventory.items.Add(card);
+        inventory.PopulateInventoryUI();
     }
 }
