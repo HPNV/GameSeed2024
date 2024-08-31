@@ -16,3 +16,4 @@ MonoBehaviour:
   pickupDistance: 1.5
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   dropChance: 40
+  scale: {x: 2, y: 2, z: 2}
