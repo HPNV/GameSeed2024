@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6956464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7938450433688461391, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
+  m_PrefabInstance: {fileID: 3044290843539985927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &88458186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 2125645961}
   homeBase: {fileID: 2061062848}
-  CardDisplayPrefab: {fileID: 7938450433688461391, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
+  CardDisplayPrefab: {fileID: 6956464}
 --- !u!4 &528858110
 Transform:
   m_ObjectHideFlags: 0
