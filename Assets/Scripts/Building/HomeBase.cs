@@ -11,6 +11,7 @@ public class HomeBase : MonoBehaviour
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
+    private float health = 100f;
 
 
     void Start()

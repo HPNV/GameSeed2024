@@ -8,7 +8,6 @@ using Enemy;
 using Manager;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using Manager;
 using ResourceManager = Manager.ResourceManager;
 
 public class SingletonGame : MonoBehaviour
@@ -22,7 +21,7 @@ public class SingletonGame : MonoBehaviour
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
-    public EnemyManager EnemyManager { get; set; } = new();
+    // public EnemyManager EnemyManager { get; set; } = new();
 
 
     [SerializeField] private GameObject CardDisplayPrefab;
@@ -45,7 +44,7 @@ private void Awake()
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
-        EnemyManager.Initialize();
+        // EnemyManager.Initialize();
     }
 
     private void Update()
@@ -56,7 +55,7 @@ private void Awake()
             var y = Random.Range(-20, 20);
             
             var position = transform.position;
-            EnemyManager.Spawn(EnemyType.Melee, new Vector2(position.x + x, position.y + y));
+            // EnemyManager.Spawn(EnemyType.Melee, new Vector2(position.x + x, position.y + y));
         }
         
         if (Input.GetKeyDown(KeyCode.E))
@@ -66,7 +65,7 @@ private void Awake()
             
             var position = transform.position;
                 
-            EnemyManager.Spawn(EnemyType.Explosive, new Vector2(position.x + x, position.y + y));
+            // EnemyManager.Spawn(EnemyType.Explosive, new Vector2(position.x + x, position.y + y));
         }
             
         if (Input.GetKeyDown(KeyCode.R))
@@ -76,7 +75,7 @@ private void Awake()
             
             var position = transform.position;
                 
-            EnemyManager.Spawn(EnemyType.Ranged, new Vector2(position.x + x, position.y + y));
+            // EnemyManager.Spawn(EnemyType.Ranged, new Vector2(position.x + x, position.y + y));
         }
     }
 
