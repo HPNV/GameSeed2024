@@ -18,6 +18,11 @@ namespace Enemy.States.Ranged
 
         public override void OnUpdate()
         {
+            if (Enemy.Target == null)
+            {
+                return;
+            }
+            
             var targetPosition = Enemy.Target.position;
             
             var distance = Vector2.Distance(Enemy.transform.position, targetPosition);

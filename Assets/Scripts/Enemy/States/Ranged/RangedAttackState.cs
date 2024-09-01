@@ -31,7 +31,7 @@ namespace Enemy.States.Ranged
         
         private void SpawnProjectile()
         {
-            if (_hasSpawnedProjectile)
+            if (_hasSpawnedProjectile || Enemy.Target == null)
                 return;
             
             _hasSpawnedProjectile = true;

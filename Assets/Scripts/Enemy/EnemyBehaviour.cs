@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Enemy.States;
 using Enemy.States.Explosive;
 using Enemy.States.Melee;
 using Enemy.States.Ranged;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Enemy
@@ -11,22 +14,24 @@ namespace Enemy
     {
         [SerializeField] 
         private Vector3 healthBarOffset = new(0, 1, 0);
-
         [SerializeField] 
         public EnemyData enemyData;
         public float CurrentHealth { get; private set; }
-        [SerializeField] public Transform Target { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
+        [CanBeNull] public Transform Target { get; private set; }
+        
+        public readonly string TargetTag = "Plant";
 
         private HealthBar _healthBar;
         private IState _currentState;
         private Dictionary<State, IState> _states;
+        private List<GameObject> _nearbyTargets;
       
     
         protected void Start()
         {
-            Target = GameObject.FindWithTag("Base").transform;
+            _nearbyTargets = new List<GameObject>();
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
@@ -43,6 +48,10 @@ namespace Enemy
         // Update is called once per frame
         protected void Update()
         {
+            _nearbyTargets.RemoveAll(target => target == null);
+            
+            Target = _nearbyTargets.FirstOrDefault()?.transform;
+            
             _currentState.OnUpdate();
             
             if (Input.GetKeyDown(KeyCode.A))
@@ -111,6 +120,25 @@ namespace Enemy
             _currentState.OnExit();
             _currentState = _states[state];
             _currentState.OnEnter();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag(TargetTag))
+            {
+                _nearbyTargets.Add(other.gameObject);
+                _nearbyTargets = _nearbyTargets
+                    .OrderBy(obj => (obj.transform.position - transform.position).sqrMagnitude)
+                    .ToList();
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag(TargetTag))
+            {
+                _nearbyTargets.Remove(other.gameObject);
+            }
         }
     }
 }

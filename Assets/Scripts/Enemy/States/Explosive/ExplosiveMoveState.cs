@@ -11,6 +11,12 @@ namespace Enemy.States.Explosive
         public override void OnUpdate()
         {
             base.OnUpdate();
+            
+            if (Enemy.Target == null)
+            {
+                return;
+            }
+            
             var targetPosition = Enemy.Target.position;
             
             var distance = Vector2.Distance(Enemy.transform.position, targetPosition);
@@ -24,7 +30,7 @@ namespace Enemy.States.Explosive
         
         public override void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Base"))
+            if (collision.gameObject.CompareTag(Enemy.TargetTag))
             {
                 Enemy.ChangeState(State.Attack);
                 Debug.Log("Change to attack");

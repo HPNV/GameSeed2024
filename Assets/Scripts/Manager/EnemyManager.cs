@@ -25,6 +25,7 @@ namespace Manager
         
         public GameObject Spawn(EnemyType type, Vector2 position)
         {
+            Debug.Log($"a {_enemyPrefab}");
             var enemyObject = Object.Instantiate(_enemyPrefab, position, Quaternion.identity);
             var enemyBehaviour = enemyObject.GetComponent<EnemyBehaviour>();
             enemyBehaviour.enemyData = _enemyData[type];

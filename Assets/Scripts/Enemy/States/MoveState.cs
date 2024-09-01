@@ -8,6 +8,11 @@ namespace Enemy.States
         
         public override void OnUpdate()
         {
+            if (Enemy.Target == null)
+            {
+                return;
+            }
+            
             var targetPosition = Enemy.Target.position;
             
              

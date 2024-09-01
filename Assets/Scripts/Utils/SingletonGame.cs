@@ -45,6 +45,7 @@ private void Awake()
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
+        EnemyManager.Initialize();
     }
 
     private void Update()
