@@ -10,7 +10,7 @@ namespace Building
     {
         [SerializeField] private GameObject CardDisplayPrefab;
         [SerializeField] ExpBar expBar;
-        private List<Card.Card> availableCard;
+        private List<Card.CardData> availableCard;
         private int currentLevel = 1;
         private int currentExp = 0;
         private int expToNextLevel = 100;
@@ -18,7 +18,7 @@ namespace Building
 
         void Start()
         {
-            availableCard = new List<Card.Card>();
+            availableCard = new List<Card.CardData>();
             SetExpBar();
             InitCardList();
         }
@@ -72,26 +72,26 @@ namespace Building
 
                 // Get the CardDisplay component and assign a random card
                 CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
-                Card.Card card = GetRandomCards(availableCard);
-                cardDisplay.card = card;
+                Card.CardData cardData = GetRandomCards(availableCard);
+                cardDisplay.cardData = cardData;
 
-                Debug.Log(card);
+                Debug.Log(cardData);
             }
         }
 
 
-        private Card.Card GetRandomCards(List<Card.Card> cards)
+        private Card.CardData GetRandomCards(List<Card.CardData> cards)
         {
             return cards.OrderBy(c => Random.value).FirstOrDefault();
         }
 
         private void InitCardList() {
             for (int i=0;i<3;i++){
-                Card.Card dummyCard = ScriptableObject.CreateInstance<Card.Card>();
-                dummyCard.cardName = "Dummy Card" + i;
-                dummyCard.description = "This is a dummy card description.";
-                dummyCard.cardImage = Resources.Load<Sprite>("dummy");
-                availableCard.Add(dummyCard);
+                Card.CardData dummyCardData = ScriptableObject.CreateInstance<Card.CardData>();
+                dummyCardData.cardName = "Dummy Card" + i;
+                dummyCardData.description = "This is a dummy card description.";
+                dummyCardData.cardImage = Resources.Load<Sprite>("dummy");
+                availableCard.Add(dummyCardData);
             }
         }
     }
