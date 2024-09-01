@@ -6,7 +6,6 @@ using UnityEngine;
 public class DummyAI : MonoBehaviour
 {
     [SerializeField] private GameObject enemyObject;
-    
     private Dictionary<EnemyType, EnemyData> _enemyData;
     void Start()
     {
@@ -28,37 +27,6 @@ public class DummyAI : MonoBehaviour
         
         transform.position = cursorPosition;
         
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            var x = Random.Range(-10, 10);
-            var y = Random.Range(-10, 10);
-            
-            var position = transform.position;
-            var enemy = Instantiate(enemyObject, new Vector3(position.x + x, position.y + y, position.z), Quaternion.identity);
-            var behaviour = enemy.GetComponent<EnemyBehaviour>();
-            behaviour.enemyData = _enemyData[EnemyType.Melee];
-        }
         
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            var x = Random.Range(-10, 10);
-            var y = Random.Range(-10, 10);
-            
-            var position = transform.position;
-            var enemy = Instantiate(enemyObject, new Vector3(position.x + x, position.y + y, position.z), Quaternion.identity);
-            var behaviour = enemy.GetComponent<EnemyBehaviour>();
-            behaviour.enemyData = _enemyData[EnemyType.Explosive];
-        }
-        
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            var x = Random.Range(-10, 10);
-            var y = Random.Range(-10, 10);
-            
-            var position = transform.position;
-            var enemy = Instantiate(enemyObject, new Vector3(position.x + x, position.y + y, position.z), Quaternion.identity);
-            var behaviour = enemy.GetComponent<EnemyBehaviour>();
-            behaviour.enemyData = _enemyData[EnemyType.Ranged];
-        }
     }
 }

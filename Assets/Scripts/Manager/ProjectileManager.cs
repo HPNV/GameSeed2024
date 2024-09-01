@@ -15,7 +15,6 @@ namespace Manager
         
         public void Initialize()
         {
-           
             _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectile");
             _projectileData = new ConcurrentDictionary<ProjectileType, ProjectileData>();
             
