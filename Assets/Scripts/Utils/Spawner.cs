@@ -36,7 +36,13 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
-        spawnPosition.y = 0;
+        spawnPosition.y = Random.Range(1f, 3f);
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 }

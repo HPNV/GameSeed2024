@@ -15,7 +15,7 @@ namespace Enemy
         [SerializeField] 
         public EnemyData enemyData;
         public float CurrentHealth { get; private set; }
-        public Transform Target { get; private set; }
+        [SerializeField] public Transform Target { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
