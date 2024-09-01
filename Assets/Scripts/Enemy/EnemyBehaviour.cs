@@ -26,7 +26,7 @@ namespace Enemy
     
         protected void Start()
         {
-            Target = GameObject.FindWithTag("Dummy").transform;
+            Target = GameObject.FindWithTag("Base").transform;
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
@@ -43,7 +43,6 @@ namespace Enemy
         // Update is called once per frame
         protected void Update()
         {
-            Debug.Log(_currentState);
             _currentState.OnUpdate();
             
             if (Input.GetKeyDown(KeyCode.A))
