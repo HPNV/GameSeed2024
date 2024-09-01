@@ -1,44 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
+using CardClass;
+using Manager;
 using UnityEngine;
 
-namespace Utils
+public class SingletonGame : MonoBehaviour
 {
-    public class SingletonGame : MonoBehaviour
-    {
-        public static SingletonGame Instance { get; private set; }
-        private List<Card> availableCard = new List<Card>();
+    public static SingletonGame Instance { get; private set; }
+    private List<Card> availableCard = new List<Card>();
     [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
-        public int ExpPoint;
-    
-        public ResourceManager ResourceManager { get; set; } = new();
-        public ExperienceManager ExperienceManager { get; set; } = new();
-        public ProjectileManager ProjectileManager { get; set; } = new();
+    public int ExpPoint;
+
+    public ResourceManager ResourceManager { get; set; } = new();
+    public ExperienceManager ExperienceManager { get; set; } = new();
+    public ProjectileManager ProjectileManager { get; set; } = new();
 
 
-        [SerializeField] private GameObject CardDisplayPrefab;
-    private void Awake()
+    [SerializeField] private GameObject CardDisplayPrefab;
+private void Awake()
+    {
+        if (Instance == null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                Initialize();
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {   
-                Destroy(gameObject);
-            }
+            Instance = this;
+            Initialize();
+            DontDestroyOnLoad(gameObject);
         }
-    
-        private void Initialize()
-        {
-            ResourceManager.Initialize();
-            ExperienceManager.Initialize();
-            ProjectileManager.Initialize();
+        else
+        {   
+            Destroy(gameObject);
         }
+    }
+
+    private void Initialize()
+    {
+        ResourceManager.Initialize();
+        ExperienceManager.Initialize();
+        ProjectileManager.Initialize();
+    }
 
     void Start() {
         InitCardList();
@@ -89,4 +90,5 @@ namespace Utils
             }
         }
     }
+
 }

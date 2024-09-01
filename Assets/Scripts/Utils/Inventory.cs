@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CardClass;
 using UnityEngine;
 using UnityEngine.UI;
 

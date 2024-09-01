@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Card
+namespace CardClass
 {
     [CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Card")]
     public class Card : ScriptableObject
