@@ -342,9 +342,21 @@ PrefabInstance:
       value: GameGrid
       objectReference: {fileID: 0}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1819392079}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: _cam
       value: 
       objectReference: {fileID: 1819392079}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: width
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: height
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
