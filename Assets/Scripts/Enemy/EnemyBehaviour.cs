@@ -15,7 +15,6 @@ namespace Enemy
         public EnemyData enemyData;
         public float CurrentHealth { get; set; }
         public Transform Target { get; set; }
-        
         private HealthBar _healthBar;
         private IState _currentState;
         private Dictionary<State, IState> _states;
