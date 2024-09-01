@@ -1,5 +1,6 @@
 ﻿using Manager;
 using UnityEngine;
+using Utils;
 
 namespace Enemy.States
 {

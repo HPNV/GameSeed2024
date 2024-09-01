@@ -10,7 +10,6 @@ namespace Enemy
         private Slider _healthSlider;
         private float _currentHealth;
     
-    
         public float Health
         {
             get => _currentHealth;
@@ -43,7 +42,7 @@ namespace Enemy
             _healthSlider.maxValue = _maxHealth;
             _healthSlider.value = _maxHealth;
         }
-        // Update is called once per frame
+
         private void Update()
         {
             KeepZValue();

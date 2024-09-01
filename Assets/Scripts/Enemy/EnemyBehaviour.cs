@@ -14,14 +14,14 @@ namespace Enemy
 
         [SerializeField] 
         public EnemyData enemyData;
-        public float CurrentHealth { get; set; }
-        public Transform Target { get; set; }
-        public Animator Animator { get; set; }
-        public SpriteRenderer SpriteRenderer { get; set; }
-        
-        protected HealthBar HealthBar;
-        protected IState CurrentState;
-        protected Dictionary<State, IState> States;
+        public float CurrentHealth { get; private set; }
+        public Transform Target { get; private set; }
+        public Animator Animator { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
+
+        private HealthBar _healthBar;
+        private IState _currentState;
+        private Dictionary<State, IState> _states;
       
     
         protected void Start()
@@ -37,13 +37,13 @@ namespace Enemy
 
         protected void OnCollisionStay2D(Collision2D other)
         {
-            CurrentState.OnCollisionStay2D(other);
+            _currentState.OnCollisionStay2D(other);
         }
 
         // Update is called once per frame
         protected void Update()
         {
-            CurrentState.OnUpdate();
+            _currentState.OnUpdate();
             
             if (Input.GetKeyDown(KeyCode.A))
             {
@@ -54,17 +54,22 @@ namespace Enemy
     
         private void SetupHealthBar()
         {
-            HealthBar = GetComponentInChildren<HealthBar>();
+            _healthBar = GetComponentInChildren<HealthBar>();
+
+            if (_healthBar == null)
+                return;
+
+            var healthObject = _healthBar.gameObject;
             
-            HealthBar.gameObject.transform.SetParent(transform);
-            HealthBar.gameObject.transform.localPosition = healthBarOffset;
+            healthObject.transform.SetParent(transform);
+            healthObject.transform.localPosition = healthBarOffset;
             // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
-            HealthBar.MaxHealth = enemyData.health;
+            _healthBar.MaxHealth = enemyData.health;
         }
 
         private void SetupStates()
         {
-            States = enemyData.enemyType switch
+            _states = enemyData.enemyType switch
             {
                 EnemyType.Melee => new Dictionary<State, IState>
                 {
@@ -84,10 +89,10 @@ namespace Enemy
                     { State.Attack, new ExplosiveAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                _ => States
+                _ => _states
             };
 
-            CurrentState = States[State.Move];
+            _currentState = _states[State.Move];
         }
 
         private void SetupAnimationController()
@@ -97,15 +102,15 @@ namespace Enemy
 
         private void Damage(float value)
         {
-            HealthBar.Health -= value;
+            _healthBar.Health -= value;
             CurrentHealth -= value;
         }
 
         public void ChangeState(State state)
         {
-            CurrentState.OnExit();
-            CurrentState = States[state];
-            CurrentState.OnEnter();
+            _currentState.OnExit();
+            _currentState = _states[state];
+            _currentState.OnEnter();
         }
     }
 }

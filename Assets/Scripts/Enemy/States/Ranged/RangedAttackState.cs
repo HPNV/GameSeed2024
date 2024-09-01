@@ -1,5 +1,6 @@
 using Projectile;
 using UnityEngine;
+using Utils;
 
 namespace Enemy.States.Ranged
 {

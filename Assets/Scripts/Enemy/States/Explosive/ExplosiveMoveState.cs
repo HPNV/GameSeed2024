@@ -6,11 +6,7 @@ namespace Enemy.States.Explosive
     public class ExplosiveMoveState : MoveState
     {
         public ExplosiveMoveState(EnemyBehaviour enemy) : base(enemy){}
-
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
+        
 
         public override void OnUpdate()
         {
