@@ -2,56 +2,28 @@
 
 namespace Enemy.States
 {
-    public class MoveState : IState
+    public class MoveState : BaseState
     {
-        private readonly EnemyBehaviour enemy;
+        protected MoveState(EnemyBehaviour enemy) : base(enemy){} 
         
-        public MoveState(EnemyBehaviour enemy)
+        public override void OnUpdate()
         {
-            this.enemy = enemy;
-        }
-        
-        public void OnUpdate()
-        {
-            var targetPosition = enemy.Target.position;
+            var targetPosition = Enemy.Target.position;
             
-            var direction = (targetPosition - enemy.transform.position).normalized;
+             
+            Enemy.transform.position = Vector2.MoveTowards(
+                Enemy.transform.position, 
+                targetPosition, 
+                Enemy.enemyData.movementSpeed * Time.deltaTime);
             
-            enemy.transform.position += direction * (enemy.enemyData.movementSpeed * Time.deltaTime);
+            var direction = (targetPosition - Enemy.transform.position).normalized;
             
-            if (direction.x > 0)
+            Enemy.SpriteRenderer.flipX = direction.x > 0;
+            
+            if (Enemy.CurrentHealth <= 0)
             {
-                enemy.SpriteRenderer.flipX = true;
+                Enemy.ChangeState(State.Die);
             }
-            else
-            {
-                enemy.SpriteRenderer.flipX = false;
-            }
-            
-            if (enemy.CurrentHealth <= 0)
-            {
-                enemy.ChangeState(State.Die);
-            }
-        }
-
-        public void OnEnter()
-        {
-            
-        }
-
-        public void OnExit()
-        {
-
-        }
-
-        public void OnCollisionStay2D(Collision2D collision)
-        {
-            // TODO CHANGE TO PLANT
-            if (collision.gameObject.CompareTag("Dummy"))
-            {
-                enemy.ChangeState(State.Attack);
-                Debug.Log("Change to attack");
-            }   
         }
     }
 }

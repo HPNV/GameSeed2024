@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 namespace PickupableResource
 {
@@ -26,7 +25,6 @@ namespace PickupableResource
             {
                 var target = (Vector2)_camera.ScreenToWorldPoint(Input.mousePosition);
                 
-                Debug.Log($"{Vector3.Distance(transform.position, target)} {resourceData.pickupDistance}");
                 if (Vector3.Distance(transform.position, target) < resourceData.pickupDistance)
                 {
                     SingletonGame.Instance.ExperienceManager.Spawn(1, transform.position);

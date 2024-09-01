@@ -1,46 +1,29 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Enemy.States
 {
-    public class AttackState : IState
+    public class AttackState : BaseState
     {
-        private readonly EnemyBehaviour enemy;
+        private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+        protected AttackState(EnemyBehaviour enemy) : base(enemy){} 
         
-        public AttackState(EnemyBehaviour enemy)
+        
+        public override void OnUpdate()
         {
-            this.enemy = enemy;
-        }
-        
-        
-        public void OnUpdate()
-        {
-            var stateInfo = enemy.Animator.GetCurrentAnimatorStateInfo(0);
-            
-            if (stateInfo.IsName("Melee_Attack") && stateInfo.normalizedTime >= 1)
+            if (Enemy.CurrentHealth <= 0)
             {
-                enemy.ChangeState(State.Move);
-            }
-            
-            if (enemy.CurrentHealth <= 0)
-            {
-                enemy.ChangeState(State.Die);
+                Enemy.ChangeState(State.Die);
             }
         }
 
-        public void OnEnter()
+        public override void OnEnter()
         {
-            Debug.Log("Enter attack state");
-            enemy.Animator.SetBool("IsAttacking", true);
+            Enemy.Animator.SetBool(IsAttacking, true);
         }
 
-        public void OnExit()
+        public override void OnExit()
         {
-            Debug.Log("Exit attack state");
-            enemy.Animator.SetBool("IsAttacking", false);
-        }
-
-        public void OnCollisionStay2D(Collision2D collision)
-        {
+            Enemy.Animator.SetBool(IsAttacking, false);
         }
     }
 }

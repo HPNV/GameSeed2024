@@ -8,13 +8,10 @@ namespace PickupableResource
     public class ResourceData : ScriptableObject
     {
         public string resourceName;
-
         public float pickupDistance;
-
         public Sprite sprite;
-
         public float dropChance;
-        public Vector3 scale;
+        public Vector3 scale = new(2, 2, 2);
     }
 }
 

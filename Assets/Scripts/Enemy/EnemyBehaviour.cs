@@ -1,8 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Enemy.States;
-using Manager;
+using Enemy.States.Explosive;
+using Enemy.States.Melee;
+using Enemy.States.Ranged;
 using UnityEngine;
 
 namespace Enemy
@@ -14,43 +14,36 @@ namespace Enemy
 
         [SerializeField] 
         public EnemyData enemyData;
-        public float CurrentHealth { get; set; }
-        public Transform Target { get; set; }
-        public Animator Animator { get; set; }
-        public SpriteRenderer SpriteRenderer { get; set; }
-        
+        public float CurrentHealth { get; private set; }
+        public Transform Target { get; private set; }
+        public Animator Animator { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
+
         private HealthBar _healthBar;
         private IState _currentState;
         private Dictionary<State, IState> _states;
       
     
-        private void Start()
+        protected void Start()
         {
             Target = GameObject.FindWithTag("Dummy").transform;
-            _states = new Dictionary<State, IState>
-            {
-                {State.Move, new MoveState(this)},
-                {State.Attack, new AttackState(this)},
-                {State.Die, new DieState(this)}
-            };
-            _currentState = _states[State.Move];
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
             SetupHealthBar();
+            SetupStates();
+            SetupAnimationController();
         }
 
-        private void OnCollisionStay2D(Collision2D other)
+        protected void OnCollisionStay2D(Collision2D other)
         {
             _currentState.OnCollisionStay2D(other);
         }
 
         // Update is called once per frame
-        private void Update()
+        protected void Update()
         {
-            KeepZValue();
             _currentState.OnUpdate();
-    
             
             if (Input.GetKeyDown(KeyCode.A))
             {
@@ -58,24 +51,56 @@ namespace Enemy
             }
         }
         
-        private void KeepZValue()
-        {
-            var position = transform.position;
-            position.z = 0;
-            transform.position = position;
-        }
     
         private void SetupHealthBar()
         {
             _healthBar = GetComponentInChildren<HealthBar>();
+
+            if (_healthBar == null)
+                return;
+
+            var healthObject = _healthBar.gameObject;
             
-            _healthBar.gameObject.transform.SetParent(transform);
-            _healthBar.gameObject.transform.localPosition = healthBarOffset;
+            healthObject.transform.SetParent(transform);
+            healthObject.transform.localPosition = healthBarOffset;
             // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
             _healthBar.MaxHealth = enemyData.health;
         }
-    
-        public void Damage(float value)
+
+        private void SetupStates()
+        {
+            _states = enemyData.enemyType switch
+            {
+                EnemyType.Melee => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.Ranged => new Dictionary<State, IState>
+                {
+                    { State.Move, new RangedMoveState(this) },
+                    { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.Explosive => new Dictionary<State, IState>
+                {
+                    { State.Move, new ExplosiveMoveState(this) },
+                    { State.Attack, new ExplosiveAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                _ => _states
+            };
+
+            _currentState = _states[State.Move];
+        }
+
+        private void SetupAnimationController()
+        {
+            Animator.runtimeAnimatorController = enemyData.animatorController;
+        }
+
+        private void Damage(float value)
         {
             _healthBar.Health -= value;
             CurrentHealth -= value;

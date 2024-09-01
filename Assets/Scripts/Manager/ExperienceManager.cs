@@ -14,7 +14,6 @@ namespace Manager
         
         public void Spawn(int spawnAmount, Vector3 position)
         {
-            Debug.Log(_experienceOrbPrefab);
             for (var i = 0; i < spawnAmount; i++)
             {
                 Object.Instantiate(_experienceOrbPrefab, position, Quaternion.identity);   

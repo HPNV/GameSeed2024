@@ -161,7 +161,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &7559140220588477992
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarOffset: {x: 0, y: 0.25, z: 0}
-  enemyData: {fileID: 11400000, guid: 5112ab7be98c82c4c80cfa48da910789, type: 2}
+  enemyData: {fileID: 11400000, guid: d54a74679d063674ea7748fd36ba33f5, type: 2}
 --- !u!50 &7660395613001402454
 Rigidbody2D:
   serializedVersion: 4

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +9,6 @@ namespace Enemy
         private float _maxHealth = 100f;
         private Slider _healthSlider;
         private float _currentHealth;
-    
     
         public float Health
         {
@@ -45,7 +42,7 @@ namespace Enemy
             _healthSlider.maxValue = _maxHealth;
             _healthSlider.value = _maxHealth;
         }
-        // Update is called once per frame
+
         private void Update()
         {
             KeepZValue();
