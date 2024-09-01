@@ -3,23 +3,17 @@ using UnityEngine;
 
 namespace Enemy.States
 {
-    public class DieState : IState
+    public class DieState : BaseState
     {
-        public void OnUpdate(EnemyBehaviour enemy)
-        {
-           
-        }
+        public DieState(EnemyBehaviour enemy) : base(enemy){} 
 
-        public void OnEnter(EnemyBehaviour enemy)
+        public override void OnEnter()
         {
-            var position = enemy.transform.position;
-
-            ExperienceManager.Spawn(3, new Vector3(position.x, position.y, position.z));
-        }
-
-        public void OnExit(EnemyBehaviour enemy)
-        {
-           
+            var position = Enemy.transform.position;
+            SingletonGame.Instance.ExperienceManager.Spawn(3, new Vector3(position.x, position.y, position.z));
+            SingletonGame.Instance.ResourceManager.Spawn(1, new Vector3(position.x, position.y, position.z));
+            
+            Object.Destroy(Enemy.gameObject);
         }
     }
 }

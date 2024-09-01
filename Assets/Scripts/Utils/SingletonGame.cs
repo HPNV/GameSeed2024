@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
-using CardClass;
+using Card;
 using Manager;
 using UnityEngine;
+using ResourceManager = Manager.ResourceManager;
 
 public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
-    private List<Card> availableCard = new List<Card>();
+    private List<CardData> availableCard = new List<CardData>();
     [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
@@ -54,21 +55,21 @@ private void Awake()
             Vector3 spawnPosition = new Vector3(screenRightEdge + offset * i, cameraPosition.y, -5);
             GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
             CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
-            Card card = GetRandomCards(availableCard);
-            cardDisplay.card = card;
+            CardData card = GetRandomCards(availableCard);
+            cardDisplay.cardData = card;
 
             Debug.Log(card);
         }
     }
 
-    private Card GetRandomCards(List<Card> cards)
+    private CardData GetRandomCards(List<CardData> cards)
     {
         return cards.OrderBy(c => Random.value).FirstOrDefault();
     }
 
     private void InitCardList() {
         for (int i=0;i<3;i++){
-            Card dummyCard = ScriptableObject.CreateInstance<Card>();
+            CardData dummyCard = ScriptableObject.CreateInstance<CardData>();
             dummyCard.cardName = "Dummy Card" + i;
             dummyCard.description = "This is a dummy card description.";
             dummyCard.cardImage = Resources.Load<Sprite>("dummy");
@@ -76,7 +77,7 @@ private void Awake()
         }
     }
 
-    public void PickCard(Card card)
+    public void PickCard(CardData card)
     {
         inventory.AddCard(card);
         DestroyRemainingCards();
@@ -85,7 +86,7 @@ private void Awake()
     private void DestroyRemainingCards()
     {
         foreach (var cardDisplay in FindObjectsOfType<CardDisplay>()) {
-            if (cardDisplay.card != null) {
+            if (cardDisplay.cardData != null) {
                 Destroy(cardDisplay.gameObject);
             }
         }
