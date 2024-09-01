@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -16,10 +19,31 @@ namespace Card
             cardImageHolder = card.cardImage;   
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+    void Update()
+    {
         
         }
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+        cardNameText.text = card.cardName;
+        descriptionText.text = card.description;
+        cardImageHolder = card.cardImage;
+    }
+
+    public void OnMouseDown() {
+        SIngletonGame.Instance.PickCard(this.card);
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+        cardNameText.text = card.cardName;
+        descriptionText.text = card.description;
+        cardImageHolder = card.cardImage;
+    }
+
+    public void OnMouseDown() {
+        SIngletonGame.Instance.PickCard(this.card);
     }
 }

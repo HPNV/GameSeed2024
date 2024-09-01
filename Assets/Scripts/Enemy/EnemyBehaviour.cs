@@ -1,8 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using Enemy.States;
-using Enemy.States.Explosive;
-using Enemy.States.Melee;
-using Enemy.States.Ranged;
+using Manager;
 using UnityEngine;
 
 namespace Enemy
@@ -24,93 +23,66 @@ namespace Enemy
         private Dictionary<State, IState> _states;
       
     
-        protected void Start()
+        private void Start()
         {
             Target = GameObject.FindWithTag("Dummy").transform;
-            Animator = GetComponent<Animator>();
-            SpriteRenderer = GetComponent<SpriteRenderer>();
+            _states = new Dictionary<State, IState>
+            {
+                {State.Move, new MoveState()},
+                {State.Attack, new AttackState()},
+                {State.Die, new DieState()}
+            };
+            _currentState = _states[State.Move];
             CurrentHealth = enemyData.health;
             SetupHealthBar();
-            SetupStates();
-            SetupAnimationController();
         }
-
-        protected void OnCollisionStay2D(Collision2D other)
-        {
-            _currentState.OnCollisionStay2D(other);
-        }
-
+    
         // Update is called once per frame
-        protected void Update()
+        private void Update()
         {
-            _currentState.OnUpdate();
-            
+            KeepZValue();
+            _currentState.OnUpdate(this);
+    
             if (Input.GetKeyDown(KeyCode.A))
             {
                 Damage(10);
             }
         }
         
+        private void KeepZValue()
+        {
+            var position = transform.position;
+            position.z = 0;
+            transform.position = position;
+        }
     
         private void SetupHealthBar()
         {
             _healthBar = GetComponentInChildren<HealthBar>();
-
-            if (_healthBar == null)
-                return;
-
-            var healthObject = _healthBar.gameObject;
             
-            healthObject.transform.SetParent(transform);
-            healthObject.transform.localPosition = healthBarOffset;
-            // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            _healthBar.gameObject.transform.SetParent(transform);
+            _healthBar.gameObject.transform.localPosition = healthBarOffset;
+            
             _healthBar.MaxHealth = enemyData.health;
         }
-
-        private void SetupStates()
-        {
-            _states = enemyData.enemyType switch
-            {
-                EnemyType.Melee => new Dictionary<State, IState>
-                {
-                    { State.Move, new MeleeMoveState(this) },
-                    { State.Attack, new MeleeAttackState(this) },
-                    { State.Die, new DieState(this) }
-                },
-                EnemyType.Ranged => new Dictionary<State, IState>
-                {
-                    { State.Move, new RangedMoveState(this) },
-                    { State.Attack, new RangedAttackState(this) },
-                    { State.Die, new DieState(this) }
-                },
-                EnemyType.Explosive => new Dictionary<State, IState>
-                {
-                    { State.Move, new ExplosiveMoveState(this) },
-                    { State.Attack, new ExplosiveAttackState(this) },
-                    { State.Die, new DieState(this) }
-                },
-                _ => _states
-            };
-
-            _currentState = _states[State.Move];
-        }
-
-        private void SetupAnimationController()
-        {
-            Animator.runtimeAnimatorController = enemyData.animatorController;
-        }
-
-        private void Damage(float value)
+    
+        public void Damage(float value)
         {
             _healthBar.Health -= value;
             CurrentHealth -= value;
+            
+            if (CurrentHealth <= 0)
+            {
+                Debug.Log($"CurrentHealth: {CurrentHealth}");
+                ChangeState(State.Die);
+            }
         }
 
         public void ChangeState(State state)
         {
-            _currentState.OnExit();
+            _currentState.OnExit(this);
             _currentState = _states[state];
-            _currentState.OnEnter();
+            _currentState.OnEnter(this);
         }
     }
 }
