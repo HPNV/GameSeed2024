@@ -26,12 +26,11 @@ namespace Enemy
         private HealthBar _healthBar;
         private IState _currentState;
         private Dictionary<State, IState> _states;
-        private List<GameObject> _nearbyTargets;
+        private List<GameObject> _nearbyTargets = new();
       
     
         protected void Start()
         {
-            _nearbyTargets = new List<GameObject>();
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
@@ -126,6 +125,7 @@ namespace Enemy
         {
             if (other.CompareTag(TargetTag))
             {
+                Debug.Log($" {TargetTag} {other.gameObject.name} entered the trigger {_nearbyTargets}");
                 _nearbyTargets.Add(other.gameObject);
                 _nearbyTargets = _nearbyTargets
                     .OrderBy(obj => (obj.transform.position - transform.position).sqrMagnitude)

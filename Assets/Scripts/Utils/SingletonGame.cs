@@ -25,7 +25,7 @@ public class SingletonGame : MonoBehaviour
 
 
     [SerializeField] private GameObject CardDisplayPrefab;
-private void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
