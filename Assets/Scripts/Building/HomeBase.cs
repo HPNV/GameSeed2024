@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Card;
+using Building;
+
 using UnityEngine;
 using Utils;
 
@@ -36,7 +37,7 @@ public class HomeBase : MonoBehaviour
             currentLevel +=1;
             currentExp -= expToNextLevel;
             expToNextLevel += 50;
-            SIngletonGame.Instance.SpawnPlant();
+            SingletonGame.Instance.SpawnPlant();
         }
     }
 

@@ -1,49 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Utils;
 
 namespace Card
 {
     public class CardDisplay : MonoBehaviour
     {
-        public Card card;
+        [FormerlySerializedAs("card")] public CardData cardData;
         public TextMeshPro cardNameText;
         public Sprite cardImageHolder;
         public TextMeshPro descriptionText;
         void Start()
         {
-            cardNameText.text = card.cardName;
-            descriptionText.text = card.description;
-            cardImageHolder = card.cardImage;   
+            cardNameText.text = cardData.cardName;
+            descriptionText.text = cardData.description;
+            cardImageHolder = cardData.cardImage;   
         }
 
-    void Update()
-    {
-        
+        void Update()
+        {
+            
         }
-    }
 
-    public void setCard(Card card) {
-        this.card = card;
-        cardNameText.text = card.cardName;
-        descriptionText.text = card.description;
-        cardImageHolder = card.cardImage;
-    }
+        public void setCard(CardData cardData) {
+            this.cardData = cardData;
+            cardNameText.text = cardData.cardName;
+            descriptionText.text = cardData.description;
+            cardImageHolder = cardData.cardImage;
+        }
 
-    public void OnMouseDown() {
-        SIngletonGame.Instance.PickCard(this.card);
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-        cardNameText.text = card.cardName;
-        descriptionText.text = card.description;
-        cardImageHolder = card.cardImage;
-    }
-
-    public void OnMouseDown() {
-        SIngletonGame.Instance.PickCard(this.card);
+        public void OnMouseDown() {
+            SingletonGame.Instance.PickCard(cardData);
+        }
     }
 }

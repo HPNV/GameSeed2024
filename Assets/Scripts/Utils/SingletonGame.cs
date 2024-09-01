@@ -1,44 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
+using Card;
+using Manager;
 using UnityEngine;
+using ResourceManager = Manager.ResourceManager;
 
-namespace Utils
+public class SingletonGame : MonoBehaviour
 {
-    public class SingletonGame : MonoBehaviour
-    {
-        public static SingletonGame Instance { get; private set; }
-        private List<Card> availableCard = new List<Card>();
+    public static SingletonGame Instance { get; private set; }
+    private List<CardData> availableCard = new List<CardData>();
     [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
-        public int ExpPoint;
-    
-        public ResourceManager ResourceManager { get; set; } = new();
-        public ExperienceManager ExperienceManager { get; set; } = new();
-        public ProjectileManager ProjectileManager { get; set; } = new();
+    public int ExpPoint;
+
+    public ResourceManager ResourceManager { get; set; } = new();
+    public ExperienceManager ExperienceManager { get; set; } = new();
+    public ProjectileManager ProjectileManager { get; set; } = new();
 
 
-        [SerializeField] private GameObject CardDisplayPrefab;
-    private void Awake()
+    [SerializeField] private GameObject CardDisplayPrefab;
+private void Awake()
+    {
+        if (Instance == null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                Initialize();
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {   
-                Destroy(gameObject);
-            }
+            Instance = this;
+            Initialize();
+            DontDestroyOnLoad(gameObject);
         }
-    
-        private void Initialize()
-        {
-            ResourceManager.Initialize();
-            ExperienceManager.Initialize();
-            ProjectileManager.Initialize();
+        else
+        {   
+            Destroy(gameObject);
         }
+    }
+
+    private void Initialize()
+    {
+        ResourceManager.Initialize();
+        ExperienceManager.Initialize();
+        ProjectileManager.Initialize();
+    }
 
     void Start() {
         InitCardList();
@@ -53,21 +55,21 @@ namespace Utils
             Vector3 spawnPosition = new Vector3(screenRightEdge + offset * i, cameraPosition.y, -5);
             GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
             CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
-            Card card = GetRandomCards(availableCard);
-            cardDisplay.card = card;
+            CardData card = GetRandomCards(availableCard);
+            cardDisplay.cardData = card;
 
             Debug.Log(card);
         }
     }
 
-    private Card GetRandomCards(List<Card> cards)
+    private CardData GetRandomCards(List<CardData> cards)
     {
         return cards.OrderBy(c => Random.value).FirstOrDefault();
     }
 
     private void InitCardList() {
         for (int i=0;i<3;i++){
-            Card dummyCard = ScriptableObject.CreateInstance<Card>();
+            CardData dummyCard = ScriptableObject.CreateInstance<CardData>();
             dummyCard.cardName = "Dummy Card" + i;
             dummyCard.description = "This is a dummy card description.";
             dummyCard.cardImage = Resources.Load<Sprite>("dummy");
@@ -75,7 +77,7 @@ namespace Utils
         }
     }
 
-    public void PickCard(Card card)
+    public void PickCard(CardData card)
     {
         inventory.AddCard(card);
         DestroyRemainingCards();
@@ -84,9 +86,10 @@ namespace Utils
     private void DestroyRemainingCards()
     {
         foreach (var cardDisplay in FindObjectsOfType<CardDisplay>()) {
-            if (cardDisplay.card != null) {
+            if (cardDisplay.cardData != null) {
                 Destroy(cardDisplay.gameObject);
             }
         }
     }
+
 }
