@@ -7,16 +7,18 @@ using Utils;
 
 public class HomeBase : MonoBehaviour
 {
-    [SerializeField] ExpBar expBar;
+    [SerializeField] Bar expBar;
+    [SerializeField] Bar HpBar;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
-    private float health = 100f;
+    private float CurrentHealth = 100f;
+    private float maxHealth = 100f;
 
 
     void Start()
     {
-        SetExpBar();
+        UpdatetUIpBar();
     }
 
         void Update()
@@ -28,8 +30,7 @@ public class HomeBase : MonoBehaviour
                 mousePosition.z = -2;
                 SingletonGame.Instance.ExperienceManager.Spawn(1,mousePosition);
             }
-        
-            SetExpBar();
+
             LevelUp();
         }
 
@@ -42,13 +43,23 @@ public class HomeBase : MonoBehaviour
         }
     }
 
-        public void GainExp(int exp) {
-            currentExp += exp;
-        }
+    public void GainExp(int exp) {
+        currentExp += exp;
+        UpdatetUIpBar();
+    }
 
-
-    public void SetExpBar() {
+    public void UpdatetUIpBar() {
         expBar.Exp = currentExp;
-        expBar.setMaxExp(expToNextLevel);
+        expBar.setMaxValue(expToNextLevel);
+        HpBar.Exp = CurrentHealth;
+        HpBar.setMaxValue(100);
+    }
+
+    public void TakeDamage(float damage) {
+        CurrentHealth -= damage;
+        UpdatetUIpBar();
+        if(CurrentHealth <= 0) {
+
+        }
     }
 }

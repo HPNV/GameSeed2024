@@ -3,16 +3,16 @@ using UnityEngine.UI;
 
 namespace Building
 {
-    public class ExpBar : MonoBehaviour
+    public class Bar : MonoBehaviour
     {
         [SerializeField] private Slider currentExpBar;
 
-        private int currentExp;
+        private float currentValue;
 
-        public int Exp{
-            get => currentExp;
+        public float Exp{
+            get => currentValue;
             set {
-                currentExp = value;
+                currentValue = value;
             }
         }
 
@@ -23,10 +23,10 @@ namespace Building
 
         void Update()
         {
-            currentExpBar.value = currentExp;
+            currentExpBar.value = currentValue;
         }
 
-        public void setMaxExp(int maxExp) {
+        public void setMaxValue(float maxExp) {
             currentExpBar.maxValue = maxExp;
         }
     }
