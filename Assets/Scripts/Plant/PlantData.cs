@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ public class PlantData : ScriptableObject
     public float health;
     public float damage;
     public float speed;
+    public float range;
 
     public AnimatorController animatorController;
+    
+    public TargetType targetType;
 }

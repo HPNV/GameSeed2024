@@ -16,4 +16,6 @@ MonoBehaviour:
   health: 100
   damage: 10
   speed: 100
+  range: 6
   animatorController: {fileID: 9100000, guid: c7e0de70f658aab43b0f79ca088ab131, type: 2}
+  targetType: 0

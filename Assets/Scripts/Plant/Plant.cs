@@ -7,6 +7,8 @@ public class Plant : MonoBehaviour
     [SerializeField]
     private PlantData data;
     
+    private 
+    
     void Start()
     {
         GetComponent<Animator>().runtimeAnimatorController = data.animatorController;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
 
-public abstract class TargetService : MonoBehaviour
+public abstract class TargetService : ScriptableObject
 {
     protected EnemyDetectorService enemyDetectorService;
 
