@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Plant;
 using UnityEngine;
 
 public class PlantDataAdapter : MonoBehaviour
