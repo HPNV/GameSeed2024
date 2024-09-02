@@ -19,8 +19,7 @@ namespace Experience.States
             
             if (distance < orb.collectDistance)
             {
-                //TODO UNCOMMENT
-                // SingletonGame.Instance.homeBase.GainExp(orb.experienceValue);
+                SingletonGame.Instance.homeBase.GainExp(orb.experienceValue);
                 orb.Destroy();
             }
         }
