@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Plant", menuName = "Plant/Plant Data")]
@@ -9,4 +10,6 @@ public class PlantData : ScriptableObject
     public float health;
     public float damage;
     public float speed;
+
+    public AnimatorController animatorController;
 }
