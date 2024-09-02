@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,28 +7,33 @@ using UnityEngine.SceneManagement;
 
 public class PlayButtonHandler : MonoBehaviour
 {
-    
     public GameObject LoadingScreen;
     public Image LoadingBarFill;
 
     public void PlayGame(int sceneId)
     {
+        Console.WriteLine("Loading scene " + sceneId);
         StartCoroutine(LoadScene(sceneId));
     }
 
     IEnumerator LoadScene(int sceneId)
     {
+        // Now load the scene asynchronously
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneId);
 
-        LoadingScreen.SetActive(true);
+        // Deactivate automatic scene activation
+        asyncLoad.allowSceneActivation = false;
 
-        while (!asyncLoad.isDone)
+        LoadingScreen.SetActive(true);
+        
+        // Update the loading bar as the scene loads
+        while (asyncLoad.progress < 0.9f)
         {
             float loadProgress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-
             LoadingBarFill.fillAmount = loadProgress;
-        
             yield return null;
         }
+        
+        asyncLoad.allowSceneActivation = true;
     }
 }
