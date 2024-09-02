@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyColliderDetector : EnemyDetectorService
 {
     [SerializeField]
-    private Collider2D collider;
+    private Collider2D enmCollider;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
