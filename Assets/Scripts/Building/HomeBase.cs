@@ -21,18 +21,18 @@ public class HomeBase : MonoBehaviour
         UpdatetUIpBar();
     }
 
-        void Update()
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Vector3 mousePosition = Input.mousePosition;
-                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-                mousePosition.z = -2;
-                SingletonGame.Instance.ExperienceManager.Spawn(1,mousePosition);
-            }
-
-            LevelUp();
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            mousePosition.z = -2;
+            SingletonGame.Instance.ExperienceManager.Spawn(1,mousePosition);
         }
+
+        LevelUp();
+    }
 
     private void LevelUp() {
         if(currentExp > expToNextLevel){

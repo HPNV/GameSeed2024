@@ -17,11 +17,12 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
+    private List<CardDisplay> cardDisplays = new List<CardDisplay>();
+
 
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
-    // public EnemyManager EnemyManager { get; set; } = new();
 
 
     [SerializeField] private GameObject CardDisplayPrefab;
@@ -44,60 +45,37 @@ public class SingletonGame : MonoBehaviour
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
-        // EnemyManager.Initialize();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            var x = Random.Range(-20, 20);
-            var y = Random.Range(-20, 20);
-            
-            var position = transform.position;
-            // EnemyManager.Spawn(EnemyType.Melee, new Vector2(position.x + x, position.y + y));
-        }
         
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            var x = Random.Range(-20, 20);
-            var y = Random.Range(-20, 20);
-            
-            var position = transform.position;
-                
-            // EnemyManager.Spawn(EnemyType.Explosive, new Vector2(position.x + x, position.y + y));
-        }
-            
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            var x = Random.Range(-20, 20);
-            var y = Random.Range(-20, 20);
-            
-            var position = transform.position;
-                
-            // EnemyManager.Spawn(EnemyType.Ranged, new Vector2(position.x + x, position.y + y));
-        }
     }
 
     void Start() {
         InitCardList();
+        initCard();
     }
 
-    public void SpawnPlant() {
-        float offset = 6.5f;
-        Vector3 cameraPosition = Camera.main.transform.position;
-        float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.2f, 0.5f, cameraPosition.z)).x;
-
-        for (int i = 0; i < 3; i++) {
-            Vector3 spawnPosition = new Vector3(screenRightEdge + offset * i, cameraPosition.y, -5);
-            GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
-            CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
-            CardData card = GetRandomCards(availableCard);
-            cardDisplay.cardData = card;
-
-            Debug.Log(card);
-        }
+    public void initCard() {
+    float offset = 0.25f;
+    Vector3 cameraPosition = Camera.main.transform.position;
+    for (int i = 0; i < 3; i++) {
+        float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
+        Vector3 spawnPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
+        GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
+        CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
+        cardDisplays.Add(cardDisplay);
+        x.SetActive(false);
     }
+}
+
+public void SpawnPlant() {
+    foreach (var cardDisplay in cardDisplays) {
+        cardDisplay.setCard(GetRandomCards(availableCard));
+        cardDisplay.gameObject.SetActive(true);
+    }
+}
 
     private CardData GetRandomCards(List<CardData> cards)
     {
@@ -122,10 +100,8 @@ public class SingletonGame : MonoBehaviour
 
     private void DestroyRemainingCards()
     {
-        foreach (var cardDisplay in FindObjectsOfType<CardDisplay>()) {
-            if (cardDisplay.cardData != null) {
-                Destroy(cardDisplay.gameObject);
-            }
+        foreach (var cardDisplay in cardDisplays) {
+            cardDisplay.gameObject.SetActive(false);
         }
     }
 
