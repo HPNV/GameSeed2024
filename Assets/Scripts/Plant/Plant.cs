@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script;
@@ -7,16 +8,19 @@ namespace Plant
 {
     public class Plant : MonoBehaviour
     {
-        [SerializeField]
-        private PlantData data;
+        [field: SerializeField]
+        public PlantData Data { get; private set; }
 
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
+
+        [field: SerializeField]
+        public Animator Animator { get; private set; }
         public TargetService TargetService { get; private set; }
     
         private void Start()
         {
-            GetComponent<Animator>().runtimeAnimatorController = data.animatorController;
+            GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
 
             _states = new Dictionary<EPlantState, PlantState>
             {
@@ -27,14 +31,14 @@ namespace Plant
             InitTargetService();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _state.Update();
         }
 
         private void InitTargetService()
         {
-            switch (data.targetType)
+            switch (Data.targetType)
             {
                 case TargetType.Single: 
                     TargetService = GetComponent<SingleTargetProvider>();

@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 191126707}
   - component: {fileID: 191126709}
   - component: {fileID: 191126711}
-  - component: {fileID: 191126710}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -244,19 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1f8bf5d65db1046857a025db728d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
---- !u!114 &191126710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191126705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae84482ad75485439542ea04849dbe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
+  <Animator>k__BackingField: {fileID: 191126708}
 --- !u!114 &191126711
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ namespace Plant
         public string plantName;
         public float health;
         public float damage;
-        public float speed;
+        public int cd;
         public float range;
 
         public AnimatorController animatorController;
