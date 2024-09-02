@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
-        spawnPosition.y = Random.Range(1f, spawnRadius);
+        spawnPosition.y = Random.Range(spawnRadius * -1, spawnRadius);
         int enemyGacha = Random.Range(0, 100);
 
         if (enemyGacha < 50)
