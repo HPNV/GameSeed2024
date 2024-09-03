@@ -7,11 +7,12 @@ TagManager:
   - Dummy
   - Plant
   - Base
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
