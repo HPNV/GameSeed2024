@@ -26,7 +26,7 @@ public class GameGrid : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                var spawnedTile = Instantiate(tilePrefab, new Vector2(x, y), Quaternion.identity);
+                var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y, 200), Quaternion.identity);
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 spawnedTile.Init(isOffset);
