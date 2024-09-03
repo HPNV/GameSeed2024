@@ -16,6 +16,7 @@ namespace Plant
         public int cd;
         public float range;
 
+        public Sprite sprite;
         public AnimatorController animatorController;
     
         public TargetType targetType;
