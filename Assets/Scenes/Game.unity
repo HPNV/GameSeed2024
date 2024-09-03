@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 191126708}
   - component: {fileID: 191126707}
   - component: {fileID: 191126709}
-  - component: {fileID: 191126711}
+  - component: {fileID: 191126710}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
   <Animator>k__BackingField: {fileID: 191126708}
---- !u!114 &191126711
+--- !u!114 &191126710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,7 +416,6 @@ GameObject:
   - component: {fileID: 542963939}
   - component: {fileID: 542963941}
   - component: {fileID: 542963940}
-  - component: {fileID: 542963942}
   m_Layer: 0
   m_Name: Cursor
   m_TagString: Untagged
@@ -481,27 +480,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!95 &542963942
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 542963938}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f772ff925918794191096fbc53614f7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1819392076
 GameObject:
   m_ObjectHideFlags: 0
