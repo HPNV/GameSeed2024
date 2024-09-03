@@ -3,20 +3,11 @@ using System.Collections.Generic;
 using Plant;
 using UnityEngine;
 
-public class PlantDataAdapter : MonoBehaviour
+public abstract class PlantDataAdapter : MonoBehaviour
 {
-    private PlantData data;
+    protected PlantData Data;
     void Start()
     {
-        data = transform.parent.gameObject.GetComponent<Plant.Plant>().Data;
-        transform.localScale = new Vector3(data.range, data.range, 1);
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Data = transform.parent.gameObject.GetComponent<Plant.Plant>().Data;
     }
 }
