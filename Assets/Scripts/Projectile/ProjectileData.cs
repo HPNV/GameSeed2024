@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Projectile
@@ -12,6 +13,7 @@ namespace Projectile
         public int lifetime = 100;
         public Sprite sprite;
         public float scale = 1;
+        public ParticleSystem particles;
     }
     
     public enum ProjectileType

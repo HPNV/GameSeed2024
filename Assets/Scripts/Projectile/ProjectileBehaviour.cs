@@ -12,13 +12,15 @@ namespace Projectile
         public string TargetTag { get; set; }
         
         private Coroutine _destroyCoroutine;
+        private ParticleSystem _particles;
         
         private void Start()
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = data.sprite;
             transform.localScale = Vector3.one * data.scale;
-            _destroyCoroutine = StartCoroutine(DestroyAfterTime());   
+            _destroyCoroutine = StartCoroutine(DestroyAfterTime());
+            InitializeParticles();
         }
 
         private void Update()
@@ -51,6 +53,14 @@ namespace Projectile
         {
             if(_destroyCoroutine != null)
                 StopCoroutine(_destroyCoroutine);
+        }
+
+        private void InitializeParticles()
+        {
+            Debug.Log("SPAWNING PARTICLES");
+            _particles = Instantiate(data.particles, transform.position, Quaternion.identity);
+            _particles.transform.parent = transform;
+            _particles.Play();
         }
     }
 }
