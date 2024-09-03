@@ -7,8 +7,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] 
     private int width, height;
     
-    [SerializeField]
-    private Transform cam;
+    private Transform _cam;
 
     [SerializeField] 
     private Tile tilePrefab;
@@ -16,6 +15,7 @@ public class GameGrid : MonoBehaviour
     
     void Start()
     {
+        _cam = Camera.main.transform;
         GenerateGrid();
     }
     
@@ -36,6 +36,6 @@ public class GameGrid : MonoBehaviour
             }
         }
 
-        cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        _cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
     }
 }
