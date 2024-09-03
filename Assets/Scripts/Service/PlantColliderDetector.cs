@@ -15,7 +15,7 @@ namespace Service
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Plant") && other != null)
+            if (other.CompareTag("Plant"))
             {
                 Plants.Add(other.gameObject);
                 SortPlants();
@@ -24,7 +24,7 @@ namespace Service
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Plant") && other != null)
+            if (other.CompareTag("Plant"))
             {
                 Plants.Remove(other.gameObject);
                 SortPlants();

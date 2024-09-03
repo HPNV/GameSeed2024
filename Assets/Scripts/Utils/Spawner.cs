@@ -16,15 +16,10 @@ public class Spawner : MonoBehaviour
     private EnemyManager enemyManager = new();
     private float spawnTimer = 0f;
 
-    void Start()
-    {
-        enemyManager.Initialize();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        enemyManager.Initialize();
     }
 
     private void FixedUpdate()

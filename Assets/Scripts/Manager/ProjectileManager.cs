@@ -11,12 +11,12 @@ namespace Manager
         private readonly int _poolSize = 1000;
         private List<GameObject> _projectilePool;
         private GameObject _projectilePrefab;
-        private ConcurrentDictionary<ProjectileType, ProjectileData> _projectileData;
+        private Dictionary<ProjectileType, ProjectileData> _projectileData;
         
         public void Initialize()
         {
             _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectile");
-            _projectileData = new ConcurrentDictionary<ProjectileType, ProjectileData>();
+            _projectileData = new Dictionary<ProjectileType, ProjectileData>();
             
             _projectileData.AddRange(new List<KeyValuePair<ProjectileType, ProjectileData>>()
             {

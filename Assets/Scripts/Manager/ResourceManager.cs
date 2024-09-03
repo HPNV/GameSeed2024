@@ -12,12 +12,12 @@ namespace Manager
     public class ResourceManager
     {
         private GameObject _resourcePrefab;
-        private ConcurrentDictionary<ResourceType, ResourceData> _resourceData;
+        private Dictionary<ResourceType, ResourceData> _resourceData;
             
         public void Initialize()
         {
             _resourcePrefab = Resources.Load<GameObject>("Prefabs/Resource");
-            _resourceData = new ConcurrentDictionary<ResourceType, ResourceData>();
+            _resourceData = new Dictionary<ResourceType, ResourceData>();
             
             _resourceData.AddRange(new List<KeyValuePair<ResourceType, ResourceData>>()
             {
