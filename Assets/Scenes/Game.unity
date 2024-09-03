@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 882818577}
   - component: {fileID: 882818576}
+  - component: {fileID: 882818578}
   m_Layer: 0
   m_Name: PlantFactory
   m_TagString: Untagged
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d492fe88e0b59c4b8c3a03c16f3ad57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 0}
+  plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
   plants: 00000000010000000200000003000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
@@ -173,6 +174,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882818578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882818575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf9403571b3bda469b7d64916d2b8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantPlacementService: {fileID: 1357075365}
+  plantFactory: {fileID: 882818576}
 --- !u!1001 &1178342490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,6 +245,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1820ff4549a9dd4ea4268cb79efa4fb, type: 3}
+--- !u!114 &1357075365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4913550245512603370, guid: c1820ff4549a9dd4ea4268cb79efa4fb, type: 3}
+  m_PrefabInstance: {fileID: 1178342490}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc8c8f75ab8b9c4f89493e6a83536d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1819392076
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +359,10 @@ PrefabInstance:
     - target: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
       propertyPath: m_Name
       value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4832413828702667951, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
       propertyPath: m_LocalPosition.x

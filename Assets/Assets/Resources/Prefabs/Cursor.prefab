@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c197499320682164c97a7426f997517f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectorService: {fileID: 4913550245512603370}
 --- !u!114 &4913550245512603370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,4 +117,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileService: {fileID: 7843220094529195442}
   gridPlacementService: {fileID: 412634714141260883, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
-  Plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
+  plant: {fileID: 0}

@@ -15,6 +15,7 @@ public class PlantFactory : MonoBehaviour
 
     private void Start()
     {
+        _plantsData = new Dictionary<EPlant, PlantData>(); 
         for (var i = 0; i < plants.Count; i++)
         {
             _plantsData.Add(plants[i], data[i]);
