@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Plant;
@@ -8,6 +9,16 @@ public class PlantFactory : MonoBehaviour
     [SerializeField] 
     private GameObject plant;
 
-    [SerializeField] 
-    private SerializableDictionary<EPlant, PlantData> plantsData;
+    [SerializeField] private List<EPlant> plants;
+    [SerializeField] private List<PlantData> data;
+    private Dictionary<EPlant, PlantData> _plantsData;
+
+    private void Start()
+    {
+        for (var i = 0; i < plants.Count; i++)
+        {
+            _plantsData.Add(plants[i], data[i]);
+        }
+    }
+    
 }
