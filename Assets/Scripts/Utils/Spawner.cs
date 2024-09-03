@@ -44,6 +44,7 @@ public class Spawner : MonoBehaviour
         spawnPosition.y = Random.Range(spawnRadius * -1, spawnRadius);
         int enemyGacha = Random.Range(0, 100);
 
+        return;
         if (enemyGacha < Int32.MaxValue)
         {
             enemyManager.Spawn(EnemyType.Ranged, spawnPosition);
