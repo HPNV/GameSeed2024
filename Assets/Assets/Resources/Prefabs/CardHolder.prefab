@@ -708,7 +708,7 @@ Transform:
   m_GameObject: {fileID: 7938450433688461391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.012424218}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardData: {fileID: 0}
   cardNameText: {fileID: 2670323909976856927}
   cardImageHolder: {fileID: 7482667652216324306, guid: 13bb5d7449274074eac8615345061abc, type: 3}
   descriptionText: {fileID: 5916773154208808303}

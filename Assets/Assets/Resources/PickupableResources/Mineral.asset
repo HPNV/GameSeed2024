@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22223ce57c0fa1e478c25850178d563b, type: 3}
   m_Name: Mineral
   m_EditorClassIdentifier: 
-  resourceName: Mineral
+  resourceName: 2
   pickupDistance: 1.5
   sprite: {fileID: 21300000, guid: 9ea9602cdc709224bae9dd22b50d5837, type: 3}
   dropChance: 50

@@ -1,3 +1,4 @@
+using Manager;
 using UnityEngine;
 using Utils;
 
@@ -23,13 +24,31 @@ namespace PickupableResource
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                Debug.Log("Mouse0 pressed");
                 var target = (Vector2)_camera.ScreenToWorldPoint(Input.mousePosition);
+                Debug.Log($"Mouse Position: {target}, Object Position: {transform.position}, Pickup Distance: {resourceData.pickupDistance}");
                 
-                if (Vector3.Distance(transform.position, target) < resourceData.pickupDistance)
+                float distance = Vector2.Distance(transform.position, target);
+                Debug.Log($"Calculated Distance: {distance}");
+
+                if (distance < resourceData.pickupDistance)
                 {
-                    SingletonGame.Instance.ExperienceManager.Spawn(1, transform.position);
-                    Destroy();
+                    Debug.Log("Mouse0 clicked");
+                    if(resourceData.resourceName == ResourceType.Water)
+                    {
+                        SingletonGame.Instance.homeBase.addWater(1);
+                    }
+                    else if(resourceData.resourceName == ResourceType.Sunlight)
+                    {
+                        SingletonGame.Instance.homeBase.addSun(1);
+                    }
+                    Destroy(gameObject);
                 }
+                else
+                {
+                    Debug.Log("Distance too far for pickup");
+                }
+                SingletonGame.Instance.homeBase.UpdatetUI();
             }
         }
         

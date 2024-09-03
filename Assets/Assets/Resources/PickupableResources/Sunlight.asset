@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22223ce57c0fa1e478c25850178d563b, type: 3}
   m_Name: Sunlight
   m_EditorClassIdentifier: 
-  resourceName: Sunlight
+  resourceName: 1
   pickupDistance: 1.5
   sprite: {fileID: 21300000, guid: 74d2d65fdba545b4c80b341c391f4649, type: 3}
   dropChance: 30
