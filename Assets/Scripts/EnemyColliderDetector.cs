@@ -14,7 +14,7 @@ public class EnemyColliderDetector : EnemyDetectorService
         EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
         if (enemy != null)
         {
-            enemies.Add(enemy);
+            Enemies.Add(enemy);
         }
     }
 
@@ -23,7 +23,7 @@ public class EnemyColliderDetector : EnemyDetectorService
         EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
         if (enemy != null)
         {
-            enemies.Remove(enemy);
+            Enemies.Remove(enemy);
         }
     }
 }

@@ -18,6 +18,6 @@ public class SingleTargetProvider : TargetService
             return dist1.CompareTo(dist2);
         });
 
-        return new List<EnemyBehaviour> { enemies.First() };
+        return new List<EnemyBehaviour> { enemies.FirstOrDefault() };
     }
 }

@@ -8,7 +8,7 @@ public class PlantDataAdapter : MonoBehaviour
     private PlantData data;
     void Start()
     {
-        data = transform.parent.gameObject.GetComponent<PlantData>();
+        data = transform.parent.gameObject.GetComponent<Plant.Plant>().Data;
         transform.localScale = new Vector3(data.range, data.range, 1);
         
         
