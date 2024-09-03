@@ -23,4 +23,9 @@ public class TileProvider : MonoBehaviour
     {
         TileProviderService.setCurrTile(_currTile);
     }
+
+    private void OnMouseExit()
+    {
+        TileProviderService.setCurrTile(null);
+    }
 }

@@ -9,7 +9,7 @@ namespace Plant
     public class Plant : MonoBehaviour
     {
         [field: SerializeField]
-        public PlantData Data { get; private set; }
+        public PlantData Data { get; set; }
 
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;

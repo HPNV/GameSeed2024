@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Plant;
 using UnityEngine;
 
-public class PlantPlacementService : MonoBehaviour
+public class PlantPlacementService : SelectorService
 {
     [SerializeField] 
     private TileService tileService;
-
     [SerializeField] 
     private GridPlacementService gridPlacementService;
 
-    public GameObject Plant;
+    public Plant.Plant plant;
     
-    
+    public override void OnPlace()
+    {
+        gridPlacementService.Put(tileService.GetCurrTile(), plant.gameObject);
+        plant.ChangeState(EPlantState.Idle);
+    }
 }

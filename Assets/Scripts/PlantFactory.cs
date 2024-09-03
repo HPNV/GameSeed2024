@@ -20,5 +20,11 @@ public class PlantFactory : MonoBehaviour
             _plantsData.Add(plants[i], data[i]);
         }
     }
-    
+
+    public GameObject GeneratePlant(EPlant ePlant)
+    {
+        var obj = Instantiate(plant);
+        obj.GetComponent<Plant.Plant>().Data = _plantsData[ePlant];
+        return obj;
+    }
 }
