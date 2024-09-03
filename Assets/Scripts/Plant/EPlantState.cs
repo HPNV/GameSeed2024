@@ -2,7 +2,8 @@
 {
     public enum EPlantState
     {
+        Attack,
         Idle,
-        Attack
+        Select
     }
 }

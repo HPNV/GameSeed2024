@@ -52,7 +52,9 @@ namespace Plant
 
         public void ChangeState(EPlantState state)
         {
+            _state.OnExit();
             _state = _states[state];
+            _state.OnEnter();
         }
     }
 }
