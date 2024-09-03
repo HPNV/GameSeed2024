@@ -17,7 +17,5 @@ public class CursorSelectorService : MonoBehaviour
     {
         var rayhit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
         if (!rayhit.collider) return;
-        
-        Debug.Log(rayhit.collider.gameObject.name.ToString());
     }
 }
