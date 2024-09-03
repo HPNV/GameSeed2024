@@ -10,9 +10,9 @@ public class Spawner : MonoBehaviour
 {
     
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private float spawnRate = 1f;
+    [SerializeField] private float spawnRate = 5f;
     [SerializeField] private float spawnRadius = 1f;
-    [SerializeField] private float spawnRateIncrease = 0.1f;
+    [SerializeField] private float spawnRateIncrease = 0.99f;
     private EnemyManager enemyManager = new();
     private float spawnTimer = 0f;
 
@@ -34,7 +34,8 @@ public class Spawner : MonoBehaviour
         {
             spawnTimer = 0f;
             SpawnEnemy();
-            spawnRate -= spawnRateIncrease;
+            Debug.Log($"Spawned enemy {spawnRate}");
+            spawnRate *= spawnRateIncrease;
         }
     }
 

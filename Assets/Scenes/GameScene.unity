@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 1219194206}
   - component: {fileID: 1219194205}
   - component: {fileID: 1219194204}
+  - component: {fileID: 1219194208}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged
@@ -790,6 +791,20 @@ RectTransform:
   m_AnchoredPosition: {x: 17.1, y: 12.2}
   m_SizeDelta: {x: 1919.9999, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1219194208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219194203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1f8bf5d65db1046857a025db728d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
+  <Animator>k__BackingField: {fileID: 0}
 --- !u!1 &1228529098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -925.4676, y: -495.95215}
+  m_AnchoredPosition: {x: -925.4675, y: -495.95212}
   m_SizeDelta: {x: -592.3401, y: -495.67004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554756759
@@ -1546,7 +1561,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1030939505820627061, guid: c4db920df0183544eb05440533a18c71, type: 3}
   spawnRate: 3
   spawnRadius: 20
-  spawnRateIncrease: 0.1
+  spawnRateIncrease: 0.99
 --- !u!114 &2040836209 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7945252993962983855, guid: 9a82f7c6623958645822645458bcb920, type: 3}

@@ -12,12 +12,14 @@ namespace Enemy.States.Explosive
         {
             base.OnUpdate();
             
-            if (Enemy.Target == null)
+            var target = Enemy.PlantTargetService.GetTarget();
+            
+            if (target is null)
             {
                 return;
             }
             
-            var targetPosition = Enemy.Target.position;
+            var targetPosition = target.transform.position;
             
             var distance = Vector2.Distance(Enemy.transform.position, targetPosition);
             

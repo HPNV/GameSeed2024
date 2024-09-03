@@ -31,12 +31,12 @@ namespace Enemy.States.Ranged
         
         private void SpawnProjectile()
         {
-            Debug.Log($"SPAWNING PROJECTILE {_hasSpawnedProjectile} {Enemy.Target is null}");
-            if (_hasSpawnedProjectile || Enemy.Target is null)
+            var target = Enemy.PlantTargetService.GetTarget();
+            if (_hasSpawnedProjectile || target is null)
                 return;
             
             _hasSpawnedProjectile = true;
-            var direction = (Enemy.Target.position - Enemy.transform.position).normalized;
+            var direction = (target.transform.position - Enemy.transform.position).normalized;
             
             SingletonGame.Instance.ProjectileManager.Spawn(ProjectileType.EnemyRanged, Enemy.transform.position, direction, "Player");
         }

@@ -6,6 +6,7 @@ using Enemy.States.Explosive;
 using Enemy.States.Melee;
 using Enemy.States.Ranged;
 using JetBrains.Annotations;
+using Service;
 using UnityEngine;
 
 namespace Enemy
@@ -17,12 +18,11 @@ namespace Enemy
         public float CurrentHealth { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
-        [CanBeNull] public Transform Target { get; private set; }
+        public PlantTargetService PlantTargetService { get; private set; }
 
         public const string TargetTag = "Plant";
         private IState _currentState;
         private Dictionary<State, IState> _states;
-        private List<GameObject> _nearbyTargets = new();
       
     
         protected void Start()
@@ -30,6 +30,7 @@ namespace Enemy
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
+            PlantTargetService = GetComponent<PlantTargetService>();
             SetupStates();
             SetupAnimationController();
         }
@@ -41,9 +42,6 @@ namespace Enemy
         
         protected void Update()
         {
-            _nearbyTargets.RemoveAll(target => target is null);
-            
-            Target = _nearbyTargets.FirstOrDefault()?.transform;
             
             _currentState.OnUpdate();
             
@@ -97,26 +95,6 @@ namespace Enemy
             _currentState.OnExit();
             _currentState = _states[state];
             _currentState.OnEnter();
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag(TargetTag))
-            {
-                Debug.Log($" {TargetTag} {other.gameObject.name} entered the trigger {_nearbyTargets}");
-                _nearbyTargets.Add(other.gameObject);
-                _nearbyTargets = _nearbyTargets
-                    .OrderBy(obj => (obj.transform.position - transform.position).sqrMagnitude)
-                    .ToList();
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag(TargetTag))
-            {
-                _nearbyTargets.Remove(other.gameObject);
-            }
         }
     }
 }
