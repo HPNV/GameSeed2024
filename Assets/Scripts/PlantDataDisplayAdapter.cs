@@ -8,6 +8,6 @@ public class PlantDataDisplayAdapter : PlantDataAdapter
     private SpriteRenderer spriteRenderer;
     void Start()
     {
-        spriteRenderer.sprite = Data.sprite;
+        // spriteRenderer.sprite = Data.sprite;
     }
 }
