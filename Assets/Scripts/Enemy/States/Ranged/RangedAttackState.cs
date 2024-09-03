@@ -21,7 +21,7 @@ namespace Enemy.States.Ranged
             base.OnUpdate();
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.7f)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.4f)
                 SpawnProjectile();
             
             
