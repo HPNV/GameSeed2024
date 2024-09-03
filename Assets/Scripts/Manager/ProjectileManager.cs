@@ -26,6 +26,7 @@ namespace Manager
 
         public void Spawn(ProjectileType type, Vector3 position, Vector2 direction, string targetTag)
         {
+            Debug.Log("SPAWNING PROJECTILE");
             var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
             var projectileBehaviour = projectileObject.GetComponent<ProjectileBehaviour>();
             projectileBehaviour.Direction = direction;

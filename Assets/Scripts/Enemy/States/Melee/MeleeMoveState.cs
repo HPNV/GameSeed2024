@@ -8,7 +8,7 @@ namespace Enemy.States.Melee
 
         public override void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag(Enemy.TargetTag))
+            if (collision.gameObject.CompareTag(EnemyBehaviour.TargetTag))
             {
                 Enemy.ChangeState(State.Attack);
                 Debug.Log("Change to attack");
