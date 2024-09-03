@@ -6,7 +6,8 @@ using UnityEngine;
 public class TileProvider : MonoBehaviour
 {
     private Tile _currTile;
-    private TileProviderService _tileProviderService;
+    [field: SerializeField]
+    private TileProviderService TileProviderService { get; set; }
 
     void Start()
     {
@@ -20,6 +21,6 @@ public class TileProvider : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        _tileProviderService.setCurrTile(_currTile);
+        TileProviderService.setCurrTile(_currTile);
     }
 }
