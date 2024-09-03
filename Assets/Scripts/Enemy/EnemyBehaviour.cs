@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy.States;
@@ -31,6 +32,8 @@ namespace Enemy
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
             PlantTargetService = GetComponent<PlantTargetService>();
+            
+            
             SetupStates();
             SetupAnimationController();
         }
@@ -88,6 +91,7 @@ namespace Enemy
         private void Damage(float value)
         {
             CurrentHealth -= value;
+            StartCoroutine(FlashRed());
         }
 
         public void ChangeState(State state)
@@ -95,6 +99,14 @@ namespace Enemy
             _currentState.OnExit();
             _currentState = _states[state];
             _currentState.OnEnter();
+        }
+        
+        private IEnumerator FlashRed()
+        {
+            var originalColor = SpriteRenderer.color;
+            SpriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            SpriteRenderer.color = originalColor;
         }
     }
 }
