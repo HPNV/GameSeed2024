@@ -5,20 +5,20 @@ namespace Enemy.States.Ranged
 {
     public class RangedMoveState : MoveState
     {
-        private bool canTransition = true;
+        private bool _canTransition = true;
         private Coroutine _delayCoroutine;
         public RangedMoveState(EnemyBehaviour enemy) : base(enemy){}
 
         public override void OnEnter()
         {
             base.OnEnter();
-            canTransition = false;
+            _canTransition = false;
             _delayCoroutine = Enemy.StartCoroutine(DelayChangeState());
         }
 
         public override void OnUpdate()
         {
-            if (Enemy.Target == null)
+            if (Enemy.Target is null)
             {
                 return;
             }
@@ -27,7 +27,7 @@ namespace Enemy.States.Ranged
             
             var distance = Vector2.Distance(Enemy.transform.position, targetPosition);
 
-            if (!canTransition)
+            if (!_canTransition)
                 return;
             
             if (distance < Enemy.enemyData.attackRange)
@@ -42,7 +42,7 @@ namespace Enemy.States.Ranged
         private IEnumerator DelayChangeState()
         {
             yield return new WaitForSeconds(2);
-            canTransition = true;
+            _canTransition = true;
         }
         
         public override void OnExit()

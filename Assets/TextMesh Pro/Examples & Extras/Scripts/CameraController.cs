@@ -9,9 +9,6 @@ namespace TMPro.Examples
     {
         public enum CameraModes { Follow, Isometric, Free }
 
-        private Transform cameraTransform;
-        private Transform dummyTarget;
-
         public Transform CameraTarget;
 
         public float FollowDistance = 30.0f;
@@ -59,8 +56,7 @@ namespace TMPro.Examples
 
             if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)
                 Input.simulateMouseWithTouches = false;
-
-            cameraTransform = transform;
+            
             previousSmoothing = MovementSmoothing;
         }
 
@@ -68,12 +64,12 @@ namespace TMPro.Examples
         // Use this for initialization
         void Start()
         {
-            if (CameraTarget == null)
-            {
-                // If we don't have a target (assigned by the player, create a dummy in the center of the scene).
-                dummyTarget = new GameObject("Camera Target").transform;
-                CameraTarget = dummyTarget;
-            }
+            // if (CameraTarget == null)
+            // {
+            //     // If we don't have a target (assigned by the player, create a dummy in the center of the scene).
+            //     dummyTarget = new GameObject("Camera Target").transform;
+            //     CameraTarget = dummyTarget;
+            // }
         }
 
         // Update is called once per frame
@@ -101,20 +97,20 @@ namespace TMPro.Examples
                 if (MovementSmoothing == true)
                 {
                     // Using Smoothing
-                    cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref currentVelocity, MovementSmoothingValue * Time.fixedDeltaTime);
+                    transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref currentVelocity, MovementSmoothingValue * Time.fixedDeltaTime);
                     //cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredPosition, Time.deltaTime * 5.0f);
                 }
                 else
                 {
                     // Not using Smoothing
-                    cameraTransform.position = desiredPosition;
+                    transform.position = desiredPosition;
                 }
 
                 if (RotationSmoothing == true)
-                    cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, Quaternion.LookRotation(CameraTarget.position - cameraTransform.position), RotationSmoothingValue * Time.deltaTime);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(CameraTarget.position - transform.position), RotationSmoothingValue * Time.deltaTime);
                 else
                 {
-                    cameraTransform.LookAt(CameraTarget);
+                    transform.LookAt(CameraTarget);
                 }
 
             }
@@ -198,58 +194,58 @@ namespace TMPro.Examples
                 // Check for left mouse button to select a new CameraTarget or to reset Follow position
                 if (Input.GetMouseButton(0))
                 {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit, 300, 1 << 10 | 1 << 11 | 1 << 12 | 1 << 14))
-                    {
-                        if (hit.transform == CameraTarget)
-                        {
-                            // Reset Follow Position
-                            OrbitalAngle = 0;
-                        }
-                        else
-                        {
-                            CameraTarget = hit.transform;
-                            OrbitalAngle = 0;
-                            MovementSmoothing = previousSmoothing;
-                        }
-
-                    }
+                    // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    // RaycastHit hit;
+                    //
+                    // if (Physics.Raycast(ray, out hit, 300, 1 << 10 | 1 << 11 | 1 << 12 | 1 << 14))
+                    // {
+                    //     if (hit.transform == CameraTarget)
+                    //     {
+                    //         // Reset Follow Position
+                    //         OrbitalAngle = 0;
+                    //     }
+                    //     else
+                    //     {
+                    //         CameraTarget = hit.transform;
+                    //         OrbitalAngle = 0;
+                    //         MovementSmoothing = previousSmoothing;
+                    //     }
+                    //
+                    // }
                 }
 
 
-                if (Input.GetMouseButton(2))
-                {
-                    if (dummyTarget == null)
-                    {
-                        // We need a Dummy Target to anchor the Camera
-                        dummyTarget = new GameObject("Camera Target").transform;
-                        dummyTarget.position = CameraTarget.position;
-                        dummyTarget.rotation = CameraTarget.rotation;
-                        CameraTarget = dummyTarget;
-                        previousSmoothing = MovementSmoothing;
-                        MovementSmoothing = false;
-                    }
-                    else if (dummyTarget != CameraTarget)
-                    {
-                        // Move DummyTarget to CameraTarget
-                        dummyTarget.position = CameraTarget.position;
-                        dummyTarget.rotation = CameraTarget.rotation;
-                        CameraTarget = dummyTarget;
-                        previousSmoothing = MovementSmoothing;
-                        MovementSmoothing = false;
-                    }
-
-
-                    mouseY = Input.GetAxis("Mouse Y");
-                    mouseX = Input.GetAxis("Mouse X");
-
-                    moveVector = cameraTransform.TransformDirection(mouseX, mouseY, 0);
-
-                    dummyTarget.Translate(-moveVector, Space.World);
-
-                }
+                // if (Input.GetMouseButton(2))
+                // {
+                //     if (dummyTarget == null)
+                //     {
+                //         // We need a Dummy Target to anchor the Camera
+                //         dummyTarget = new GameObject("Camera Target").transform;
+                //         dummyTarget.position = CameraTarget.position;
+                //         dummyTarget.rotation = CameraTarget.rotation;
+                //         CameraTarget = dummyTarget;
+                //         previousSmoothing = MovementSmoothing;
+                //         MovementSmoothing = false;
+                //     }
+                //     else if (dummyTarget != CameraTarget)
+                //     {
+                //         // Move DummyTarget to CameraTarget
+                //         dummyTarget.position = CameraTarget.position;
+                //         dummyTarget.rotation = CameraTarget.rotation;
+                //         CameraTarget = dummyTarget;
+                //         previousSmoothing = MovementSmoothing;
+                //         MovementSmoothing = false;
+                //     }
+                //
+                //
+                //     mouseY = Input.GetAxis("Mouse Y");
+                //     mouseX = Input.GetAxis("Mouse X");
+                //
+                //     moveVector = cameraTransform.TransformDirection(mouseX, mouseY, 0);
+                //
+                //     dummyTarget.Translate(-moveVector, Space.World);
+                //
+                // }
 
             }
 

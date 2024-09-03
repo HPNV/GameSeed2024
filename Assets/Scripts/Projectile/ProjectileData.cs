@@ -10,7 +10,8 @@ namespace Projectile
         public float attackPower = 1;
         public float movementSpeed = 10;
         public int lifetime = 100;
-        public RuntimeAnimatorController animatorController;
+        public Sprite sprite;
+        public float scale = 1;
     }
     
     public enum ProjectileType

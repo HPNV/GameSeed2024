@@ -15,6 +15,9 @@ namespace Projectile
         
         private void Start()
         {
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = data.sprite;
+            transform.localScale = Vector3.one * data.scale;
             _destroyCoroutine = StartCoroutine(DestroyAfterTime());   
         }
 

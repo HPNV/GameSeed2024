@@ -8,7 +8,7 @@ namespace Enemy.States
         
         public override void OnUpdate()
         {
-            if (Enemy.Target == null)
+            if (Enemy.Target is null)
             {
                 return;
             }

@@ -13,17 +13,13 @@ namespace Enemy
     public class EnemyBehaviour : MonoBehaviour
     {
         [SerializeField] 
-        private Vector3 healthBarOffset = new(0, 1, 0);
-        [SerializeField] 
         public EnemyData enemyData;
         public float CurrentHealth { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
         [CanBeNull] public Transform Target { get; private set; }
-        
-        public readonly string TargetTag = "Plant";
 
-        private HealthBar _healthBar;
+        public const string TargetTag = "Plant";
         private IState _currentState;
         private Dictionary<State, IState> _states;
         private List<GameObject> _nearbyTargets = new();
@@ -34,7 +30,6 @@ namespace Enemy
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
-            SetupHealthBar();
             SetupStates();
             SetupAnimationController();
         }
@@ -43,11 +38,10 @@ namespace Enemy
         {
             _currentState.OnCollisionStay2D(other);
         }
-
-        // Update is called once per frame
+        
         protected void Update()
         {
-            _nearbyTargets.RemoveAll(target => target == null);
+            _nearbyTargets.RemoveAll(target => target is null);
             
             Target = _nearbyTargets.FirstOrDefault()?.transform;
             
@@ -59,21 +53,6 @@ namespace Enemy
             }
         }
         
-    
-        private void SetupHealthBar()
-        {
-            _healthBar = GetComponentInChildren<HealthBar>();
-
-            if (_healthBar == null)
-                return;
-
-            var healthObject = _healthBar.gameObject;
-            
-            healthObject.transform.SetParent(transform);
-            healthObject.transform.localPosition = healthBarOffset;
-            // _healthBar.gameObject.transform.localScale = new Vector3(1, 1, 1);
-            _healthBar.MaxHealth = enemyData.health;
-        }
 
         private void SetupStates()
         {
@@ -110,7 +89,6 @@ namespace Enemy
 
         private void Damage(float value)
         {
-            _healthBar.Health -= value;
             CurrentHealth -= value;
         }
 
