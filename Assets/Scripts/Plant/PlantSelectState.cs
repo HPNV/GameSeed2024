@@ -27,6 +27,9 @@ public class PlantSelectState : PlantState
         sp.color = color;
 
         Plant.transform.GetComponent<Collider2D>().enabled = false;
+        
+        var detector = Plant.transform.Find("Detector");
+        detector.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public override void OnExit()
@@ -34,5 +37,8 @@ public class PlantSelectState : PlantState
         Plant.transform.GetComponent<SpriteRenderer>().color = Color.white;
         
         Plant.transform.GetComponent<Collider2D>().enabled = true;
+        
+        var detector = Plant.transform.Find("Detector");
+        detector.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
