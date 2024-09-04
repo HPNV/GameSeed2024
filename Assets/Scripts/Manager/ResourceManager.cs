@@ -11,11 +11,14 @@ namespace Manager
 {
     public class ResourceManager
     {
+        private Queue<ResourceBehaviour> _resourcePool;
         private GameObject _resourcePrefab;
         private Dictionary<ResourceType, ResourceData> _resourceData;
             
         public void Initialize()
         {
+            _resourcePool = new Queue<ResourceBehaviour>();
+            
             _resourcePrefab = Resources.Load<GameObject>("Prefabs/Resource");
             _resourceData = new Dictionary<ResourceType, ResourceData>();
             
@@ -27,32 +30,47 @@ namespace Manager
             });
         }       
         
-        public void Spawn(int spawnAmount, Vector3 position)
+        public void SpawnBatchWithChance(int spawnAmount, Vector2 position)
         {
             for (var i = 0; i < spawnAmount; i++)
             {
-                foreach (var (_, resourceData) in _resourceData)
+                SpawnWithChance(position);
+            }
+        }
+        
+        
+        public void SpawnWithChance(Vector2 position)
+        {
+            foreach (var (_, resourceData) in _resourceData)
+            {
+                if (resourceData.dropChance <= Random.Range(0, 100))
                 {
-                    if (resourceData.dropChance <= Random.Range(0, 100))
-                    {
-                        continue;
-                    }
+                    continue;
+                }
                     
-                    var offset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-                    position += offset;
+                if (_resourcePool.Count == 0)
+                {
                     var resourceObject = Object.Instantiate(_resourcePrefab, position, Quaternion.identity);
                     var resourceBehaviour = resourceObject.GetComponent<ResourceBehaviour>();
                     
                     resourceBehaviour.resourceData = resourceData;
+                    return;
                 }
+                
+                var resource = _resourcePool.Dequeue();
+                
+                resource.transform.position = position;
+                resource.gameObject.SetActive(true);
+                resource.resourceData = resourceData;
+                
             }
         }
-    }
-    
-    public enum ResourceType
-    {
-        Water,
-        Sunlight,
-        Mineral
+        
+        public void Despawn(ResourceBehaviour resource)
+        {
+            resource.gameObject.SetActive(false);
+            _resourcePool.Enqueue(resource);
+        }
+        
     }
 }

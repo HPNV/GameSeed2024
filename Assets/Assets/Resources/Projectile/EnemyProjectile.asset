@@ -15,7 +15,7 @@ MonoBehaviour:
   projectileName: Dep
   attackPower: 1
   movementSpeed: 10
-  lifetime: 20
+  lifetime: 5
   sprite: {fileID: 21300000, guid: ace99506404b73f4487ebb29e0311d72, type: 3}
   scale: 2
   particles: {fileID: 4262318369177278723, guid: ac2e06a083e16d74ca8f66bb487248bd, type: 3}

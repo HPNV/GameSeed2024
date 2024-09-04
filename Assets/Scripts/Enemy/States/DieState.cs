@@ -14,7 +14,7 @@ namespace Enemy.States
             
             var position = Enemy.transform.position;
             SingletonGame.Instance.ExperienceManager.SpawnBatch(3, new Vector3(position.x, position.y, position.z));
-            SingletonGame.Instance.ResourceManager.Spawn(1, new Vector3(position.x, position.y, position.z));
+            SingletonGame.Instance.ResourceManager.SpawnBatchWithChance(1, new Vector3(position.x, position.y, position.z));
         }
 
         public override void OnUpdate()
