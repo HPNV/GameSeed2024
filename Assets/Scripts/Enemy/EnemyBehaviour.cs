@@ -75,7 +75,8 @@ namespace Enemy
                 {
                     { State.Move, new ExplosiveMoveState(this) },
                     { State.Attack, new ExplosiveAttackState(this) },
-                    { State.Die, new DieState(this) }
+                    { State.Die, new DieState(this) },
+                    { State.Explode, new ExplosiveExplodeState(this) }
                 },
                 _ => _states
             };

@@ -10,7 +10,10 @@ namespace Enemy.States.Explosive
 
         public override void OnUpdate()
         {
-            base.OnUpdate();
+            var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
+            
+            if (stateInfo.IsName("Walk") && isInJumpAnimation())
+                base.OnUpdate();
             
             var target = Enemy.PlantTargetService.GetTarget();
             
@@ -37,6 +40,12 @@ namespace Enemy.States.Explosive
                 Enemy.ChangeState(State.Attack);
                 Debug.Log("Change to attack");
             }   
+        }
+        
+        private bool isInJumpAnimation()
+        {
+            var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
+            return stateInfo.normalizedTime % 1 >= 0.5f && stateInfo.normalizedTime % 1 <= 1f;
         }
     }
 }

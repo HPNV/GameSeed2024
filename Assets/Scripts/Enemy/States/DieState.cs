@@ -11,11 +11,10 @@ namespace Enemy.States
         public override void OnEnter()
         {
             Enemy.Animator.SetTrigger(Die);
+            
             var position = Enemy.transform.position;
             SingletonGame.Instance.ExperienceManager.Spawn(3, new Vector3(position.x, position.y, position.z));
             SingletonGame.Instance.ResourceManager.Spawn(1, new Vector3(position.x, position.y, position.z));
-            
-            
         }
 
         public override void OnUpdate()
