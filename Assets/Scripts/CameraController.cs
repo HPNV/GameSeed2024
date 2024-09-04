@@ -40,7 +40,6 @@ public class CameraController : MonoBehaviour
             if (scroll != 0f)
             {
                 var newFOV = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize - scroll * zoomSpeed * 10, minFieldOfView, maxFieldOfView);
-                Debug.Log("New FOV: " + newFOV);
                 virtualCamera.m_Lens.OrthographicSize = newFOV;
             }
         }
