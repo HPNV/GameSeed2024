@@ -7,6 +7,10 @@ public class SoundFXManager : MonoBehaviour
     public static SoundFXManager instance;
     [SerializeField] private AudioSource soundFXObject;
 
+    private float masterVolume;
+    private float musicVolume;
+    private float audioVolume;
+    
     private void Awake()
     {
         if(instance == null)
@@ -20,7 +24,7 @@ public class SoundFXManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
 
         audioSource.clip = audioClip;
-        audioSource.volume = volume;
+        audioSource.volume = masterVolume * musicVolume;
         audioSource.Play();
         // loop the sound
         audioSource.loop = true;    
@@ -31,7 +35,7 @@ public class SoundFXManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
 
         audioSource.clip = audioClip;
-        audioSource.volume = volume;
+        audioSource.volume = masterVolume * audioVolume;
         audioSource.Play();
         // loop the sound
         audioSource.loop = false;    
