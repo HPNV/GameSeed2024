@@ -14,5 +14,12 @@ namespace PickupableResource
         public float dropChance;
         public Vector3 scale = new(2, 2, 2);
     }
+    
+    public enum ResourceType
+    {
+        Water,
+        Sunlight,
+        Mineral
+    }
 }
 

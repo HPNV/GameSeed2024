@@ -1,22 +1,21 @@
-﻿namespace Experience.States
+﻿using UnityEngine;
+
+namespace Experience.States
 {
-    public class IdleState : IState
+    public class IdleState : BaseState
     {
-        public void OnUpdate(ExperienceOrbBehaviour orb)
+        public IdleState(ExperienceOrbBehaviour orb) : base(orb) {}
+        
+        public override void OnUpdate()
         {
-            var direction = orb.Target - orb.transform.position;
+            var direction = (Vector2)(Orb.Target - Orb.transform.position);
             
             var distance = direction.magnitude;
-            
-            if (distance < orb.minimumDistance)
-            {
-                orb.ChangeState(State.Follow);
-            }   
-        }
 
-        public void OnFixedUpdate(ExperienceOrbBehaviour orb)
-        {
-          
+            if (distance < Orb.minimumDistance)
+            {
+                Orb.ChangeState(State.Follow);
+            }
         }
     }
 }

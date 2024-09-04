@@ -10,22 +10,12 @@ public class Spawner : MonoBehaviour
 {
     
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private float spawnRate = 1f;
+    [SerializeField] private float spawnRate = 5f;
     [SerializeField] private float spawnRadius = 1f;
-    [SerializeField] private float spawnRateIncrease = 0.1f;
-    private EnemyManager enemyManager = new();
+    [SerializeField] private float spawnRateIncrease = 0.99f;
     private float spawnTimer = 0f;
 
-    void Start()
-    {
-        enemyManager.Initialize();
-    }
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
@@ -34,7 +24,8 @@ public class Spawner : MonoBehaviour
         {
             spawnTimer = 0f;
             SpawnEnemy();
-            spawnRate -= spawnRateIncrease;
+            Debug.Log($"Spawned enemy {spawnRate}");
+            spawnRate *= spawnRateIncrease;
         }
     }
 
@@ -46,15 +37,15 @@ public class Spawner : MonoBehaviour
         
         if (enemyGacha < 40)
         {
-            enemyManager.Spawn(EnemyType.Ranged, spawnPosition);
+            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Ranged, spawnPosition);
         }
         else if (enemyGacha < 80)
         {
-            enemyManager.Spawn(EnemyType.Explosive, spawnPosition);
+            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Explosive, spawnPosition);
         }
         else
         {
-            enemyManager.Spawn(EnemyType.Melee, spawnPosition);
+            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Melee, spawnPosition);
         }
     }
 
