@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase;
+using Firebase.Extensions;
 using Firebase.Firestore;
 public class DatabaseManager : MonoBehaviour
 {

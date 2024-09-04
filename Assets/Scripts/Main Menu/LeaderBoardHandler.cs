@@ -9,11 +9,14 @@ public class LeaderBoardHandler : MonoBehaviour
     public GameObject mainMenu;
     public GameObject leaderBoard;
     
+    [SerializeField] private AudioClip buttonClick;
+    
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera2;
 
     public void ToggleLeaderBoard()
     {
+        SoundFXManager.instance.PlaySoundOnce(buttonClick, transform, 1f);
         if (cinemachineVirtualCamera.Priority == 15)
         {
             cinemachineVirtualCamera.Priority = 20;
