@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using Card;
+using Plant;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public List<CardData> items = new List<CardData>(); // List of cards in inventory
+    public List<PlantData> items = new List<PlantData>(); // List of cards in inventory
     public GameObject inventoryPanel; // The panel within the world space Canvas
     public GameObject itemPrefab; // A prefab with UI elements to represent a card
     
@@ -33,7 +34,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddCard(CardData card)
+    public void AddCard(PlantData card)
     {
         items.Add(card);
         PopulateInventoryUI();
