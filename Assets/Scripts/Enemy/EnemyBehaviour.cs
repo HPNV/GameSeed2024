@@ -90,6 +90,9 @@ namespace Enemy
 
         private void Damage(float value)
         {
+            if(_currentState is DieState)
+                return;
+            
             CurrentHealth -= value;
             StartCoroutine(FlashRed());
         }
