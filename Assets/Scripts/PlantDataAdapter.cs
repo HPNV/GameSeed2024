@@ -5,9 +5,10 @@ using UnityEngine;
 
 public abstract class PlantDataAdapter : MonoBehaviour
 {
-    protected PlantData Data;
+    [SerializeField]
+    protected PlantData data;
     void Start()
     {
-        Data = transform.parent.gameObject.GetComponent<Plant.Plant>().Data;
+        data = transform.parent.gameObject.GetComponent<Plant.Plant>().Data;
     }
 }

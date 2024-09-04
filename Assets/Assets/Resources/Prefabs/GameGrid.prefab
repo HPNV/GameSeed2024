@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5804271955815091607}
   - component: {fileID: 8086749074849336499}
-  - component: {fileID: 412634714141260883}
   m_Layer: 0
   m_Name: GameGrid
   m_TagString: Untagged
@@ -48,16 +47,3 @@ MonoBehaviour:
   width: 16
   height: 16
   tilePrefab: {fileID: 1386728309387139814, guid: 9ae1c89a510fde64bbcbb640f55c9ac9, type: 3}
---- !u!114 &412634714141260883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730887746906514271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d030e357871a9e4ab62c9ad7ffe4e34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameGrid: {fileID: 8086749074849336499}

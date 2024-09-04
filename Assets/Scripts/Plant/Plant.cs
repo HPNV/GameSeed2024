@@ -9,7 +9,16 @@ namespace Plant
     public class Plant : MonoBehaviour
     {
         [field: SerializeField]
-        public PlantData Data { get; set; }
+        public PlantData Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                InitDetector();
+            }
+        }
+        private PlantData _data;
 
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
@@ -60,6 +69,12 @@ namespace Plant
                 default:
                     break;
             }
+        }
+
+        private void InitDetector()
+        {
+            var detector = transform.Find("Detector");
+            detector.localScale = new Vector3(Data.range, Data.range, 1);
         }
 
         public void ChangeState(EPlantState state)

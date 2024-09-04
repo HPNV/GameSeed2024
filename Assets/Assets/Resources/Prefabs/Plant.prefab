@@ -201,7 +201,6 @@ GameObject:
   - component: {fileID: 1618801666489590807}
   - component: {fileID: 3775253518183017066}
   - component: {fileID: 4004748464390598651}
-  - component: {fileID: 3859939222180899431}
   m_Layer: 0
   m_Name: Detector
   m_TagString: Untagged
@@ -324,18 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enmCollider: {fileID: 3775253518183017066}
---- !u!114 &3859939222180899431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317120689161903148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3293d7243f414905b8fa1ff8a66b7dd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4198848379520142302
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,4 +420,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b95cd045d40e40850319746e334db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 0}
   spriteRenderer: {fileID: 8460259969085906902}
