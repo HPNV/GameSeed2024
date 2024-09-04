@@ -1,3 +1,4 @@
+using Plant;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,15 +9,15 @@ namespace Card
 {
     public class CardDisplay : MonoBehaviour
     {
-        [FormerlySerializedAs("card")] public CardData cardData;
+        public PlantData cardData;
         public TextMeshPro cardNameText;
         public Sprite cardImageHolder;
         public TextMeshPro descriptionText;
         void Start()
         {
-            cardNameText.text = cardData.cardName;
-            descriptionText.text = cardData.description;
-            cardImageHolder = cardData.cardImage;   
+            cardNameText.text = cardData.plantName;
+            descriptionText.text = "none";
+            cardImageHolder = null;   
         }
 
         void Update()
@@ -24,11 +25,11 @@ namespace Card
             
         }
 
-        public void setCard(CardData cardData) {
+        public void setCard(PlantData cardData) {
             this.cardData = cardData;
-            cardNameText.text = cardData.cardName;
-            descriptionText.text = cardData.description;
-            cardImageHolder = cardData.cardImage;
+            cardNameText.text = cardData.plantName;
+            descriptionText.text = "";
+            cardImageHolder = null;
         }
 
         public void OnMouseDown() {

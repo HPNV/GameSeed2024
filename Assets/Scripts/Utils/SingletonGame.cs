@@ -6,6 +6,7 @@ using System.Resources;
 using Card;
 using Enemy;
 using Manager;
+using Plant;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using ResourceManager = Manager.ResourceManager;
@@ -13,7 +14,7 @@ using ResourceManager = Manager.ResourceManager;
 public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
-    private List<CardData> availableCard = new List<CardData>();
+    private List<PlantData> availableCard = new List<PlantData>();
     [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
@@ -58,41 +59,49 @@ public class SingletonGame : MonoBehaviour
     }
 
     public void initCard() {
-    float offset = 0.25f;
-    Vector3 cameraPosition = Camera.main.transform.position;
-    for (int i = 0; i < 3; i++) {
-        float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
-        Vector3 spawnPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
-        GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
-        CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
-        cardDisplays.Add(cardDisplay);
-        x.SetActive(false);
+        float offset = 0.25f;
+        Vector3 cameraPosition = Camera.main.transform.position;
+        for (int i = 0; i < 3; i++) {
+            float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
+            Vector3 spawnPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
+            GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
+            CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
+            cardDisplays.Add(cardDisplay);
+            x.SetActive(false);
+        }
     }
-}
 
-public void SpawnPlant() {
-    foreach (var cardDisplay in cardDisplays) {
-        cardDisplay.setCard(GetRandomCards(availableCard));
-        cardDisplay.gameObject.SetActive(true);
+    public void SpawnPlant() {
+        Vector3 cameraPosition = Camera.main.transform.position;
+        float offset = 0.25f;
+        for (int i = 0; i < cardDisplays.Count; i++) {
+            float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
+            Vector3 newPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
+            cardDisplays[i].transform.position = newPosition;
+            cardDisplays[i].setCard(GetRandomCards(availableCard));
+            cardDisplays[i].gameObject.SetActive(true);
+        }
     }
-}
 
-    private CardData GetRandomCards(List<CardData> cards)
+    private PlantData GetRandomCards(List<PlantData> cards)
     {
         return cards.OrderBy(c => Random.value).FirstOrDefault();
     }
 
     private void InitCardList() {
         for (int i=0;i<3;i++){
-            CardData dummyCard = ScriptableObject.CreateInstance<CardData>();
-            dummyCard.cardName = "Dummy Card" + i;
-            dummyCard.description = "This is a dummy card description.";
-            dummyCard.cardImage = Resources.Load<Sprite>("dummy");
+            PlantData dummyCard = ScriptableObject.CreateInstance<PlantData>();
+            dummyCard.plantName = "dummy";
+            dummyCard.health = 100;
+            dummyCard.damage = 10;
+            dummyCard.cd = 0;
+            dummyCard.range = 6;
+            dummyCard.animatorController = null;
             availableCard.Add(dummyCard);
         }
     }
 
-    public void PickCard(CardData card)
+    public void PickCard(PlantData card)
     {
         inventory.AddCard(card);
         DestroyRemainingCards();
