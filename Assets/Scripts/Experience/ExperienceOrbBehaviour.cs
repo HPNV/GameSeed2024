@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Building;
 using Experience.States;
@@ -41,8 +42,8 @@ namespace Experience
             _camera = Camera.main;
             _states = new Dictionary<State, IState>
             {
-                {State.Idle, new IdleState()},
-                {State.Follow, new FollowState()},
+                {State.Idle, new IdleState(this)},
+                {State.Follow, new FollowState(this)},
             };
             _currentState = _states[State.Idle];
         }
@@ -50,22 +51,22 @@ namespace Experience
         private void Update()
         {
             Target = _camera.ScreenToWorldPoint(Input.mousePosition);
-            _currentState.OnUpdate(this);
+            _currentState.OnUpdate();
         }
         
         private void FixedUpdate()
         { 
-            _currentState.OnFixedUpdate(this);
+            _currentState.OnFixedUpdate();
         }
         
         public void ChangeState(State state)
         {
             _currentState = _states[state];
         }
-        
-        public void Destroy()
+
+        public void Reset()
         {
-            Destroy(gameObject);
+            Start();
         }
     }   
 }

@@ -14,6 +14,7 @@ namespace Enemy.States
     {
         Move,
         Attack,
-        Die
+        Die,
+        Explode
     }
 }

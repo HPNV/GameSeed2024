@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Service;
+using UnityEngine;
 
 namespace Enemy.States
 {
@@ -8,12 +9,13 @@ namespace Enemy.States
         
         public override void OnUpdate()
         {
-            if (Enemy.Target is null)
+            var target = Enemy.PlantTargetService.GetTarget();
+            if (target is null)
             {
                 return;
             }
             
-            var targetPosition = Enemy.Target.position;
+            var targetPosition = target.transform.position;
             
              
             Enemy.transform.position = Vector2.MoveTowards(

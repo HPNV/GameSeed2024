@@ -10,8 +10,6 @@ public class PlantDataAdapter : MonoBehaviour
     {
         data = transform.parent.gameObject.GetComponent<Plant.Plant>().Data;
         transform.localScale = new Vector3(data.range, data.range, 1);
-        
-        
     }
 
     // Update is called once per frame

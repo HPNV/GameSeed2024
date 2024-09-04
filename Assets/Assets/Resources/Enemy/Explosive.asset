@@ -16,6 +16,6 @@ MonoBehaviour:
   health: 100
   attackPower: 1
   attackRange: 1
-  movementSpeed: 5
-  animatorController: {fileID: 9100000, guid: 8ef5ec7814e2a3047909e6c80b18b724, type: 2}
+  movementSpeed: 2
+  animatorController: {fileID: 9100000, guid: a15e8afd863e01241a4fec0c7c4d5958, type: 2}
   enemyType: 2
