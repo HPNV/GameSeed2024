@@ -23,6 +23,7 @@ public class SingletonGame : MonoBehaviour
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
+    public EnemyManager EnemyManager { get; set; } = new();
 
 
     [SerializeField] private GameObject CardDisplayPrefab;
@@ -45,6 +46,7 @@ public class SingletonGame : MonoBehaviour
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
+        EnemyManager.Initialize();
     }
 
     private void Update()

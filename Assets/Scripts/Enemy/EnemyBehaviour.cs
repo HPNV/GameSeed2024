@@ -24,8 +24,7 @@ namespace Enemy
         public const string TargetTag = "Plant";
         private IState _currentState;
         private Dictionary<State, IState> _states;
-      
-    
+        
         protected void Start()
         {
             Animator = GetComponent<Animator>();
@@ -111,6 +110,14 @@ namespace Enemy
             SpriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             SpriteRenderer.color = originalColor;
+        }
+
+        public void Reset()
+        {
+            CurrentHealth = enemyData.health;
+            SetupStates();
+            SetupAnimationController();
+            ChangeState(State.Move);
         }
     }
 }

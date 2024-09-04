@@ -20,9 +20,14 @@ namespace Enemy.States
         public override void OnUpdate()
         {
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
-            
+
+            Debug.Log($"TRYING TO UPDATE DIE {stateInfo.IsName("Die")} {stateInfo.normalizedTime} {stateInfo.normalizedTime >= 1f}");
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1f)
-                Object.Destroy(Enemy.gameObject);
+            {
+                Debug.Log("hahahaha");
+                SingletonGame.Instance.EnemyManager.Despawn(Enemy);
+            }
+                
         }
     }
 }

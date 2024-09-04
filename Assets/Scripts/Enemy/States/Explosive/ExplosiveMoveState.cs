@@ -12,7 +12,7 @@ namespace Enemy.States.Explosive
         {
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             
-            if (stateInfo.IsName("Walk") && isInJumpAnimation())
+            if (stateInfo.IsName("Walk") && IsInJumpAnimation())
                 base.OnUpdate();
             
             var target = Enemy.PlantTargetService.GetTarget();
@@ -42,7 +42,7 @@ namespace Enemy.States.Explosive
             }   
         }
         
-        private bool isInJumpAnimation()
+        private bool IsInJumpAnimation()
         {
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             return stateInfo.normalizedTime % 1 >= 0.5f && stateInfo.normalizedTime % 1 <= 1f;
