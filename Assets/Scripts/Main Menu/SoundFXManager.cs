@@ -25,5 +25,16 @@ public class SoundFXManager : MonoBehaviour
         // loop the sound
         audioSource.loop = true;    
     }
+    
+    public void PlaySoundOnce(AudioClip audioClip, Transform transform, float volume)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+
+        audioSource.clip = audioClip;
+        audioSource.volume = volume;
+        audioSource.Play();
+        // loop the sound
+        audioSource.loop = false;    
+    }
 
 }
