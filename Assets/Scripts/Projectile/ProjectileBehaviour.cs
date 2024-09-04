@@ -38,15 +38,14 @@ namespace Projectile
             if (other.gameObject.CompareTag(TargetTag))
             {
                 var enemy = other.gameObject.GetComponent<EnemyBehaviour>();
-                //enemy.TakeDamage(data.attackPower);
-                Destroy(gameObject);
+                SingletonGame.Instance.ProjectileManager.Despawn(this);
             }
         }
         
         private IEnumerator DestroyAfterTime()
         {
             yield return new WaitForSeconds(data.lifetime);
-            Destroy(gameObject);
+            SingletonGame.Instance.ProjectileManager.Despawn(this);
         }
         
         private void OnDestroy()

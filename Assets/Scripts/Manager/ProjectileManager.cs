@@ -8,13 +8,13 @@ namespace Manager
 {
     public class ProjectileManager
     {
-        private readonly int _poolSize = 1000;
-        private List<GameObject> _projectilePool;
+        private Queue<ProjectileBehaviour> _projectilePool;
         private GameObject _projectilePrefab;
         private Dictionary<ProjectileType, ProjectileData> _projectileData;
         
         public void Initialize()
         {
+            _projectilePool = new Queue<ProjectileBehaviour>();
             _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectile");
             _projectileData = new Dictionary<ProjectileType, ProjectileData>();
             
@@ -24,21 +24,34 @@ namespace Manager
             });
         }
 
-        public void Spawn(ProjectileType type, Vector3 position, Vector2 direction, string targetTag)
+        public ProjectileBehaviour Spawn(ProjectileType type, Vector3 position, Vector2 direction, string targetTag)
         {
-            Debug.Log("SPAWNING PROJECTILE");
-            var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
-            var projectileBehaviour = projectileObject.GetComponent<ProjectileBehaviour>();
-            projectileBehaviour.Direction = direction;
-            projectileBehaviour.data = _projectileData[type];
-            projectileBehaviour.TargetTag = targetTag;
-            //
-            // _projectilePool.Add(projectileObject);
-            //
-            // if (_projectilePool.Count > _poolSize)
-            // {
-            //     _projectilePool.RemoveAt(0);
-            // }
+            if (_projectilePool.Count == 0)
+            {
+                var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
+                var projectileBehaviour = projectileObject.GetComponent<ProjectileBehaviour>();
+                projectileBehaviour.Direction = direction;
+                projectileBehaviour.data = _projectileData[type];
+                projectileBehaviour.TargetTag = targetTag;
+                
+                return projectileBehaviour;
+            }
+            
+            var projectile = _projectilePool.Dequeue();
+            
+            projectile.transform.position = position;
+            projectile.Direction = direction;
+            projectile.data = _projectileData[type];
+            projectile.TargetTag = targetTag;
+            projectile.gameObject.SetActive(true);
+
+            return projectile;
+        }
+        
+        public void Despawn(ProjectileBehaviour projectile)
+        {
+            projectile.gameObject.SetActive(false);
+            _projectilePool.Enqueue(projectile);
         }
     }
 }

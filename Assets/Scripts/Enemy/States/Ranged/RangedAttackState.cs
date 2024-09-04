@@ -24,8 +24,7 @@ namespace Enemy.States.Ranged
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.4f)
                 SpawnProjectile();
             
-            
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1f)
                 Enemy.ChangeState(State.Move);
         }
         

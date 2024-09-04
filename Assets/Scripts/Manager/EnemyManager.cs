@@ -27,7 +27,6 @@ namespace Manager
         
         public GameObject Spawn(EnemyType type, Vector2 position)
         {
-            Debug.Log($"Spawning enemy Count: {_enemyPool.Count}");
             if (_enemyPool.Count == 0)
             {
                 var enemyObject = Object.Instantiate(_enemyPrefab, position, Quaternion.identity);
