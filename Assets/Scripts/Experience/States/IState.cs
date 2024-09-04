@@ -2,8 +2,8 @@
 {
     public interface IState
     {
-        public void OnUpdate(ExperienceOrbBehaviour orb);
-        public void OnFixedUpdate(ExperienceOrbBehaviour orb);
+        public void OnUpdate();
+        public void OnFixedUpdate();
     }
     
     public enum State
