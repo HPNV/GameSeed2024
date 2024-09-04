@@ -51,13 +51,12 @@ namespace Projectile
         
         private void OnDestroy()
         {
-            if(_destroyCoroutine != null)
+            if(_destroyCoroutine is not null)
                 StopCoroutine(_destroyCoroutine);
         }
 
         private void InitializeParticles()
         {
-            Debug.Log("SPAWNING PARTICLES");
             _particles = Instantiate(data.particles, transform.position, Quaternion.identity);
             _particles.transform.parent = transform;
             _particles.Play();
