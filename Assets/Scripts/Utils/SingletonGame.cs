@@ -19,8 +19,7 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
-
-
+    private AudioClip gameMusic;
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
@@ -46,6 +45,8 @@ public class SingletonGame : MonoBehaviour
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
+        SoundFXManager.Initialize();
+        SoundFXManager.instance.PlayGameSound(Resources.Load<AudioClip>("Audio/Game Music")); 
     }
 
     private void Update()
@@ -72,6 +73,7 @@ public class SingletonGame : MonoBehaviour
     }
 
     public void SpawnPlant() {
+        SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Level Up"));
         Vector3 cameraPosition = Camera.main.transform.position;
         float offset = 0.25f;
         for (int i = 0; i < cardDisplays.Count; i++) {

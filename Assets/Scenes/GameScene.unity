@@ -1606,28 +1606,6 @@ MonoBehaviour:
   spawnRate: 3
   spawnRadius: 20
   spawnRateIncrease: 0.1
---- !u!114 &2040836209 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7945252993962983855, guid: 9a82f7c6623958645822645458bcb920, type: 3}
-  m_PrefabInstance: {fileID: 1290304208}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2099078601 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7549044476091541173, guid: 9a82f7c6623958645822645458bcb920, type: 3}
-  m_PrefabInstance: {fileID: 1290304208}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2102487087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ConfineMode: 0
   m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 1379939256}
+  m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
 --- !u!114 &2306055122490756136
@@ -1744,7 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62e920b08d58aa4e8d3682892bf08c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentExpBar: {fileID: 265004543}
+  currentExpBar: {fileID: 1821885231}
 --- !u!4 &3698621562861413158
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,8 +1752,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expBar: {fileID: 2306055122490756136}
   HpBar: {fileID: 1451494638}
-  waterText: {fileID: 2040836209}
-  sunText: {fileID: 2099078601}
+  waterText: {fileID: 1584822172}
+  sunText: {fileID: 1332895623}
 --- !u!61 &5990132991600548117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1907,4 +1885,4 @@ SceneRoots:
   - {fileID: 3698621562861413158}
   - {fileID: 1451494637}
   - {fileID: 490055249}
-  - {fileID: 1379939257}
+  - {fileID: 1629563711}

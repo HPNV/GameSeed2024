@@ -43,6 +43,7 @@ public class HomeBase : MonoBehaviour
             currentLevel +=1;
             currentExp -= expToNextLevel;
             expToNextLevel += 50;
+            UpdatetUI();
             SingletonGame.Instance.SpawnPlant();
         }
     }
