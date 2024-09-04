@@ -11,8 +11,8 @@ public class GameGrid : MonoBehaviour
 
     [SerializeField] 
     private Tile tilePrefab;
-    private Dictionary<Vector2, Tile> _tiles;
-    public Dictionary<Tile, GameObject> Slots;
+    public Dictionary<Vector2, Tile> Tiles { get; private set; }
+    public Dictionary<Tile, GameObject> Slots { get; private set; }
     
     void Start()
     {
@@ -22,7 +22,7 @@ public class GameGrid : MonoBehaviour
     
     private void GenerateGrid()
     {
-        _tiles = new Dictionary<Vector2, Tile>();
+        Tiles = new Dictionary<Vector2, Tile>();
         Slots = new Dictionary<Tile, GameObject>();
         for (int x = 0; x < width; x++)
         {
@@ -34,11 +34,24 @@ public class GameGrid : MonoBehaviour
                 spawnedTile.Init(isOffset);
                 spawnedTile.transform.SetParent(transform);
 
-                _tiles[new Vector2(x, y)] = spawnedTile;
+                Tiles[new Vector2(x, y)] = spawnedTile;
                 Slots[spawnedTile] = null;
             }
         }
 
+        
         _cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+    }
+    
+    public void PutOnTile(Tile tile, GameObject obj)
+    {
+        if (Slots[tile] != null) return;
+        obj.transform.position = tile.transform.position;
+        Slots[tile] = obj;
+    }
+
+    public void RemoveFromTile(Tile tile)
+    { 
+        Slots[tile] = null;
     }
 }

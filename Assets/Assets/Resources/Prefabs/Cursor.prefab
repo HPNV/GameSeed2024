@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5141097950058723007}
   - component: {fileID: 7843220094529195442}
   - component: {fileID: 7786120402092163248}
+  - component: {fileID: 2668855857290303917}
   - component: {fileID: 4913550245512603370}
   m_Layer: 0
   m_Name: Cursor
@@ -103,6 +104,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectorService: {fileID: 4913550245512603370}
+--- !u!114 &2668855857290303917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894773630862567398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f86f1ff2604bf4d98a2c985b7ed244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameGrid: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
 --- !u!114 &4913550245512603370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc8c8f75ab8b9c4f89493e6a83536d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileService: {fileID: 7843220094529195442}
-  gridPlacementService: {fileID: 412634714141260883, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+  tileService: {fileID: 2668855857290303917}
+  gameGrid: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
   plant: {fileID: 0}
