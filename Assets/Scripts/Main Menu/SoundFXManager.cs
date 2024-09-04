@@ -7,9 +7,9 @@ public class SoundFXManager : MonoBehaviour
     public static SoundFXManager instance;
     [SerializeField] private AudioSource soundFXObject;
 
-    private float masterVolume;
-    private float musicVolume;
-    private float audioVolume;
+    private float masterVolume = 1.0f;
+    private float musicVolume = 1.0f;
+    private float audioVolume = 1.0f;
     
     private void Awake()
     {
