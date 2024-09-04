@@ -12,6 +12,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] 
     private Tile tilePrefab;
     private Dictionary<Vector2, Tile> _tiles;
+    public Dictionary<Tile, GameObject> Slots;
     
     void Start()
     {
@@ -22,6 +23,7 @@ public class GameGrid : MonoBehaviour
     private void GenerateGrid()
     {
         _tiles = new Dictionary<Vector2, Tile>();
+        Slots = new Dictionary<Tile, GameObject>();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -33,6 +35,7 @@ public class GameGrid : MonoBehaviour
                 spawnedTile.transform.SetParent(transform);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
+                Slots[spawnedTile] = null;
             }
         }
 

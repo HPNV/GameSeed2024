@@ -11,7 +11,6 @@ public class PlantSelectState : PlantState
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnEnter()
@@ -20,10 +19,14 @@ public class PlantSelectState : PlantState
         var color = Color.red;
         color.a = 0.2f;
         sp.color = color;
+
+        Plant.transform.GetComponent<Collider2D>().enabled = false;
     }
 
     public override void OnExit()
     {
         Plant.transform.GetComponent<SpriteRenderer>().color = Color.white;
+        
+        Plant.transform.GetComponent<Collider2D>().enabled = true;
     }
 }

@@ -26,6 +26,7 @@ public class PlantFactory : MonoBehaviour
     {
         var obj = Instantiate(plant);
         obj.GetComponent<Plant.Plant>().Data = _plantsData[ePlant];
+        obj.GetComponent<Plant.Plant>().Init();
         return obj;
     }
 }

@@ -14,6 +14,11 @@ public class PlantPlacementService : SelectorService
     
     public override void OnPlace()
     {
+        Debug.Log($"grid: {gridPlacementService}");
+        Debug.Log($"tileService: {tileService}");
+        Debug.Log($"tile: {tileService.GetCurrTile()}");
+        Debug.Log($"plantComp: {plant}");
+        Debug.Log($"plant: {plant.gameObject}");
         gridPlacementService.Put(tileService.GetCurrTile(), plant.gameObject);
         plant.ChangeState(EPlantState.Idle);
     }
