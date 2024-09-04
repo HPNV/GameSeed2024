@@ -1777,6 +1777,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 1219194203}
+  virtualCamera: {fileID: 2102487088}
+  zoomSpeed: 1
+  minFieldOfView: 1
+  maxFieldOfView: 100
 --- !u!114 &2102487091
 MonoBehaviour:
   m_ObjectHideFlags: 0
