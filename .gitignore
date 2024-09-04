@@ -30,6 +30,8 @@
 /[Aa]ssets/Firebase/Plugins/
 /[Aa]ssets/Firebase/Plugins/x86_64/
 /[Aa]ssets/Firebase/Plugins/x86_64/FirebaseCppApp-*.bundle/
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_2_0.so
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_2_0.bundle
 
 # Visual Studio cache directory
 .vs/
