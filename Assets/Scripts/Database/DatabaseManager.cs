@@ -7,6 +7,11 @@ using Firebase.Extensions;
 using Firebase.Firestore;
 public class DatabaseManager : MonoBehaviour
 {
+    
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
