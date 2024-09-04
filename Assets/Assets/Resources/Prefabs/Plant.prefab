@@ -159,7 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1f8bf5d65db1046857a025db728d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
   <Animator>k__BackingField: {fileID: 5141593892528665881}
 --- !u!114 &2851565203643474574
 MonoBehaviour:
@@ -182,7 +181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521397313901571747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f34d5a7240142140bebac4c400c2ff9, type: 3}
   m_Name: 
@@ -420,5 +419,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b95cd045d40e40850319746e334db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
+  data: {fileID: 0}
   spriteRenderer: {fileID: 8460259969085906902}

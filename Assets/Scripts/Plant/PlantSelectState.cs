@@ -11,6 +11,12 @@ public class PlantSelectState : PlantState
 
     public override void Update()
     {
+        var origin = Plant.transform.position;
+        Debug.Log($"Singleton: {SingletonGame.Instance}");
+        Debug.Log($"TileProvider: {SingletonGame.Instance.TileProvider}");
+        var temp = SingletonGame.Instance.TileProvider.GetCurrTile().transform.position;
+        temp.z = origin.z;
+        Plant.transform.position = temp;
     }
 
     public override void OnEnter()

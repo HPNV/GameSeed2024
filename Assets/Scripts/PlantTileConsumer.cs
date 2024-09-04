@@ -10,10 +10,10 @@ public class PlantTileConsumer : TileConsumer
 
     private void FixedUpdate()
     {
-        var currTile = tileService.GetCurrTile();
-        if (currTile)
-        {
-            transform.position = currTile.transform.position;
-        }
+        // var currTile = tileService.GetCurrTile();
+        // if (currTile)
+        // {
+        //     transform.position = currTile.transform.position;
+        // }
     }
 }

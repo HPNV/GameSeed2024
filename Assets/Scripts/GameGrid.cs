@@ -46,7 +46,10 @@ public class GameGrid : MonoBehaviour
     public void PutOnTile(Tile tile, GameObject obj)
     {
         if (Slots[tile] != null) return;
-        obj.transform.position = tile.transform.position;
+        var origin = obj.transform.position;
+        var temp = tile.transform.position;
+        temp.z = origin.z;
+        obj.transform.position = temp;
         Slots[tile] = obj;
     }
 
