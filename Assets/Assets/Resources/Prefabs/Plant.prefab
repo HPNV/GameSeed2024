@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 425450853424216340}
   - component: {fileID: 7206702220497572868}
   - component: {fileID: 2851565203643474574}
-  - component: {fileID: 4016870474803859053}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -174,20 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curr: {fileID: 4832413828702667951}
   enemyDetectorService: {fileID: 4004748464390598651}
---- !u!114 &4016870474803859053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521397313901571747}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f34d5a7240142140bebac4c400c2ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileService: {fileID: 7843220094529195442, guid: c1820ff4549a9dd4ea4268cb79efa4fb, type: 3}
-  spriteRenderer: {fileID: 425450853424216340}
 --- !u!1 &3317120689161903148
 GameObject:
   m_ObjectHideFlags: 0
