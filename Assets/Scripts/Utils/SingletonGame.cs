@@ -18,7 +18,8 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
-    [SerializeField] public TileService TileProvider;
+    [SerializeField] public CursorTileProviderService TileProvider;
+    // [SerializeField] public TileProviderService TileProvider;
 
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
