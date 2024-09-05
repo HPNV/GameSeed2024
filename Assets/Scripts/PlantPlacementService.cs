@@ -11,11 +11,16 @@ public class PlantPlacementService : SelectorService
     private GameGrid gameGrid;
 
     public Plant.Plant plant;
-    
-    public override void OnPlace()
+
+    protected override void OnPlace()
     {
-        if (!plant) return;
+        if (plant == null) return;
         gameGrid.PutOnTile(tileService.GetCurrTile(), plant.gameObject);
+    }
+
+    protected override void AfterPlace()
+    {
         plant.ChangeState(EPlantState.Idle);
+        plant = null;
     }
 }

@@ -4,5 +4,13 @@ using UnityEngine;
 
 public abstract class SelectorService : MonoBehaviour
 {
-    public abstract void OnPlace();
+
+    public void Place()
+    {
+        OnPlace();
+        AfterPlace();
+    }
+
+    protected abstract void OnPlace();
+    protected abstract void AfterPlace();
 }

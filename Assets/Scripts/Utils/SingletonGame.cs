@@ -19,8 +19,11 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public PlantFactory plantFactory;
     public int ExpPoint;
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
-    private AudioClip gameMusic;
-    [SerializeField] public CursorTileProviderService TileProvider;
+    private AudioClip gameMusic; 
+    
+    public TileService TileProvider;
+    public GameGrid GameGrid;
+    
     // [SerializeField] public TileProviderService TileProvider;
 
     public ResourceManager ResourceManager { get; set; } = new();
