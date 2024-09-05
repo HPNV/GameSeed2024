@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using Enemy;
+using Projectile.Behaviour;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Projectile
 {
-    public class ProjectileBehaviour : MonoBehaviour
+    public class Projectile : MonoBehaviour
     {
         [SerializeField] 
         public ProjectileData data;
         public Vector2 Direction { get; set; }
-        public string TargetTag { get; set; }
+        public IProjectileBehaviour Behaviour { get; set; }
+        
         
         private Coroutine _destroyCoroutine;
         private ParticleSystem _particles;
@@ -21,24 +24,19 @@ namespace Projectile
             transform.localScale = Vector3.one * data.scale;
             _destroyCoroutine = StartCoroutine(DestroyAfterTime());
             InitializeParticles();
+            InitializeBehaviour();
         }
 
-        private void Update()
+        protected void Update()
         {
-            var currentPosition = transform.position;
-            
-            transform.position = Vector2.MoveTowards(
-                currentPosition,
-                (Vector2)currentPosition + Direction,  
-                data.movementSpeed * Time.deltaTime);
+            Behaviour.Move();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag(TargetTag))
+            if (other.gameObject.CompareTag(data.targetTag))
             {
-                var enemy = other.gameObject.GetComponent<EnemyBehaviour>();
-                SingletonGame.Instance.ProjectileManager.Despawn(this);
+                Behaviour.OnCollide(other);
             }
         }
         
@@ -56,9 +54,21 @@ namespace Projectile
 
         private void InitializeParticles()
         {
+            if (data.particles is null)
+                return;
+            
             _particles = Instantiate(data.particles, transform.position, Quaternion.identity);
             _particles.transform.parent = transform;
             _particles.Play();
+        }
+        
+        private void InitializeBehaviour()
+        {
+            Behaviour = data.projectileType switch
+            {
+                ProjectileType.EnemyRanged => new EnemyProjectileBehaviour(this),
+                _ => null
+            };
         }
     }
 }

@@ -44,8 +44,6 @@ namespace Enemy
         
         protected void Update()
         {
-            Debug.Log(PlantTargetService);
-            Debug.Log(PlantTargetService.GetTarget());
             _currentState.OnUpdate();
             
             if (Input.GetKeyDown(KeyCode.A))

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7206702220497572868}
   - component: {fileID: 2851565203643474574}
   - component: {fileID: -2809962376938931778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plant
   m_TagString: Plant
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1618801666489590807}
   - component: {fileID: 3775253518183017066}
   - component: {fileID: 4004748464390598651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 8122588350987064563}
   - component: {fileID: 8460259969085906902}
   - component: {fileID: 3281523165116591712}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
