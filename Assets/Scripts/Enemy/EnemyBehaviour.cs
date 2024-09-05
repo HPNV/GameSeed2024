@@ -30,7 +30,7 @@ namespace Enemy
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
-            PlantTargetService = GetComponent<PlantTargetService>();
+            PlantTargetService = GetComponentInChildren<PlantTargetService>();
             
             
             SetupStates();
@@ -44,7 +44,8 @@ namespace Enemy
         
         protected void Update()
         {
-            
+            Debug.Log(PlantTargetService);
+            Debug.Log(PlantTargetService.GetTarget());
             _currentState.OnUpdate();
             
             if (Input.GetKeyDown(KeyCode.A))

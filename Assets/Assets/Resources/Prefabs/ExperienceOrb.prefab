@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6307b8a98b009428ec974cdf9749d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForce: 1000
+  maxForce: 200
   minimumDistance: 100
   collectDistance: 2
+  homeBase: {fileID: 0}
+  experienceValue: 0
