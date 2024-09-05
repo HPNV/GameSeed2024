@@ -19,5 +19,13 @@ namespace Plant
                 Plant.ChangeState(EPlantState.Attack);
             }
         }
+
+        public override void OnEnter()
+        {
+        }
+
+        public override void OnExit()
+        {
+        }
     }
 }

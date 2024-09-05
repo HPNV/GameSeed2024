@@ -20,6 +20,9 @@ public class SingletonGame : MonoBehaviour
     public int ExpPoint;
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
     private AudioClip gameMusic;
+    [SerializeField] public CursorTileProviderService TileProvider;
+    // [SerializeField] public TileProviderService TileProvider;
+
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();

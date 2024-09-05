@@ -14,5 +14,7 @@ namespace Plant
         }
 
         public abstract void Update();
+        public abstract void OnEnter();
+        public abstract void OnExit();
     }
 }

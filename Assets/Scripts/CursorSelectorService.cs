@@ -8,6 +8,9 @@ public class CursorSelectorService : MonoBehaviour
 {
     private Camera _mainCamera;
 
+    [SerializeField] 
+    private SelectorService selectorService;
+
     private void Start()
     {
         _mainCamera = Camera.main;
@@ -15,9 +18,8 @@ public class CursorSelectorService : MonoBehaviour
 
     void OnFire(InputValue inputValue)
     {
-        var rayhit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
-        if (!rayhit.collider) return;
-        
-        Debug.Log(rayhit.collider.gameObject.name.ToString());
+        // var rayhit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
+        // if (!rayhit.collider) return;
+        selectorService.OnPlace();
     }
 }

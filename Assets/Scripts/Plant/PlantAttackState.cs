@@ -28,6 +28,14 @@ namespace Plant
             cd = 0;
         }
 
+        public override void OnEnter()
+        {
+        }
+
+        public override void OnExit()
+        {
+        }
+
         private void Attack()
         {
             Plant.Animator.SetTrigger(AttackTriggerHash);

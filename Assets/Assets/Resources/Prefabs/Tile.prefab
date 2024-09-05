@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2580862467764449577}
   - component: {fileID: 1386728309387139814}
   - component: {fileID: 6819744013331768725}
+  - component: {fileID: 6259087003586688897}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -160,3 +161,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TileProviderService>k__BackingField: {fileID: 7843220094529195442, guid: c1820ff4549a9dd4ea4268cb79efa4fb, type: 3}
+--- !u!114 &6259087003586688897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6280704825675517067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f09b2e26770e947b4746c7779fa4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileService: {fileID: 7843220094529195442, guid: c1820ff4549a9dd4ea4268cb79efa4fb, type: 3}
+  tile: {fileID: 1386728309387139814}
+  spriteRenderer: {fileID: 3423596034225525723}

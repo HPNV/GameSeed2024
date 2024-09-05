@@ -21,6 +21,11 @@ public class TileProvider : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        TileProviderService.setCurrTile(_currTile);
+        TileProviderService.SetCurrTile(_currTile);
+    }
+
+    private void OnMouseExit()
+    {
+        TileProviderService.SetCurrTile(null);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,12 @@ public class TileProviderService : TileService
 {
     private Tile _currTile;
 
-    public void setCurrTile(Tile tile)
+    private void FixedUpdate()
+    {
+        
+    }
+
+    public void SetCurrTile(Tile tile)
     {
         this._currTile = tile;
     }

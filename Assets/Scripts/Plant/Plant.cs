@@ -9,7 +9,16 @@ namespace Plant
     public class Plant : MonoBehaviour
     {
         [field: SerializeField]
-        public PlantData Data { get; private set; }
+        public PlantData Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                InitDetector();
+            }
+        }
+        private PlantData _data;
 
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
@@ -20,20 +29,32 @@ namespace Plant
     
         private void Start()
         {
-            GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
-
-            _states = new Dictionary<EPlantState, PlantState>
-            {
-                { EPlantState.Idle , new PlantIdleState(this)},
-                { EPlantState.Attack , new PlantAttackState(this)}
-            };
-            _state = _states[EPlantState.Idle];
-            InitTargetService();
+            Init();
         }
 
         private void FixedUpdate()
         {
             _state.Update();
+        }
+
+        public void Init()
+        {
+            GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
+
+            InitState();
+            InitTargetService();
+        }
+
+        private void InitState()
+        {
+            if (_state != null && _states != null) return;
+            _states = new Dictionary<EPlantState, PlantState>
+            {
+                { EPlantState.Idle , new PlantIdleState(this)},
+                { EPlantState.Attack , new PlantAttackState(this)},
+                { EPlantState.Select , new PlantSelectState(this)},
+            };
+            _state = _states[EPlantState.Idle];
         }
 
         private void InitTargetService()
@@ -50,9 +71,20 @@ namespace Plant
             }
         }
 
+        private void InitDetector()
+        {
+            var detector = transform.Find("Detector");
+            detector.localScale = new Vector3(Data.range, Data.range, 1);
+        }
+
         public void ChangeState(EPlantState state)
         {
+            Debug.Log($"state: {_state}");
+            Debug.Log($"states: {_states}");
+            if (_state == _states[state]) return;
+            _state.OnExit();
             _state = _states[state];
+            _state.OnEnter();
         }
     }
 }
