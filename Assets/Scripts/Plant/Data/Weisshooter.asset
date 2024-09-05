@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
-  m_Name: Boomkin
+  m_Name: Weisshooter
   m_EditorClassIdentifier: 
-  plantName: Boomkin
-  health: 10
-  damage: 100
-  cd: 0
+  plantName: Weishooter
+  health: 100
+  damage: 20
+  cd: 50
   range: 100
-  sprite: {fileID: 21300000, guid: d62f0232b65feec4a84fc480ace7d346, type: 3}
-  animatorController: {fileID: 9100000, guid: 3b875b63d21b1e8458f1ba2b788bcc32, type: 2}
+  sprite: {fileID: 21300000, guid: b71d9b39d4720c04ab9d76b919193dc6, type: 3}
+  animatorController: {fileID: 9100000, guid: aa5dcc27b41ba7a4385a782c9671bb81, type: 2}
   targetType: 0
