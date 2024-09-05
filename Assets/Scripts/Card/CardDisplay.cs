@@ -25,7 +25,7 @@ namespace Card
             
         }
 
-        public void setCard(PlantData cardData) {
+        public void SetCard(PlantData cardData) {
             this.cardData = cardData;
             cardNameText.text = cardData.plantName;
             descriptionText.text = "";

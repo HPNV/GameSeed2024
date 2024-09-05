@@ -84,7 +84,8 @@ public class SingletonGame : MonoBehaviour
             float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
             Vector3 newPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
             cardDisplays[i].transform.position = newPosition;
-            cardDisplays[i].setCard(GetRandomCards(availableCard));
+            cardDisplays[i].SetCard(GetRandomCards(availableCard));
+            cardDisplays[i].SetCard();
             cardDisplays[i].gameObject.SetActive(true);
         }
     }
