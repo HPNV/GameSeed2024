@@ -32,14 +32,12 @@ namespace Manager
                 var enemyObject = Object.Instantiate(_enemyPrefab, position, Quaternion.identity);
                 var enemyBehaviour = enemyObject.GetComponent<EnemyBehaviour>();
                 enemyBehaviour.enemyData = _enemyData[type];
-
-                Debug.Log("Spawned new enemy");
+                
                 return enemyObject;
             }
             
             var enemy = _enemyPool.Dequeue();
             
-            Debug.Log("Spawned from pool");
             enemy.transform.position = position;
             enemy.enemyData = _enemyData[type];
             enemy.gameObject.SetActive(true);
@@ -50,10 +48,8 @@ namespace Manager
         
         public void Despawn(EnemyBehaviour enemy)
         {
-            Debug.Log($"DESPAWNING");
             enemy.gameObject.SetActive(false);
             _enemyPool.Enqueue(enemy);
-            Debug.Log($"Enqueud enemy Count: {_enemyPool.Count}");
         }
     }
 }

@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 1f;
     [SerializeField] private float minFieldOfView = 1f;
     [SerializeField] private float maxFieldOfView = 100f;
+    [SerializeField] private float scrollSpeed = 10f;
     private Vector2 _mousePosition;
     
     private void LateUpdate()
@@ -42,6 +43,6 @@ public class CameraController : MonoBehaviour
                 var newFOV = Mathf.Clamp(virtualCamera.m_Lens.OrthographicSize - scroll * zoomSpeed * 10, minFieldOfView, maxFieldOfView);
                 virtualCamera.m_Lens.OrthographicSize = newFOV;
             }
-        }
+        } 
     }
 }

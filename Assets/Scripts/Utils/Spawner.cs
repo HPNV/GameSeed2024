@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
         {
             spawnTimer = 0f;
             SpawnEnemy();
-            Debug.Log($"Spawned enemy {spawnRate}");
             spawnRate *= spawnRateIncrease;
         }
     }
