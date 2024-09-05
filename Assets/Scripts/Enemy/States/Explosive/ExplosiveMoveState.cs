@@ -10,14 +10,19 @@ namespace Enemy.States.Explosive
 
         public override void OnUpdate()
         {
-            base.OnUpdate();
+            var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             
-            if (Enemy.Target == null)
+            if (stateInfo.IsName("Walk") && IsInJumpAnimation())
+                base.OnUpdate();
+            
+            var target = Enemy.PlantTargetService.GetTarget();
+            
+            if (target is null)
             {
                 return;
             }
             
-            var targetPosition = Enemy.Target.position;
+            var targetPosition = target.transform.position;
             
             var distance = Vector2.Distance(Enemy.transform.position, targetPosition);
             
@@ -35,6 +40,12 @@ namespace Enemy.States.Explosive
                 Enemy.ChangeState(State.Attack);
                 Debug.Log("Change to attack");
             }   
+        }
+        
+        private bool IsInJumpAnimation()
+        {
+            var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
+            return stateInfo.normalizedTime % 1 >= 0.5f && stateInfo.normalizedTime % 1 <= 1f;
         }
     }
 }

@@ -7,6 +7,7 @@ public class MainMenuBacksound : MonoBehaviour
     [SerializeField] private AudioClip backgroundSound;
     void Start()
     {
-        SoundFXManager.instance.PlaySound(backgroundSound, transform, 0.5f);
+        // SoundFXManager.instance.PlaySound(backgroundSound, transform, 0.5f);
+        SoundFXManager.instance.PlayGameSound(Resources.Load<AudioClip>("Audio/Main Menu Music"));
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy.States;
@@ -6,6 +7,7 @@ using Enemy.States.Explosive;
 using Enemy.States.Melee;
 using Enemy.States.Ranged;
 using JetBrains.Annotations;
+using Service;
 using UnityEngine;
 
 namespace Enemy
@@ -17,19 +19,20 @@ namespace Enemy
         public float CurrentHealth { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
-        [CanBeNull] public Transform Target { get; private set; }
+        public PlantTargetService PlantTargetService { get; private set; }
 
         public const string TargetTag = "Plant";
         private IState _currentState;
         private Dictionary<State, IState> _states;
-        private List<GameObject> _nearbyTargets = new();
-      
-    
+        
         protected void Start()
         {
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
+            PlantTargetService = GetComponent<PlantTargetService>();
+            
+            
             SetupStates();
             SetupAnimationController();
         }
@@ -41,9 +44,6 @@ namespace Enemy
         
         protected void Update()
         {
-            _nearbyTargets.RemoveAll(target => target is null);
-            
-            Target = _nearbyTargets.FirstOrDefault()?.transform;
             
             _currentState.OnUpdate();
             
@@ -74,7 +74,8 @@ namespace Enemy
                 {
                     { State.Move, new ExplosiveMoveState(this) },
                     { State.Attack, new ExplosiveAttackState(this) },
-                    { State.Die, new DieState(this) }
+                    { State.Die, new DieState(this) },
+                    { State.Explode, new ExplosiveExplodeState(this) }
                 },
                 _ => _states
             };
@@ -89,7 +90,11 @@ namespace Enemy
 
         private void Damage(float value)
         {
+            if(_currentState is DieState)
+                return;
+            
             CurrentHealth -= value;
+            StartCoroutine(FlashRed());
         }
 
         public void ChangeState(State state)
@@ -98,25 +103,21 @@ namespace Enemy
             _currentState = _states[state];
             _currentState.OnEnter();
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        
+        private IEnumerator FlashRed()
         {
-            if (other.CompareTag(TargetTag))
-            {
-                Debug.Log($" {TargetTag} {other.gameObject.name} entered the trigger {_nearbyTargets}");
-                _nearbyTargets.Add(other.gameObject);
-                _nearbyTargets = _nearbyTargets
-                    .OrderBy(obj => (obj.transform.position - transform.position).sqrMagnitude)
-                    .ToList();
-            }
+            var originalColor = SpriteRenderer.color;
+            SpriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            SpriteRenderer.color = originalColor;
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        public void Reset()
         {
-            if (other.CompareTag(TargetTag))
-            {
-                _nearbyTargets.Remove(other.gameObject);
-            }
+            CurrentHealth = enemyData.health;
+            SetupStates();
+            SetupAnimationController();
+            ChangeState(State.Move);
         }
     }
 }

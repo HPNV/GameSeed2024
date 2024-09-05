@@ -14,7 +14,7 @@ namespace Enemy.States.Explosive
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
-                Object.Destroy(Enemy.gameObject);
+                Enemy.ChangeState(State.Explode);
         }
         
     }

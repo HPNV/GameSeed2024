@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: Dep
   attackPower: 1
-  movementSpeed: 5
+  movementSpeed: 1
   lifetime: 100
-  animatorController: {fileID: 0}
+  sprite: {fileID: 0}
+  scale: 1
+  particles: {fileID: 2729413782432448992, guid: bc99de5731535de43bea92cd9b164c7f, type: 3}
