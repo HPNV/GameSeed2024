@@ -1,4 +1,6 @@
-﻿namespace Enemy.States.Melee
+﻿using UnityEngine;
+
+namespace Enemy.States.Melee
 {
     public class MeleeAttackState : AttackState
     {
@@ -9,7 +11,7 @@
         {
             base.OnUpdate();
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
-            
+            SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Enemy/Bite Sound"));
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
             {
                 Enemy.ChangeState(State.Move);
