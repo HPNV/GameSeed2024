@@ -23,7 +23,7 @@ public class PlantSelectState : PlantState
     {
         var sp = Plant.transform.GetComponent<SpriteRenderer>();
         var color = Color.red;
-        color.a = 0.2f;
+        color.a = 0.5f;
         sp.color = color;
 
         Plant.transform.GetComponent<Collider2D>().enabled = false;
