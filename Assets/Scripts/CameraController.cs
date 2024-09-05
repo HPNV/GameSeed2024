@@ -12,12 +12,18 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float zoomSpeed = 1f;
     [SerializeField] private float minFieldOfView = 1f;
     [SerializeField] private float maxFieldOfView = 100f;
-    [SerializeField] private float scrollSpeed = 10f;
-    private Vector2 _mousePosition;
+    [SerializeField] private float panSpeed = 50;
+    [SerializeField] private int leftLimit = -100;
+    [SerializeField] private int rightLimit = 100;
+    [SerializeField] private int topLimit = 100;
+    [SerializeField] private int bottomLimit = -100;
+    private bool _isDragging;
+    private Vector3 _oldPosition;
+    private Vector3 _panOrigin;
     
     private void LateUpdate()
     {
-        GetPlayerInput();
+        HandleCameraMovement();
     }
 
     private void Update()
@@ -25,11 +31,53 @@ public class CameraController : MonoBehaviour
         HandleZoom();
     }
 
+    private void HandleCameraBounds()
+    {
+        var cameraPosition = cameraTarget.transform.position;
+        
+        if (cameraTarget.transform.position.x < leftLimit)
+        {
+            cameraTarget.transform.position = new Vector3(leftLimit, cameraTarget.transform.position.y, cameraPosition.z);
+        }
+            
+        if (cameraTarget.transform.position.x > rightLimit)
+        {
+            cameraTarget.transform.position = new Vector3(rightLimit, cameraTarget.transform.position.y, cameraPosition.z);
+        }
+        
+        if (cameraTarget.transform.position.y < bottomLimit)
+        {
+            cameraTarget.transform.position = new Vector3(cameraTarget.transform.position.x, bottomLimit, cameraPosition.z);
+        }
+        
+        if (cameraTarget.transform.position.y > topLimit)
+        {
+            cameraTarget.transform.position = new Vector3(cameraTarget.transform.position.x, topLimit, cameraPosition.z);
+        }
+    }
 
-    private void GetPlayerInput()
-    {   
-        _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        cameraTarget.transform.position = new Vector3(_mousePosition.x, _mousePosition.y, -10);
+
+    private void HandleCameraMovement()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            _isDragging = true;
+            _oldPosition = cameraTarget.transform.position;
+            _panOrigin = Camera.main.ScreenToViewportPoint(Input.mousePosition);				
+        }
+
+        if(Input.GetMouseButton(1))
+        {
+            
+            var pos = Camera.main.ScreenToViewportPoint(Input.mousePosition) - _panOrigin;
+            cameraTarget.transform.position = _oldPosition + -pos * panSpeed; 				
+            HandleCameraBounds();
+        }
+
+        if(Input.GetMouseButtonUp(1))
+        {
+            _isDragging = false;
+        }
     }
 
     private void HandleZoom()
