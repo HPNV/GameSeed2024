@@ -13,6 +13,7 @@ public class PlantFactory : MonoBehaviour
 
     [SerializeField] private List<EPlant> plants;
     [SerializeField] private List<PlantData> data;
+    [SerializeField] private PlantPlacementService plantPlacementService;
     private Dictionary<EPlant, PlantData> _plantsData;
 
     private void Start()
@@ -40,5 +41,11 @@ public class PlantFactory : MonoBehaviour
     public EPlant GetRandomEPlant()
     {
         return plants.OrderBy(c => Random.value).FirstOrDefault();
+    }
+
+    public void spawnPlant(EPlant ePlant) {
+        var plant = GeneratePlant(ePlant).GetComponent<Plant.Plant>();
+        plant.ChangeState(EPlantState.Select);
+        plantPlacementService.plant = plant;
     }
 }

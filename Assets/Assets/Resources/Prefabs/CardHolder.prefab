@@ -1221,7 +1221,7 @@ Transform:
   m_GameObject: {fileID: 7938450433688461391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.637563, y: 12.722573, z: 10}
+  m_LocalPosition: {x: 1.89429, y: -2.118264, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1247,10 +1247,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantType: 0
   cardData: {fileID: 0}
   cardNameText: {fileID: 2670323909976856927}
   cardImageHolder: {fileID: 7482667652216324306, guid: 13bb5d7449274074eac8615345061abc, type: 3}
   descriptionText: {fileID: 5916773154208808303}
+  attackText: {fileID: 5043647341482807206}
+  healthText: {fileID: 5443371188826060510}
+  attackSpeedText: {fileID: 1760177630663837405}
+  rangeText: {fileID: 921964461617538180}
 --- !u!65 &3432856185910998104
 BoxCollider:
   m_ObjectHideFlags: 0

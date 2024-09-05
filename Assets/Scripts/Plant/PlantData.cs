@@ -15,6 +15,7 @@ namespace Plant
         public float damage;
         public int cd;
         public float range;
+        public string description;
 
         public Sprite sprite;
         public AnimatorController animatorController;

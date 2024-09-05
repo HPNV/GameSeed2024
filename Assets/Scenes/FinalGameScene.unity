@@ -122,6 +122,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &31894471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31894473}
+  - component: {fileID: 31894472}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &31894472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31894471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f4f592f204d684e8ca7961477c3487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1030939505820627061, guid: c4db920df0183544eb05440533a18c71, type: 3}
+  spawnRate: 3
+  spawnRadius: 20
+  spawnRateIncrease: 0.99
+--- !u!4 &31894473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31894471}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.4809993e-28, y: 0.00000034969108, z: -2.5894614e-35, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0196, y: 0.0196, z: 0.90809}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &177088950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1894,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
   - {fileID: 11400000, guid: e5855e2223bfe2f46a54bcabab94268a, type: 2}
   - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
+  plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:
   m_ObjectHideFlags: 0
@@ -3007,9 +3056,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5776182580396429281, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7077755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776182580396429281, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7775697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776182580396429281, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.040086925
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776182580396429281, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.11565179
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776182580396429281, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6296114478124981260, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       propertyPath: m_Name
       value: HomeBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296114478124981260, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_TagString
+      value: Plant
       objectReference: {fileID: 0}
     - target: {fileID: 8810525150189405065, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       propertyPath: HpBar
@@ -3409,6 +3482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homeBase: {fileID: 1976936955}
+  plantFactory: {fileID: 1280682889}
   ExpPoint: 0
   TileProvider: {fileID: 1590870006}
   CardDisplayPrefab: {fileID: 7938450433688461391, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
@@ -3439,3 +3513,4 @@ SceneRoots:
   - {fileID: 2063257107}
   - {fileID: 906269219}
   - {fileID: 1938278133}
+  - {fileID: 31894473}
