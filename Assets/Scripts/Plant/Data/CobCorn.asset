@@ -15,4 +15,8 @@ MonoBehaviour:
   plantName: CobCorn
   health: 150
   damage: 15
-  speed: 50
+  cd: 0
+  range: 0
+  sprite: {fileID: 21300000, guid: cb66d21e8487d1e4ba12a13dc29e43bd, type: 3}
+  animatorController: {fileID: 9100000, guid: 4f5c869ac510b5b44a88cb164c83c86a, type: 2}
+  targetType: 0
