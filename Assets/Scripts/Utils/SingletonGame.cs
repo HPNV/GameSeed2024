@@ -14,10 +14,13 @@ using ResourceManager = Manager.ResourceManager;
 public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
-    private List<PlantData> availableCard = new List<PlantData>();
     [SerializeField] public HomeBase homeBase;
     [SerializeField] public PlantFactory plantFactory;
-    public int ExpPoint;
+
+    [SerializeField] public CardDisplay card1;
+    [SerializeField] public CardDisplay card2;
+    [SerializeField] public CardDisplay card3;
+
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
     private AudioClip gameMusic; 
     
@@ -25,6 +28,7 @@ public class SingletonGame : MonoBehaviour
     public GameGrid GameGrid;
     
     // [SerializeField] public TileProviderService TileProvider;
+    public int ExpPoint;
 
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
@@ -55,6 +59,9 @@ public class SingletonGame : MonoBehaviour
         EnemyManager.Initialize();
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayGameSound(Resources.Load<AudioClip>("Audio/Game Music")); 
+        cardDisplays.Add(card1);
+        cardDisplays.Add(card2);
+        cardDisplays.Add(card3);
     }
 
     private void Update()
@@ -63,48 +70,16 @@ public class SingletonGame : MonoBehaviour
     }
 
     void Start() {
-        InitCardList();
-        initCard();
-    }
 
-    public void initCard() {
-        float offset = 0.25f;
-        Vector3 cameraPosition = Camera.main.transform.position;
-        for (int i = 0; i < 3; i++) {
-            float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
-            Vector3 spawnPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
-            GameObject x = Instantiate(CardDisplayPrefab, spawnPosition, Quaternion.identity, transform);
-            CardDisplay cardDisplay = x.GetComponent<CardDisplay>();
-            cardDisplays.Add(cardDisplay);
-            x.SetActive(false);
-        }
     }
 
     public void SpawnPlant() {
         SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Level Up"));
-        Vector3 cameraPosition = Camera.main.transform.position;
-        float offset = 0.25f;
-        for (int i = 0; i < cardDisplays.Count; i++) {
-            float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
-            Vector3 newPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
+        foreach (var cardDisplay in cardDisplays) {
             EPlant ePlant = plantFactory.GetRandomEPlant();
             PlantData data = plantFactory.GetPlantData(ePlant);
-            cardDisplays[i].transform.position = newPosition;
-            cardDisplays[i].SetCard(data,ePlant);
-            cardDisplays[i].gameObject.SetActive(true);
-        }
-    }
-
-    private void InitCardList() {
-        for (int i=0;i<3;i++){
-            PlantData dummyCard = ScriptableObject.CreateInstance<PlantData>();
-            dummyCard.plantType = PlantType.Boomkin;
-            dummyCard.health = 100;
-            dummyCard.damage = 10;
-            dummyCard.attackCooldown = 0;
-            dummyCard.range = 6;
-            dummyCard.animatorController = null;
-            availableCard.Add(dummyCard);
+            cardDisplay.SetCard(data,ePlant);
+            cardDisplay.gameObject.SetActive(true);
         }
     }
 

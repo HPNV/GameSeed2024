@@ -89,5 +89,10 @@ namespace Plant
             _state = _states[state];
             _state.OnEnter();
         }
+
+        public void Damage(float damage)
+        {
+            Destroy(gameObject);
+        }
     }
 }

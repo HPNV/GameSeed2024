@@ -23,7 +23,7 @@ public class SoundFXManager : MonoBehaviour
 
     public static void Initialize()
     {
-        if(instance == null)
+        if(instance is null)
         {
             instance = new GameObject("SoundFXManager").AddComponent<SoundFXManager>();
             instance.soundFXObject = new GameObject("SoundFXObject").AddComponent<AudioSource>();
@@ -50,7 +50,7 @@ public class SoundFXManager : MonoBehaviour
         audioSource.Play();
         // loop the sound
         audioSource.loop = false;    
-        Destroy(audioSource.gameObject, audioClip.length);
+        // Destroy(audioSource.gameObject, audioClip.length);
     }
 
     public void PlayGameSound(AudioClip audioClip) {

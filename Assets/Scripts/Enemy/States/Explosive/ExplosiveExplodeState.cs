@@ -13,14 +13,17 @@ namespace Enemy.States.Explosive
         public override void OnEnter()
         {
             Enemy.Animator.SetTrigger(Explode);
+            
         }
 
         public override void OnUpdate()
         {
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
             
-            if (stateInfo.IsName("Explode") && stateInfo.normalizedTime >= 1)
+            if (stateInfo.IsName("Explode") && stateInfo.normalizedTime >= 1) {
+                SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Explode"));
                 Object.Destroy(Enemy.gameObject);
+            }
         }
         
     }
