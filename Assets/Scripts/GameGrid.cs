@@ -6,6 +6,8 @@ public class GameGrid : MonoBehaviour
 {
     [SerializeField] 
     private int width, height;
+    [SerializeField]
+    private int offsetX, offsetY;
     
     private Transform _cam;
 
@@ -28,19 +30,23 @@ public class GameGrid : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y, 200), Quaternion.identity);
+                int a = x + offsetX;
+                int b = y + offsetY;
+                var spawnedTile = Instantiate(tilePrefab, new Vector3(a, b, 200), Quaternion.identity);
 
-                var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                var isOffset = (a % 2 == 0 && b % 2 != 0) || (a % 2 != 0 && b % 2 == 0);
                 spawnedTile.Init(isOffset);
                 spawnedTile.transform.SetParent(transform);
 
-                Tiles[new Vector2(x, y)] = spawnedTile;
+                Tiles[new Vector2(a, b)] = spawnedTile;
                 Slots[spawnedTile] = null;
             }
         }
 
         
-        _cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        // _cam.transform.position  = temp;
+
     }
     
     public void PutOnTile(Tile tile, GameObject obj)

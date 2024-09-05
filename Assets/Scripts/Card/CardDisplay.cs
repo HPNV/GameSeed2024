@@ -9,15 +9,19 @@ namespace Card
 {
     public class CardDisplay : MonoBehaviour
     {
+        public EPlant plantType;
         public PlantData cardData;
         public TextMeshPro cardNameText;
         public Sprite cardImageHolder;
         public TextMeshPro descriptionText;
+        public TextMeshPro attackText;
+        public TextMeshPro healthText;
+        public TextMeshPro attackSpeedText;
+        public TextMeshPro rangeText;
+        public SpriteRenderer spriteRenderer;
         void Start()
         {
-            cardNameText.text = cardData.plantName;
-            descriptionText.text = "none";
-            cardImageHolder = null;   
+
         }
 
         void Update()
@@ -25,15 +29,21 @@ namespace Card
             
         }
 
-        public void setCard(PlantData cardData) {
+        public void SetCard(PlantData cardData, EPlant plantType) {
             this.cardData = cardData;
+            this.plantType = plantType;
             cardNameText.text = cardData.plantName;
-            descriptionText.text = "";
-            cardImageHolder = null;
+            descriptionText.text = cardData.description;
+            cardImageHolder = cardData.sprite;
+            spriteRenderer.sprite = cardData.sprite;
+            attackText.text = cardData.damage.ToString();
+            healthText.text = cardData.health.ToString();
+            attackSpeedText.text = cardData.cd.ToString();
+            rangeText.text = cardData.range.ToString();
         }
 
         public void OnMouseDown() {
-            SingletonGame.Instance.PickCard(cardData);
+            SingletonGame.Instance.PickCard(plantType);
             Debug.Log("Mouse Down");
         }
     }

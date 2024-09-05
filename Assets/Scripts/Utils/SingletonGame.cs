@@ -15,8 +15,8 @@ public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
     private List<PlantData> availableCard = new List<PlantData>();
-    [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
+    [SerializeField] public PlantFactory plantFactory;
     public int ExpPoint;
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
     private AudioClip gameMusic;
@@ -84,15 +84,12 @@ public class SingletonGame : MonoBehaviour
         for (int i = 0; i < cardDisplays.Count; i++) {
             float screenRightEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.25f + (offset * i), 0.5f, cameraPosition.z)).x;
             Vector3 newPosition = new Vector3(screenRightEdge, cameraPosition.y, -5);
+            EPlant ePlant = plantFactory.GetRandomEPlant();
+            PlantData data = plantFactory.GetPlantData(ePlant);
             cardDisplays[i].transform.position = newPosition;
-            cardDisplays[i].setCard(GetRandomCards(availableCard));
+            cardDisplays[i].SetCard(data,ePlant);
             cardDisplays[i].gameObject.SetActive(true);
         }
-    }
-
-    private PlantData GetRandomCards(List<PlantData> cards)
-    {
-        return cards.OrderBy(c => Random.value).FirstOrDefault();
     }
 
     private void InitCardList() {
@@ -108,9 +105,9 @@ public class SingletonGame : MonoBehaviour
         }
     }
 
-    public void PickCard(PlantData card)
+    public void PickCard(EPlant plantType)
     {
-        inventory.AddCard(card);
+        plantFactory.spawnPlant(plantType);
         DestroyRemainingCards();
     }
 
