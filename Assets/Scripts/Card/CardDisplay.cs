@@ -18,6 +18,7 @@ namespace Card
         public TextMeshPro healthText;
         public TextMeshPro attackSpeedText;
         public TextMeshPro rangeText;
+        public SpriteRenderer spriteRenderer;
         void Start()
         {
 
@@ -34,6 +35,7 @@ namespace Card
             cardNameText.text = cardData.plantName;
             descriptionText.text = cardData.description;
             cardImageHolder = cardData.sprite;
+            spriteRenderer.sprite = cardData.sprite;
             attackText.text = cardData.damage.ToString();
             healthText.text = cardData.health.ToString();
             attackSpeedText.text = cardData.cd.ToString();
