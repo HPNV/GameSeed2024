@@ -95,10 +95,10 @@ public class SingletonGame : MonoBehaviour
     private void InitCardList() {
         for (int i=0;i<3;i++){
             PlantData dummyCard = ScriptableObject.CreateInstance<PlantData>();
-            dummyCard.plantName = "dummy";
+            dummyCard.plantType = PlantType.Boomkin;
             dummyCard.health = 100;
             dummyCard.damage = 10;
-            dummyCard.cd = 0;
+            dummyCard.attackCooldown = 0;
             dummyCard.range = 6;
             dummyCard.animatorController = null;
             availableCard.Add(dummyCard);

@@ -47,7 +47,10 @@ namespace Plant
 
         private void InitState()
         {
-            if (_state != null && _states != null) return;
+            if (_state != null && _states != null) 
+                return;
+            
+            
             _states = new Dictionary<EPlantState, PlantState>
             {
                 { EPlantState.Idle , new PlantIdleState(this)},
