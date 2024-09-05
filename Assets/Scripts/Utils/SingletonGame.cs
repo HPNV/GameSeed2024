@@ -15,7 +15,6 @@ public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
     private List<PlantData> availableCard = new List<PlantData>();
-    [SerializeField] public Inventory inventory;
     [SerializeField] public HomeBase homeBase;
     public int ExpPoint;
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
@@ -110,7 +109,6 @@ public class SingletonGame : MonoBehaviour
 
     public void PickCard(PlantData card)
     {
-        inventory.AddCard(card);
         DestroyRemainingCards();
     }
 

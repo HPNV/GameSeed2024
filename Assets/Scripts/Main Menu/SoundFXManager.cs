@@ -10,7 +10,7 @@ public class SoundFXManager : MonoBehaviour
     private float masterVolume = 1.0f;
     private float musicVolume = 1.0f;
     private float audioVolume = 1.0f;
-    private float gameVolume = 1.0f
+    private float gameVolume = 1.0f;
     
     private void Awake()
     {

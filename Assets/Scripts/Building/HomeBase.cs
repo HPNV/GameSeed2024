@@ -66,7 +66,7 @@ public class HomeBase : MonoBehaviour
         CurrentHealth -= damage;
         UpdatetUI();
         if(CurrentHealth <= 0) {
-
+            
         }
     }
 
