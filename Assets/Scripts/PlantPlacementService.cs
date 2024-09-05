@@ -12,9 +12,13 @@ public class PlantPlacementService : SelectorService
 
     public Plant.Plant plant;
 
+    protected override bool Validate()
+    {
+        return plant != null;
+    }
+
     protected override void OnPlace()
     {
-        if (plant == null) return;
         gameGrid.PutOnTile(tileService.GetCurrTile(), plant.gameObject);
     }
 
