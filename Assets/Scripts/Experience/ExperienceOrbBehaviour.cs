@@ -10,7 +10,7 @@ namespace Experience
     public class ExperienceOrbBehaviour : MonoBehaviour
     {
         [SerializeField] 
-        public float maxForce = 500f;
+        public float maxForce = 50f;
         [SerializeField] 
         public float minimumDistance = 1000;
         [SerializeField] 
