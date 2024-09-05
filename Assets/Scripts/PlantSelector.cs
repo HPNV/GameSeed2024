@@ -14,7 +14,9 @@ public class PlantSelector : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("Number 1 is pressed");
+            var plant = plantFactory.GeneratePlant(EPlant.Boomkin).GetComponent<Plant.Plant>();
+            plant.ChangeState(EPlantState.Select);
+            plantPlacementService.plant = plant;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
