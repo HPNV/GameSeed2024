@@ -18,7 +18,6 @@ namespace Enemy.States
             var targetPosition = target.transform.position;
             
              
-            Debug.Log($"RAWRR {Vector2.MoveTowards(Enemy.transform.position,targetPosition,Enemy.enemyData.movementSpeed * Time.deltaTime)}");
             Enemy.transform.position = Vector2.MoveTowards(
                 Enemy.transform.position, 
                 targetPosition, 

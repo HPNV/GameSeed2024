@@ -32,13 +32,13 @@ namespace Card
         public void SetCard(PlantData cardData, EPlant plantType) {
             this.cardData = cardData;
             this.plantType = plantType;
-            cardNameText.text = cardData.plantName;
+            cardNameText.text = cardData.plantType.ToString();
             descriptionText.text = cardData.description;
             cardImageHolder = cardData.sprite;
             spriteRenderer.sprite = cardData.sprite;
             attackText.text = cardData.damage.ToString();
             healthText.text = cardData.health.ToString();
-            attackSpeedText.text = cardData.cd.ToString();
+            attackSpeedText.text = cardData.attackCooldown.ToString();
             rangeText.text = cardData.range.ToString();
         }
 

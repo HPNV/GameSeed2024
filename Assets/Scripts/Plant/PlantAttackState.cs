@@ -6,26 +6,27 @@ namespace Plant
 {
     public class PlantAttackState : PlantState
     {
-        private static readonly int AttackTriggerHash = Animator.StringToHash("Attack");
+        protected float CoolDown;
+        private static readonly int AttackTrigger = Animator.StringToHash("Attack");
 
-        private int cd = 0;
-        
-        public PlantAttackState(Plant plant) : base(plant)
-        {
-            
-        }
+        public PlantAttackState(Plant plant) : base(plant){}
 
         public override void Update()
         {
-            if (Plant.TargetService.GetTargets().Count == 0)
+            var targets = Plant.TargetService.GetTargets();
+            
+            Debug.Log("Targets: " + targets.Count);
+            if (targets.Count == 0)
             { 
                 Plant.ChangeState(EPlantState.Idle);
             }
 
-            cd++;
-            if (cd != Plant.Data.cd) return;
+            CoolDown += Time.deltaTime;
+            
+            if (CoolDown < Plant.Data.attackCooldown) 
+                return;
+            
             Attack();
-            cd = 0;
         }
 
         public override void OnEnter()
@@ -38,7 +39,8 @@ namespace Plant
 
         private void Attack()
         {
-            Plant.Animator.SetTrigger(AttackTriggerHash);
+            Plant.Animator.SetTrigger(AttackTrigger);
+            CoolDown = 0;
         }
     }
 }

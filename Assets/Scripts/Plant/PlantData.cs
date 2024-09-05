@@ -10,16 +10,25 @@ namespace Plant
     [CreateAssetMenu(fileName = "New Plant", menuName = "Plant/Plant Data")]
     public class PlantData : ScriptableObject
     {
-        public string plantName;
+        public PlantType plantType;
         public float health;
         public float damage;
-        public int cd;
+        public int attackCooldown;
         public float range;
         public string description;
 
         public Sprite sprite;
         public AnimatorController animatorController;
-    
+
         public TargetType targetType;
+    }
+
+    public enum PlantType
+    {
+        Cactharn,
+        Boomkin,
+        CobCorn,
+        Raflessia,
+        Weisshooter
     }
 }

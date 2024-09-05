@@ -12,6 +12,7 @@ public class EnemyColliderDetector : EnemyDetectorService
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+        
         if (enemy != null)
         {
             Enemies.Add(enemy);
@@ -21,6 +22,7 @@ public class EnemyColliderDetector : EnemyDetectorService
     private void OnTriggerExit2D(Collider2D other)
     {
         EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+        
         if (enemy != null)
         {
             Enemies.Remove(enemy);
