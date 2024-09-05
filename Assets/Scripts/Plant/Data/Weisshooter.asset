@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
-  m_Name: Raflessia
+  m_Name: Weisshooter
   m_EditorClassIdentifier: 
-  plantName: Rafflesia
-  health: 500
-  damage: 0
-  cd: 0
-  range: 0
-  sprite: {fileID: 21300000, guid: a89446aaf736c494e956ab090260a955, type: 3}
-  animatorController: {fileID: 9100000, guid: 407fe60b21e10474ea2850bbb9f26161, type: 2}
+  plantName: Weishooter
+  health: 100
+  damage: 20
+  cd: 50
+  range: 100
+  sprite: {fileID: 21300000, guid: b71d9b39d4720c04ab9d76b919193dc6, type: 3}
+  animatorController: {fileID: 9100000, guid: aa5dcc27b41ba7a4385a782c9671bb81, type: 2}
   targetType: 0

@@ -10,21 +10,35 @@ public class PlantSelector : MonoBehaviour
     private PlantPlacementService plantPlacementService;
     [SerializeField] 
     private PlantFactory plantFactory;
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Number 1 is pressed");
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             var plant = plantFactory.GeneratePlant(EPlant.Cactharn).GetComponent<Plant.Plant>();
             plant.ChangeState(EPlantState.Select);
             plantPlacementService.plant = plant;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("Number 2 is pressed");
-        }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log("Number 3 is pressed");
+            var plant = plantFactory.GeneratePlant(EPlant.Cobcorn).GetComponent<Plant.Plant>();
+            plant.ChangeState(EPlantState.Select);
+            plantPlacementService.plant = plant;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            var plant = plantFactory.GeneratePlant(EPlant.Raflessia).GetComponent<Plant.Plant>();
+            plant.ChangeState(EPlantState.Select);
+            plantPlacementService.plant = plant;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            var plant = plantFactory.GeneratePlant(EPlant.Weishooter).GetComponent<Plant.Plant>();
+            plant.ChangeState(EPlantState.Select);
+            plantPlacementService.plant = plant;
         }
     }
 }

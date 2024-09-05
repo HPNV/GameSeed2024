@@ -1028,12 +1028,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 00000000010000000200000003000000
+  plants: 0000000001000000020000000300000004000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
   - {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
   - {fileID: 11400000, guid: e5855e2223bfe2f46a54bcabab94268a, type: 2}
   - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
+  - {fileID: 11400000, guid: b577589dd9329a9418201e801dbb24fe, type: 2}
 --- !u!4 &882818577
 Transform:
   m_ObjectHideFlags: 0
@@ -1478,7 +1479,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8461038912584917396, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 908897173}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6895828146125938635, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 59556482029226080, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
 --- !u!1001 &1178342490
 PrefabInstance:

@@ -4,4 +4,5 @@
     Cactharn,
     Cobcorn,
     Raflessia,
+    Weishooter,
 }
