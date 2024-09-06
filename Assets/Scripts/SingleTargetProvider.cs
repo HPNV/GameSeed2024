@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemy;
+using Enemy.States;
 using UnityEngine;
 
 public class SingleTargetProvider : TargetService
@@ -18,6 +19,8 @@ public class SingleTargetProvider : TargetService
             return dist1.CompareTo(dist2);
         });
 
-        return new List<EnemyBehaviour> { enemies.FirstOrDefault() };
+        enemies = enemies.Where(e => e is not null && e.CurrentState != State.Die).ToList();
+
+        return enemies.Count == 0 ? new List<EnemyBehaviour>() : new List<EnemyBehaviour> { enemies.FirstOrDefault() };
     }
 }

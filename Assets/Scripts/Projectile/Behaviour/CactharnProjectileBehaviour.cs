@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Enemy;
+using UnityEngine;
 
 namespace Projectile.Behaviour
 {
@@ -18,10 +19,12 @@ namespace Projectile.Behaviour
 
         public override void OnCollide(Collision2D collider)
         {
-            Debug.Log("OTHER COLLISION DETECTED");
-            var plant = collider.gameObject.GetComponent<Plant.Plant>();
+            var enemy = collider.gameObject.GetComponent<EnemyBehaviour>();
+
+            if (enemy is null)
+                return;
             
-            plant.Damage(1);
+            enemy.Damage(Projectile.data.attackPower);
             SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
         }
     }

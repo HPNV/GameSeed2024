@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Plant.States.Cactharn;
 using Script;
 using UnityEngine;
 
@@ -54,13 +56,22 @@ namespace Plant
             if (_state != null && _states != null) 
                 return;
             
-            
-            _states = new Dictionary<EPlantState, PlantState>
+            _states = _data.plantType switch
             {
-                { EPlantState.Idle , new PlantIdleState(this)},
-                { EPlantState.Attack , new PlantAttackState(this)},
-                { EPlantState.Select , new PlantSelectState(this)},
+                PlantType.Cactharn => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new CactharnAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                },
+                _ => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new PlantAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                }
             };
+            
             _state = _states[EPlantState.Idle];
         }
 

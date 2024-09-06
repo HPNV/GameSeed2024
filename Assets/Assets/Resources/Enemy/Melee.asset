@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Melee
   m_EditorClassIdentifier: 
   enemyName: Dep
-  health: 100
+  health: 10
   attackPower: 1
   attackRange: 1
+  damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: 8ef5ec7814e2a3047909e6c80b18b724, type: 2}
   enemyType: 0

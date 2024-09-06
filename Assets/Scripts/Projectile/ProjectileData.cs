@@ -14,11 +14,13 @@ namespace Projectile
         public Sprite sprite;
         public float scale = 1;
         public string targetTag;
-        public ParticleSystem particles;
+        public string targetLayer;
+        [CanBeNull] public ParticleSystem particles;
     }
     
     public enum ProjectileType
     {
         EnemyRanged,
+        Cactharn,
     }
 }

@@ -20,12 +20,20 @@ namespace Enemy
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
         public PlantTargetService PlantTargetService { get; private set; }
-
         public const string TargetTag = "Plant";
+        
         private IState _currentState;
         private Dictionary<State, IState> _states;
         
+        
+        public State CurrentState => _states.FirstOrDefault(x => x.Value == _currentState).Key;
+        
         protected void Start()
+        {
+            Initialize();
+        }
+
+        public void Initialize()
         {
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -87,7 +95,7 @@ namespace Enemy
             Animator.runtimeAnimatorController = enemyData.animatorController;
         }
 
-        private void Damage(float value)
+        public void Damage(float value)
         {
             if(_currentState is DieState)
                 return;
@@ -110,14 +118,7 @@ namespace Enemy
             yield return new WaitForSeconds(0.1f);
             SpriteRenderer.color = originalColor;
         }
-
-        public void Reset()
-        {
-            CurrentHealth = enemyData.health;
-            SetupStates();
-            SetupAnimationController();
-            ChangeState(State.Move);
-        }
+        
     }
 }
 

@@ -19,12 +19,25 @@ namespace Projectile
         
         private void Start()
         {
+            Initialize();
+        }
+
+        public void Initialize()
+        {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = data.sprite;
             transform.localScale = Vector3.one * data.scale;
+            
+            var angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            
+            transform.rotation = Quaternion.Euler(0, 0, angle);
             _destroyCoroutine = StartCoroutine(DestroyAfterTime());
             InitializeParticles();
             InitializeBehaviour();
+
+            var circleCollider2D = GetComponent<CircleCollider2D>();
+            
+            circleCollider2D.excludeLayers = ~LayerMask.GetMask(data.targetLayer);
         }
 
         protected void Update()
@@ -54,7 +67,13 @@ namespace Projectile
 
         private void InitializeParticles()
         {
-            if (data.particles is null)
+            if (_particles != null)
+            {
+                _particles.Stop();
+                Destroy(_particles.gameObject);
+            }
+            
+            if (data.particles == null)
                 return;
             
             _particles = Instantiate(data.particles, transform.position, Quaternion.identity);
@@ -64,9 +83,11 @@ namespace Projectile
         
         private void InitializeBehaviour()
         {
+            Debug.Log($"TYPE {data.projectileType}");
             Behaviour = data.projectileType switch
             {
                 ProjectileType.EnemyRanged => new EnemyProjectileBehaviour(this),
+                ProjectileType.Cactharn => new CactharnProjectileBehaviour(this),
                 _ => null
             };
         }

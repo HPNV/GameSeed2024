@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Explosive
   m_EditorClassIdentifier: 
   enemyName: Dep
-  health: 100
+  health: 15
   attackPower: 50
   attackRange: 1
   damageRange: 5

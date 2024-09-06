@@ -21,6 +21,7 @@ namespace Manager
             _projectileData.AddRange(new List<KeyValuePair<ProjectileType, ProjectileData>>()
             {
                 new (ProjectileType.EnemyRanged, Resources.Load<ProjectileData>("Projectile/EnemyProjectile")),
+                new (ProjectileType.Cactharn, Resources.Load<ProjectileData>("Projectile/CactharnProjectile")),
             });
         }
 
@@ -41,8 +42,10 @@ namespace Manager
             projectile.transform.position = position;
             projectile.Direction = direction;
             projectile.data = _projectileData[type];
+            projectile.Initialize();
             projectile.gameObject.SetActive(true);
 
+            
             return projectile;
         }
         

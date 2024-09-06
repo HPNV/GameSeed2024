@@ -41,7 +41,7 @@ namespace Manager
             enemy.transform.position = position;
             enemy.enemyData = _enemyData[type];
             enemy.gameObject.SetActive(true);
-            enemy.Reset();
+            enemy.Initialize();
             
             return enemy.gameObject;
         }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Ranged
   m_EditorClassIdentifier: 
   enemyName: Dep Ranged
-  health: 100
+  health: 10
   attackPower: 1
   attackRange: 5
+  damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: c74fd73d145267048841264edd46c458, type: 2}
   enemyType: 1

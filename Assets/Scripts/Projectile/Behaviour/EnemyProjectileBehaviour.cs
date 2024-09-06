@@ -22,7 +22,7 @@ namespace Projectile.Behaviour
         {
             var plant = collider.gameObject.GetComponent<Plant.Plant>();
             
-            plant.Damage(1);
+            plant.Damage(Projectile.data.attackPower);
             SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
         }
         
