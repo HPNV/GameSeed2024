@@ -24,6 +24,7 @@ namespace Plant
         [field: SerializeField]
         public Animator Animator { get; private set; }
         public TargetService TargetService { get; private set; }
+        public EPlantState CurrentState => _states.FirstOrDefault(x => x.Value == _state).Key;
     
         private PlantData _data;
         private Dictionary<EPlantState, PlantState> _states; 
@@ -60,19 +61,19 @@ namespace Plant
             
             _states = _data.plantType switch
             {
-                PlantType.Cactharn => new Dictionary<EPlantState, PlantState>
+                EPlant.Cactharn => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new CactharnAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
                 },
-                PlantType.CobCorn => new Dictionary<EPlantState, PlantState>
+                EPlant.Cobcorn => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new CobcornAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
                 },
-                PlantType.Weisshooter => new Dictionary<EPlantState, PlantState>
+                EPlant.Weisshooter => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new WeisshooterAttackState(this)},

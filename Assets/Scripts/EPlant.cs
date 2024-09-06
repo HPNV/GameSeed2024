@@ -3,6 +3,6 @@
     Boomkin,
     Cactharn,
     Cobcorn,
-    Raflessia,
-    Weishooter,
+    Raflessnare,
+    Weisshooter,
 }

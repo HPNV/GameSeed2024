@@ -24,10 +24,19 @@ public class PlantSelectState : PlantState
         color.a = 0.5f;
         sp.color = color;
 
-        Plant.transform.GetComponent<Collider2D>().enabled = false;
+        var collider = Plant.transform.GetComponent<Collider2D>();
+        
+        collider.enabled = false;
         
         var detector = Plant.transform.Find("Detector");
-        detector.GetComponent<SpriteRenderer>().enabled = true;
+        
+        var rangeScale = Plant.Data.range / 3;
+        
+        detector.localScale = new Vector3(rangeScale, rangeScale, 1);
+        
+        var renderer = detector.GetComponent<SpriteRenderer>();
+        
+        renderer.enabled = true;
     }
 
     public override void OnExit()
