@@ -22,5 +22,6 @@ namespace Projectile
     {
         EnemyRanged,
         Cactharn,
+        Cobcorn,
     }
 }

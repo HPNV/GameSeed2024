@@ -2,12 +2,12 @@
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.Cactharn
+namespace Plant.States.Cobcorn
 {
-    public class CactharnAttackState : PlantAttackState
+    public class CobcornAttackState : PlantAttackState
     {
         private bool _hasSpawnedProjectile;
-        public CactharnAttackState(Plant plant) : base(plant){}
+        public CobcornAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {
@@ -43,9 +43,8 @@ namespace Plant.States.Cactharn
                 return;
             
             _hasSpawnedProjectile = true;
-            var direction = (target.transform.position - Plant.transform.position).normalized;
             
-            SingletonGame.Instance.ProjectileManager.SpawnWithDirection(ProjectileType.Cactharn, Plant.transform.position, direction);
+            SingletonGame.Instance.ProjectileManager.SpawnWithTarget(ProjectileType.Cobcorn, Plant.transform.position, target.transform.position);
         }
     }
 }
