@@ -1,18 +1,49 @@
-﻿namespace Enemy.States.Melee
+﻿using UnityEngine;
+
+namespace Enemy.States.Melee
 {
     public class MeleeAttackState : AttackState
     {
-        public MeleeAttackState(EnemyBehaviour enemy) : base(enemy){} 
-        
+        private bool hasPlayedSound;
+
+        public MeleeAttackState(EnemyBehaviour enemy) : base(enemy)
+        {
+            hasPlayedSound = false;  // Initialize the flag to false
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            hasPlayedSound = false;  // Reset the flag when entering the state
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            // No sound trigger in OnExit, to avoid playing it during state transitions
+        }
         
         public override void OnUpdate()
         {
             base.OnUpdate();
+
+            // Get the current animation state info
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
-            
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
+
+            if (stateInfo.IsName("Attack"))
             {
-                Enemy.ChangeState(State.Move);
+                // Play the sound once at the beginning of the attack
+                if (!hasPlayedSound && stateInfo.normalizedTime < 0.5f)  // Plays the sound in the first half of the attack animation
+                {
+                    SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Enemy/Bite Sound"));
+                    hasPlayedSound = true;  // Set the flag to true after playing the sound
+                }
+
+                // Transition to Move state when attack animation is complete
+                if (stateInfo.normalizedTime >= 1)
+                {
+                    Enemy.ChangeState(State.Move);
+                }
             }
         }
     }

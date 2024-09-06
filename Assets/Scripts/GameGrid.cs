@@ -35,7 +35,7 @@ public class GameGrid : MonoBehaviour
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(a, b, 200), Quaternion.identity);
 
                 var isOffset = (a % 2 == 0 && b % 2 != 0) || (a % 2 != 0 && b % 2 == 0);
-                spawnedTile.Init(isOffset);
+                spawnedTile.Init();
                 spawnedTile.transform.SetParent(transform);
 
                 Tiles[new Vector2(a, b)] = spawnedTile;
@@ -46,7 +46,6 @@ public class GameGrid : MonoBehaviour
         
         // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
         // _cam.transform.position  = temp;
-
     }
     
     public void PutOnTile(Tile tile, GameObject obj)
