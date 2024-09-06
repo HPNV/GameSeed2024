@@ -5,6 +5,7 @@ using System.Linq;
 using System.Resources;
 using Card;
 using Enemy;
+using Factory;
 using Manager;
 using Plant;
 using UnityEngine;

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Dep
   health: 100
-  attackPower: 1
+  attackPower: 50
   attackRange: 1
+  damageRange: 5
   movementSpeed: 3
   animatorController: {fileID: 9100000, guid: a15e8afd863e01241a4fec0c7c4d5958, type: 2}
   enemyType: 2

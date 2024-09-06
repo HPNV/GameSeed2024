@@ -8,7 +8,6 @@ namespace Plant
 {
     public class Plant : MonoBehaviour
     {
-        [field: SerializeField]
         public PlantData Data
         {
             get => _data;
@@ -18,21 +17,24 @@ namespace Plant
                 InitDetector();
             }
         }
-        private PlantData _data;
-
-        private Dictionary<EPlantState, PlantState> _states; 
-        private PlantState _state;
-
         [field: SerializeField]
         public Animator Animator { get; private set; }
         public TargetService TargetService { get; private set; }
     
+        private PlantData _data;
+        private Dictionary<EPlantState, PlantState> _states; 
+        private PlantState _state;
+        private SpriteRenderer _spriteRenderer;
+        
+        private float _currentHealth;
+        
+        
         private void Start()
         {
             Init();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             _state.Update();
         }
@@ -40,7 +42,9 @@ namespace Plant
         public void Init()
         {
             GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
-
+            _currentHealth = _data.health;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            
             InitState();
             InitTargetService();
         }
@@ -69,8 +73,6 @@ namespace Plant
                     break;
                 case TargetType.Multi:
                     break;
-                default:
-                    break;
             }
         }
 
@@ -82,9 +84,9 @@ namespace Plant
 
         public void ChangeState(EPlantState state)
         {
-            Debug.Log($"state: {_state}");
-            Debug.Log($"states: {_states}");
-            if (_state == _states[state]) return;
+            if (_state == _states[state]) 
+                return;
+            
             _state.OnExit();
             _state = _states[state];
             _state.OnEnter();
@@ -92,7 +94,24 @@ namespace Plant
 
         public void Damage(float damage)
         {
-            Destroy(gameObject);
+            _currentHealth -= damage;
+            
+            Debug.Log($"DAMAGED {_currentHealth}");
+            StartCoroutine(FlashRed());
+            
+            if (_currentHealth <= 0)
+            {
+                Destroy(gameObject);
+                // ChangeState(EPlantState.Die);
+            }
+        }
+        
+        private IEnumerator FlashRed()
+        {
+            var originalColor = _spriteRenderer.color;
+            _spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            _spriteRenderer.color = originalColor;
         }
     }
 }

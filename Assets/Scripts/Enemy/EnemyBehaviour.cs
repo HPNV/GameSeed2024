@@ -32,7 +32,6 @@ namespace Enemy
             CurrentHealth = enemyData.health;
             PlantTargetService = GetComponentInChildren<PlantTargetService>();
             
-            
             SetupStates();
             SetupAnimationController();
         }
@@ -42,6 +41,7 @@ namespace Enemy
             _currentState.OnCollisionStay2D(other);
         }
         
+
         protected void Update()
         {
             _currentState.OnUpdate();

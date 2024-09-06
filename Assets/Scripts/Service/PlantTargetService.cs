@@ -12,5 +12,6 @@ namespace Service
         protected PlantDetectorService plantDetectorService;
 
         [CanBeNull] public abstract GameObject GetTarget();
+        public abstract List<GameObject> GetTargetsInRange();
     }
 }

@@ -15,5 +15,10 @@ namespace Service
             
             return enemies.FirstOrDefault();
         }
+        
+        public override List<GameObject> GetTargetsInRange()
+        {
+            return plantDetectorService.GetPlantsInRange();
+        }
     }
 }
