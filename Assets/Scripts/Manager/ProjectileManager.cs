@@ -8,13 +8,13 @@ namespace Manager
 {
     public class ProjectileManager
     {
-        private Queue<ProjectileBehaviour> _projectilePool;
+        private Queue<Projectile.Projectile> _projectilePool;
         private GameObject _projectilePrefab;
         private Dictionary<ProjectileType, ProjectileData> _projectileData;
         
         public void Initialize()
         {
-            _projectilePool = new Queue<ProjectileBehaviour>();
+            _projectilePool = new Queue<Projectile.Projectile>();
             _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectile");
             _projectileData = new Dictionary<ProjectileType, ProjectileData>();
             
@@ -24,15 +24,14 @@ namespace Manager
             });
         }
 
-        public ProjectileBehaviour Spawn(ProjectileType type, Vector3 position, Vector2 direction, string targetTag)
+        public Projectile.Projectile Spawn(ProjectileType type, Vector3 position, Vector2 direction)
         {
             if (_projectilePool.Count == 0)
             {
                 var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
-                var projectileBehaviour = projectileObject.GetComponent<ProjectileBehaviour>();
+                var projectileBehaviour = projectileObject.GetComponent<Projectile.Projectile>();
                 projectileBehaviour.Direction = direction;
                 projectileBehaviour.data = _projectileData[type];
-                projectileBehaviour.TargetTag = targetTag;
                 
                 return projectileBehaviour;
             }
@@ -42,13 +41,12 @@ namespace Manager
             projectile.transform.position = position;
             projectile.Direction = direction;
             projectile.data = _projectileData[type];
-            projectile.TargetTag = targetTag;
             projectile.gameObject.SetActive(true);
 
             return projectile;
         }
         
-        public void Despawn(ProjectileBehaviour projectile)
+        public void Despawn(Projectile.Projectile projectile)
         {
             projectile.gameObject.SetActive(false);
             _projectilePool.Enqueue(projectile);

@@ -9,6 +9,7 @@ namespace Enemy
         public int health = 100;
         public float attackPower = 1;
         public float attackRange = 1;
+        public float damageRange = 1;
         public float movementSpeed = 10;
         public RuntimeAnimatorController animatorController;
         public EnemyType enemyType = EnemyType.Melee;

@@ -32,7 +32,7 @@ public class HomeBase : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             mousePosition.z = -2;
-            SingletonGame.Instance.ExperienceManager.SpawnBatch(1, mousePosition);
+            SingletonGame.Instance.ExperienceManager.SpawnBatch(5, mousePosition);
         }
 
         LevelUp();

@@ -18,9 +18,6 @@ public class CursorTileProviderService : TileService
         var pos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         var key = new Vector2(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y));
         
-        Debug.Log($"pos: {pos}");
-        Debug.Log($"key: {key}");
-
         if (gameGrid.Tiles.TryGetValue(key, out var tile))
         {
             return tile;

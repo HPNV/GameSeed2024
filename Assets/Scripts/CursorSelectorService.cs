@@ -20,6 +20,6 @@ public class CursorSelectorService : MonoBehaviour
     {
         // var rayhit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
         // if (!rayhit.collider) return;
-        selectorService.OnPlace();
+        selectorService.Place();
     }
 }

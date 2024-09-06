@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
   m_Name: EnemyProjectile
   m_EditorClassIdentifier: 
-  projectileName: Dep
+  projectileType: 0
   attackPower: 1
   movementSpeed: 10
   lifetime: 5
   sprite: {fileID: 21300000, guid: ace99506404b73f4487ebb29e0311d72, type: 3}
   scale: 2
+  targetTag: Plant
   particles: {fileID: 4262318369177278723, guid: ac2e06a083e16d74ca8f66bb487248bd, type: 3}

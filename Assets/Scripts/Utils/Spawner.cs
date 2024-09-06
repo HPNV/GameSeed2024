@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnRate = 5f;
     [SerializeField] private float spawnRadius = 1f;
-    [SerializeField] private float spawnRateIncrease = 0.99f;
+    [SerializeField] private float spawnRateIncrease = 10000.99f;
     private float spawnTimer = 0f;
 
     // Update is called once per frame

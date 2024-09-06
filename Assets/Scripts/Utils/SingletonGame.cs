@@ -5,6 +5,7 @@ using System.Linq;
 using System.Resources;
 using Card;
 using Enemy;
+using Factory;
 using Manager;
 using Plant;
 using UnityEngine;
@@ -22,9 +23,13 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public CardDisplay card3;
 
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
+    private AudioClip gameMusic; 
+    
+    public TileService TileProvider;
+    public GameGrid GameGrid;
+    
+    // [SerializeField] public TileProviderService TileProvider;
     public int ExpPoint;
-    private AudioClip gameMusic;
-    [SerializeField] public CursorTileProviderService TileProvider;
 
     public ResourceManager ResourceManager { get; set; } = new();
     public ExperienceManager ExperienceManager { get; set; } = new();
