@@ -38,11 +38,10 @@ namespace Projectile.Behaviour
             var ySprite = _initialSpeedSprite * _timeAlive - _gravity * _timeAlive * _timeAlive / 2;
             
             
-            Debug.Log($"Y STUFF: {Projectile.SpriteObject.gameObject.name} {Math.Max(ySprite, 0)}");
             
             Projectile.SpriteObject.transform.localPosition = new Vector3(0, Math.Max(ySprite, 0), 0);
             
-            if (_timeAlive >= _inAirTime)
+            if (_timeAlive >= _inAirTime && _attackEnemy != null)
             {
                 var distance = Vector2.Distance(Projectile.transform.position, _attackEnemy.transform.position);
 

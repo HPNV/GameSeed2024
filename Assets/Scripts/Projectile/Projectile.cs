@@ -30,7 +30,9 @@ namespace Projectile
             spriteRenderer.sprite = data.sprite;
             transform.localScale = Vector3.one * data.scale;
 
-            if (Target == Vector2.zero)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            
+            if (!Direction.Equals(Vector2.zero))
             {
                 var angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
             

@@ -25,7 +25,6 @@ namespace Manager
                 new (ProjectileType.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile")),
             });
         }
-
         public Projectile.Projectile SpawnWithDirection(ProjectileType type, Vector3 position, Vector2 direction)
         {
             if (_projectilePool.Count == 0)
@@ -33,6 +32,7 @@ namespace Manager
                 var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
                 var projectileBehaviour = projectileObject.GetComponent<Projectile.Projectile>();
                 projectileBehaviour.Direction = direction;
+                projectileBehaviour.Target = Vector2.zero;
                 projectileBehaviour.data = _projectileData[type];
                 
                 return projectileBehaviour;
@@ -42,9 +42,10 @@ namespace Manager
             
             projectile.transform.position = position;
             projectile.Direction = direction;
+            projectile.Target = Vector2.zero;
             projectile.data = _projectileData[type];
-            projectile.Initialize();
             projectile.gameObject.SetActive(true);
+            projectile.Initialize();
 
             
             return projectile;
@@ -57,6 +58,7 @@ namespace Manager
                 var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
                 var projectileBehaviour = projectileObject.GetComponent<Projectile.Projectile>();
                 projectileBehaviour.Target = target;
+                projectileBehaviour.Direction = Vector2.zero;
                 projectileBehaviour.data = _projectileData[type];
                 
                 return projectileBehaviour;
@@ -66,9 +68,10 @@ namespace Manager
             
             projectile.transform.position = position;
             projectile.Target = target;
+            projectile.Direction = Vector2.zero;
             projectile.data = _projectileData[type];
-            projectile.Initialize();
             projectile.gameObject.SetActive(true);
+            projectile.Initialize();
 
             
             return projectile;

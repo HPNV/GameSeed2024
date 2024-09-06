@@ -15,7 +15,7 @@ MonoBehaviour:
   projectileType: 1
   attackPower: 1
   movementSpeed: 10
-  lifetime: 100
+  lifetime: 10
   sprite: {fileID: 21300000, guid: e3e2ed126687f594a80461ee49246898, type: 3}
   scale: 2
   targetTag: Enemy

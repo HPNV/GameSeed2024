@@ -120,16 +120,15 @@ namespace Plant
             if (_currentHealth <= 0)
             {
                 Destroy(gameObject);
-                // ChangeState(EPlantState.Die);
             }
         }
         
         private IEnumerator FlashRed()
         {
-            var originalColor = _spriteRenderer.color;
             _spriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
-            _spriteRenderer.color = originalColor;
+            _spriteRenderer.color = Color.white;
+            Debug.Log("SETTTING BACK TO ORIGINAL COLOR");
         }
     }
 }
