@@ -3305,6 +3305,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1390753079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 339891508947060935, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
+  m_PrefabInstance: {fileID: 701792935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1443015625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,6 +3416,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5050347813947185855, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
   m_PrefabInstance: {fileID: 2036457911}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1450221534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 339891508947060935, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
+  m_PrefabInstance: {fileID: 2036457911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1477627463
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,6 +5086,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5050347813947185855, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
   m_PrefabInstance: {fileID: 2060814825}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2060814828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 339891508947060935, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
+  m_PrefabInstance: {fileID: 2060814825}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2063257107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5245,8 +5278,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homeBase: {fileID: 1976936955}
   plantFactory: {fileID: 1280682889}
-  ExpPoint: 0
+  card1: {fileID: 1450221534}
+  card2: {fileID: 1390753079}
+  card3: {fileID: 2060814828}
   TileProvider: {fileID: 1590870006}
+  GameGrid: {fileID: 1555180711}
+  ExpPoint: 0
   CardDisplayPrefab: {fileID: 7938450433688461391, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
 --- !u!4 &2101164660
 Transform:
