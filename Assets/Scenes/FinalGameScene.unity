@@ -336,7 +336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.0569997, y: -0.007999897}
+  m_AnchoredPosition: {x: 0.01, y: 0.01}
   m_SizeDelta: {x: 1.1391, y: 0.6619}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &177088952
@@ -1503,17 +1503,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5050347813947185855, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
   m_PrefabInstance: {fileID: 701792935}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &701792937 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 339891508947060935, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
-  m_PrefabInstance: {fileID: 701792935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &725940786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3411,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1390753079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 339891508947060935, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
+  m_PrefabInstance: {fileID: 701792935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4431ef4f59f154cafcdc158850ee17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1443015625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5200,7 +5200,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5050347813947185855, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
   m_PrefabInstance: {fileID: 2060814825}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2060814827 stripped
+--- !u!114 &2060814828 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 339891508947060935, guid: 628e79cee9e74fb4d87a11985272101a, type: 3}
   m_PrefabInstance: {fileID: 2060814825}
@@ -5302,7 +5302,7 @@ Transform:
   m_GameObject: {fileID: 2085863056}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: -0.01999998, z: 0}
+  m_LocalPosition: {x: 0.96, y: -0.01999998, z: 1.6}
   m_LocalScale: {x: 1.7074912, y: 1.504, z: 1.504031}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5392,9 +5392,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homeBase: {fileID: 1976936955}
   plantFactory: {fileID: 1280682889}
-  card1: {fileID: 701792937}
-  card2: {fileID: 2060814827}
-  card3: {fileID: 1450221534}
+  card1: {fileID: 1450221534}
+  card2: {fileID: 1390753079}
+  card3: {fileID: 2060814828}
   TileProvider: {fileID: 1590870006}
   GameGrid: {fileID: 1555180711}
   ExpPoint: 0
