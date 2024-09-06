@@ -24,7 +24,7 @@ namespace Enemy
         
         private IState _currentState;
         private Dictionary<State, IState> _states;
-        
+        private Color _originalColor;
         
         public State CurrentState => _states.FirstOrDefault(x => x.Value == _currentState).Key;
         
@@ -38,7 +38,8 @@ namespace Enemy
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             CurrentHealth = enemyData.health;
-            PlantTargetService = GetComponentInChildren<PlantTargetService>();
+            PlantTargetService = GetComponentInChildren<PlantTargetService>(); 
+            _originalColor = SpriteRenderer.color;
             
             SetupStates();
             SetupAnimationController();
@@ -113,10 +114,9 @@ namespace Enemy
         
         private IEnumerator FlashRed()
         {
-            var originalColor = SpriteRenderer.color;
             SpriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
-            SpriteRenderer.color = originalColor;
+            SpriteRenderer.color = _originalColor;
         }
         
     }

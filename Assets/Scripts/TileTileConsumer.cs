@@ -10,8 +10,23 @@ public class TileTileConsumer : TileConsumer
     [SerializeField] 
     private SpriteRenderer spriteRenderer;
 
-    private void FixedUpdate()
+    private Color _tileColor;
+
+    private void Start()
     {
-        spriteRenderer.color = tileService.GetCurrTile() == tile ? Color.red : Color.white;
+        _tileColor = spriteRenderer.color;
+    }
+
+
+    private void Update()
+    {
+        if (tileService.GetCurrTile() == tile)
+        {
+            spriteRenderer.color = Color.red;
+        }
+        else
+        {
+            spriteRenderer.color = _tileColor;    
+        }
     }
 }
