@@ -1,3 +1,4 @@
+using Manager;
 using Projectile;
 using UnityEngine;
 using Utils;
@@ -37,7 +38,7 @@ namespace Enemy.States.Ranged
             _hasSpawnedProjectile = true;
             var direction = (target.transform.position - Enemy.transform.position).normalized;
             
-            SingletonGame.Instance.ProjectileManager.SpawnWithDirection(ProjectileType.EnemyRanged, Enemy.transform.position, direction);
+            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Enemy, Enemy.transform.position, direction: direction);
         }
     }
 }

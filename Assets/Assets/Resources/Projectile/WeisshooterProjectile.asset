@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
-  m_Name: CactharnProjectile
+  m_Name: WeisshooterProjectile
   m_EditorClassIdentifier: 
-  projectileType: 2
+  projectileType: 1
   attackPower: 1
   movementSpeed: 10
   lifetime: 10
-  sprite: {fileID: 21300000, guid: e3e2ed126687f594a80461ee49246898, type: 3}
+  sprite: {fileID: 21300000, guid: ea8e71dbdd854bf4096ff971fc03594c, type: 3}
   scale: 2
   targetTag: Enemy
   targetLayer: Enemy

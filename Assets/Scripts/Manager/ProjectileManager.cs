@@ -10,71 +10,52 @@ namespace Manager
     {
         private Queue<Projectile.Projectile> _projectilePool;
         private GameObject _projectilePrefab;
-        private Dictionary<ProjectileType, ProjectileData> _projectileData;
+        private Dictionary<ProjectileName, ProjectileData> _projectileData;
         
         public void Initialize()
         {
             _projectilePool = new Queue<Projectile.Projectile>();
             _projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectile");
-            _projectileData = new Dictionary<ProjectileType, ProjectileData>();
-            
-            _projectileData.AddRange(new List<KeyValuePair<ProjectileType, ProjectileData>>
+            _projectileData = new Dictionary<ProjectileName, ProjectileData>
             {
-                new (ProjectileType.EnemyRanged, Resources.Load<ProjectileData>("Projectile/EnemyProjectile")),
-                new (ProjectileType.Cactharn, Resources.Load<ProjectileData>("Projectile/CactharnProjectile")),
-                new (ProjectileType.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile")),
-            });
+                { ProjectileName.Enemy, Resources.Load<ProjectileData>("Projectile/EnemyProjectile") },
+                { ProjectileName.Cactharn, Resources.Load<ProjectileData>("Projectile/CactharnProjectile") },
+                { ProjectileName.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile") },
+                { ProjectileName.Weisshooter, Resources.Load<ProjectileData>("Projectile/WeisshooterProjectile") }
+            };
         }
-        public Projectile.Projectile SpawnWithDirection(ProjectileType type, Vector3 position, Vector2 direction)
+        public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, Vector2? direction = null, Vector2? target = null)
         {
-            if (_projectilePool.Count == 0)
-            {
-                var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
-                var projectileBehaviour = projectileObject.GetComponent<Projectile.Projectile>();
-                projectileBehaviour.Direction = direction;
-                projectileBehaviour.Target = Vector2.zero;
-                projectileBehaviour.data = _projectileData[type];
-                
-                return projectileBehaviour;
-            }
-            
-            var projectile = _projectilePool.Dequeue();
-            
+            Projectile.Projectile projectile = GetOrCreateProjectile();
             projectile.transform.position = position;
-            projectile.Direction = direction;
-            projectile.Target = Vector2.zero;
             projectile.data = _projectileData[type];
+
+            if (direction.HasValue)
+            {
+                projectile.Direction = direction.Value;
+                projectile.Target = Vector2.zero;
+            }
+            else if (target.HasValue)
+            {
+                projectile.Target = target.Value;
+                projectile.Direction = Vector2.zero;
+            }
+
             projectile.gameObject.SetActive(true);
             projectile.Initialize();
 
-            
             return projectile;
         }
-        
-        public Projectile.Projectile SpawnWithTarget(ProjectileType type, Vector3 position, Vector2 target)
-        {
-            if (_projectilePool.Count == 0)
-            {
-                var projectileObject = Object.Instantiate(_projectilePrefab, position, Quaternion.identity);
-                var projectileBehaviour = projectileObject.GetComponent<Projectile.Projectile>();
-                projectileBehaviour.Target = target;
-                projectileBehaviour.Direction = Vector2.zero;
-                projectileBehaviour.data = _projectileData[type];
-                
-                return projectileBehaviour;
-            }
-            
-            var projectile = _projectilePool.Dequeue();
-            
-            projectile.transform.position = position;
-            projectile.Target = target;
-            projectile.Direction = Vector2.zero;
-            projectile.data = _projectileData[type];
-            projectile.gameObject.SetActive(true);
-            projectile.Initialize();
 
-            
-            return projectile;
+        private Projectile.Projectile GetOrCreateProjectile()
+        {
+            if (_projectilePool.Count > 0)
+            {
+                return _projectilePool.Dequeue();
+            }
+
+            var projectileObject = Object.Instantiate(_projectilePrefab);
+            return projectileObject.GetComponent<Projectile.Projectile>();
         }
         
         public void Despawn(Projectile.Projectile projectile)
@@ -82,5 +63,13 @@ namespace Manager
             projectile.gameObject.SetActive(false);
             _projectilePool.Enqueue(projectile);
         }
+    }
+
+    public enum ProjectileName
+    {
+        Enemy,
+        Cactharn,
+        Cobcorn,
+        Weisshooter
     }
 }

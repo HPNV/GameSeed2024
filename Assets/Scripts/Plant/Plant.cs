@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
+using Plant.States.Weisshooter;
 using Script;
 using UnityEngine;
 
@@ -71,6 +72,12 @@ namespace Plant
                     { EPlantState.Attack , new CobcornAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
                 },
+                PlantType.Weisshooter => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new WeisshooterAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
@@ -114,7 +121,6 @@ namespace Plant
         {
             _currentHealth -= damage;
             
-            Debug.Log($"DAMAGED {_currentHealth}");
             StartCoroutine(FlashRed());
             
             if (_currentHealth <= 0)
@@ -128,7 +134,6 @@ namespace Plant
             _spriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
             _spriteRenderer.color = Color.white;
-            Debug.Log("SETTTING BACK TO ORIGINAL COLOR");
         }
     }
 }

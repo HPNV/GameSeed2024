@@ -96,9 +96,10 @@ namespace Projectile
         {
             Behaviour = data.projectileType switch
             {
-                ProjectileType.EnemyRanged => new EnemyProjectileBehaviour(this),
-                ProjectileType.Cactharn => new CactharnProjectileBehaviour(this),
-                ProjectileType.Cobcorn => new CobcornProjectileBehaviour(this),
+                ProjectileType.Enemy => new EnemyProjectileBehaviour(this),
+                ProjectileType.Piercing => new PiercingProjectileBehaviour(this),
+                ProjectileType.Mortar => new MortarProjectileBehaviour(this),
+                ProjectileType.SingleHit => new SingleHitProjectileBehaviour(this),
                 _ => null
             };
         }

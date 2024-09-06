@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Projectile.Behaviour
 {
-    public class CobcornProjectileBehaviour : ProjectileBaseBehaviour
+    public class MortarProjectileBehaviour : ProjectileBaseBehaviour
     {
         private EnemyBehaviour _attackEnemy;
         private float _inAirTime;
@@ -15,7 +15,7 @@ namespace Projectile.Behaviour
         private float _timeAlive;
         private float _gravity = 10f;
 
-        public CobcornProjectileBehaviour(Projectile projectile) : base(projectile)
+        public MortarProjectileBehaviour(Projectile projectile) : base(projectile)
         {
             _inAirTime = 2f;
             _totalDistance = Vector2.Distance(Projectile.transform.position, Projectile.Target);

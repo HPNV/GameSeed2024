@@ -20,8 +20,9 @@ namespace Projectile
     
     public enum ProjectileType
     {
-        EnemyRanged,
-        Cactharn,
-        Cobcorn,
+        Enemy,
+        SingleHit,
+        Piercing,
+        Mortar
     }
 }

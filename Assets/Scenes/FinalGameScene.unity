@@ -1985,7 +1985,7 @@ Animator:
   m_GameObject: {fileID: 1009102850}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f5c869ac510b5b44a88cb164c83c86a, type: 2}
+  m_Controller: {fileID: 9100000, guid: aa5dcc27b41ba7a4385a782c9671bb81, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2857,12 +2857,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 00000000010000000200000003000000
+  plants: 0000000001000000020000000300000004000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
-  - {fileID: 11400000, guid: 42c1e9f1635cf714193e7ae14f3101a0, type: 2}
-  - {fileID: 11400000, guid: e5855e2223bfe2f46a54bcabab94268a, type: 2}
+  - {fileID: 11400000, guid: 99925b37cd3d3b040b10746d146f3b19, type: 2}
+  - {fileID: 11400000, guid: 439e510460bfa0c4da47a1d8249dba64, type: 2}
   - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
+  - {fileID: 11400000, guid: 57d93b490a056f243aabf4d100388a52, type: 2}
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:

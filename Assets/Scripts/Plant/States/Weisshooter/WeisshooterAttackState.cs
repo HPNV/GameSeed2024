@@ -3,12 +3,12 @@ using Manager;
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.Cobcorn
+namespace Plant.States.Weisshooter
 {
-    public class CobcornAttackState : PlantAttackState
+    public class WeisshooterAttackState : PlantAttackState
     {
         private bool _hasSpawnedProjectile;
-        public CobcornAttackState(Plant plant) : base(plant){}
+        public WeisshooterAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {
@@ -23,11 +23,14 @@ namespace Plant.States.Cobcorn
             var stateInfo = Plant.Animator.GetCurrentAnimatorStateInfo(0);
             
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime < 0.5)
+            {
                 _hasSpawnedProjectile = false;
-    
+            }
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.8)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
+            {
                 SpawnProjectile();
+            }
         }
         
         private void SpawnProjectile()
@@ -41,8 +44,9 @@ namespace Plant.States.Cobcorn
                 return;
             
             _hasSpawnedProjectile = true;
+            var direction = (target.transform.position - Plant.transform.position).normalized;
             
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Cobcorn, Plant.transform.position, target: target.transform.position);
+            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Weisshooter, Plant.transform.position, direction: direction);
         }
     }
 }
