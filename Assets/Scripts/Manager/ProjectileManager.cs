@@ -21,7 +21,8 @@ namespace Manager
                 { ProjectileName.Enemy, Resources.Load<ProjectileData>("Projectile/EnemyProjectile") },
                 { ProjectileName.Cactharn, Resources.Load<ProjectileData>("Projectile/CactharnProjectile") },
                 { ProjectileName.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile") },
-                { ProjectileName.Weisshooter, Resources.Load<ProjectileData>("Projectile/WeisshooterProjectile") }
+                { ProjectileName.Weisshooter, Resources.Load<ProjectileData>("Projectile/WeisshooterProjectile") },
+                { ProjectileName.Duricane, Resources.Load<ProjectileData>("Projectile/DuricaneProjectile") }
             };
         }
         public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, Vector2? direction = null, Vector2? target = null)
@@ -70,6 +71,7 @@ namespace Manager
         Enemy,
         Cactharn,
         Cobcorn,
-        Weisshooter
+        Weisshooter,
+        Duricane
     }
 }

@@ -154,7 +154,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1030939505820627061, guid: c4db920df0183544eb05440533a18c71, type: 3}
   spawnRate: 10
   spawnRadius: 20
-  spawnRateIncrease: 0.999
+  spawnRateIncrease: 0.9
 --- !u!4 &31894473
 Transform:
   m_ObjectHideFlags: 0
@@ -1985,7 +1985,7 @@ Animator:
   m_GameObject: {fileID: 1009102850}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 407fe60b21e10474ea2850bbb9f26161, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b9d6e589362b0d46943fc967c65460d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2857,13 +2857,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 0000000001000000020000000300000004000000
+  plants: 000000000100000002000000030000000400000005000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
   - {fileID: 11400000, guid: 99925b37cd3d3b040b10746d146f3b19, type: 2}
   - {fileID: 11400000, guid: 439e510460bfa0c4da47a1d8249dba64, type: 2}
   - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
   - {fileID: 11400000, guid: 57d93b490a056f243aabf4d100388a52, type: 2}
+  - {fileID: 11400000, guid: b2a7c28ea589efa43b2c328e90b9e75b, type: 2}
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:

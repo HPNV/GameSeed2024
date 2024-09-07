@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
-  m_Name: CobCorn
+  m_Name: Duricane
   m_EditorClassIdentifier: 
-  plantType: 2
+  plantType: 5
   health: 100
-  damage: 15
+  damage: 5
   attackCooldown: 0
-  range: 25
+  range: 15
   description: 
-  sprite: {fileID: 21300000, guid: cb66d21e8487d1e4ba12a13dc29e43bd, type: 3}
-  animatorController: {fileID: 9100000, guid: 4f5c869ac510b5b44a88cb164c83c86a, type: 2}
-  targetType: 0
+  sprite: {fileID: 21300000, guid: 3418c201898b72d4fbae3326226c96ee, type: 3}
+  animatorController: {fileID: 9100000, guid: 8b9d6e589362b0d46943fc967c65460d, type: 2}
+  targetType: 1

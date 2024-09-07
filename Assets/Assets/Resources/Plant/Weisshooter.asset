@@ -16,7 +16,7 @@ MonoBehaviour:
   health: 100
   damage: 1
   attackCooldown: 0
-  range: 5
+  range: 15
   description: 
   sprite: {fileID: 21300000, guid: b71d9b39d4720c04ab9d76b919193dc6, type: 3}
   animatorController: {fileID: 9100000, guid: aa5dcc27b41ba7a4385a782c9671bb81, type: 2}

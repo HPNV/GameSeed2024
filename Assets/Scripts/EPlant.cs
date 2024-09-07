@@ -5,4 +5,5 @@
     Cobcorn,
     Raflessnare,
     Weisshooter,
+    Duricane
 }

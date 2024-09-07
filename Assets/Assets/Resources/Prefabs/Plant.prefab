@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7206702220497572868}
   - component: {fileID: 2851565203643474574}
   - component: {fileID: -2809962376938931778}
+  - component: {fileID: 6558831292294004919}
   m_Layer: 8
   m_Name: Plant
   m_TagString: Plant
@@ -209,6 +210,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.13
+--- !u!114 &6558831292294004919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521397313901571747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81729578f0064eccb73b506839e83779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curr: {fileID: 4832413828702667951}
+  enemyDetectorService: {fileID: 4004748464390598651}
 --- !u!1 &3317120689161903148
 GameObject:
   m_ObjectHideFlags: 0

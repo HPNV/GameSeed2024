@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
+using Plant.States.Duricane;
 using Plant.States.Weisshooter;
 using Script;
 using UnityEngine;
@@ -79,6 +80,12 @@ namespace Plant
                     { EPlantState.Attack , new WeisshooterAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
                 },
+                EPlant.Duricane => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new DuricaneAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
@@ -98,6 +105,7 @@ namespace Plant
                     TargetService = GetComponent<SingleTargetProvider>();
                     break;
                 case TargetType.Multi:
+                    TargetService = GetComponent<MultiTargetProvider>();
                     break;
             }
         }
