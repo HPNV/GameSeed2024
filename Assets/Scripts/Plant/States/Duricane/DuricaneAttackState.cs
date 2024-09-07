@@ -73,7 +73,9 @@ namespace Plant.States.Duricane
         public override void OnExit()
         {
             base.OnExit();
-            Plant.StopCoroutine(_spawnProjectileCoroutine);
+            
+            if (_spawnProjectileCoroutine is not null)
+                Plant.StopCoroutine(_spawnProjectileCoroutine);
         }
     }
 }
