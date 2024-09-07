@@ -59,6 +59,12 @@ namespace Enemy
             {
                 Damage(10);
             }
+            
+                        
+            if (CurrentHealth <= 0 && _currentState is not DieState)
+            {
+                ChangeState(State.Die);
+            }
         }
         
 

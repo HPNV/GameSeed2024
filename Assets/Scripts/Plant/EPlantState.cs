@@ -4,6 +4,7 @@
     {
         Attack,
         Idle,
-        Select
+        Select,
+        Die
     }
 }

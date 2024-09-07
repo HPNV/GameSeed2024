@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Plant.States.Boomkin;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
 using Plant.States.Duricane;
@@ -67,30 +68,41 @@ namespace Plant
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new CactharnAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
                 },
                 EPlant.Cobcorn => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new CobcornAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
                 },
                 EPlant.Weisshooter => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new WeisshooterAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
                 },
                 EPlant.Duricane => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new DuricaneAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
+                },
+                EPlant.Boomkin => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new BoomkinIdleState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new BoomkinDieState(this)}
                 },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new PlantAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
                 }
             };
             
@@ -133,9 +145,7 @@ namespace Plant
             StartCoroutine(FlashRed());
             
             if (_currentHealth <= 0)
-            {
-                Destroy(gameObject);
-            }
+                ChangeState(EPlantState.Die);
         }
         
         private IEnumerator FlashRed()
