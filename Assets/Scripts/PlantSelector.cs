@@ -33,13 +33,13 @@ public class PlantSelector : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            var plant = plantFactory.GeneratePlant(EPlant.Raflessia).GetComponent<Plant.Plant>();
+            var plant = plantFactory.GeneratePlant(EPlant.Raflessnare).GetComponent<Plant.Plant>();
             plant.ChangeState(EPlantState.Select);
             plantPlacementService.plant = plant;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            var plant = plantFactory.GeneratePlant(EPlant.Weishooter).GetComponent<Plant.Plant>();
+            var plant = plantFactory.GeneratePlant(EPlant.Weisshooter).GetComponent<Plant.Plant>();
             plant.ChangeState(EPlantState.Select);
             plantPlacementService.plant = plant;
         }

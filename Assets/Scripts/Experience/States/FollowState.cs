@@ -29,12 +29,13 @@ namespace Experience.States
 
         public override void OnFixedUpdate()
         {
-            var direction = Orb.Target - Orb.transform.position;
+            var direction = (Vector2)(Orb.Target - Orb.transform.position);
             
             var distance = direction.magnitude;
             
             var forceMagnitude = Mathf.Clamp(100 * Orb.maxForce / Mathf.Pow(distance, 3), 0, Orb.maxForce);
             var force = direction.normalized * forceMagnitude;
+            Debug.Log($"FORCE :{force}");
             Orb.Rigidbody.AddForce(force);
         }
     }

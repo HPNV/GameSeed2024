@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
   m_Name: CactharnProjectile
   m_EditorClassIdentifier: 
-  projectileType: 1
+  projectileType: 2
   attackPower: 1
   movementSpeed: 10
-  lifetime: 100
+  lifetime: 10
   sprite: {fileID: 21300000, guid: e3e2ed126687f594a80461ee49246898, type: 3}
   scale: 2
   targetTag: Enemy

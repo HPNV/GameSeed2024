@@ -2,7 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Plant.States.Boomkin;
 using Plant.States.Cactharn;
+using Plant.States.Cobcorn;
+using Plant.States.Duricane;
+using Plant.States.Weisshooter;
 using Script;
 using UnityEngine;
 
@@ -22,6 +26,7 @@ namespace Plant
         [field: SerializeField]
         public Animator Animator { get; private set; }
         public TargetService TargetService { get; private set; }
+        public EPlantState CurrentState => _states.FirstOrDefault(x => x.Value == _state).Key;
     
         private PlantData _data;
         private Dictionary<EPlantState, PlantState> _states; 
@@ -58,17 +63,46 @@ namespace Plant
             
             _states = _data.plantType switch
             {
-                PlantType.Cactharn => new Dictionary<EPlantState, PlantState>
+                EPlant.Cactharn => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new CactharnAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
+                },
+                EPlant.Cobcorn => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new CobcornAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
+                },
+                EPlant.Weisshooter => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new WeisshooterAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
+                },
+                EPlant.Duricane => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new DuricaneAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
+                },
+                EPlant.Boomkin => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new BoomkinIdleState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new BoomkinDieState(this)}
                 },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
                     { EPlantState.Attack , new PlantAttackState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
                 }
             };
             
@@ -83,6 +117,7 @@ namespace Plant
                     TargetService = GetComponent<SingleTargetProvider>();
                     break;
                 case TargetType.Multi:
+                    TargetService = GetComponent<MultiTargetProvider>();
                     break;
             }
         }
@@ -107,22 +142,17 @@ namespace Plant
         {
             _currentHealth -= damage;
             
-            Debug.Log($"DAMAGED {_currentHealth}");
             StartCoroutine(FlashRed());
             
             if (_currentHealth <= 0)
-            {
-                Destroy(gameObject);
-                // ChangeState(EPlantState.Die);
-            }
+                ChangeState(EPlantState.Die);
         }
         
         private IEnumerator FlashRed()
         {
-            var originalColor = _spriteRenderer.color;
             _spriteRenderer.color = Color.red;
             yield return new WaitForSeconds(0.1f);
-            _spriteRenderer.color = originalColor;
+            _spriteRenderer.color = Color.white;
         }
     }
 }

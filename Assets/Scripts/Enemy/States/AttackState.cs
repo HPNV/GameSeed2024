@@ -10,10 +10,6 @@ namespace Enemy.States
         
         public override void OnUpdate()
         {
-            if (Enemy.CurrentHealth <= 0)
-            {
-                Enemy.ChangeState(State.Die);
-            }
         }
 
         public override void OnEnter()

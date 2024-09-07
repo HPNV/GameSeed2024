@@ -18,9 +18,9 @@ public class Spawner : MonoBehaviour
 
     // Update is called once per frame
 
-    private void FixedUpdate()
+    private void Update()
     {
-        spawnTimer += Time.fixedDeltaTime;
+        spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnRate)
         {
             spawnTimer = 0f;
@@ -33,6 +33,9 @@ public class Spawner : MonoBehaviour
             spawnRate = 3f;
             resetThreshold -= 0.05f;
         }
+        
+        if(Input.GetKeyDown(KeyCode.P))
+            SpawnEnemy();
     }
 
     private void SpawnEnemy()

@@ -15,9 +15,9 @@ namespace Experience
         public float minimumDistance = 1000;
         [SerializeField] 
         public float collectDistance = 1;
-
-        [SerializeField] public HomeBase homeBase;
-        
+        [SerializeField] 
+        public float scale = 1;
+         
         public int ExperienceCount { get; set; }
 
         public int experienceValue;
@@ -36,8 +36,10 @@ namespace Experience
             Rigidbody = GetComponent<Rigidbody2D>();
             
             var randomForce = new Vector2(Random.Range(-maxForce, maxForce), Random.Range(-maxForce, maxForce));
-            Rigidbody.AddForce(randomForce);
+            Rigidbody.AddForce(randomForce * 10);
             Rigidbody.drag = 1;
+            
+            transform.localScale = new Vector3(scale, scale, 1);
             
             _camera = Camera.main;
             _states = new Dictionary<State, IState>

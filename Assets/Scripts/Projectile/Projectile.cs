@@ -10,8 +10,10 @@ namespace Projectile
     {
         [SerializeField] 
         public ProjectileData data;
-        public Vector2 Direction { get; set; }
+        public Vector2 Direction { get; set; } = Vector2.zero;
+        public Vector2 Target { get; set; } = Vector2.zero;
         public IProjectileBehaviour Behaviour { get; set; }
+        public GameObject SpriteObject { get; set; }
         
         
         private Coroutine _destroyCoroutine;
@@ -24,14 +26,23 @@ namespace Projectile
 
         public void Initialize()
         {
-            var spriteRenderer = GetComponent<SpriteRenderer>();
+            var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.sprite = data.sprite;
             transform.localScale = Vector3.one * data.scale;
+
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             
-            var angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            if (!Direction.Equals(Vector2.zero))
+            {
+                var angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
             
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+                transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+            
             _destroyCoroutine = StartCoroutine(DestroyAfterTime());
+            
+            SpriteObject = transform.GetChild(0).gameObject;
+            
             InitializeParticles();
             InitializeBehaviour();
 
@@ -83,11 +94,12 @@ namespace Projectile
         
         private void InitializeBehaviour()
         {
-            Debug.Log($"TYPE {data.projectileType}");
             Behaviour = data.projectileType switch
             {
-                ProjectileType.EnemyRanged => new EnemyProjectileBehaviour(this),
-                ProjectileType.Cactharn => new CactharnProjectileBehaviour(this),
+                ProjectileType.Enemy => new EnemyProjectileBehaviour(this),
+                ProjectileType.Piercing => new PiercingProjectileBehaviour(this),
+                ProjectileType.Mortar => new MortarProjectileBehaviour(this),
+                ProjectileType.SingleHit => new SingleHitProjectileBehaviour(this),
                 _ => null
             };
         }

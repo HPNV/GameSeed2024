@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: CobCorn
   m_EditorClassIdentifier: 
   plantType: 2
-  health: 150
+  health: 100
   damage: 15
   attackCooldown: 0
-  range: 0
+  range: 25
   description: 
-  sprite: {fileID: 0}
-  animatorController: {fileID: 0}
+  sprite: {fileID: 21300000, guid: cb66d21e8487d1e4ba12a13dc29e43bd, type: 3}
+  animatorController: {fileID: 9100000, guid: 4f5c869ac510b5b44a88cb164c83c86a, type: 2}
   targetType: 0

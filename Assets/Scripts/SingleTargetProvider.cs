@@ -12,15 +12,14 @@ public class SingleTargetProvider : TargetService
     {
         var enemies = enemyDetectorService.GetEnemiesInRange();
         
-        enemies.Sort((a, b) =>
-        {
-            var dist1 = Vector3.Distance(curr.position, a.transform.position);
-            var dist2 = Vector3.Distance(curr.position, b.transform.position);
-            return dist1.CompareTo(dist2);
-        });
+        var sortedEnemies = enemies
+            .OrderBy(e => Vector2.Distance(curr.position, e.transform.position))
+            .ToList();
+        
+        var validEnemies = sortedEnemies
+            .Where(e => e is not null && e.CurrentState != State.Die)
+            .ToList();
 
-        enemies = enemies.Where(e => e is not null && e.CurrentState != State.Die).ToList();
-
-        return enemies.Count == 0 ? new List<EnemyBehaviour>() : new List<EnemyBehaviour> { enemies.FirstOrDefault() };
+        return enemies.Count == 0 ? new List<EnemyBehaviour>() : new List<EnemyBehaviour> { validEnemies.FirstOrDefault() };
     }
 }

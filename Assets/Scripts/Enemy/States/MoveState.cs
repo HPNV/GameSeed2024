@@ -26,11 +26,6 @@ namespace Enemy.States
             var direction = (targetPosition - Enemy.transform.position).normalized;
             
             Enemy.SpriteRenderer.flipX = direction.x > 0;
-            
-            if (Enemy.CurrentHealth <= 0)
-            {
-                Enemy.ChangeState(State.Die);
-            }
         }
     }
 }

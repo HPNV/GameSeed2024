@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
   m_Name: Boomkin
   m_EditorClassIdentifier: 
-  plantName: Boomkin
-  health: 10
+  plantType: 0
+  health: 5
   damage: 100
-  cd: 0
-  range: 100
+  attackCooldown: 0
+  range: 5
+  description: 
   sprite: {fileID: 21300000, guid: d62f0232b65feec4a84fc480ace7d346, type: 3}
   animatorController: {fileID: 9100000, guid: 3b875b63d21b1e8458f1ba2b788bcc32, type: 2}
-  targetType: 0
+  targetType: 1
