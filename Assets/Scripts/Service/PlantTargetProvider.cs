@@ -13,7 +13,7 @@ namespace Service
             var plants = plantDetectorService.GetPlantsInRange();
             
      
-            plants.RemoveAll(plant => plant is null);
+            plants.RemoveAll(p => p is null);
             
             var taunter = plants
                 .Select(p => p.GetComponent<Plant.Plant>())

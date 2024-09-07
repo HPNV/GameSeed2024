@@ -6,5 +6,6 @@
     Raflessnare,
     Weisshooter,
     Duricane,
-    Aloecure
+    Aloecure,
+    Bamburst
 }

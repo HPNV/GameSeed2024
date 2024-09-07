@@ -16,6 +16,7 @@ namespace Plant
         public int attackCooldown;
         public float range;
         public string description;
+        public bool hasCollider = true;
 
         public Sprite sprite;
         public AnimatorController animatorController;

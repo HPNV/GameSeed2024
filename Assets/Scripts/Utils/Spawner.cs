@@ -36,8 +36,7 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
         spawnPosition.y = Random.Range(spawnRadius * -1, spawnRadius);
         int enemyGacha = Random.Range(0, 100);
-
-        return;
+        
         if (enemyGacha < 40)
         {
             SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Ranged, spawnPosition);

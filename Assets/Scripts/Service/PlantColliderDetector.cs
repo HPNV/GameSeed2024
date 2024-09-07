@@ -15,9 +15,13 @@ namespace Service
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            //TODO CHANGE TO GETCOMPONENT
             if (other.CompareTag("Plant"))
             {
+                var plant = other.GetComponent<Plant.Plant>();
+
+                if (plant != null && !plant.Data.hasCollider)
+                    return;
+                
                 Plants.Add(other.gameObject);
                 SortPlants();
             }

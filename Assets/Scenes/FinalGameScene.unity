@@ -1985,7 +1985,7 @@ Animator:
   m_GameObject: {fileID: 1009102850}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 55df5e13c924ace4d9392b07e2de4176, type: 2}
+  m_Controller: {fileID: 9100000, guid: 96d7ada2e465a5647ac0dcd31d3dc466, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2006,8 +2006,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.0824966, y: -5.038747, z: -19.103079}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2857,7 +2857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 00000000010000000200000003000000040000000500000006000000
+  plants: 0000000001000000020000000300000004000000050000000600000007000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
   - {fileID: 11400000, guid: 99925b37cd3d3b040b10746d146f3b19, type: 2}
@@ -2866,6 +2866,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 57d93b490a056f243aabf4d100388a52, type: 2}
   - {fileID: 11400000, guid: b2a7c28ea589efa43b2c328e90b9e75b, type: 2}
   - {fileID: 11400000, guid: 84882f216e56dda4caeed7faea46386e, type: 2}
+  - {fileID: 11400000, guid: bdfcc2be0c21de84cb5e77465b54f913, type: 2}
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:

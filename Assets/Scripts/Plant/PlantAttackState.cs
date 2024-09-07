@@ -36,7 +36,7 @@ namespace Plant
         {
         }
 
-        private void Attack()
+        protected virtual void Attack()
         {
             Plant.Animator.SetTrigger(AttackTrigger);
             CoolDown = 0;

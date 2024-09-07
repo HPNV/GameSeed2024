@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Plant.States.Aloecure;
+using Plant.States.Bamburst;
 using Plant.States.Boomkin;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
@@ -55,6 +56,13 @@ namespace Plant
             GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
             _currentHealth = _data.health;
             _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            if (!Data.hasCollider)
+            {
+                var collider2d = GetComponent<CircleCollider2D>();
+                if (collider2d is not null)
+                    Destroy(collider2d);
+            }
             
             InitState();
             InitTargetService();
@@ -100,6 +108,13 @@ namespace Plant
                     { EPlantState.Idle , new BoomkinIdleState(this)},
                     { EPlantState.Select , new PlantSelectState(this)},
                     { EPlantState.Die, new BoomkinDieState(this)}
+                },
+                EPlant.Bamburst => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new PlantIdleState(this)},
+                    { EPlantState.Attack , new BamburstAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
                 },
                 EPlant.Aloecure => new Dictionary<EPlantState, PlantState>
                 {
