@@ -1985,7 +1985,7 @@ Animator:
   m_GameObject: {fileID: 1009102850}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b875b63d21b1e8458f1ba2b788bcc32, type: 2}
+  m_Controller: {fileID: 9100000, guid: 55df5e13c924ace4d9392b07e2de4176, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2857,7 +2857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 000000000100000002000000030000000400000005000000
+  plants: 00000000010000000200000003000000040000000500000006000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
   - {fileID: 11400000, guid: 99925b37cd3d3b040b10746d146f3b19, type: 2}
@@ -2865,6 +2865,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
   - {fileID: 11400000, guid: 57d93b490a056f243aabf4d100388a52, type: 2}
   - {fileID: 11400000, guid: b2a7c28ea589efa43b2c328e90b9e75b, type: 2}
+  - {fileID: 11400000, guid: 84882f216e56dda4caeed7faea46386e, type: 2}
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Plant.States.Aloecure;
 using Plant.States.Boomkin;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
@@ -43,6 +44,9 @@ namespace Plant
 
         private void Update()
         {
+            if (_currentHealth <= 0 && CurrentState != EPlantState.Die)
+                ChangeState(EPlantState.Die);
+            
             _state.Update();
         }
 
@@ -97,6 +101,13 @@ namespace Plant
                     { EPlantState.Select , new PlantSelectState(this)},
                     { EPlantState.Die, new BoomkinDieState(this)}
                 },
+                EPlant.Aloecure => new Dictionary<EPlantState, PlantState>
+                {
+                    { EPlantState.Idle , new AloecureIdleState(this)},
+                    { EPlantState.Attack , new AloecureAttackState(this)},
+                    { EPlantState.Select , new PlantSelectState(this)},
+                    { EPlantState.Die, new PlantDieState(this)}
+                },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Idle , new PlantIdleState(this)},
@@ -142,15 +153,20 @@ namespace Plant
         {
             _currentHealth -= damage;
             
-            StartCoroutine(FlashRed());
-            
-            if (_currentHealth <= 0)
-                ChangeState(EPlantState.Die);
+            StartCoroutine(Flash(Color.red));
         }
         
-        private IEnumerator FlashRed()
+        public void Heal(float heal)
         {
-            _spriteRenderer.color = Color.red;
+            _currentHealth += heal;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _data.health);
+            
+            StartCoroutine(Flash(Color.green));
+        }
+        
+        private IEnumerator Flash(Color color)
+        {
+            _spriteRenderer.color = color;
             yield return new WaitForSeconds(0.1f);
             _spriteRenderer.color = Color.white;
         }

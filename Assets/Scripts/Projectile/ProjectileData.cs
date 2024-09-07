@@ -23,6 +23,7 @@ namespace Projectile
         Enemy,
         SingleHit,
         Piercing,
-        Mortar
+        Mortar,
+        Healing
     }
 }

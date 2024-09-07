@@ -28,6 +28,9 @@ namespace Projectile
         {
             var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.sprite = data.sprite;
+            var color = spriteRenderer.color;
+            color.a = 1;
+            spriteRenderer.color = color;
             transform.localScale = Vector3.one * data.scale;
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -53,7 +56,7 @@ namespace Projectile
 
         protected void Update()
         {
-            Behaviour.Move();
+            Behaviour.Update();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -100,6 +103,7 @@ namespace Projectile
                 ProjectileType.Piercing => new PiercingProjectileBehaviour(this),
                 ProjectileType.Mortar => new MortarProjectileBehaviour(this),
                 ProjectileType.SingleHit => new SingleHitProjectileBehaviour(this),
+                ProjectileType.Healing => new HealingProjectileBehaviour(this),
                 _ => null
             };
         }

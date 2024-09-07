@@ -5,5 +5,6 @@
     Cobcorn,
     Raflessnare,
     Weisshooter,
-    Duricane
+    Duricane,
+    Aloecure
 }

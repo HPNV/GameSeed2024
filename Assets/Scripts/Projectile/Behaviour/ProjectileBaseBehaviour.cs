@@ -10,7 +10,7 @@ namespace Projectile.Behaviour
         {
             Projectile = projectile;
         }
-        public virtual void Move() {}
+        public virtual void Update() {}
 
         public virtual void OnCollide(Collision2D collider) {}
     }

@@ -22,7 +22,8 @@ namespace Manager
                 { ProjectileName.Cactharn, Resources.Load<ProjectileData>("Projectile/CactharnProjectile") },
                 { ProjectileName.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile") },
                 { ProjectileName.Weisshooter, Resources.Load<ProjectileData>("Projectile/WeisshooterProjectile") },
-                { ProjectileName.Duricane, Resources.Load<ProjectileData>("Projectile/DuricaneProjectile") }
+                { ProjectileName.Duricane, Resources.Load<ProjectileData>("Projectile/DuricaneProjectile") },
+                { ProjectileName.Aloecure, Resources.Load<ProjectileData>("Projectile/AloecureProjectile") }
             };
         }
         public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, Vector2? direction = null, Vector2? target = null)
@@ -40,6 +41,11 @@ namespace Manager
             {
                 projectile.Target = target.Value;
                 projectile.Direction = Vector2.zero;
+            }
+            else
+            {
+                projectile.Direction = Vector2.zero;
+                projectile.Target = Vector2.zero;
             }
 
             projectile.gameObject.SetActive(true);
@@ -72,6 +78,7 @@ namespace Manager
         Cactharn,
         Cobcorn,
         Weisshooter,
-        Duricane
+        Duricane,
+        Aloecure
     }
 }

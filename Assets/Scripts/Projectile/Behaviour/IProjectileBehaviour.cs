@@ -4,7 +4,7 @@ namespace Projectile.Behaviour
 {
     public interface IProjectileBehaviour
     {
-        public void Move();
+        public void Update();
         public void OnCollide(Collision2D collider);
     }
 }

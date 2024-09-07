@@ -9,7 +9,7 @@ namespace Projectile.Behaviour
         private HashSet<EnemyBehaviour> _enemiesHit = new ();
         public PiercingProjectileBehaviour(Projectile projectile) : base(projectile){}
         
-        public override void Move()
+        public override void Update()
         {
             var currentPosition = Projectile.transform.position;
             

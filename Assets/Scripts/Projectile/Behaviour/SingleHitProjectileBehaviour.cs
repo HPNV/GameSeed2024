@@ -8,7 +8,7 @@ namespace Projectile.Behaviour
     {
         public SingleHitProjectileBehaviour(Projectile projectile) : base(projectile){}
         
-        public override void Move()
+        public override void Update()
         {
             var currentPosition = Projectile.transform.position;
             

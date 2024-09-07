@@ -23,7 +23,7 @@ namespace Projectile.Behaviour
             _initialSpeedSprite = 10;
         }
 
-        public override void Move()
+        public override void Update()
         {
             var distanceToMove = _speed * Time.deltaTime;
            
