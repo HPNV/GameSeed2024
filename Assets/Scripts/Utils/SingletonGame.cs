@@ -75,6 +75,7 @@ public class SingletonGame : MonoBehaviour
     }
 
     public void SpawnPlant() {
+        pauseGame();
         SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Level Up"));
         HashSet<EPlant> assignedPlants = new HashSet<EPlant>();
 
@@ -95,6 +96,7 @@ public class SingletonGame : MonoBehaviour
     public void PickCard(EPlant plantType)
     {
         plantFactory.spawnPlant(plantType);
+        resumeGame();
         DestroyRemainingCards();
     }
 
@@ -103,6 +105,27 @@ public class SingletonGame : MonoBehaviour
         foreach (var cardDisplay in cardDisplays) {
             cardDisplay.gameObject.SetActive(false);
         }
+    }
+
+    public void TogglePauseGame()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            return;
+        }
+        
+        Time.timeScale = 0;
+    }
+
+    public void pauseGame() {
+        Time.timeScale = 0;
+    }
+
+    public void resumeGame() {
+        Time.timeScale = 1;
     }
 
 }
