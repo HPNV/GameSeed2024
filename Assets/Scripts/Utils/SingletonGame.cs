@@ -76,10 +76,18 @@ public class SingletonGame : MonoBehaviour
 
     public void SpawnPlant() {
         SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Level Up"));
+        HashSet<EPlant> assignedPlants = new HashSet<EPlant>();
+
         foreach (var cardDisplay in cardDisplays) {
-            EPlant ePlant = plantFactory.GetRandomEPlant();
+            EPlant ePlant;
+            
+            do {
+                ePlant = plantFactory.GetRandomEPlant();
+            } while (assignedPlants.Contains(ePlant));
+
+            assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);
-            cardDisplay.SetCard(data,ePlant);
+            cardDisplay.SetCard(data, ePlant);
             cardDisplay.gameObject.SetActive(true);
         }
     }

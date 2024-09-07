@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float spawnRate = 5f;
     [SerializeField] private float spawnRadius = 1f;
     [SerializeField] private float spawnRateIncrease = 10000.99f;
+    [SerializeField] private float resetThreshold = 0.5f;
     private float spawnTimer = 0f;
 
     // Update is called once per frame
@@ -25,6 +26,12 @@ public class Spawner : MonoBehaviour
             spawnTimer = 0f;
             SpawnEnemy();
             spawnRate *= spawnRateIncrease;
+        }
+
+        if(spawnRate < resetThreshold)
+        {
+            spawnRate = 3f;
+            resetThreshold -= 0.05f;
         }
     }
 
