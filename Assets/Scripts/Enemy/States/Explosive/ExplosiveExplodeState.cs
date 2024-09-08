@@ -29,7 +29,10 @@ namespace Enemy.States.Explosive
             {
                 _hasDamaged = true;
                 foreach (var plant in _plantsInRange)
-                    plant.Damage(Enemy.enemyData.attackPower);
+                {
+                    if (plant is not null)
+                        plant.Damage(Enemy.enemyData.attackPower);
+                }
             }
             
             if (stateInfo.IsName("Explode") && stateInfo.normalizedTime >= 1) {

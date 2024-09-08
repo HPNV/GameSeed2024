@@ -6,5 +6,6 @@ namespace Projectile.Behaviour
     {
         public void Update();
         public void OnCollide(Collision2D collider);
+        public void OnDespawn();
     }
 }

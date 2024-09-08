@@ -26,6 +26,7 @@ namespace Projectile
         Piercing,
         Mortar,
         Healing,
-        ExplosiveMortar
+        ExplosiveMortar,
+        Knockback
     }
 }

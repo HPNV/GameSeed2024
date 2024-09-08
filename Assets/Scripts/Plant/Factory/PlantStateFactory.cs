@@ -7,6 +7,7 @@ using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
 using Plant.States.Duricane;
 using Plant.States.ExplosiveMortar;
+using Plant.States.Fan;
 using Plant.States.ShootThree;
 using Plant.States.Weisshooter;
 
@@ -95,6 +96,13 @@ namespace Plant.Factory
                EPlant.LuckPlant => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new PassiveIdleState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
+               EPlant.FanPlant => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Idle , new PlantIdleState(plant)},
+                   { EPlantState.Attack , new FanAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },

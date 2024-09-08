@@ -49,7 +49,8 @@ namespace Projectile
             InitializeBehaviour();
 
             var circleCollider2D = GetComponent<CircleCollider2D>();
-            
+
+            circleCollider2D.includeLayers = LayerMask.GetMask(data.targetLayer);
             circleCollider2D.excludeLayers = ~LayerMask.GetMask(data.targetLayer);
         }
 
@@ -69,6 +70,7 @@ namespace Projectile
         private IEnumerator DestroyAfterTime()
         {
             yield return new WaitForSeconds(data.lifetime);
+            Behaviour.OnDespawn();
             SingletonGame.Instance.ProjectileManager.Despawn(this);
         }
         
@@ -104,6 +106,7 @@ namespace Projectile
                 ProjectileType.SingleHit => new SingleHitProjectileBehaviour(this),
                 ProjectileType.Healing => new HealingProjectileBehaviour(this),
                 ProjectileType.ExplosiveMortar => new ExplosiveMortarProjectileBehaviour(this),
+                ProjectileType.Knockback => new KnockbackProjectileBehaviour(this),
                 _ => null
             };
         }
