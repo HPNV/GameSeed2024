@@ -5,6 +5,7 @@ using Plant.States.Boomkin;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
 using Plant.States.Duricane;
+using Plant.States.ShootThree;
 using Plant.States.Wall;
 using Plant.States.Weisshooter;
 
@@ -67,6 +68,13 @@ namespace Plant.Factory
                EPlant.WallPlant => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new WallIdleState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
+               EPlant.ShootThreePlant => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Idle , new PlantIdleState(plant)},
+                   { EPlantState.Attack , new ShootThreeAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },

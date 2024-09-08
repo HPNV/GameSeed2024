@@ -9,4 +9,5 @@
     Aloecure,
     Bamburst,
     WallPlant,
+    ShootThreePlant,
 }
