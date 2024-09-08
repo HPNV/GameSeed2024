@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Factory;
 using Plant;
+using Plant.Factory;
 using UnityEngine;
 
 public class PlantSelector : MonoBehaviour

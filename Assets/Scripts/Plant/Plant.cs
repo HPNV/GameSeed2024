@@ -1,14 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Plant.States.Aloecure;
-using Plant.States.Bamburst;
-using Plant.States.Boomkin;
-using Plant.States.Cactharn;
-using Plant.States.Cobcorn;
-using Plant.States.Duricane;
-using Plant.States.Weisshooter;
+using Plant.Factory;
 using Script;
 using UnityEngine;
 
@@ -72,65 +65,8 @@ namespace Plant
         {
             if (_state != null && _states != null) 
                 return;
-            
-            _states = _data.plantType switch
-            {
-                EPlant.Cactharn => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new PlantIdleState(this)},
-                    { EPlantState.Attack , new CactharnAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                },
-                EPlant.Cobcorn => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new PlantIdleState(this)},
-                    { EPlantState.Attack , new CobcornAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                },
-                EPlant.Weisshooter => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new PlantIdleState(this)},
-                    { EPlantState.Attack , new WeisshooterAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                },
-                EPlant.Duricane => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new PlantIdleState(this)},
-                    { EPlantState.Attack , new DuricaneAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                },
-                EPlant.Boomkin => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new BoomkinIdleState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new BoomkinDieState(this)}
-                },
-                EPlant.Bamburst => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new PlantIdleState(this)},
-                    { EPlantState.Attack , new BamburstAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                },
-                EPlant.Aloecure => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new AloecureIdleState(this)},
-                    { EPlantState.Attack , new AloecureAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                },
-                _ => new Dictionary<EPlantState, PlantState>
-                {
-                    { EPlantState.Idle , new PlantIdleState(this)},
-                    { EPlantState.Attack , new PlantAttackState(this)},
-                    { EPlantState.Select , new PlantSelectState(this)},
-                    { EPlantState.Die, new PlantDieState(this)}
-                }
-            };
+
+            _states = PlantStateFactory.CreateStates(Data.plantType, this);
             
             _state = _states[EPlantState.Idle];
         }

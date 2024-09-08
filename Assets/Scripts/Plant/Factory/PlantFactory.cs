@@ -7,7 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-namespace Factory
+namespace Plant.Factory
 {
     public class PlantFactory : MonoBehaviour
     {
@@ -31,8 +31,8 @@ namespace Factory
         public GameObject GeneratePlant(EPlant ePlant)
         {
             var obj = Instantiate(plant);
-            obj.GetComponent<Plant.Plant>().Data = _plantsData[ePlant];
-            obj.GetComponent<Plant.Plant>().Init();
+            obj.GetComponent<Plant>().Data = _plantsData[ePlant];
+            obj.GetComponent<Plant>().Init();
             return obj;
         }
 
@@ -48,7 +48,7 @@ namespace Factory
 
         public void spawnPlant(EPlant ePlant) 
         {
-            var plant = GeneratePlant(ePlant).GetComponent<Plant.Plant>();
+            var plant = GeneratePlant(ePlant).GetComponent<Plant>();
             plant.ChangeState(EPlantState.Select);
             plantPlacementService.plant = plant;
         }
