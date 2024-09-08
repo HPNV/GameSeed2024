@@ -10,5 +10,6 @@
     Bamburst,
     WallPlant,
     ShootThreePlant,
-    ExplosiveMortarPlant
+    ExplosiveMortarPlant,
+    LuckPlant
 }

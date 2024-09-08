@@ -48,9 +48,15 @@ namespace Plant.Factory
 
         public void spawnPlant(EPlant ePlant) 
         {
-            var plant = GeneratePlant(ePlant).GetComponent<Plant>();
-            plant.ChangeState(EPlantState.Select);
-            plantPlacementService.plant = plant;
+            var newPlant = GeneratePlant(ePlant).GetComponent<Plant>();
+            newPlant.ChangeState(EPlantState.Select);
+
+            if (newPlant.Data.plantType == EPlant.LuckPlant)
+            {
+                SingletonGame.Instance.ResourceManager.LuckModifier += 0.01;
+            }
+            
+            plantPlacementService.plant = newPlant;
         }
     }
 }

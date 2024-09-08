@@ -21,6 +21,9 @@ namespace Projectile.Behaviour
         public override void OnCollide(Collision2D collider)
         {
             var plant = collider.gameObject.GetComponent<Plant.Plant>();
+
+            if (plant is null)
+                return;
             
             plant.Damage(Projectile.data.attackPower);
             SingletonGame.Instance.ProjectileManager.Despawn(Projectile);

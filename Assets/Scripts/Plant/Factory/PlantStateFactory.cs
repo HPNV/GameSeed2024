@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Plant.States;
 using Plant.States.Aloecure;
 using Plant.States.Bamburst;
 using Plant.States.Boomkin;
@@ -7,7 +8,6 @@ using Plant.States.Cobcorn;
 using Plant.States.Duricane;
 using Plant.States.ExplosiveMortar;
 using Plant.States.ShootThree;
-using Plant.States.Wall;
 using Plant.States.Weisshooter;
 
 namespace Plant.Factory
@@ -66,12 +66,6 @@ namespace Plant.Factory
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 },
-               EPlant.WallPlant => new Dictionary<EPlantState, PlantState>
-               {
-                   { EPlantState.Idle , new WallIdleState(plant)},
-                   { EPlantState.Select , new PlantSelectState(plant)},
-                   { EPlantState.Die, new PlantDieState(plant)}
-               },
                EPlant.ShootThreePlant => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new PlantIdleState(plant)},
@@ -86,11 +80,29 @@ namespace Plant.Factory
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
+               EPlant.Raflessnare => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Idle , new PassiveIdleState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
+               EPlant.WallPlant => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Idle , new PassiveIdleState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
+               EPlant.LuckPlant => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Idle , new PassiveIdleState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
-                    { EPlantState.Idle , new PlantIdleState(plant)},
-                    { EPlantState.Attack , new PlantAttackState(plant)},
-                    { EPlantState.Select , new PlantSelectState(plant)},
+                    { EPlantState.Idle, new PlantIdleState(plant)},
+                    { EPlantState.Attack, new PlantAttackState(plant)},
+                    { EPlantState.Select, new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 }
             };

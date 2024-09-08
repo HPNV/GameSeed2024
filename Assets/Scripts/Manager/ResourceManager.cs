@@ -14,7 +14,10 @@ namespace Manager
         private Queue<ResourceBehaviour> _resourcePool;
         private GameObject _resourcePrefab;
         private Dictionary<ResourceType, ResourceData> _resourceData;
-            
+
+        public double LuckModifier { get; set; } = 0;
+        
+        
         public void Initialize()
         {
             _resourcePool = new Queue<ResourceBehaviour>();
@@ -43,7 +46,8 @@ namespace Manager
         {
             foreach (var (_, resourceData) in _resourceData)
             {
-                if (resourceData.dropChance <= Random.Range(0, 100))
+                Debug.Log("LUCK MODIFIER " + LuckModifier);
+                if (resourceData.dropChance <= Random.Range(0, 100) + LuckModifier)
                 {
                     continue;
                 }
