@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Script;
-using UnityEditor.Animations;
 using UnityEngine;
 
 
@@ -19,7 +18,7 @@ namespace Plant
         public bool hasCollider = true;
 
         public Sprite sprite;
-        public AnimatorController animatorController;
+        public RuntimeAnimatorController animatorController;
 
         public TargetType targetType;
     }

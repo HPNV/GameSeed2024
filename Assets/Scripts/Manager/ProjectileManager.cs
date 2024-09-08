@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Projectile;
 using Unity.VisualScripting;
@@ -67,6 +68,16 @@ namespace Manager
         
         public void Despawn(Projectile.Projectile projectile)
         {
+            projectile.StartCoroutine(TeleportAndDestroy(projectile));
+        }
+        
+        private IEnumerator TeleportAndDestroy(Projectile.Projectile projectile)
+        {
+            if (!projectile.gameObject.activeSelf)
+                yield break;
+            
+            projectile.transform.position = new Vector3(-1000, -1000, projectile.transform.position.z);
+            yield return new WaitForSeconds(1);
             projectile.gameObject.SetActive(false);
             _projectilePool.Enqueue(projectile);
         }

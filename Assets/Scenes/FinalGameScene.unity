@@ -5283,6 +5283,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3805374830657890415, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805374830657890415, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_TagString
+      value: Plant
+      objectReference: {fileID: 0}
     - target: {fileID: 5776182580396429281, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       propertyPath: m_Size.x
       value: 1.7077755
@@ -5306,6 +5314,10 @@ PrefabInstance:
     - target: {fileID: 6296114478124981260, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       propertyPath: m_Name
       value: HomeBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296114478124981260, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6296114478124981260, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       propertyPath: m_TagString

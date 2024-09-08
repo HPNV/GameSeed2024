@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Enemy;
+using Enemy.States;
 using UnityEngine;
 
 namespace Projectile.Behaviour
@@ -25,6 +26,8 @@ namespace Projectile.Behaviour
             if (enemy is null)
                 return;
             
+            if (enemy.CurrentState == State.Die)
+                return;
             
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             enemy.Damage(Projectile.data.attackPower);

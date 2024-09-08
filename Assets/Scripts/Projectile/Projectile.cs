@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Enemy;
 using Projectile.Behaviour;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Projectile
