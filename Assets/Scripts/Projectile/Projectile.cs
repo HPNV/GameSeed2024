@@ -103,6 +103,7 @@ namespace Projectile
                 ProjectileType.Mortar => new MortarProjectileBehaviour(this),
                 ProjectileType.SingleHit => new SingleHitProjectileBehaviour(this),
                 ProjectileType.Healing => new HealingProjectileBehaviour(this),
+                ProjectileType.ExplosiveMortar => new ExplosiveMortarProjectileBehaviour(this),
                 _ => null
             };
         }

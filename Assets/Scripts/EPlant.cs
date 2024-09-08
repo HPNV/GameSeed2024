@@ -10,4 +10,5 @@
     Bamburst,
     WallPlant,
     ShootThreePlant,
+    ExplosiveMortarPlant
 }

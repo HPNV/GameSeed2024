@@ -24,7 +24,8 @@ namespace Manager
                 { ProjectileName.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile") },
                 { ProjectileName.Weisshooter, Resources.Load<ProjectileData>("Projectile/WeisshooterProjectile") },
                 { ProjectileName.Duricane, Resources.Load<ProjectileData>("Projectile/DuricaneProjectile") },
-                { ProjectileName.Aloecure, Resources.Load<ProjectileData>("Projectile/AloecureProjectile") }
+                { ProjectileName.Aloecure, Resources.Load<ProjectileData>("Projectile/AloecureProjectile") },
+                { ProjectileName.ExplosiveMortar, Resources.Load<ProjectileData>("Projectile/ExplosiveMortar") }
             };
         }
         public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, Vector2? direction = null, Vector2? target = null)
@@ -90,6 +91,7 @@ namespace Manager
         Cobcorn,
         Weisshooter,
         Duricane,
-        Aloecure
+        Aloecure,
+        ExplosiveMortar
     }
 }

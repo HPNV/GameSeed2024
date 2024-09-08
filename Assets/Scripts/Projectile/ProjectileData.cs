@@ -10,6 +10,7 @@ namespace Projectile
         public ProjectileType projectileType;
         public float attackPower = 1;
         public float movementSpeed = 10;
+        public float attackRadius = 0.5f;
         public int lifetime = 100;
         public Sprite sprite;
         public float scale = 1;
@@ -24,6 +25,7 @@ namespace Projectile
         SingleHit,
         Piercing,
         Mortar,
-        Healing
+        Healing,
+        ExplosiveMortar
     }
 }

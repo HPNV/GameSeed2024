@@ -1,20 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using Enemy;
 using Enemy.States;
 using UnityEngine;
 
 namespace Projectile.Behaviour
 {
-    public class MortarProjectileBehaviour : ProjectileBaseBehaviour
+    public class ExplosiveMortarProjectileBehaviour : ProjectileBaseBehaviour
     {
-        private EnemyBehaviour _attackEnemy;
+        private List<EnemyBehaviour> _attackEnemies = new();
         private readonly float _inAirTime;
         private readonly float _speed;
         private readonly float _initialSpeedSprite;
         private float _timeAlive;
         private const float Gravity = 10f;
 
-        public MortarProjectileBehaviour(Projectile projectile) : base(projectile)
+        public ExplosiveMortarProjectileBehaviour(Projectile projectile) : base(projectile)
         {
             _inAirTime = 2f;
             var totalDistance = Vector2.Distance(Projectile.transform.position, Projectile.Target);
@@ -22,7 +23,6 @@ namespace Projectile.Behaviour
             _initialSpeedSprite = 10;
         }
 
-        
         public override void Update()
         {
             var distanceToMove = _speed * Time.deltaTime;
@@ -38,17 +38,21 @@ namespace Projectile.Behaviour
             var ySprite = _initialSpeedSprite * _timeAlive - Gravity * _timeAlive * _timeAlive / 2;
             
             
+            
             Projectile.SpriteObject.transform.localPosition = new Vector3(0, Math.Max(ySprite, 0), 0);
             
-            if (_timeAlive >= _inAirTime && _attackEnemy != null)
+            if (_timeAlive >= _inAirTime && _attackEnemies.Count > 0)
             {
-                var distance = Vector2.Distance(Projectile.transform.position, _attackEnemy.transform.position);
-
-                if (distance <= Projectile.data.attackRadius)
+                foreach (var enemy in _attackEnemies)
                 {
-                    _attackEnemy.Damage(Projectile.data.attackPower);
-                    SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
+                    var distance = Vector2.Distance(Projectile.transform.position, enemy.transform.position);
+
+                    if (distance <= Projectile.data.attackRadius)
+                    {
+                        enemy.Damage(Projectile.data.attackPower);
+                    }
                 }
+                SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
             }
         }
 
@@ -63,7 +67,7 @@ namespace Projectile.Behaviour
                 return;
 
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
-            _attackEnemy = enemy;
+            _attackEnemies.Add(enemy);
         }
     }
 }
