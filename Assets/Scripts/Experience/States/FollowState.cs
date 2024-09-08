@@ -19,6 +19,8 @@ namespace Experience.States
                 Orb.ChangeState(State.Idle);
             }
             
+            if (SingletonGame.Instance.IsPaused)
+                return;
             
             if (distance < Orb.collectDistance)
             {
@@ -35,7 +37,6 @@ namespace Experience.States
             
             var forceMagnitude = Mathf.Clamp(100 * Orb.maxForce / Mathf.Pow(distance, 3), 0, Orb.maxForce);
             var force = direction.normalized * forceMagnitude;
-            Debug.Log($"FORCE :{force}");
             Orb.Rigidbody.AddForce(force);
         }
     }

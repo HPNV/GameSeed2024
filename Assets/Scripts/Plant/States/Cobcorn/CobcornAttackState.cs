@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Manager;
 using Projectile;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Plant.States.Cobcorn
 {
     public class CobcornAttackState : PlantAttackState
     {
+        private const int SpawnProjectileCount = 3;
         private bool _hasSpawnedProjectile;
         public CobcornAttackState(Plant plant) : base(plant){}
 
@@ -35,14 +37,17 @@ namespace Plant.States.Cobcorn
             if (_hasSpawnedProjectile)
                 return;
             
-            var target = Plant.TargetService.GetTargets().FirstOrDefault();
+            var targets = Plant.TargetService.GetTargets();
             
-            if (target is null)
+            if (targets.Count == 0)
                 return;
             
             _hasSpawnedProjectile = true;
-            
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Cobcorn, Plant.transform.position, target: target.transform.position);
+
+            var hitTarget = targets.Take(SpawnProjectileCount).ToList();
+
+            foreach (var target in hitTarget)
+                SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Cobcorn, Plant.transform.position, target: target.transform.position);
         }
     }
 }
