@@ -7,5 +7,6 @@
     Weisshooter,
     Duricane,
     Aloecure,
-    Bamburst
+    Bamburst,
+    WallPlant,
 }

@@ -3238,7 +3238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 0000000001000000020000000300000004000000050000000600000007000000
+  plants: 000000000100000002000000030000000400000005000000060000000700000008000000
   data:
   - {fileID: 11400000, guid: f4e13b33557e1fc408a8eeecb57a0b46, type: 2}
   - {fileID: 11400000, guid: 99925b37cd3d3b040b10746d146f3b19, type: 2}
@@ -3248,6 +3248,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2a7c28ea589efa43b2c328e90b9e75b, type: 2}
   - {fileID: 11400000, guid: 84882f216e56dda4caeed7faea46386e, type: 2}
   - {fileID: 11400000, guid: bdfcc2be0c21de84cb5e77465b54f913, type: 2}
+  - {fileID: 11400000, guid: 5aaef03699f17b64c837ab294964ace4, type: 2}
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:
