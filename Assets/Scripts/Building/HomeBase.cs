@@ -43,7 +43,7 @@ public class HomeBase : MonoBehaviour
         if(currentExp > expToNextLevel){
             currentLevel +=1;
             currentExp -= expToNextLevel;
-            //expToNextLevel += 50;
+            expToNextLevel += 50;
             UpdatetUI();
             SingletonGame.Instance.SpawnPlant();
         }

@@ -11,6 +11,7 @@ namespace Plant
         [SerializeField] private Plant plant;
         [SerializeField] private Collider2D upgradeButton;
         [SerializeField] private Collider2D removeButton;
+        [SerializeField] private GameObject plantObject;
         private Vector3 originalScale;
         private Vector3 hiddenScale = new Vector3(0.01f, 0.01f, 0.01f);
         private float animationDuration = 0.5f;
@@ -54,7 +55,7 @@ namespace Plant
 
                 if (removeButton.OverlapPoint(mousePos))
                 {
-                    Destroy(gameObject);
+                    Destroy(plantObject);
                 }
             }
         }

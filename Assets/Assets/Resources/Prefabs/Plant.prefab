@@ -632,6 +632,7 @@ MonoBehaviour:
   plant: {fileID: 7206702220497572868}
   upgradeButton: {fileID: 8163381723895155542}
   removeButton: {fileID: 1311134571562988774}
+  plantObject: {fileID: 521397313901571747}
 --- !u!1 &8917099703722968870
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,9 +24,9 @@ namespace Experience.States
             
             if (distance < Orb.collectDistance)
             {
-                SingletonGame.Instance.ExperienceManager.Despawn(Orb);
                 SingletonGame.Instance.homeBase.GainExp(Orb.experienceValue);
-            }
+                SingletonGame.Instance.ExperienceManager.Despawn(Orb);
+            } 
         }
 
         public override void OnFixedUpdate()
@@ -37,10 +37,6 @@ namespace Experience.States
             
             var forceMagnitude = Mathf.Clamp(100 * Orb.maxForce / Mathf.Pow(distance, 3), 0, Orb.maxForce);
             var force = direction.normalized * forceMagnitude;
-<<<<<<< Updated upstream
-=======
-            // Debug.Log($"FORCE :{force}");
->>>>>>> Stashed changes
             Orb.Rigidbody.AddForce(force);
         }
     }
