@@ -15,6 +15,7 @@ public class GameGrid : MonoBehaviour
     private Tile tilePrefab;
     public Dictionary<Vector2, Tile> Tiles { get; private set; }
     public Dictionary<Tile, GameObject> Slots { get; private set; }
+    [SerializeField] private List<Sprite> cornerSprites;
     
     void Start()
     {
