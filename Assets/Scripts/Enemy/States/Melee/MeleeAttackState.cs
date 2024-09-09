@@ -45,6 +45,26 @@ namespace Enemy.States.Melee
                     Enemy.ChangeState(State.Move);
                 }
             }
+<<<<<<< Updated upstream
+=======
+        }
+        
+        private void Attack()
+        {
+            var target = Enemy.PlantTargetService.GetTarget();
+            if (_hasAttacked || target is null)
+                return;
+            
+            Debug.Log("HAS ATTACKED");
+            _hasAttacked = true;
+
+            var plant = target.GetComponent<Plant.Plant>();
+            
+            if (plant is null)
+                return;
+            
+            target.GetComponent<Plant.Plant>().Damage(Enemy.enemyData.attackPower);
+>>>>>>> Stashed changes
         }
     }
 }

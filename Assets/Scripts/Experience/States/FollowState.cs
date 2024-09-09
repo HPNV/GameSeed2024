@@ -35,6 +35,10 @@ namespace Experience.States
             
             var forceMagnitude = Mathf.Clamp(100 * Orb.maxForce / Mathf.Pow(distance, 3), 0, Orb.maxForce);
             var force = direction.normalized * forceMagnitude;
+<<<<<<< Updated upstream
+=======
+            // Debug.Log($"FORCE :{force}");
+>>>>>>> Stashed changes
             Orb.Rigidbody.AddForce(force);
         }
     }

@@ -11,6 +11,7 @@ public class HomeBase : MonoBehaviour
     [SerializeField] Bar HpBar;
     [SerializeField] TextMeshPro waterText;
     [SerializeField] TextMeshPro sunText;
+    [SerializeField] TextMeshPro levelText;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
@@ -60,6 +61,7 @@ public class HomeBase : MonoBehaviour
         HpBar.setMaxValue(100);
         waterText.text = water.ToString();
         sunText.text = sun.ToString();
+        levelText.text = "Lvl " + currentLevel.ToString();
     }
 
     public void TakeDamage(float damage) {

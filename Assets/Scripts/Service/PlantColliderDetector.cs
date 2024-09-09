@@ -20,6 +20,12 @@ namespace Service
                 Plants.Add(other.gameObject);
                 SortPlants();
             }
+
+            if(other.CompareTag("Base")) {
+                var plant = other.GetComponent<Plant.Plant>();
+                Plants.Add(other.gameObject);
+                SortPlants();
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)

@@ -21,9 +21,18 @@ namespace Plant
             { 
                 Plant.ChangeState(EPlantState.Idle);
             }
+<<<<<<< Updated upstream
 
             cd++;
             if (cd != Plant.Data.cd) return;
+=======
+            
+            CoolDown += Time.deltaTime;
+            
+            if (CoolDown < Plant.Data.attackCooldown) 
+                return;
+            
+>>>>>>> Stashed changes
             Attack();
             cd = 0;
         }

@@ -16,6 +16,11 @@ namespace Plant
         public int cd;
         public float range;
         public string description;
+<<<<<<< Updated upstream
+=======
+        public int level;
+        public bool hasCollider = true;
+>>>>>>> Stashed changes
 
         public Sprite sprite;
         public AnimatorController animatorController;
