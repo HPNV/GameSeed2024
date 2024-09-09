@@ -31,15 +31,7 @@ namespace PickupableResource
 
                 if (distance < resourceData.pickupDistance)
                 {
-                    if(resourceData.resourceName == ResourceType.Water)
-                    {
-                        SingletonGame.Instance.homeBase.addWater(1);
-                    }
-                    else if(resourceData.resourceName == ResourceType.Sunlight)
-                    {
-                        SingletonGame.Instance.homeBase.addSun(1);
-                    }
-                    SingletonGame.Instance.ResourceManager.Despawn(this);
+                    SingletonGame.Instance.ResourceManager.Pickup(this);
                 }
 
                 SingletonGame.Instance.homeBase.UpdatetUI();

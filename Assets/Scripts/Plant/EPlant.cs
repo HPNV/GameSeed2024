@@ -12,5 +12,6 @@
     ShootThreePlant,
     ExplosiveMortarPlant,
     LuckPlant,
-    FanPlant
+    FanPlant,
+    MagnetPlant,
 }

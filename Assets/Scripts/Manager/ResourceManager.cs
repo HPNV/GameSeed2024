@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using PickupableResource;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Manager
         private GameObject _resourcePrefab;
         private Dictionary<ResourceType, ResourceData> _resourceData;
 
+        public List<ResourceBehaviour> ActiveResources { get; set; } = new();
+        
         public double LuckModifier { get; set; } = 0;
         
         
@@ -31,7 +34,7 @@ namespace Manager
                 new (ResourceType.Sunlight, Resources.Load<ResourceData>("PickupableResources/Sunlight")),
                 new (ResourceType.Mineral, Resources.Load<ResourceData>("PickupableResources/Mineral"))
             });
-        }       
+        }
         
         public void SpawnBatchWithChance(int spawnAmount, Vector2 position)
         {
@@ -46,7 +49,6 @@ namespace Manager
         {
             foreach (var (_, resourceData) in _resourceData)
             {
-                Debug.Log("LUCK MODIFIER " + LuckModifier);
                 if (resourceData.dropChance <= Random.Range(0, 100) + LuckModifier)
                 {
                     continue;
@@ -58,6 +60,7 @@ namespace Manager
                     var resourceBehaviour = resourceObject.GetComponent<ResourceBehaviour>();
                     
                     resourceBehaviour.resourceData = resourceData;
+                    ActiveResources.Add(resourceBehaviour);
                     return;
                 }
                 
@@ -66,13 +69,29 @@ namespace Manager
                 resource.transform.position = position;
                 resource.gameObject.SetActive(true);
                 resource.resourceData = resourceData;
-                
+                ActiveResources.Add(resource);
             }
+        }
+
+
+        public void Pickup(ResourceBehaviour resource)
+        {
+            if(resource.resourceData.resourceName == ResourceType.Water)
+            {
+                SingletonGame.Instance.homeBase.addWater(1);
+            }
+            else if(resource.resourceData.resourceName == ResourceType.Sunlight)
+            {
+                SingletonGame.Instance.homeBase.addSun(1);
+            }
+            
+            Despawn(resource);
         }
         
         public void Despawn(ResourceBehaviour resource)
         {
             resource.gameObject.SetActive(false);
+            ActiveResources.Remove(resource);
             _resourcePool.Enqueue(resource);
         }
         
