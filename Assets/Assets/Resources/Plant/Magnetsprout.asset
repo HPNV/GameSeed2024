@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
-  m_Name: MagnetPlant
+  m_Name: Magnetsprout
   m_EditorClassIdentifier: 
   plantType: 13
   health: 50
@@ -20,6 +20,6 @@ MonoBehaviour:
   description: 
   hasCollider: 1
   level: 0
-  sprite: {fileID: 21300000, guid: d1d8c3680e852ea4c932a612c3d60370, type: 3}
-  animatorController: {fileID: 9100000, guid: 55df5e13c924ace4d9392b07e2de4176, type: 2}
+  sprite: {fileID: 21300000, guid: ad281d2c7df470246a0cd44948f08ee4, type: 3}
+  animatorController: {fileID: 9100000, guid: 841bd5f86c3c4cc4aa76126a00da9fe5, type: 2}
   targetType: 0

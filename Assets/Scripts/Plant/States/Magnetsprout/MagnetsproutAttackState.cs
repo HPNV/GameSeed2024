@@ -3,12 +3,12 @@ using Manager;
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.Magnet
+namespace Plant.States.Magnetsprout
 {
-    public class MagnetAttackState : PlantAttackState
+    public class MagnetsproutAttackState : PlantAttackState
     {
         private static readonly int AttackTrigger = Animator.StringToHash("Attack");
-        public MagnetAttackState(Plant plant) : base(plant){}
+        public MagnetsproutAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {

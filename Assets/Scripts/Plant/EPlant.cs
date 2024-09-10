@@ -13,5 +13,5 @@
     ExplosiveMortarPlant,
     LuckPlant,
     FanPlant,
-    MagnetPlant,
+    Magnetsprout,
 }
