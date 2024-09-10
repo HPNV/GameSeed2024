@@ -16,6 +16,7 @@ namespace Plant
         public float range;
         public string description;
         public bool hasCollider = true;
+        public int level;
 
         public Sprite sprite;
         public RuntimeAnimatorController animatorController;
