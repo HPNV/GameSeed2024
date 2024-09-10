@@ -20,6 +20,7 @@ public class GameGrid : MonoBehaviour
     [SerializeField] private List<Sprite> sideSpritesLeft;
     [SerializeField] private List<Sprite> sideSpritesRight;
     [SerializeField] private List<Sprite> sideSpritesBottom;
+    [SerializeField] private int sideSpritesCount;
     
     void Start()
     {
@@ -45,8 +46,34 @@ public class GameGrid : MonoBehaviour
 
                 Tiles[new Vector2(a, b)] = spawnedTile;
                 Slots[spawnedTile] = null;
+
+                if (x == 0 && y == 0)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        cornerSprites[3];
+                else if (x == 0 && y == height - 1)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        cornerSprites[0];
+                else if (x == width - 1 && y == 0)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        cornerSprites[2];
+                else if (x == width - 1 && y == height - 1)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        cornerSprites[1];
+                else if (x == 0)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        sideSpritesLeft[Random.Range(0, sideSpritesCount)];
+                else if (y == height - 1)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        sideSpritesTop[Random.Range(0, sideSpritesCount)];
+                else if (y == 0)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        sideSpritesBottom[Random.Range(0, sideSpritesCount)];
+                else if (x == width - 1)
+                    spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
+                        sideSpritesRight[Random.Range(0, sideSpritesCount)];
             }
         }
+        
         
         
         // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
