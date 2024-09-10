@@ -7,6 +7,6 @@ public class BackgroundSound : MonoBehaviour
     [SerializeField] private AudioClip backgroundSound;
     void Awake()
     {
-        SoundFXManager.instance.PlaySound(backgroundSound, transform, 1f);
+        // SoundFXManager.instance.PlaySound(backgroundSound, transform, 1f);
     }
 }
