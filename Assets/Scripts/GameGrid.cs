@@ -16,6 +16,10 @@ public class GameGrid : MonoBehaviour
     public Dictionary<Vector2, Tile> Tiles { get; private set; }
     public Dictionary<Tile, GameObject> Slots { get; private set; }
     [SerializeField] private List<Sprite> cornerSprites;
+    [SerializeField] private List<Sprite> sideSpritesTop;
+    [SerializeField] private List<Sprite> sideSpritesLeft;
+    [SerializeField] private List<Sprite> sideSpritesRight;
+    [SerializeField] private List<Sprite> sideSpritesBottom;
     
     void Start()
     {
