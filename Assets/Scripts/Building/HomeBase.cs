@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using Utils;
 
-public class HomeBase : MonoBehaviour
+public class HomeBase : Entity
 {
     [SerializeField] Bar expBar;
     [SerializeField] Bar HpBar;
@@ -16,16 +16,15 @@ public class HomeBase : MonoBehaviour
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
-    private float CurrentHealth = 100f;
-    private float maxHealth = 100f;
+    [SerializeField] private float startHealth;
     private int water = 0;
     private int sun = 0;
     private int score = 0;
 
-
     void Start()
     {
-        UpdatetUI();
+        InitHealth(startHealth, startHealth);
+        UpdateUI();
     }
 
     void Update()
@@ -46,22 +45,22 @@ public class HomeBase : MonoBehaviour
             currentLevel +=1;
             currentExp -= expToNextLevel;
             expToNextLevel += 50;
-            UpdatetUI();
+            UpdateUI();
             SingletonGame.Instance.SpawnPlant();
         }
     }
 
     public void GainExp(int exp) {
         currentExp += exp;
-        UpdatetUI();
+        UpdateUI();
     }
 
     public void GainScore(int score) {
         this.score += score;
-        UpdatetUI();
+        UpdateUI();
     }
 
-    public void UpdatetUI() {
+    public void UpdateUI() {
         expBar.Exp = currentExp;
         expBar.setMaxValue(expToNextLevel);
         HpBar.Exp = Health;
@@ -72,19 +71,31 @@ public class HomeBase : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
-    public void TakeDamage(float damage) {
-        CurrentHealth -= damage;
-        UpdatetUI();
-        if(CurrentHealth <= 0) {
-            SingletonGame.Instance.PlayerManager.OnPlayerDied();
-        }
-    }
-
     public void addSun(int sun) {
         this.sun += sun;
     }
 
     public void addWater(int water) {
         this.water += water;
+    }
+
+    protected override bool ValidateDamage()
+    {
+        return true;
+    }
+
+    protected override void OnDamage()
+    {
+        Debug.Log($"Yggdrasil Terdamage \nHealth: {Health}");
+        UpdateUI();
+    }
+
+    protected override void OnHeal()
+    {
+    }
+
+    protected override void OnDie()
+    {
+        SingletonGame.Instance.PlayerManager.OnPlayerDied();
     }
 }

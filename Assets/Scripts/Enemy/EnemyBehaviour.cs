@@ -12,12 +12,11 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyBehaviour : MonoBehaviour
+    public class EnemyBehaviour : Entity
     {
         [SerializeField] 
         public EnemyData enemyData;
         public EnemyData baseData;
-        public float CurrentHealth { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
         public PlantTargetService PlantTargetService { get; private set; }
@@ -38,10 +37,10 @@ namespace Enemy
         {
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
-            CurrentHealth = enemyData.health;
             PlantTargetService = GetComponentInChildren<PlantTargetService>(); 
             _originalColor = SpriteRenderer.color;
             
+            InitHealth(enemyData.health, enemyData.health);
             SetupStates();
             SetupAnimationController();
         }
@@ -62,10 +61,10 @@ namespace Enemy
             }
             
                         
-            if (CurrentHealth <= 0 && _currentState is not DieState)
-            {
-                ChangeState(State.Die);
-            }
+            // if (CurrentHealth <= 0 && _currentState is not DieState)
+            // {
+            //     ChangeState(State.Die);
+            // }
         }
         
 
@@ -103,13 +102,24 @@ namespace Enemy
             Animator.runtimeAnimatorController = enemyData.animatorController;
         }
 
-        public void Damage(float value)
+        protected override bool ValidateDamage()
         {
-            if(_currentState is DieState)
-                return;
-            
-            CurrentHealth -= value;
+            return _currentState is not DieState;
+        }
+
+        protected override void OnDamage()
+        {
             StartCoroutine(FlashRed());
+        }
+
+        protected override void OnHeal()
+        {
+        }
+
+        protected override void OnDie()
+        {
+            if (_currentState is not DieState)
+                ChangeState(State.Die);
         }
 
         public void ChangeState(State state)
