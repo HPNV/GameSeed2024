@@ -41,6 +41,7 @@ namespace Plant
             if (_currentHealth <= 0 && CurrentState != EPlantState.Die)
                 ChangeState(EPlantState.Die);
             
+            Debug.Log(CurrentState);
             _state.Update();
         }
 

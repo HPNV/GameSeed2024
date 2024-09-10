@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
-  m_Name: FanProjectile
+  m_Name: SneezeweedProjectile
   m_EditorClassIdentifier: 
   projectileType: 6
-  attackPower: 1
   movementSpeed: 5
   attackRadius: 0.5
   lifetime: 2
-  sprite: {fileID: 21300000, guid: 4b5137e45d8e23044a28d1e5cee8f4bf, type: 3}
+  sprite: {fileID: 0}
   scale: 4
   targetTag: Enemy
   targetLayer: Enemy
-  particles: {fileID: 0}
+  particles: {fileID: 4262318369177278723, guid: d6fa5563f282ee446b82b930a447b509, type: 3}

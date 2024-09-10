@@ -43,6 +43,7 @@ namespace Plant.Factory
 
         public EPlant GetRandomEPlant()
         {
+            return plants.Where(p => p == EPlant.Sneezeweed).OrderBy(c => Random.value).FirstOrDefault();
             return plants.OrderBy(c => Random.value).FirstOrDefault();
         }
 
