@@ -124,7 +124,6 @@ namespace Enemy
             yield return new WaitForSeconds(0.1f);
             SpriteRenderer.color = _originalColor;
         }
-        
     }
 }
 

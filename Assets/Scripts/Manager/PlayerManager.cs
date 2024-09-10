@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     private int fullyUpgrade = 0;
     private int upgradedPlants = 0;
     private int firstDie = 0;
-
+    public int tutorialCompleted = 0;  
     private AchievementManager achievementManager;
 
     private void Start()

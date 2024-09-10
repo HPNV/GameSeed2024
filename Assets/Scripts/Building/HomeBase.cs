@@ -65,7 +65,7 @@ public class HomeBase : MonoBehaviour
         expBar.Exp = currentExp;
         expBar.setMaxValue(expToNextLevel);
         HpBar.Exp = CurrentHealth;
-        HpBar.setMaxValue(100);
+        HpBar.setMaxValue(maxHealth);
         waterText.text = water.ToString();
         sunText.text = sun.ToString();
         levelText.text = "Lvl " + currentLevel.ToString();

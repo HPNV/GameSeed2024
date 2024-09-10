@@ -6,7 +6,7 @@ namespace Enemy
     public class EnemyData : ScriptableObject
     {
         public string enemyName = "Dep";
-        public int health = 100;
+        public float health = 100;
         public float attackPower = 1;
         public float attackRange = 1;
         public float damageRange = 1;
