@@ -139,3 +139,4 @@ MonoBehaviour:
   sunText: {fileID: 0}
   levelText: {fileID: 0}
   scoreText: {fileID: 0}
+  startHealth: 100

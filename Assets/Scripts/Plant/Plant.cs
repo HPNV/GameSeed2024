@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Plant
 {
-    public class Plant : MonoBehaviour
+    public class Plant : Entity
     {
         public PlantData Data
         {
@@ -28,9 +28,6 @@ namespace Plant
         private PlantState _state;
         private SpriteRenderer _spriteRenderer;
         
-        private float _currentHealth;
-        
-        
         private void Start()
         {
             Init();
@@ -38,8 +35,8 @@ namespace Plant
 
         private void Update()
         {
-            if (_currentHealth <= 0 && CurrentState != EPlantState.Die)
-                ChangeState(EPlantState.Die);
+            // if (_currentHealth <= 0 && CurrentState != EPlantState.Die)
+                // ChangeState(EPlantState.Die);
             
             _state.Update();
         }
@@ -47,7 +44,6 @@ namespace Plant
         public void Init()
         {
             GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
-            _currentHealth = _data.health;
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
             if (!Data.hasCollider)
@@ -57,6 +53,7 @@ namespace Plant
                     Destroy(collider2d);
             }
             
+            InitHealth(_data.health, _data.health);
             InitState();
             InitTargetService();
         }
@@ -100,19 +97,25 @@ namespace Plant
             _state.OnEnter();
         }
 
-        public void Damage(float damage)
+        protected override bool ValidateDamage()
         {
-            _currentHealth -= damage;
-            
+            return true;
+        }
+
+        protected override void OnDamage()
+        {
             StartCoroutine(Flash(Color.red));
         }
-        
-        public void Heal(float heal)
+
+        protected override void OnHeal()
         {
-            _currentHealth += heal;
-            _currentHealth = Mathf.Clamp(_currentHealth, 0, _data.health);
-            
             StartCoroutine(Flash(Color.green));
+        }
+
+        protected override void OnDie()
+        {
+            if (CurrentState != EPlantState.Die)
+                ChangeState(EPlantState.Die);
         }
         
         private IEnumerator Flash(Color color)

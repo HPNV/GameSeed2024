@@ -47,12 +47,12 @@ namespace Enemy.States.Melee
             Debug.Log("HAS ATTACKED");
             _hasAttacked = true;
 
-            var plant = target.GetComponent<Plant.Plant>();
+            var entity = target.GetComponent<Entity>();
             
-            if (plant is null)
+            if (entity is null)
                 return;
             
-            target.GetComponent<Plant.Plant>().Damage(Enemy.enemyData.attackPower);
+            entity.Damage(Enemy.enemyData.attackPower);
         }
     }
 }
