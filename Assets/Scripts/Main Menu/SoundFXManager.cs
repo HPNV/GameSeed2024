@@ -10,7 +10,7 @@ public class SoundFXManager : MonoBehaviour
     private float masterVolume = 1.0f;
     private float musicVolume = 1.0f;
     private float audioVolume = 1.0f;
-    private float gameVolume = 1.0f;
+    private float gameVolume = 0.6f;
     
     private void Awake()
     {
@@ -72,4 +72,12 @@ public class SoundFXManager : MonoBehaviour
         Destroy(audioSource.gameObject, clip.length);
     }
 
+    public void PlayMusic(string audioClip) {
+        AudioClip clip = Resources.Load<AudioClip>(audioClip);
+        AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = masterVolume * musicVolume;
+        audioSource.Play();
+        audioSource.loop = true;
+    }
 }
