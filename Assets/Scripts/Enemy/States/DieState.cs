@@ -23,7 +23,7 @@ namespace Enemy.States
             
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1f)
             {
-                SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Enemy/Slime Death"));
+                SoundFXManager.instance.PlayGameSoundOnce("Audio/Enemy/Slime Death");
                 SingletonGame.Instance.EnemyManager.Despawn(Enemy);
             }
                 

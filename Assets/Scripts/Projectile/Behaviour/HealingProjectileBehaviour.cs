@@ -40,7 +40,7 @@ namespace Projectile.Behaviour
             if (plant.Data.plantType == EPlant.Aloecure)
                 return;
             
-            plant.Heal(Projectile.data.attackPower);
+            plant.Heal(Projectile.AttackPower);
         }
     }
 }

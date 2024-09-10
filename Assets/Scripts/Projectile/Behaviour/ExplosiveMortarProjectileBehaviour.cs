@@ -49,7 +49,7 @@ namespace Projectile.Behaviour
 
                     if (distance <= Projectile.data.attackRadius)
                     {
-                        enemy.Damage(Projectile.data.attackPower);
+                        enemy.Damage(Projectile.AttackPower);
                     }
                 }
                 SingletonGame.Instance.ProjectileManager.Despawn(Projectile);

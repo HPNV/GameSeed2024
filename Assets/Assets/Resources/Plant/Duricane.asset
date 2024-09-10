@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantType: 5
   health: 100
-  damage: 5
+  damage: 10
   attackCooldown: 0
   range: 15
   description: 
+  hasCollider: 1
+  level: 0
   sprite: {fileID: 21300000, guid: 3418c201898b72d4fbae3326226c96ee, type: 3}
   animatorController: {fileID: 9100000, guid: 8b9d6e589362b0d46943fc967c65460d, type: 2}
   targetType: 1

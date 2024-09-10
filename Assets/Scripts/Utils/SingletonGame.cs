@@ -60,7 +60,7 @@ public class SingletonGame : MonoBehaviour
         ProjectileManager.Initialize();
         EnemyManager.Initialize();
         SoundFXManager.Initialize();
-        SoundFXManager.instance.PlayGameSound(Resources.Load<AudioClip>("Audio/Game Music")); 
+        SoundFXManager.instance.PlayGameSound("Audio/Game Music"); 
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);
         cardDisplays.Add(card3);
@@ -77,7 +77,7 @@ public class SingletonGame : MonoBehaviour
 
     public void SpawnPlant() {
         PauseGame();
-        SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Level Up"));
+        SoundFXManager.instance.PlayGameSoundOnce("Audio/Level Up");
         HashSet<EPlant> assignedPlants = new HashSet<EPlant>();
 
         foreach (var cardDisplay in cardDisplays) {

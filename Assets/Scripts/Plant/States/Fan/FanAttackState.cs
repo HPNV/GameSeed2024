@@ -45,8 +45,12 @@ namespace Plant.States.Fan
             
             _hasSpawnedProjectile = true;
             var direction = (target.transform.position - Plant.transform.position).normalized;
-            
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Fan, Plant.transform.position, direction: direction);
+            SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Push Attack");            
+            SingletonGame.Instance.ProjectileManager.Spawn(
+                ProjectileName.Fan, 
+                Plant.transform.position, 
+                Plant.Data.damage,
+                direction: direction);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Enemy.States.Melee
             {
                 if (!hasPlayedSound && stateInfo.normalizedTime < 0.5f)  // Plays the sound in the first half of the attack animation
                 {
-                    SoundFXManager.instance.PlayGameSoundOnce(Resources.Load<AudioClip>("Audio/Enemy/Bite Sound"));
+                    SoundFXManager.instance.PlayGameSoundOnce("Audio/Enemy/Bite Sound");
                     hasPlayedSound = true; 
                 }
 

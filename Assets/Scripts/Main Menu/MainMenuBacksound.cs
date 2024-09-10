@@ -8,6 +8,6 @@ public class MainMenuBacksound : MonoBehaviour
     void Start()
     {
         // SoundFXManager.instance.PlaySound(backgroundSound, transform, 0.5f);
-        SoundFXManager.instance.PlayGameSound(Resources.Load<AudioClip>("Audio/Main Menu Music"));
+        SoundFXManager.instance.PlayGameSound("Audio/Main Menu Music");
     }
 }

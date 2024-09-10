@@ -29,6 +29,7 @@ namespace Plant.States.Cactharn
             
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
             {
+                SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cactharn Attack");
                 SpawnProjectile();
             }
         }
@@ -46,7 +47,11 @@ namespace Plant.States.Cactharn
             _hasSpawnedProjectile = true;
             var direction = (target.transform.position - Plant.transform.position).normalized;
             
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Cactharn, Plant.transform.position, direction: direction);
+            SingletonGame.Instance.ProjectileManager.Spawn(
+                ProjectileName.Cactharn, 
+                Plant.transform.position, 
+                Plant.Data.damage,
+                direction: direction);
         }
     }
 }

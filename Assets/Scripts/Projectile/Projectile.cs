@@ -12,6 +12,7 @@ namespace Projectile
         public Vector2 Direction { get; set; } = Vector2.zero;
         public Vector2 Target { get; set; } = Vector2.zero;
         public IProjectileBehaviour Behaviour { get; set; }
+        public float AttackPower { get; set; }
         public GameObject SpriteObject { get; set; }
         
         
