@@ -86,7 +86,6 @@ public class HomeBase : Entity
 
     protected override void OnDamage()
     {
-        Debug.Log($"Yggdrasil Terdamage \nHealth: {Health}");
         UpdateUI();
     }
 
