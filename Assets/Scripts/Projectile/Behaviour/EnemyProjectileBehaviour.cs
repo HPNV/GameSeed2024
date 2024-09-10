@@ -25,7 +25,7 @@ namespace Projectile.Behaviour
             if (plant is null)
                 return;
             
-            plant.Damage(Projectile.data.attackPower);
+            plant.Damage(Projectile.AttackPower);
             SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
         }
         

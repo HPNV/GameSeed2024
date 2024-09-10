@@ -43,7 +43,11 @@ namespace Plant.States.ExplosiveMortar
             
             _hasSpawnedProjectile = true;
 
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.ExplosiveMortar, Plant.transform.position, target: target.transform.position);
+            SingletonGame.Instance.ProjectileManager.Spawn(
+                ProjectileName.ExplosiveMortar, 
+                Plant.transform.position, 
+                Plant.Data.damage,
+                target: target.transform.position);
         }
     }
 }
