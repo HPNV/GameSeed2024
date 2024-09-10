@@ -7,7 +7,7 @@ namespace Enemy.States.Explosive
 {
     public class ExplosiveExplodeState : BaseState
     {
-        private List<Plant.Plant> _plantsInRange = new();
+        private List<Entity> _entitiesInRange = new();
         private bool _hasDamaged;
         private static readonly int Explode = Animator.StringToHash("Explode");
 
@@ -28,10 +28,10 @@ namespace Enemy.States.Explosive
             if (stateInfo.IsName("Explode") && stateInfo.normalizedTime >= 0.7f && !_hasDamaged)
             {
                 _hasDamaged = true;
-                foreach (var plant in _plantsInRange)
+                foreach (var entity in _entitiesInRange)
                 {
-                    if (plant is not null)
-                        plant.Damage(Enemy.enemyData.attackPower);
+                    if (entity is not null)
+                        entity.Damage(Enemy.enemyData.attackPower);
                 }
             }
             
@@ -44,13 +44,13 @@ namespace Enemy.States.Explosive
 
         private void GetEnemiesInExplodeRange()
         {
-            var plants =  Enemy.PlantTargetService.GetTargetsInRange();
+            var objects =  Enemy.PlantTargetService.GetTargetsInRange();
 
-            _plantsInRange = plants.Where(p =>
+            _entitiesInRange = objects.Where(p =>
             {
                 var distance = Vector2.Distance(Enemy.transform.position, p.transform.position);
                 return distance <= Enemy.enemyData.damageRange;
-            }).Select(p => p.GetComponent<Plant.Plant>()).ToList();
+            }).Select(p => p.GetComponent<Entity>()).ToList();
         }
     }
 }

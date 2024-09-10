@@ -34,7 +34,7 @@ namespace PickupableResource
                     SingletonGame.Instance.ResourceManager.Pickup(this);
                 }
 
-                SingletonGame.Instance.homeBase.UpdatetUI();
+                SingletonGame.Instance.homeBase.UpdateUI();
             }
         }
         

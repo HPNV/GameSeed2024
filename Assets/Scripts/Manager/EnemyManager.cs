@@ -55,7 +55,10 @@ namespace Manager
         public void Despawn(EnemyBehaviour enemy)
         {
             enemy.gameObject.SetActive(false);
+            enemy.enemyData = enemy.baseData;
             _enemyPool.Enqueue(enemy);
         }
+
+        
     }
 }

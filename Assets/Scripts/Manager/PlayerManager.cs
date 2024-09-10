@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Manager; // Assuming your AchievementManager is under Manager namespace
+using Manager;
+using Script; // Assuming your AchievementManager is under Manager namespace
 
 public class PlayerManager : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class PlayerManager : MonoBehaviour
     public int tutorialCompleted = 0;  
     private AchievementManager achievementManager;
 
+    private GameState _gameState;
+
     private void Start()
     {
         // Assuming the AchievementManager is on the same GameObject
         achievementManager = GetComponent<AchievementManager>();
+        _gameState = GameState.Play;
     }
 
     public void OnEnemyKilled()
@@ -45,6 +49,7 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerDied()
     {
+        _gameState = GameState.Dead;
         firstDie++;
         CheckDeathAchievements();
     }
