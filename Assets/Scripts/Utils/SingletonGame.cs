@@ -83,9 +83,9 @@ public class SingletonGame : MonoBehaviour
         foreach (var cardDisplay in cardDisplays) {
             EPlant ePlant;
             
-            do {
+            //do {
                 ePlant = plantFactory.GetRandomEPlant();
-            } while (assignedPlants.Contains(ePlant));
+           // } while (assignedPlants.Contains(ePlant));
 
             assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);

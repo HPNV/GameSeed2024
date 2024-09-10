@@ -26,11 +26,15 @@ namespace Projectile
 
         public void Initialize()
         {
-            var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            spriteRenderer.sprite = data.sprite;
-            var color = spriteRenderer.color;
-            color.a = 1;
-            spriteRenderer.color = color;
+            if (data.sprite is not null)
+            {
+                var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+                spriteRenderer.sprite = data.sprite;   
+                var color = spriteRenderer.color;
+                color.a = 1;
+                spriteRenderer.color = color;
+            }
+            
             transform.localScale = Vector3.one * data.scale;
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -83,17 +87,26 @@ namespace Projectile
 
         private void InitializeParticles()
         {
-            if (_particles != null)
+            if (_particles is not null)
             {
                 _particles.Stop();
                 Destroy(_particles.gameObject);
             }
-            
-            if (data.particles == null)
+
+            if (data.particles is null)
                 return;
+            
             
             _particles = Instantiate(data.particles, transform.position, Quaternion.identity);
             _particles.transform.parent = transform;
+            
+            if (!Direction.Equals(Vector2.zero))
+            {
+                var particlesMain = _particles.main;
+                
+                particlesMain.startRotation = -Mathf.Atan2(Direction.y, Direction.x);
+            }
+            
             _particles.Play();
         }
         

@@ -15,7 +15,7 @@ MonoBehaviour:
   plantType: 12
   health: 100
   damage: 0
-  attackCooldown: 0
+  attackCooldown: 1
   range: 10
   description: 
   hasCollider: 1

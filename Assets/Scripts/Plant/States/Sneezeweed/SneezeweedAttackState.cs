@@ -12,7 +12,6 @@ namespace Plant.States.Sneezeweed
 
         public override void OnEnter()
         {
-            base.OnEnter();
             _hasSpawnedProjectile = false;
         }
 
