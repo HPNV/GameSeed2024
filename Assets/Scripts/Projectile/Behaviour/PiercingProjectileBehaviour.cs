@@ -36,7 +36,7 @@ namespace Projectile.Behaviour
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             _enemiesHit.Add(enemy);
             
-            enemy.Damage(Projectile.data.attackPower);
+            enemy.Damage(Projectile.AttackPower);
         }
     }
 }

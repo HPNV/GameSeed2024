@@ -40,7 +40,11 @@ namespace Plant.States.Aloecure
             
             _hasSpawnedProjectile = true;
             
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Aloecure, Plant.transform.position);
+            SingletonGame.Instance.ProjectileManager.Spawn(
+                ProjectileName.Aloecure, 
+                Plant.transform.position,
+                Plant.Data.damage
+                );
         }
     }
 }

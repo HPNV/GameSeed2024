@@ -46,7 +46,11 @@ namespace Plant.States.Fan
             _hasSpawnedProjectile = true;
             var direction = (target.transform.position - Plant.transform.position).normalized;
             
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Fan, Plant.transform.position, direction: direction);
+            SingletonGame.Instance.ProjectileManager.Spawn(
+                ProjectileName.Fan, 
+                Plant.transform.position, 
+                Plant.Data.damage,
+                direction: direction);
         }
     }
 }

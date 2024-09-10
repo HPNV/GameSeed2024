@@ -47,7 +47,11 @@ namespace Plant.States.Cobcorn
             var hitTarget = targets.Take(SpawnProjectileCount).ToList();
 
             foreach (var target in hitTarget)
-                SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Cobcorn, Plant.transform.position, target: target.transform.position);
+                SingletonGame.Instance.ProjectileManager.Spawn(
+                    ProjectileName.Cobcorn, 
+                    Plant.transform.position, 
+                    Plant.Data.damage,
+                    target: target.transform.position);
         }
     }
 }

@@ -29,9 +29,10 @@ namespace Manager
                 { ProjectileName.Fan, Resources.Load<ProjectileData>("Projectile/FanProjectile") }
             };
         }
-        public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, Vector2? direction = null, Vector2? target = null)
+        public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, float attackPower, Vector2? direction = null, Vector2? target = null)
         {
-            Projectile.Projectile projectile = GetOrCreateProjectile();
+            var projectile = GetOrCreateProjectile();
+            projectile.AttackPower = attackPower;
             projectile.transform.position = position;
             projectile.data = _projectileData[type];
 

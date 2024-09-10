@@ -30,7 +30,7 @@ namespace Projectile.Behaviour
                 return;
             
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
-            enemy.Damage(Projectile.data.attackPower);
+            enemy.Damage(Projectile.AttackPower);
             
             SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
         }

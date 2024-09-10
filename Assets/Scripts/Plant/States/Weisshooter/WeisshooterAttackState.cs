@@ -46,7 +46,12 @@ namespace Plant.States.Weisshooter
             _hasSpawnedProjectile = true;
             var direction = (target.transform.position - Plant.transform.position).normalized;
             
-            SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Weisshooter, Plant.transform.position, direction: direction);
+            SingletonGame.Instance.ProjectileManager.Spawn(
+                ProjectileName.Weisshooter, 
+                Plant.transform.position, 
+                Plant.Data.damage, 
+                direction: direction
+            );
         }
     }
 }

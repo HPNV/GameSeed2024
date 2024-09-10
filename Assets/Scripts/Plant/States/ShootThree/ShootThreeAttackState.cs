@@ -69,6 +69,7 @@ namespace Plant.States.ShootThree
                 SingletonGame.Instance.ProjectileManager.Spawn(
                     ProjectileName.Duricane, 
                     Plant.transform.position, 
+                    Plant.Data.damage,
                     direction: rotatedDirection
                 );
             }
