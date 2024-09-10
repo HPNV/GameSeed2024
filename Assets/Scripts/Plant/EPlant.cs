@@ -12,6 +12,6 @@
     ShootThreePlant,
     ExplosiveMortarPlant,
     LuckPlant,
-    FanPlant,
+    Sneezeweed,
     Magnetsprout,
 }
