@@ -8,7 +8,7 @@
     Duricane,
     Aloecure,
     Bamburst,
-    WallPlant,
+    Cocowall,
     ShootThreePlant,
     ExplosiveMortarPlant,
     LuckPlant,

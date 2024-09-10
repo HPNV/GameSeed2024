@@ -88,7 +88,7 @@ namespace Plant.Factory
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
-               EPlant.WallPlant => new Dictionary<EPlantState, PlantState>
+               EPlant.Cocowall => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new PassiveIdleState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},

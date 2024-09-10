@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1030939505820627061, guid: c4db920df0183544eb05440533a18c71, type: 3}
-  spawnRate: 5
+  initialSpawnRate: 5
+  minSpawnRate: 0.5
+  spawnRateDecrease: 0.9
   spawnRadius: 40
-  spawnRateIncrease: 0.8
-  resetThreshold: 0.5
 --- !u!4 &31894473
 Transform:
   m_ObjectHideFlags: 0
@@ -2451,7 +2451,7 @@ Animator:
   m_GameObject: {fileID: 1009102850}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 96d7ada2e465a5647ac0dcd31d3dc466, type: 2}
+  m_Controller: {fileID: 9100000, guid: 123b60b228fd1bf42b844718c41f8c12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
