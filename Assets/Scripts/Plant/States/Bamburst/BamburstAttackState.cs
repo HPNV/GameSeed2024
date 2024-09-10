@@ -34,6 +34,7 @@ namespace Plant.States.Bamburst
                 return;
             
             _hasDamaged = true;
+            SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Bamburst Attack");
             var targets = Plant.TargetService.GetTargets();
 
             foreach (var target in targets)

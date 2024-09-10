@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  enemyName: Dep
-  health: 10
-  attackPower: 1
+  enemyName: Slime
+  health: 70
+  attackPower: 10
   attackRange: 1
   damageRange: 1
   movementSpeed: 2

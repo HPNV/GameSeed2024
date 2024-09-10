@@ -39,7 +39,7 @@ namespace Plant.States.Aloecure
                 return;
             
             _hasSpawnedProjectile = true;
-            
+            SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Heal");
             SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Aloecure, Plant.transform.position);
         }
     }

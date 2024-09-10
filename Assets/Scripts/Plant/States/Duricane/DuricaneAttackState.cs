@@ -66,6 +66,7 @@ namespace Plant.States.Duricane
                 var rotatedDirection = rotation * direction;
                 
                 SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Duricane, Plant.transform.position, direction: rotatedDirection);
+                SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cobcorn Attack");
                 yield return new WaitForSeconds(0.025f);
             }
         }

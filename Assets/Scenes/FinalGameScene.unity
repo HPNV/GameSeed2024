@@ -1365,7 +1365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &571651044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2561,6 +2561,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1060248453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8810525150189405065, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+  m_PrefabInstance: {fileID: 1938278133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510584bf68bda054a9749e7b6ecbf519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1062475341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5598,6 +5609,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1199031377}
     - target: {fileID: 8810525150189405065, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 1280889165}
+    - target: {fileID: 8810525150189405065, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
       propertyPath: waterText
       value: 
       objectReference: {fileID: 415232436}
@@ -6176,7 +6191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e848c40ac6e7e40a93d18e4b3da706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeBase: {fileID: 0}
+  homeBase: {fileID: 1060248453}
   plantFactory: {fileID: 1280682889}
   card1: {fileID: 1450221534}
   card2: {fileID: 1390753079}

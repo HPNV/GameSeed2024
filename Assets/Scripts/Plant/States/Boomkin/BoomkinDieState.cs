@@ -36,7 +36,7 @@ namespace Plant.States.Boomkin
                 return;
             
             _hasDamaged = true;
-
+            SoundFXManager.instance.PlayGameSoundOnce("Audio/Explode");
             var targets = Plant.TargetService.GetTargets()
                 .Where(e => e is not null && 
                         Vector2.Distance(e.transform.position, Plant.transform.position) < Plant.Data.range)

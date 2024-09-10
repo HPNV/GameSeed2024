@@ -28,8 +28,9 @@ namespace Plant.States.Cobcorn
                 _hasSpawnedProjectile = false;
     
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.8)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.8) {
                 SpawnProjectile();
+            }
         }
         
         private void SpawnProjectile()
@@ -46,8 +47,10 @@ namespace Plant.States.Cobcorn
 
             var hitTarget = targets.Take(SpawnProjectileCount).ToList();
 
-            foreach (var target in hitTarget)
+            foreach (var target in hitTarget) {
                 SingletonGame.Instance.ProjectileManager.Spawn(ProjectileName.Cobcorn, Plant.transform.position, target: target.transform.position);
+                SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cobcorn Attack");
+           }
         }
     }
 }

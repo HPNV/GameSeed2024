@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Explosive
   m_EditorClassIdentifier: 
-  enemyName: Dep
-  health: 15
+  enemyName: Bomb Slime
+  health: 20
   attackPower: 50
   attackRange: 1
   damageRange: 5

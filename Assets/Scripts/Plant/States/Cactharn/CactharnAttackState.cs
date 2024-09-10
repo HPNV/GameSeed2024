@@ -29,6 +29,7 @@ namespace Plant.States.Cactharn
             
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
             {
+                SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cactharn Attack");
                 SpawnProjectile();
             }
         }

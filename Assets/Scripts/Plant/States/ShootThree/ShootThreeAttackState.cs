@@ -51,7 +51,7 @@ namespace Plant.States.ShootThree
             _hasSpawnedProjectile = true;
             
             var direction = (target.transform.position - Plant.transform.position).normalized;
-            
+            SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cobcorn Attack");
             for (var i = 0; i < 3; i++)
             {
                 var angle = i switch
@@ -79,8 +79,10 @@ namespace Plant.States.ShootThree
         {
             base.OnExit();
             
-            if (_spawnProjectileCoroutine is not null)
+            if (_spawnProjectileCoroutine is not null) {
                 Plant.StopCoroutine(_spawnProjectileCoroutine);
+
+            }
         }
     }
 }
