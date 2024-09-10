@@ -43,7 +43,7 @@ public class GameGrid : MonoBehaviour
                 Slots[spawnedTile] = null;
             }
         }
-
+        
         
         // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
         // _cam.transform.position  = temp;
