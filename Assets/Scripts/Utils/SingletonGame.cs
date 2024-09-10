@@ -17,7 +17,6 @@ public class SingletonGame : MonoBehaviour
     public static SingletonGame Instance { get; private set; }
     [SerializeField] public HomeBase homeBase;
     [SerializeField] public PlantFactory plantFactory;
-
     [SerializeField] public CardDisplay card1;
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
@@ -36,6 +35,8 @@ public class SingletonGame : MonoBehaviour
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
     public EnemyManager EnemyManager { get; set; } = new();
+    public PlayerManager PlayerManager { get; set; } = new();
+    public AchievementManager AchievementManager { get; set; } = new();
 
 
     [SerializeField] private GameObject CardDisplayPrefab;

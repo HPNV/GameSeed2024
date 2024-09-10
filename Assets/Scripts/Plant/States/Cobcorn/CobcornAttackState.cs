@@ -53,7 +53,7 @@ namespace Plant.States.Cobcorn
                     Plant.transform.position, 
                     Plant.Data.damage,
                     target: target.transform.position);
-                SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cobcorn Attack");
+                SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cactharn Attack");
             }
         }
     }

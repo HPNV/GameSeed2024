@@ -12,6 +12,7 @@ public class HomeBase : MonoBehaviour
     [SerializeField] TextMeshPro waterText;
     [SerializeField] TextMeshPro sunText;
     [SerializeField] TextMeshPro levelText;
+    [SerializeField] TextMeshPro scoreText;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
@@ -19,6 +20,7 @@ public class HomeBase : MonoBehaviour
     private float maxHealth = 100f;
     private int water = 0;
     private int sun = 0;
+    private int score = 0;
 
 
     void Start()
@@ -54,6 +56,11 @@ public class HomeBase : MonoBehaviour
         UpdatetUI();
     }
 
+    public void GainScore(int score) {
+        this.score += score;
+        UpdatetUI();
+    }
+
     public void UpdatetUI() {
         expBar.Exp = currentExp;
         expBar.setMaxValue(expToNextLevel);
@@ -62,13 +69,14 @@ public class HomeBase : MonoBehaviour
         waterText.text = water.ToString();
         sunText.text = sun.ToString();
         levelText.text = "Lvl " + currentLevel.ToString();
+        scoreText.text = score.ToString();
     }
 
     public void TakeDamage(float damage) {
         CurrentHealth -= damage;
         UpdatetUI();
         if(CurrentHealth <= 0) {
-            
+            SingletonGame.Instance.PlayerManager.OnPlayerDied();
         }
     }
 

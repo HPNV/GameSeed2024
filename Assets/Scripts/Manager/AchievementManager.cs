@@ -7,8 +7,6 @@ namespace Manager
     public class AchievementManager
     {
         private Dictionary<string, AchievementData> _achievementData = new();
-
-        
         private List<AchievementData> _unlockedAchievements = new();
 
 
