@@ -29,7 +29,6 @@ namespace Plant
 
         private void Update()
         {
-            Debug.Log($"Plant level: {plant.Data.level}");
 
             if (Input.GetMouseButtonDown(0))
             {

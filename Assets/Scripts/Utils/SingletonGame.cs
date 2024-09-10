@@ -61,7 +61,7 @@ public class SingletonGame : MonoBehaviour
         ProjectileManager.Initialize();
         EnemyManager.Initialize();
         SoundFXManager.Initialize();
-        SoundFXManager.instance.PlayGameSound("Audio/Game Music"); 
+        SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);
         cardDisplays.Add(card3);
@@ -84,9 +84,9 @@ public class SingletonGame : MonoBehaviour
         foreach (var cardDisplay in cardDisplays) {
             EPlant ePlant;
             
-            do {
+            //do {
                 ePlant = plantFactory.GetRandomEPlant();
-            } while (assignedPlants.Contains(ePlant));
+           // } while (assignedPlants.Contains(ePlant));
 
             assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);
@@ -118,6 +118,13 @@ public class SingletonGame : MonoBehaviour
     public void ResumeGame() {
         Time.timeScale = 1;
         IsPaused = false;
+    }
+
+    public void Tutorial() {
+        if(PlayerManager.tutorialCompleted == 0) {
+            PauseGame();
+            
+        }
     }
 
 }

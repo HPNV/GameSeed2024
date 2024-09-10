@@ -15,6 +15,7 @@ namespace Plant.States
         {
             var targets = Plant.TargetService.GetTargets();
             
+            Debug.Log($"TARGET {targets.Count}");
             if (targets.Count == 0)
             { 
                 Plant.ChangeState(EPlantState.Idle);

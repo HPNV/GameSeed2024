@@ -25,14 +25,16 @@ namespace Manager
             };
         }
         
-        public GameObject Spawn(EnemyType type, Vector2 position)
+        public GameObject Spawn(EnemyType type, Vector2 position, float multiplier)
         {
             if (_enemyPool.Count == 0)
             {
                 var enemyObject = Object.Instantiate(_enemyPrefab, position, Quaternion.identity);
                 var enemyBehaviour = enemyObject.GetComponent<EnemyBehaviour>();
                 enemyBehaviour.enemyData = _enemyData[type];
-                
+                enemyBehaviour.enemyData.health *= multiplier;
+                enemyBehaviour.enemyData.attackPower *= multiplier;
+                enemyBehaviour.enemyData.movementSpeed *= multiplier;
                 return enemyObject;
             }
             
@@ -40,6 +42,10 @@ namespace Manager
             
             enemy.transform.position = position;
             enemy.enemyData = _enemyData[type];
+            enemy.enemyData.health *= multiplier;
+            enemy.enemyData.attackPower *= multiplier;
+            enemy.enemyData.movementSpeed *= multiplier;
+
             enemy.gameObject.SetActive(true);
             enemy.Initialize();
             
@@ -49,7 +55,10 @@ namespace Manager
         public void Despawn(EnemyBehaviour enemy)
         {
             enemy.gameObject.SetActive(false);
+            enemy.enemyData = enemy.baseData;
             _enemyPool.Enqueue(enemy);
         }
+
+        
     }
 }

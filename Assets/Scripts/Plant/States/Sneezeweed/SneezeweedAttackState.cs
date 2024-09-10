@@ -3,16 +3,15 @@ using Manager;
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.Fan
+namespace Plant.States.Sneezeweed
 {
-    public class FanAttackState : PlantAttackState
+    public class SneezeweedAttackState : PlantAttackState
     {
         private bool _hasSpawnedProjectile;
-        public FanAttackState(Plant plant) : base(plant){}
+        public SneezeweedAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {
-            base.OnEnter();
             _hasSpawnedProjectile = false;
         }
 
@@ -22,12 +21,12 @@ namespace Plant.States.Fan
             
             var stateInfo = Plant.Animator.GetCurrentAnimatorStateInfo(0);
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime < 0.5)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime < 0.2)
             {
                 _hasSpawnedProjectile = false;
             }
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.2)
             {
                 SpawnProjectile();
             }

@@ -15,10 +15,12 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 1f;
     private float spawnRate;
     private float spawnTimer = 0f;
+    private float multiplier = 1f;
 
     private void Start()
     {
         spawnRate = initialSpawnRate;
+        IncreaseStrengthOverTime();
     }
 
     private void Update()
@@ -55,15 +57,15 @@ public class Spawner : MonoBehaviour
         
         if (enemyGacha < 40)
         {
-            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Ranged, spawnPosition);
+            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Ranged, spawnPosition,multiplier);
         }
         else if (enemyGacha < 80)
         {
-            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Explosive, spawnPosition);
+            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Explosive, spawnPosition,multiplier);
         }
         else
         {
-            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Melee, spawnPosition);
+            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Melee, spawnPosition,multiplier);
         }
     }
 
@@ -72,4 +74,13 @@ public class Spawner : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
+
+    private IEnumerator IncreaseStrengthOverTime()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(30f); // Wait 30 seconds
+                multiplier += 0.2f; // Multiply strength by 1.2 (increase by 20%)
+            }
+        }
 }
