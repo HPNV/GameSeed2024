@@ -93,7 +93,7 @@ namespace Projectile
                 Destroy(_particles.gameObject);
             }
 
-            if (data.particles is null)
+            if (data.particles == null)
                 return;
             
             
