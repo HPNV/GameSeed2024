@@ -16,6 +16,7 @@ namespace Enemy
     {
         [SerializeField] 
         public EnemyData enemyData;
+        public EnemyData baseData;
         public float CurrentHealth { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
@@ -40,6 +41,7 @@ namespace Enemy
             CurrentHealth = enemyData.health;
             PlantTargetService = GetComponentInChildren<PlantTargetService>(); 
             _originalColor = SpriteRenderer.color;
+            baseData = enemyData;
             
             SetupStates();
             SetupAnimationController();
