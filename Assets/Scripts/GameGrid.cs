@@ -15,6 +15,11 @@ public class GameGrid : MonoBehaviour
     private Tile tilePrefab;
     public Dictionary<Vector2, Tile> Tiles { get; private set; }
     public Dictionary<Tile, GameObject> Slots { get; private set; }
+    [SerializeField] private List<Sprite> cornerSprites;
+    [SerializeField] private List<Sprite> sideSpritesTop;
+    [SerializeField] private List<Sprite> sideSpritesLeft;
+    [SerializeField] private List<Sprite> sideSpritesRight;
+    [SerializeField] private List<Sprite> sideSpritesBottom;
     
     void Start()
     {
@@ -42,7 +47,7 @@ public class GameGrid : MonoBehaviour
                 Slots[spawnedTile] = null;
             }
         }
-
+        
         
         // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
         // _cam.transform.position  = temp;
