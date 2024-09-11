@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
-  m_Name: AloecureProjectile
+  m_Name: AloecuraProjectile
   m_EditorClassIdentifier: 
   projectileType: 4
   movementSpeed: 8

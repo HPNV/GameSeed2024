@@ -38,7 +38,7 @@ namespace Projectile.Behaviour
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             _plantsHit.Add(plant);
 
-            if (plant.Data.plantType == EPlant.Aloecure)
+            if (plant.Data.plantType == EPlant.Aloecura)
                 return;
             
             plant.Heal(Projectile.AttackPower);

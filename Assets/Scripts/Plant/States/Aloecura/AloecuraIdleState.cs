@@ -2,12 +2,12 @@
 using Experience;
 using UnityEngine;
 
-namespace Plant.States.Aloecure
+namespace Plant.States.Aloecura
 {
-    public class AloecureIdleState : PlantIdleState
+    public class AloecuraIdleState : PlantIdleState
     {
         private Coroutine _healCoroutine;
-        public AloecureIdleState(Plant plant) : base(plant) {}
+        public AloecuraIdleState(Plant plant) : base(plant) {}
 
 
         public override void OnEnter()

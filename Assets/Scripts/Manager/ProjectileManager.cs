@@ -24,7 +24,7 @@ namespace Manager
                 { ProjectileName.Cobcorn, Resources.Load<ProjectileData>("Projectile/CobcornProjectile") },
                 { ProjectileName.Weisshooter, Resources.Load<ProjectileData>("Projectile/WeisshooterProjectile") },
                 { ProjectileName.Duricane, Resources.Load<ProjectileData>("Projectile/DuricaneProjectile") },
-                { ProjectileName.Aloecure, Resources.Load<ProjectileData>("Projectile/AloecureProjectile") },
+                { ProjectileName.Aloecura, Resources.Load<ProjectileData>("Projectile/AloecuraProjectile") },
                 { ProjectileName.Explomato, Resources.Load<ProjectileData>("Projectile/ExplomatoProjectile") },
                 { ProjectileName.Sneezeweed, Resources.Load<ProjectileData>("Projectile/SneezeweedProjectile") },
                 { ProjectileName.Triblastberry, Resources.Load<ProjectileData>("Projectile/TriblastberryProjectile") }
@@ -94,7 +94,7 @@ namespace Manager
         Cobcorn,
         Weisshooter,
         Duricane,
-        Aloecure,
+        Aloecura,
         Explomato,
         Sneezeweed,
         Triblastberry

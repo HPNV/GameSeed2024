@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Plant.States;
-using Plant.States.Aloecure;
+using Plant.States.Aloecura;
 using Plant.States.Bamburst;
 using Plant.States.Boomkin;
 using Plant.States.Cactharn;
@@ -67,11 +67,11 @@ namespace Plant.Factory
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 },
-                EPlant.Aloecure => new Dictionary<EPlantState, PlantState>
+                EPlant.Aloecura => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Grow , new PlantGrowState(plant)},
-                    { EPlantState.Idle , new AloecureIdleState(plant)},
-                    { EPlantState.Attack , new AloecureAttackState(plant)},
+                    { EPlantState.Idle , new AloecuraIdleState(plant)},
+                    { EPlantState.Attack , new AloecuraAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 },

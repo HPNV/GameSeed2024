@@ -3,13 +3,13 @@ using Manager;
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.Aloecure
+namespace Plant.States.Aloecura
 {
-    public class AloecureAttackState : PlantAttackState
+    public class AloecuraAttackState : PlantAttackState
     {
         private bool _hasSpawnedProjectile;
         private static readonly int AttackTrigger = Animator.StringToHash("Attack");
-        public AloecureAttackState(Plant plant) : base(plant){}
+        public AloecuraAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {
@@ -42,7 +42,7 @@ namespace Plant.States.Aloecure
             SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Heal");
             
             SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.Aloecure, 
+                ProjectileName.Aloecura, 
                 Plant.transform.position,
                 Plant.Data.damage
             );
