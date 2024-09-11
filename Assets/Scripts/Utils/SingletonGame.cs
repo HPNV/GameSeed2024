@@ -56,6 +56,7 @@ public class SingletonGame : MonoBehaviour
 
     private void Initialize()
     {
+        PauseGame();
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
