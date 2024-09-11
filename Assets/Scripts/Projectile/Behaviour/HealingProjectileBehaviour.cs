@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Enemy;
+using Plant;
 using UnityEngine;
 
 namespace Projectile.Behaviour

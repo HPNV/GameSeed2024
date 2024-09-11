@@ -6,7 +6,7 @@ using Plant.States.Boomkin;
 using Plant.States.Cactharn;
 using Plant.States.Cobcorn;
 using Plant.States.Duricane;
-using Plant.States.ExplosiveMortar;
+using Plant.States.Explomato;
 using Plant.States.Sneezeweed;
 using Plant.States.Magnetsprout;
 using Plant.States.Triblastberry;
@@ -75,10 +75,10 @@ namespace Plant.Factory
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
-               EPlant.ExplosiveMortarPlant => new Dictionary<EPlantState, PlantState>
+               EPlant.Explomato => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new PlantIdleState(plant)},
-                   { EPlantState.Attack , new ExplosiveMortarAttackState(plant)},
+                   { EPlantState.Attack , new ExplomatoAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
