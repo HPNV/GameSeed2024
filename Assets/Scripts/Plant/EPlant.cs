@@ -11,7 +11,7 @@
     Cocowall,
     Triblastberry,
     ExplosiveMortarPlant,
-    LuckPlant,
+    Luckyclover,
     Sneezeweed,
     Magnetsprout,
 }

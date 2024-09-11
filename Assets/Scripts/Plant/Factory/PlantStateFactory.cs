@@ -94,7 +94,7 @@ namespace Plant.Factory
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
-               EPlant.LuckPlant => new Dictionary<EPlantState, PlantState>
+               EPlant.Luckyclover => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new PassiveIdleState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},

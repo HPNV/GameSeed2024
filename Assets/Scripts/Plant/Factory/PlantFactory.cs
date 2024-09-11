@@ -52,7 +52,7 @@ namespace Plant.Factory
             var newPlant = GeneratePlant(ePlant).GetComponent<Plant>();
             newPlant.ChangeState(EPlantState.Select);
 
-            if (newPlant.Data.plantType == EPlant.LuckPlant)
+            if (newPlant.Data.plantType == EPlant.Luckyclover)
             {
                 SingletonGame.Instance.ResourceManager.LuckModifier += 0.01;
             }
