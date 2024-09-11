@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using Plant;
+using TMPro;
 
 public class SeedpediaHandler : MonoBehaviour
 {
@@ -12,7 +14,14 @@ public class SeedpediaHandler : MonoBehaviour
     [SerializeField] private Sprite backgroundSprite;
 
     [SerializeField] private GameObject seedDetail;
-    
+    [SerializeField] private GameObject plantImage;
+    [SerializeField] private TextMeshProUGUI plantName;
+    [SerializeField] private TextMeshProUGUI plantDescription;
+    [SerializeField] private TextMeshProUGUI healthValue;
+    [SerializeField] private TextMeshProUGUI atkValue;
+    [SerializeField] private TextMeshProUGUI atkSpeedValue;
+    [SerializeField] private TextMeshProUGUI growTimeValue;
+
     private List<Dictionary<string, object>> seedpediaList = new List<Dictionary<string, object>>();
 
     void Start()
@@ -131,6 +140,44 @@ public class SeedpediaHandler : MonoBehaviour
 
     private void OnButtonClick(Dictionary<string, object> data)
     {
-        Debug.Log(data["id"]);
+        string plantId = data["id"].ToString();
+        string plantDescriptionText = data["description"].ToString();
+        string healthValue = data["health"].ToString();
+        string atkValue = data["atk"].ToString();
+        string atkSpeedValue = data["atk_speed"].ToString();
+        string growTimeValue = data["grow_time"].ToString();
+    
+        string imagePath = "Images/Plant/" + plantId + "/Idle/idle_2";
+    
+        Sprite plantSprite = Resources.Load<Sprite>(imagePath);
+        
+        Debug.Log("Image Path: " + plantSprite);
+
+        var plantSpriteRenderer = plantImage.GetComponent<SpriteRenderer>();
+        var plantAnimator = plantImage.GetComponent<Animator>();
+    
+        if (plantSprite != null)
+        {
+            plantSpriteRenderer.sprite = plantSprite;
+            
+            plantSpriteRenderer.transform.localScale = new Vector3(320f, 320f, 4f);
+            plantSpriteRenderer.transform.localPosition = new Vector3(330f, 37f, -201f);
+            
+            PlantData a = Resources.Load<PlantData>("Plant/" + plantId);
+
+            plantAnimator.runtimeAnimatorController = a.animatorController;
+            plantAnimator.Play("Idle");
+        }
+        else
+        {
+            Debug.LogError("Sprite not found at path: " + imagePath);
+        }
+        
+        this.plantName.text = plantId;
+        this.plantDescription.text = plantDescriptionText;
+        this.healthValue.text = healthValue;
+        this.atkValue.text = atkValue;
+        this.atkSpeedValue.text = atkSpeedValue;
+        this.growTimeValue.text = growTimeValue;
     }
 }
