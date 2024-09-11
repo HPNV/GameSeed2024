@@ -95,6 +95,6 @@ public class HomeBase : Entity
 
     protected override void OnDie()
     {
-        SingletonGame.Instance.PlayerManager.OnPlayerDied();
+        SingletonGame.Instance.LoseGame();
     }
 }

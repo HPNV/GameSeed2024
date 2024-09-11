@@ -14,13 +14,13 @@ public class PlayerManager : MonoBehaviour
     public int tutorialCompleted = 0;  
     private AchievementManager achievementManager;
 
-    private GameState _gameState;
+    
 
     private void Start()
     {
         // Assuming the AchievementManager is on the same GameObject
         achievementManager = GetComponent<AchievementManager>();
-        _gameState = GameState.Play;
+        
     }
 
     public void OnEnemyKilled()
@@ -49,7 +49,6 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerDied()
     {
-        _gameState = GameState.Dead;
         firstDie++;
         CheckDeathAchievements();
     }

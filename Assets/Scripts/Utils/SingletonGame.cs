@@ -11,6 +11,7 @@ using Plant.Factory;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using ResourceManager = Manager.ResourceManager;
+using Script;
 
 public class SingletonGame : MonoBehaviour
 {
@@ -20,9 +21,11 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public CardDisplay card1;
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
+    [SerializeField] private GameObject loseScreen;
 
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
     private AudioClip gameMusic; 
+    private GameState _gameState;
     
     public TileService TileProvider;
     public GameGrid GameGrid;
@@ -65,6 +68,8 @@ public class SingletonGame : MonoBehaviour
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);
         cardDisplays.Add(card3);
+        
+        _gameState = GameState.Play;
     }
 
     private void Update()
@@ -73,7 +78,6 @@ public class SingletonGame : MonoBehaviour
     }
 
     void Start() {
-
     }
 
     public void SpawnPlant() {
@@ -118,6 +122,13 @@ public class SingletonGame : MonoBehaviour
     public void ResumeGame() {
         Time.timeScale = 1;
         IsPaused = false;
+    }
+
+    public void LoseGame()
+    {
+        PauseGame();
+        loseScreen.SetActive(true);
+        PlayerManager.OnPlayerDied();
     }
 
     public void Tutorial() {
