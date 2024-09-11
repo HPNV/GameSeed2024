@@ -9,6 +9,7 @@ using Plant.States.Duricane;
 using Plant.States.Explomato;
 using Plant.States.Sneezeweed;
 using Plant.States.Magnesprout;
+using Plant.States.Swiftglory;
 using Plant.States.Triblastberry;
 using Plant.States.Weisshooter;
 
@@ -125,6 +126,14 @@ namespace Plant.Factory
                    { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new MagnesproutIdleState(plant)},
                    { EPlantState.Attack , new MagnesproutAttackState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
+               EPlant.Swiftglory => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
+                   { EPlantState.Idle , new SwiftgloryIdleState(plant)},
+                   { EPlantState.Attack , new SwiftgloryAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },

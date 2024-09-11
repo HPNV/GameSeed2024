@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Projectile.Behaviour
 {
-    public class HealingProjectileBehaviour : ProjectileBaseBehaviour
+    public class SpeedingProjectileBehaviour : ProjectileBaseBehaviour
     {
         private readonly Rigidbody2D _rigidbody2D;
         private readonly HashSet<Plant.Plant> _plantsHit = new ();
 
-        public HealingProjectileBehaviour(Projectile projectile) : base(projectile)
+        public SpeedingProjectileBehaviour(Projectile projectile) : base(projectile)
         {
             _rigidbody2D = Projectile.GetComponent<Rigidbody2D>();
             _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition;
@@ -47,9 +47,10 @@ namespace Projectile.Behaviour
             if (plant.Data.plantType == EPlant.Aloecura)
                 return;
             
-            plant.Heal(Projectile.AttackPower);
+            Debug.Log("SPEED UP");
+            plant.SpeedUp(Projectile.AttackPower);
         }
-        
+
         public override void OnDespawn()
         {
             base.OnDespawn();

@@ -23,7 +23,7 @@ public class HomeBase : Entity
 
     void Start()
     {
-        InitHealth(startHealth, startHealth);
+        Init(startHealth, startHealth);
         UpdateUI();
     }
 
@@ -97,4 +97,8 @@ public class HomeBase : Entity
     {
         SingletonGame.Instance.LoseGame();
     }
+
+    protected override void OnSpeedUp() { }
+
+    protected override void OnSpeedUpClear() { }
 }

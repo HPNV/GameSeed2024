@@ -43,7 +43,7 @@ namespace Enemy
             _originalColor = SpriteRenderer.color;
             
             InnerCircleCollider.enabled = true;
-            InitHealth(enemyData.health, enemyData.health);
+            Init(enemyData.health, enemyData.health);
             SetupStates();
             SetupAnimationController();
         }
@@ -123,6 +123,16 @@ namespace Enemy
         {
             if (_currentState is not DieState)
                 ChangeState(State.Die);
+        }
+
+        protected override void OnSpeedUp()
+        {
+            Animator.speed += 0.05f;
+        }
+
+        protected override void OnSpeedUpClear()
+        {
+            Animator.speed -= 0.05f;
         }
 
         public void ChangeState(State state)

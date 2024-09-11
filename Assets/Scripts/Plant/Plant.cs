@@ -54,7 +54,7 @@ namespace Plant
                     Destroy(collider2d);
             }
             
-            InitHealth(_data.health, _data.health);
+            Init(_data.health, _data.health);
             InitState();
             InitTargetService();
         }
@@ -118,7 +118,17 @@ namespace Plant
             if (CurrentState != EPlantState.Die)
                 ChangeState(EPlantState.Die);
         }
-        
+
+        protected override void OnSpeedUp()
+        {
+            Animator.speed += 0.5f;
+        }
+
+        protected override void OnSpeedUpClear()
+        {
+            Animator.speed -= 0.5f;
+        }
+
         private IEnumerator Flash(Color color)
         {
             _spriteRenderer.color = color;

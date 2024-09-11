@@ -27,7 +27,8 @@ namespace Manager
                 { ProjectileName.Aloecura, Resources.Load<ProjectileData>("Projectile/AloecuraProjectile") },
                 { ProjectileName.Explomato, Resources.Load<ProjectileData>("Projectile/ExplomatoProjectile") },
                 { ProjectileName.Sneezeweed, Resources.Load<ProjectileData>("Projectile/SneezeweedProjectile") },
-                { ProjectileName.Triblastberry, Resources.Load<ProjectileData>("Projectile/TriblastberryProjectile") }
+                { ProjectileName.Triblastberry, Resources.Load<ProjectileData>("Projectile/TriblastberryProjectile") },
+                { ProjectileName.Swiftglory, Resources.Load<ProjectileData>("Projectile/SwiftgloryProjectile") }
             };
         }
         public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, float attackPower, Vector2? direction = null, Vector2? target = null)
@@ -97,6 +98,7 @@ namespace Manager
         Aloecura,
         Explomato,
         Sneezeweed,
-        Triblastberry
+        Triblastberry,
+        Swiftglory
     }
 }
