@@ -22,6 +22,11 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
     [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject Tutorial1;
+    [SerializeField] private GameObject Tutorial2;
+
+    private int Tutorial1Check = 0;
+    private int Tutorial2Check = 0;
 
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
     private AudioClip gameMusic; 
@@ -30,8 +35,7 @@ public class SingletonGame : MonoBehaviour
     public TileService TileProvider;
     public GameGrid GameGrid;
     public bool IsPaused { get; private set; }
-    
-    // [SerializeField] public TileProviderService TileProvider;
+
     public int ExpPoint;
 
     public ResourceManager ResourceManager { get; set; } = new();
@@ -59,7 +63,6 @@ public class SingletonGame : MonoBehaviour
 
     private void Initialize()
     {
-        PauseGame();
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
@@ -71,11 +74,46 @@ public class SingletonGame : MonoBehaviour
         cardDisplays.Add(card3);
         
         _gameState = GameState.Play;
+
+        if(PlayerManager.tutorialCompleted == 0) {
+            Tutorial();
+        }
+    }
+
+    private void Tutorial() {
+        PauseGame();
+        Tutorial1.SetActive(true);
+    }
+
+    private void checkTutorial() {
+        if(Tutorial1Check == 0) {
+            if(Input.GetKeyDown(KeyCode.Mouse0)) {
+                Tutorial1Check = 1;
+                Tutorial1.SetActive(false);
+                ResumeGame();
+            }
+        }
+
+        if(homeBase.sun == 5 && Tutorial2Check == 0) {
+            Tutorial2.SetActive(true);
+            Tutorial2Check = 1;
+            PauseGame();
+        }
+
+        if(Tutorial2Check == 1) {
+            if(Input.GetKeyDown(KeyCode.Mouse0)) {
+                Tutorial2Check = 2;
+                Tutorial2.SetActive(false);
+                ResumeGame();
+            }
+        }
     }
 
     private void Update()
     {
-        
+        if(PlayerManager.tutorialCompleted == 0) {
+            checkTutorial();
+        }
     }
 
     void Start() {
@@ -131,12 +169,4 @@ public class SingletonGame : MonoBehaviour
         loseScreen.SetActive(true);
         PlayerManager.OnPlayerDied();
     }
-
-    public void Tutorial() {
-        if(PlayerManager.tutorialCompleted == 0) {
-            PauseGame();
-            
-        }
-    }
-
 }

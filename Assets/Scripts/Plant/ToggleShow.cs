@@ -60,6 +60,7 @@ namespace Plant
         }
 
         public void Upgrade() {
+            if(SingletonGame.Instance.homeBase.sun < 5) return;
             if(plant.Data.level == 3) return;
             PlantData plantData = plant.Data;
             plantData.health += plantData.health * 0.3f;

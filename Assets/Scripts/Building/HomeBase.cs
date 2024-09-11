@@ -17,8 +17,8 @@ public class HomeBase : Entity
     private int currentExp = 0;
     private int expToNextLevel = 100;
     [SerializeField] private float startHealth;
-    private int water = 0;
-    private int sun = 0;
+    public int water = 0;
+    public int sun = 0;
     private int score = 0;
 
     void Start()
