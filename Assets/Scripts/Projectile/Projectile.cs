@@ -14,6 +14,8 @@ namespace Projectile
         public IProjectileBehaviour Behaviour { get; set; }
         public float AttackPower { get; set; }
         public GameObject SpriteObject { get; set; }
+        public SpriteRenderer SpriteRenderer { get; set; }
+        public Animator Animator { get; set; }
         
         
         private Coroutine _destroyCoroutine;
@@ -26,17 +28,26 @@ namespace Projectile
 
         public void Initialize()
         {
+            SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            Animator = GetComponentInChildren<Animator>();
+            
             if (data.sprite is not null)
             {
-                var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-                spriteRenderer.sprite = data.sprite;   
-                var color = spriteRenderer.color;
-                color.a = 1;
-                spriteRenderer.color = color;
+                SpriteRenderer.sprite = data.sprite;
+                Animator.runtimeAnimatorController = null;
             }
             
+            if (data.animatorController is not null)
+            {
+                Animator.runtimeAnimatorController = data.animatorController;
+                SpriteRenderer.sprite = null;
+            }
+            
+            var color = SpriteRenderer.color;
+            color.a = 1;
+            SpriteRenderer.color = color;
+            
             transform.localScale = Vector3.one * data.scale;
-
             transform.rotation = Quaternion.Euler(0, 0, 0);
             
             if (!Direction.Equals(Vector2.zero))
@@ -46,12 +57,14 @@ namespace Projectile
                 transform.rotation = Quaternion.Euler(0, 0, angle);
             }
             
+            InitializeParticles();
+            InitializeBehaviour();
+            
             _destroyCoroutine = StartCoroutine(DestroyAfterTime());
             
             SpriteObject = transform.GetChild(0).gameObject;
+            SpriteObject.transform.localScale = Vector3.one;
             
-            InitializeParticles();
-            InitializeBehaviour();
 
             var circleCollider2D = GetComponent<CircleCollider2D>();
 
@@ -87,7 +100,7 @@ namespace Projectile
 
         private void InitializeParticles()
         {
-            if (_particles is not null)
+            if (_particles != null)
             {
                 _particles.Stop();
                 Destroy(_particles.gameObject);
@@ -123,6 +136,8 @@ namespace Projectile
                 ProjectileType.Knockback => new KnockbackProjectileBehaviour(this),
                 _ => null
             };
+            
+            Debug.Log("PROJECTILE RE INITIALIZED");
         }
     }
 }

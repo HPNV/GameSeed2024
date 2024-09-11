@@ -4,12 +4,12 @@ using Manager;
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.ExplosiveMortar
+namespace Plant.States.Explomato
 {
-    public class ExplosiveMortarAttackState : PlantAttackState
+    public class ExplomatoAttackState : PlantAttackState
     {
         private bool _hasSpawnedProjectile;
-        public ExplosiveMortarAttackState(Plant plant) : base(plant){}
+        public ExplomatoAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {
@@ -44,7 +44,7 @@ namespace Plant.States.ExplosiveMortar
             _hasSpawnedProjectile = true;
 
             SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.ExplosiveMortar, 
+                ProjectileName.Explomato, 
                 Plant.transform.position, 
                 Plant.Data.damage,
                 target: target.transform.position);

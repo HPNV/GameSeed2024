@@ -43,7 +43,7 @@ namespace Plant.Factory
 
         public EPlant GetRandomEPlant()
         {
-            //return plants.Where(p => p == EPlant.Sneezeweed).OrderBy(c => Random.value).FirstOrDefault();
+            //return plants.Where(p => p == EPlant.Explomato).OrderBy(c => Random.value).FirstOrDefault();
             return plants.OrderBy(c => Random.value).FirstOrDefault();
         }
 
@@ -52,7 +52,7 @@ namespace Plant.Factory
             var newPlant = GeneratePlant(ePlant).GetComponent<Plant>();
             newPlant.ChangeState(EPlantState.Select);
 
-            if (newPlant.Data.plantType == EPlant.LuckPlant)
+            if (newPlant.Data.plantType == EPlant.Luckyclover)
             {
                 SingletonGame.Instance.ResourceManager.LuckModifier += 0.01;
             }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
-  m_Name: ExplosiveMortar
+  m_Name: ExplomatoProjectile
   m_EditorClassIdentifier: 
   projectileType: 5
-  attackPower: 1
   movementSpeed: 10
-  attackRadius: 5
+  attackRadius: 4
   lifetime: 10
-  sprite: {fileID: 21300000, guid: 61bdbe902d444d04387f2a93b573385c, type: 3}
+  sprite: {fileID: 21300000, guid: 71075672100087842bebf992c2b2b840, type: 3}
+  animatorController: {fileID: 9100000, guid: ecbe72235648eb84d9ce4a769e19bfd0, type: 2}
   scale: 2
   targetTag: Enemy
   targetLayer: Enemy
