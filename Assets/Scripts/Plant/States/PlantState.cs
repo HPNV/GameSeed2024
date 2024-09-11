@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Plant
+namespace Plant.States
 {
     public abstract class PlantState
     {

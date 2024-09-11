@@ -27,7 +27,7 @@ namespace Plant.States.Explomato
                 _hasSpawnedProjectile = false;
     
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.8)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.6)
                 SpawnProjectile();
         }
         

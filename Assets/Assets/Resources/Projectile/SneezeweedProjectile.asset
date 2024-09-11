@@ -17,6 +17,8 @@ MonoBehaviour:
   attackRadius: 0.5
   lifetime: 2
   sprite: {fileID: 0}
+  animatorController: {fileID: 0}
+  textureType: 1
   scale: 4
   targetTag: Enemy
   targetLayer: Enemy

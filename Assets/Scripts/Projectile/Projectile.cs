@@ -31,16 +31,18 @@ namespace Projectile
             SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
             Animator = GetComponentInChildren<Animator>();
             
-            if (data.sprite is not null)
+            if (data.textureType == TextureType.Static)
             {
                 SpriteRenderer.sprite = data.sprite;
                 Animator.runtimeAnimatorController = null;
+                Animator.enabled = false;
             }
             
-            if (data.animatorController is not null)
+            if (data.textureType == TextureType.Animated)
             {
                 Animator.runtimeAnimatorController = data.animatorController;
                 SpriteRenderer.sprite = null;
+                Animator.enabled = true;
             }
             
             var color = SpriteRenderer.color;

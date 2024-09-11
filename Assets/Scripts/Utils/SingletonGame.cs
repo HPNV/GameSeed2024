@@ -75,7 +75,7 @@ public class SingletonGame : MonoBehaviour
         
         _gameState = GameState.Play;
 
-        if(PlayerManager.tutorialCompleted == 0) {
+        if(false && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
         }
     }

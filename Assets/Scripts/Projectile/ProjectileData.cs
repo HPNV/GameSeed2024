@@ -13,6 +13,7 @@ namespace Projectile
         public int lifetime = 100;
         public Sprite sprite;
         public RuntimeAnimatorController animatorController;
+        public TextureType textureType;
         public float scale = 1;
         public string targetTag;
         public string targetLayer;

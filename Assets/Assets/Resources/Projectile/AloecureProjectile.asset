@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: AloecureProjectile
   m_EditorClassIdentifier: 
   projectileType: 4
-  attackPower: 1
   movementSpeed: 8
+  attackRadius: 0.5
   lifetime: 2
   sprite: {fileID: -2413806693520163455, guid: d0765dc114cd99041b5aa5eea66b13c5, type: 3}
+  animatorController: {fileID: 0}
+  textureType: 1
   scale: 1
   targetTag: Plant
   targetLayer: Plant

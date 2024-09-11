@@ -38,11 +38,12 @@ namespace Projectile.Behaviour
             
             var distanceToMove = _speed * Time.deltaTime;
            
-            Projectile.transform.position = Vector2.MoveTowards(
-                Projectile.transform.position,
-                Projectile.Target,
-                distanceToMove
-            );
+            if(!_hasExploded)
+                Projectile.transform.position = Vector2.MoveTowards(
+                    Projectile.transform.position,
+                    Projectile.Target,
+                    distanceToMove
+                );
 
             _timeAlive += Time.deltaTime;
             
@@ -61,7 +62,7 @@ namespace Projectile.Behaviour
                     Damage();
                 }
                 
-                Projectile.SpriteObject.transform.localScale += new Vector3(0.05f, 0.05f, 0);
+                Projectile.SpriteObject.transform.localScale += new Vector3(0.01f, 0.01f, 0);
                 
                 var stateInfo = Projectile.Animator.GetCurrentAnimatorStateInfo(0);
                 

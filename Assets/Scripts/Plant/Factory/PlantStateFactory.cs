@@ -22,6 +22,7 @@ namespace Plant.Factory
             {
                EPlant.Cactharn => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new PlantIdleState(plant)},
                     { EPlantState.Attack , new CactharnAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
@@ -29,6 +30,7 @@ namespace Plant.Factory
                 },
                 EPlant.Cobcorn => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new PlantIdleState(plant)},
                     { EPlantState.Attack , new CobcornAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
@@ -36,6 +38,7 @@ namespace Plant.Factory
                 },
                 EPlant.Weisshooter => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new PlantIdleState(plant)},
                     { EPlantState.Attack , new WeisshooterAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
@@ -43,6 +46,7 @@ namespace Plant.Factory
                 },
                 EPlant.Duricane => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new PlantIdleState(plant)},
                     { EPlantState.Attack , new DuricaneAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
@@ -50,12 +54,14 @@ namespace Plant.Factory
                 },
                 EPlant.Boomkin => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new BoomkinIdleState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new BoomkinDieState(plant)}
                 },
                 EPlant.Bamburst => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new PlantIdleState(plant)},
                     { EPlantState.Attack , new BamburstAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
@@ -63,6 +69,7 @@ namespace Plant.Factory
                 },
                 EPlant.Aloecure => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle , new AloecureIdleState(plant)},
                     { EPlantState.Attack , new AloecureAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
@@ -70,6 +77,7 @@ namespace Plant.Factory
                 },
                EPlant.Triblastberry => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new PlantIdleState(plant)},
                    { EPlantState.Attack , new TriblastberryAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
@@ -77,6 +85,7 @@ namespace Plant.Factory
                },
                EPlant.Explomato => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new PlantIdleState(plant)},
                    { EPlantState.Attack , new ExplomatoAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
@@ -84,24 +93,28 @@ namespace Plant.Factory
                },
                EPlant.Raflessnare => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new PassiveIdleState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
                EPlant.Cocowall => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new PassiveIdleState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
                EPlant.Luckyclover => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new PassiveIdleState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
                EPlant.Sneezeweed => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new PlantIdleState(plant)},
                    { EPlantState.Attack , new SneezeweedAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
@@ -109,6 +122,7 @@ namespace Plant.Factory
                },
                EPlant.Magnetsprout => new Dictionary<EPlantState, PlantState>
                {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
                    { EPlantState.Idle , new MagnetsproutIdleState(plant)},
                    { EPlantState.Attack , new MagnetsproutAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
@@ -116,6 +130,7 @@ namespace Plant.Factory
                },
                 _ => new Dictionary<EPlantState, PlantState>
                 {
+                    { EPlantState.Grow , new PlantGrowState(plant)},
                     { EPlantState.Idle, new PlantIdleState(plant)},
                     { EPlantState.Attack, new PlantAttackState(plant)},
                     { EPlantState.Select, new PlantSelectState(plant)},
