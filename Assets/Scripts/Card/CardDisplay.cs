@@ -21,7 +21,7 @@ namespace Card
         public SpriteRenderer spriteRenderer;
         void Start()
         {
-
+            SetCard(cardData,plantType);
         }
 
         void Update()
