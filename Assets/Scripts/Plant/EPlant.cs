@@ -15,6 +15,6 @@
         Explomato,
         Luckyclover,
         Sneezeweed,
-        Magnetsprout,
+        Magnesprout,
     }
 }

@@ -2,12 +2,12 @@
 using Experience;
 using UnityEngine;
 
-namespace Plant.States.Magnetsprout
+namespace Plant.States.Magnesprout
 {
-    public class MagnetsproutIdleState : PlantIdleState
+    public class MagnesproutIdleState : PlantIdleState
     {
         private Coroutine _delayCoroutine;
-        public MagnetsproutIdleState(Plant plant) : base(plant) {}
+        public MagnesproutIdleState(Plant plant) : base(plant) {}
 
         public override void OnEnter()
         {
