@@ -14,19 +14,21 @@ namespace Projectile.Behaviour
         private readonly float _inAirTime;
         private readonly float _speed;
         private readonly float _initialSpeedSprite;
+        private readonly CircleCollider2D _circleCollider2D;
         private float _timeAlive;
         private bool _hasExploded;
         private const float Gravity = 10f;
 
         public ExplosiveMortarProjectileBehaviour(Projectile projectile) : base(projectile)
         {
+            _circleCollider2D = projectile.GetComponent<CircleCollider2D>();
+            _circleCollider2D.radius = projectile.data.attackRadius;
             _inAirTime = 2f;
             var totalDistance = Vector2.Distance(Projectile.transform.position, Projectile.Target);
             _speed = totalDistance / _inAirTime;
             _timeAlive = 0;
             _initialSpeedSprite = 10;
             _hasExploded = false;
-            Debug.Log("RE CREATED");
         }
 
         public override void Update()
@@ -65,7 +67,7 @@ namespace Projectile.Behaviour
                 
                 if (stateInfo.IsName("Explode") && stateInfo.normalizedTime >= 0.9)
                 {
-                    SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
+                    Destroy();
                 }
             }
         }
@@ -95,6 +97,12 @@ namespace Projectile.Behaviour
                     enemy.Damage(Projectile.AttackPower);
                 }
             }
+        }
+        
+        private void Destroy()
+        {
+            _circleCollider2D.radius = 0.25f;
+            SingletonGame.Instance.ProjectileManager.Despawn(Projectile);
         }
     }
 }

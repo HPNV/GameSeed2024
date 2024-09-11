@@ -20,6 +20,7 @@ namespace Enemy
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
         public PlantTargetService PlantTargetService { get; private set; }
+        public CircleCollider2D InnerCircleCollider { get; private set; }
         public const string TargetTag = "Plant";
         
         private IState _currentState;
@@ -38,8 +39,10 @@ namespace Enemy
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             PlantTargetService = GetComponentInChildren<PlantTargetService>(); 
+            InnerCircleCollider = GetComponent<CircleCollider2D>();
             _originalColor = SpriteRenderer.color;
             
+            InnerCircleCollider.enabled = true;
             InitHealth(enemyData.health, enemyData.health);
             SetupStates();
             SetupAnimationController();

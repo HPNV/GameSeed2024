@@ -12,6 +12,7 @@ namespace Enemy.States
         {
             Enemy.Animator.SetTrigger(Die);
             
+            Enemy.InnerCircleCollider.enabled = false;
             var position = Enemy.transform.position;
             SingletonGame.Instance.ExperienceManager.SpawnBatch(3, new Vector3(position.x, position.y, position.z));
             SingletonGame.Instance.ResourceManager.SpawnBatchWithChance(1, new Vector3(position.x, position.y, position.z));
