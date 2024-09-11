@@ -26,7 +26,8 @@ namespace Manager
                 { ProjectileName.Duricane, Resources.Load<ProjectileData>("Projectile/DuricaneProjectile") },
                 { ProjectileName.Aloecure, Resources.Load<ProjectileData>("Projectile/AloecureProjectile") },
                 { ProjectileName.ExplosiveMortar, Resources.Load<ProjectileData>("Projectile/ExplosiveMortar") },
-                { ProjectileName.Fan, Resources.Load<ProjectileData>("Projectile/SneezeweedProjectile") }
+                { ProjectileName.Sneezeweed, Resources.Load<ProjectileData>("Projectile/SneezeweedProjectile") },
+                { ProjectileName.Triblastberry, Resources.Load<ProjectileData>("Projectile/TriblastberryProjectile") }
             };
         }
         public Projectile.Projectile Spawn(ProjectileName type, Vector3 position, float attackPower, Vector2? direction = null, Vector2? target = null)
@@ -95,6 +96,7 @@ namespace Manager
         Duricane,
         Aloecure,
         ExplosiveMortar,
-        Fan
+        Sneezeweed,
+        Triblastberry
     }
 }

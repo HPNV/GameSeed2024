@@ -9,7 +9,7 @@
     Aloecure,
     Bamburst,
     Cocowall,
-    ShootThreePlant,
+    Triblastberry,
     ExplosiveMortarPlant,
     LuckPlant,
     Sneezeweed,

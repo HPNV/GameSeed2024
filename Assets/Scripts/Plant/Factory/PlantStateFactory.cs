@@ -9,7 +9,7 @@ using Plant.States.Duricane;
 using Plant.States.ExplosiveMortar;
 using Plant.States.Sneezeweed;
 using Plant.States.Magnetsprout;
-using Plant.States.ShootThree;
+using Plant.States.Triblastberry;
 using Plant.States.Weisshooter;
 
 namespace Plant.Factory
@@ -68,10 +68,10 @@ namespace Plant.Factory
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 },
-               EPlant.ShootThreePlant => new Dictionary<EPlantState, PlantState>
+               EPlant.Triblastberry => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Idle , new PlantIdleState(plant)},
-                   { EPlantState.Attack , new ShootThreeAttackState(plant)},
+                   { EPlantState.Attack , new TriblastberryAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },

@@ -6,14 +6,14 @@ using Manager;
 using Projectile;
 using UnityEngine;
 
-namespace Plant.States.ShootThree
+namespace Plant.States.Triblastberry
 {
-    public class ShootThreeAttackState : PlantAttackState
+    public class TriblastberryAttackState : PlantAttackState
     {
         private bool _hasSpawnedProjectile;
         private Coroutine _spawnProjectileCoroutine;
         private const float ProjectileAngle = 22.5f;
-        public ShootThreeAttackState(Plant plant) : base(plant){}
+        public TriblastberryAttackState(Plant plant) : base(plant){}
 
         public override void OnEnter()
         {
@@ -67,7 +67,7 @@ namespace Plant.States.ShootThree
                 var rotatedDirection = rotation * direction;
                 
                 SingletonGame.Instance.ProjectileManager.Spawn(
-                    ProjectileName.Duricane, 
+                    ProjectileName.Triblastberry, 
                     Plant.transform.position, 
                     Plant.Data.damage,
                     direction: rotatedDirection

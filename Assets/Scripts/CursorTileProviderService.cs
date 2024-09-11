@@ -22,10 +22,7 @@ public class CursorTileProviderService : TileService
         {
             return tile;
         }
-        else
-        {
-            Debug.LogWarning($"Tile at position {key} not found in the grid.");
-            return null;
-        }
+
+        return null;
     }
 }

@@ -46,7 +46,7 @@ namespace Plant.States.Sneezeweed
             var direction = (target.transform.position - Plant.transform.position).normalized;
             SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Push Attack");            
             SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.Fan, 
+                ProjectileName.Sneezeweed, 
                 Plant.transform.position, 
                 Plant.Data.damage,
                 direction: direction);
