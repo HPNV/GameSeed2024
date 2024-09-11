@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileType: 5
   movementSpeed: 10
-  attackRadius: 5
+  attackRadius: 4
   lifetime: 10
   sprite: {fileID: 21300000, guid: 71075672100087842bebf992c2b2b840, type: 3}
   animatorController: {fileID: 9100000, guid: ecbe72235648eb84d9ce4a769e19bfd0, type: 2}
