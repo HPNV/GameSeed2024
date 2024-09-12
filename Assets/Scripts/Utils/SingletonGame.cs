@@ -73,6 +73,9 @@ public class SingletonGame : MonoBehaviour
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
         PickCardObject.SetActive(false);
+        cardDisplays.Add(card1);
+        cardDisplays.Add(card2);
+        cardDisplays.Add(card3);
         
         _gameState = GameState.Play;
 
@@ -125,13 +128,14 @@ public class SingletonGame : MonoBehaviour
         SoundFXManager.instance.PlayGameSoundOnce("Audio/Level Up");
         HashSet<EPlant> assignedPlants = new HashSet<EPlant>();
 
-        foreach (var cardDisplay in cardDisplays) {
+        foreach (CardDisplay cardDisplay in cardDisplays) {
             EPlant ePlant;
-            
-            //do {
+            Debug.Log("Spawning Plant");
+            do {
                 ePlant = plantFactory.GetRandomEPlant();
-           // } while (assignedPlants.Contains(ePlant));
+           } while (assignedPlants.Contains(ePlant));
 
+            Debug.Log(ePlant);
             assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);
             cardDisplay.SetCard(data, ePlant);
