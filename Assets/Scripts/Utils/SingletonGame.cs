@@ -45,7 +45,6 @@ public class SingletonGame : MonoBehaviour
     public PlayerManager PlayerManager { get; set; } = new();
     public AchievementManager AchievementManager { get; set; } = new();
 
-
     [SerializeField] private GameObject CardDisplayPrefab;
     private void Awake()
     {
@@ -75,7 +74,7 @@ public class SingletonGame : MonoBehaviour
         
         _gameState = GameState.Play;
 
-        if(false && PlayerManager.tutorialCompleted == 0) {
+        if(true && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
         }
     }
@@ -90,7 +89,9 @@ public class SingletonGame : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial1Check = 1;
                 Tutorial1.SetActive(false);
-                ResumeGame();
+                card1.gameObject.SetActive(true);
+                card2.gameObject.SetActive(true);
+                card3.gameObject.SetActive(true);
             }
         }
 

@@ -66,7 +66,7 @@ namespace Plant
             plantData.health += plantData.health * 0.3f;
             plantData.damage += plantData.damage * 0.3f;
             plantData.level++;
-            plant.Data = plantData;
+            plant.Data = plantData; 
         }
 
         public void Toggle()

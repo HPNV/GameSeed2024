@@ -18,7 +18,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        // Assuming the AchievementManager is on the same GameObject
         achievementManager = GetComponent<AchievementManager>();
         
     }
