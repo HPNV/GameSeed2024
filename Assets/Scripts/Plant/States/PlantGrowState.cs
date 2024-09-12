@@ -23,7 +23,7 @@ namespace Plant.States
         public override void OnEnter()
         {
             Plant.Animator.SetTrigger(Grow);
-            Plant.Animator.speed = 1 / Plant.Data.growTimeMultiplier;
+            // Plant.Animator.speed = 1 / Plant.Data.growTimeMultiplier;
         }
 
         public override void OnExit()

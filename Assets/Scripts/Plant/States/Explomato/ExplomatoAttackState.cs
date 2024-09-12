@@ -44,7 +44,7 @@ namespace Plant.States.Explomato
             _hasSpawnedProjectile = true;
 
             SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.Explomato, 
+                ProjectileName.Aloecure, 
                 Plant.transform.position, 
                 Plant.Data.damage,
                 target: target.transform.position);

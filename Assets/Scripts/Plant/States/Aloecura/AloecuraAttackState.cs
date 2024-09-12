@@ -42,7 +42,7 @@ namespace Plant.States.Aloecura
             SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Heal");
             
             SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.Aloecura, 
+                ProjectileName.Aloecure, 
                 Plant.transform.position,
                 Plant.Data.damage
             );

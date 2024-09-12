@@ -44,10 +44,10 @@ namespace Projectile.Behaviour
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             _plantsHit.Add(plant);
 
-            if (plant.Data.plantType == EPlant.Aloecura)
+            if (plant.Data.plantType == EPlant.Aloecure)
                 return;
             
-            plant.SpeedUp(Projectile.AttackPower);
+            // plant.SpeedUp(Projectile.AttackPower);
         }
 
         public override void OnDespawn()

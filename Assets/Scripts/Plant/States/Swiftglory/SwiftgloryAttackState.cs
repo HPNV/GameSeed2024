@@ -43,7 +43,7 @@ namespace Plant.States.Swiftglory
             SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Heal");
             
             SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.Swiftglory, 
+                ProjectileName.Aloecure, 
                 Plant.transform.position,
                 Plant.Data.damage
             );
