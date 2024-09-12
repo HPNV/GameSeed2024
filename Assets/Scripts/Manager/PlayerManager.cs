@@ -1,20 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Manager;
 using Script; // Assuming your AchievementManager is under Manager namespace
 
 public class PlayerManager : MonoBehaviour
 {
-    private int enemyKillCounter = 0;
+    // Planting category
     private int plantedPlants = 0;
+    private List<DateTime> plantTimeStamps = new();
+    private int activePlants = 0;
+    
+    // Level up category
+    private List<DateTime> levelupTimeStamps = new();
+    private int levelupCounter = 0;
+    
+    private int enemyKillCounter = 0;
     private int fullyUpgrade = 0;
     private int upgradedPlants = 0;
     private int firstDie = 0;
-    public int tutorialCompleted = 0;  
+    public int tutorialCompleted = 0;
     private AchievementManager achievementManager;
-
-    
 
     private void Start()
     {
@@ -32,6 +40,9 @@ public class PlayerManager : MonoBehaviour
     public void OnPlantPlanted()
     {
         plantedPlants++;
+
+        plantTimeStamps.Add(DateTime.Now);
+        
         CheckPlantAchievements();
     }
 
@@ -53,6 +64,60 @@ public class PlayerManager : MonoBehaviour
         CheckDeathAchievements();
     }
 
+    public void OnPlayerLevelUp()
+    {
+        levelupCounter++;
+        levelupTimeStamps.Add(DateTime.Now);
+    }
+    
+    private int GetPlantsPlantedInLast5Minutes()
+    {
+        var now = DateTime.Now;
+        plantTimeStamps.RemoveAll(timestamp => (now - timestamp).TotalMinutes > 5);
+        return plantTimeStamps.Count;
+    }
+    
+    private int GetPlantsPlantedInLast1Minutes()
+    {
+        var now = DateTime.Now;
+        plantTimeStamps.RemoveAll(timestamp => (now - timestamp).TotalMinutes > 5);
+        return plantTimeStamps.Where(t => (now - t).TotalMinutes <= 1).ToList().Count;
+    }
+
+    private int GetLevelUpInLast1Minutes()
+    {
+        var now = DateTime.Now;
+        levelupTimeStamps.RemoveAll(t => (now - t).TotalMinutes > 1);
+        return levelupTimeStamps.Count;
+    }
+
+    private void CheckLevelUpAchievements()
+    {
+        // Quick Learner: Level up 3 times in under 1 minute
+        if (GetLevelUpInLast1Minutes() == 3)
+        {
+            achievementManager.UnlockAchievement("Quick Learner");
+        }
+
+        // Plant Potential: Level up 5 times
+        if (levelupCounter == 5)
+        {
+            achievementManager.UnlockAchievement("Plant Potential");
+        }
+
+        // Level Up Enthusiast: Level up 20 times
+        if (levelupCounter == 20)
+        {
+            achievementManager.UnlockAchievement("Level Up Enthusiast");
+        }
+
+        // Level Up Veteran: Level up 50 times
+        if (levelupCounter == 50)
+        {
+            achievementManager.UnlockAchievement("Level Up Veteran");
+        }
+    }
+    
     private void CheckKillAchievements()
     {
         //TEMP
@@ -97,10 +162,52 @@ public class PlayerManager : MonoBehaviour
             achievementManager.UnlockAchievement("Bloom Booster");
         }
 
+        // Gardening Guru: Plant 50 plants
+        if (plantedPlants == 50)
+        {
+            achievementManager.UnlockAchievement("Gardening Guru");
+        }
+
         // Perfect Planter: Plant 100 plants
         if (plantedPlants == 100)
         {
             achievementManager.UnlockAchievement("Perfect Planter");
+        }
+
+        // Plant Invasion: Plant 1000 plants in total
+        if (plantedPlants == 1000)
+        {
+            achievementManager.UnlockAchievement("Plant Invasion");
+        }
+
+        // Master Gardener: Plant 5000 plants in total
+        if (plantedPlants == 5000)
+        {
+            achievementManager.UnlockAchievement("Master Gardener");
+        }
+
+        // Speed Planter: Plant 10 plants in 1 minute
+        if (GetPlantsPlantedInLast1Minutes() == 10)
+        {
+            achievementManager.UnlockAchievement("Speed Planter");
+        }
+
+        // Frenzied Farmer: Plant 50 plants in under 5 minutes
+        if (GetPlantsPlantedInLast5Minutes() == 50)
+        {
+            achievementManager.UnlockAchievement("Frenzied Farmer");
+        }
+
+        // Plant Commander: Have 50 plants on the field at once
+        if (activePlants == 50)
+        {
+            achievementManager.UnlockAchievement("Plant Commander");
+        }
+
+        // Plant Hoarder: Have 100 plants on the field at once
+        if (activePlants == 100)
+        {
+            achievementManager.UnlockAchievement("Plant Hoarder");
         }
     }
 
