@@ -6,8 +6,6 @@ namespace Service
 {
     public abstract class PlantTargetService : MonoBehaviour
     {
-        [SerializeField] 
-        protected Transform currentPlant;
         [SerializeField]
         protected PlantDetectorService plantDetectorService;
 

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
-  m_Name: Luckyclover
+  m_Name: Swiftglory
   m_EditorClassIdentifier: 
-  plantType: 11
-  health: 10
-  damage: 0
-  attackCooldown: 0
+  plantType: 14
+  health: 1000
+  damage: 2
+  attackCooldown: 1
   range: 0
   description: 
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0
-  sprite: {fileID: 21300000, guid: 5c56fd51a05768546a3fc915d753af1f, type: 3}
-  animatorController: {fileID: 9100000, guid: c0127c41fac163f418fc247a1d9f1a27, type: 2}
+  sprite: {fileID: 21300000, guid: ded974e4ba5e2264e8fd56c84edf311f, type: 3}
+  animatorController: {fileID: 9100000, guid: 35e497ef3ac5b844283d4235f7c9cd64, type: 2}
   targetType: 0

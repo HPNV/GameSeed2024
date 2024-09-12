@@ -7,8 +7,14 @@ namespace Projectile.Behaviour
 {
     public class HealingProjectileBehaviour : ProjectileBaseBehaviour
     {
-        private HashSet<Plant.Plant> _plantsHit = new ();
-        public HealingProjectileBehaviour(Projectile projectile) : base(projectile){}
+        private readonly Rigidbody2D _rigidbody2D;
+        private readonly HashSet<Plant.Plant> _plantsHit = new ();
+
+        public HealingProjectileBehaviour(Projectile projectile) : base(projectile)
+        {
+            _rigidbody2D = Projectile.GetComponent<Rigidbody2D>();
+            _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
         
         
         public override void Update()
@@ -38,10 +44,16 @@ namespace Projectile.Behaviour
             Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             _plantsHit.Add(plant);
 
-            if (plant.Data.plantType == EPlant.Aloecure)
+            if (plant.Data.plantType == EPlant.Aloecura)
                 return;
             
             plant.Heal(Projectile.AttackPower);
+        }
+        
+        public override void OnDespawn()
+        {
+            base.OnDespawn();
+            _rigidbody2D.constraints = RigidbodyConstraints2D.None;
         }
     }
 }

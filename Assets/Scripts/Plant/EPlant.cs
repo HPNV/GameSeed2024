@@ -8,13 +8,14 @@
         Raflessnare,
         Weisshooter,
         Duricane,
-        Aloecure,
+        Aloecura,
         Bamburst,
         Cocowall,
         Triblastberry,
         Explomato,
         Luckyclover,
         Sneezeweed,
-        Magnetsprout,
+        Magnesprout,
+        Swiftglory
     }
 }

@@ -2,19 +2,18 @@
 using Experience;
 using UnityEngine;
 
-namespace Plant.States.Aloecure
+namespace Plant.States.Swiftglory
 {
-    public class AloecureIdleState : PlantIdleState
+    public class SwiftgloryIdleState : PlantIdleState
     {
-        private Coroutine _healCoroutine;
-        public AloecureIdleState(Plant plant) : base(plant) {}
+        private Coroutine _speedCoroutine;
+        public SwiftgloryIdleState(Plant plant) : base(plant) {}
 
 
         public override void OnEnter()
         {
             base.OnEnter();
-            Debug.Log("ALOECURE IDLE STATE");
-            _healCoroutine = Plant.StartCoroutine(Heal());
+            _speedCoroutine = Plant.StartCoroutine(Speed());
         }
 
         public override void Update() {}
@@ -22,11 +21,11 @@ namespace Plant.States.Aloecure
         public override void OnExit()
         {
             base.OnExit();
-            if (_healCoroutine != null)
-                Plant.StopCoroutine(_healCoroutine);
+            if (_speedCoroutine != null)
+                Plant.StopCoroutine(_speedCoroutine);
         }
         
-        private IEnumerator Heal()
+        private IEnumerator Speed()
         {
             yield return new WaitForSeconds(Plant.Data.attackCooldown);
             Plant.ChangeState(EPlantState.Attack);

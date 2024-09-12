@@ -134,12 +134,12 @@ namespace Projectile
                 ProjectileType.Mortar => new MortarProjectileBehaviour(this),
                 ProjectileType.SingleHit => new SingleHitProjectileBehaviour(this),
                 ProjectileType.Healing => new HealingProjectileBehaviour(this),
+                ProjectileType.SpeedUp => new SpeedingProjectileBehaviour(this),
                 ProjectileType.ExplosiveMortar => new ExplosiveMortarProjectileBehaviour(this),
                 ProjectileType.Knockback => new KnockbackProjectileBehaviour(this),
                 _ => null
             };
             
-            Debug.Log("PROJECTILE RE INITIALIZED");
         }
     }
 }

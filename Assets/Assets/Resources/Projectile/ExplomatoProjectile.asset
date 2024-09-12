@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
   m_Name: ExplomatoProjectile
   m_EditorClassIdentifier: 
-  projectileType: 5
+  projectileType: 6
   movementSpeed: 10
   attackRadius: 3
   lifetime: 10

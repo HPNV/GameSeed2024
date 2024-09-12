@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Plant.States;
-using Plant.States.Aloecure;
+using Plant.States.Aloecura;
 using Plant.States.Bamburst;
 using Plant.States.Boomkin;
 using Plant.States.Cactharn;
@@ -8,7 +8,8 @@ using Plant.States.Cobcorn;
 using Plant.States.Duricane;
 using Plant.States.Explomato;
 using Plant.States.Sneezeweed;
-using Plant.States.Magnetsprout;
+using Plant.States.Magnesprout;
+using Plant.States.Swiftglory;
 using Plant.States.Triblastberry;
 using Plant.States.Weisshooter;
 
@@ -67,11 +68,11 @@ namespace Plant.Factory
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 },
-                EPlant.Aloecure => new Dictionary<EPlantState, PlantState>
+                EPlant.Aloecura => new Dictionary<EPlantState, PlantState>
                 {
                     { EPlantState.Grow , new PlantGrowState(plant)},
-                    { EPlantState.Idle , new AloecureIdleState(plant)},
-                    { EPlantState.Attack , new AloecureAttackState(plant)},
+                    { EPlantState.Idle , new AloecuraIdleState(plant)},
+                    { EPlantState.Attack , new AloecuraAttackState(plant)},
                     { EPlantState.Select , new PlantSelectState(plant)},
                     { EPlantState.Die, new PlantDieState(plant)}
                 },
@@ -120,11 +121,19 @@ namespace Plant.Factory
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },
-               EPlant.Magnetsprout => new Dictionary<EPlantState, PlantState>
+               EPlant.Magnesprout => new Dictionary<EPlantState, PlantState>
                {
                    { EPlantState.Grow , new PlantGrowState(plant)},
-                   { EPlantState.Idle , new MagnetsproutIdleState(plant)},
-                   { EPlantState.Attack , new MagnetsproutAttackState(plant)},
+                   { EPlantState.Idle , new MagnesproutIdleState(plant)},
+                   { EPlantState.Attack , new MagnesproutAttackState(plant)},
+                   { EPlantState.Select , new PlantSelectState(plant)},
+                   { EPlantState.Die, new PlantDieState(plant)}
+               },
+               EPlant.Swiftglory => new Dictionary<EPlantState, PlantState>
+               {
+                   { EPlantState.Grow , new PlantGrowState(plant)},
+                   { EPlantState.Idle , new SwiftgloryIdleState(plant)},
+                   { EPlantState.Attack , new SwiftgloryAttackState(plant)},
                    { EPlantState.Select , new PlantSelectState(plant)},
                    { EPlantState.Die, new PlantDieState(plant)}
                },

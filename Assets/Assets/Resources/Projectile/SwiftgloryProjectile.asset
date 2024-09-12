@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
-  m_Name: AloecureProjectile
+  m_Name: SwiftgloryProjectile
   m_EditorClassIdentifier: 
-  projectileType: 4
+  projectileType: 5
   movementSpeed: 8
   attackRadius: 0.5
   lifetime: 2
-  sprite: {fileID: -2413806693520163455, guid: d0765dc114cd99041b5aa5eea66b13c5, type: 3}
+  sprite: {fileID: -2413806693520163455, guid: f489a437cde9e5e45ac665e2c7283ce3, type: 3}
   animatorController: {fileID: 0}
   textureType: 1
   scale: 1
