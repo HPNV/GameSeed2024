@@ -25,6 +25,7 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
+    [SerializeField] private GameObject PickCardObject;
 
     private int Tutorial1Check = 0;
     private int Tutorial2Check = 0;
@@ -71,9 +72,7 @@ public class SingletonGame : MonoBehaviour
         ParticleManager.Initialize();
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
-        cardDisplays.Add(card1);
-        cardDisplays.Add(card2);
-        cardDisplays.Add(card3);
+        PickCardObject.SetActive(false);
         
         _gameState = GameState.Play;
 
@@ -92,9 +91,7 @@ public class SingletonGame : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial1Check = 1;
                 Tutorial1.SetActive(false);
-                card1.gameObject.SetActive(true);
-                card2.gameObject.SetActive(true);
-                card3.gameObject.SetActive(true);
+                PickCardObject.SetActive(true);
             }
         }
 
@@ -138,8 +135,9 @@ public class SingletonGame : MonoBehaviour
             assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);
             cardDisplay.SetCard(data, ePlant);
-            cardDisplay.gameObject.SetActive(true);
         }
+
+        PickCardObject.SetActive(true);
     }
 
     public void PickCard(EPlant plantType)
@@ -151,9 +149,7 @@ public class SingletonGame : MonoBehaviour
 
     private void DestroyRemainingCards()
     {
-        foreach (var cardDisplay in cardDisplays) {
-            cardDisplay.gameObject.SetActive(false);
-        }
+        PickCardObject.SetActive(false);
     }
     
 
