@@ -113,7 +113,7 @@ public class SeedpediaHandler : MonoBehaviour
                         // Construct the image path for the plant sprite
                         string imagePath = "Images/Enemy/" + plantId + "/Walk/walk_2";
 
-                        // Load the sprite from the Resources folder
+                        // Load the sprite from the Resources folde
                         Sprite plantSprite = Resources.Load<Sprite>(imagePath);
 
                         if (plantSprite != null)
