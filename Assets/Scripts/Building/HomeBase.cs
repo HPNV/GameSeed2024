@@ -17,13 +17,13 @@ public class HomeBase : Entity
     private int currentExp = 0;
     private int expToNextLevel = 100;
     [SerializeField] private float startHealth;
-    private int water = 0;
-    private int sun = 0;
+    public int water = 0;
+    public int sun = 0;
     private int score = 0;
 
     void Start()
     {
-        InitHealth(startHealth, startHealth);
+        Init(startHealth, startHealth);
         UpdateUI();
     }
 
@@ -95,6 +95,10 @@ public class HomeBase : Entity
 
     protected override void OnDie()
     {
-        SingletonGame.Instance.PlayerManager.OnPlayerDied();
+        SingletonGame.Instance.LoseGame();
     }
+
+    protected override void OnSpeedUp() { }
+
+    protected override void OnSpeedUpClear() { }
 }

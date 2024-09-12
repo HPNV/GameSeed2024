@@ -12,6 +12,8 @@ namespace Projectile
         public float attackRadius = 0.5f;
         public int lifetime = 100;
         public Sprite sprite;
+        public RuntimeAnimatorController animatorController;
+        public TextureType textureType;
         public float scale = 1;
         public string targetTag;
         public string targetLayer;
@@ -25,6 +27,7 @@ namespace Projectile
         Piercing,
         Mortar,
         Healing,
+        SpeedUp,
         ExplosiveMortar,
         Knockback
     }

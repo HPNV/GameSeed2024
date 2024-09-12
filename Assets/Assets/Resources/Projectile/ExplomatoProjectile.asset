@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
+  m_Name: ExplomatoProjectile
+  m_EditorClassIdentifier: 
+  projectileType: 6
+  movementSpeed: 10
+  attackRadius: 3
+  lifetime: 10
+  sprite: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: ecbe72235648eb84d9ce4a769e19bfd0, type: 2}
+  textureType: 0
+  scale: 3
+  targetTag: Enemy
+  targetLayer: Enemy
+  particles: {fileID: 0}

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: CactharnProjectile
   m_EditorClassIdentifier: 
   projectileType: 2
-  attackPower: 1
   movementSpeed: 10
+  attackRadius: 0.5
   lifetime: 10
   sprite: {fileID: 21300000, guid: e3e2ed126687f594a80461ee49246898, type: 3}
+  animatorController: {fileID: 0}
+  textureType: 1
   scale: 2
   targetTag: Enemy
   targetLayer: Enemy

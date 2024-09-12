@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: DuricaneProjectile
   m_EditorClassIdentifier: 
   projectileType: 1
-  attackPower: 1
   movementSpeed: 10
+  attackRadius: 0.5
   lifetime: 10
   sprite: {fileID: 21300000, guid: 3b73e9cb4fd5a9b4b969972d5f071665, type: 3}
+  animatorController: {fileID: 0}
+  textureType: 1
   scale: 2
   targetTag: Enemy
   targetLayer: Enemy

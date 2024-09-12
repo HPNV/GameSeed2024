@@ -14,13 +14,12 @@ public class PlayerManager : MonoBehaviour
     public int tutorialCompleted = 0;  
     private AchievementManager achievementManager;
 
-    private GameState _gameState;
+    
 
     private void Start()
     {
-        // Assuming the AchievementManager is on the same GameObject
         achievementManager = GetComponent<AchievementManager>();
-        _gameState = GameState.Play;
+        
     }
 
     public void OnEnemyKilled()
@@ -49,13 +48,15 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerDied()
     {
-        _gameState = GameState.Dead;
         firstDie++;
         CheckDeathAchievements();
     }
 
     private void CheckKillAchievements()
     {
+        //TEMP
+        if (achievementManager == null)
+            return;
         // First Blood: Kill your first enemy
         if (enemyKillCounter == 1)
         {
@@ -104,6 +105,8 @@ public class PlayerManager : MonoBehaviour
 
     private void CheckUpgradeAchievements()
     {
+        if (achievementManager == null)
+            return;
         // Fully Bloomed: Fully upgrade any plant
         if (fullyUpgrade >= 1)
         {
@@ -125,6 +128,8 @@ public class PlayerManager : MonoBehaviour
 
     private void CheckDeathAchievements()
     {
+        if (achievementManager == null)
+            return;
         // First Fall: Die for the first time
         if (firstDie == 1)
         {

@@ -13,7 +13,7 @@ namespace Projectile.Behaviour
         private readonly float _initialSpeedSprite;
         private float _timeAlive;
         private const float Gravity = 10f;
-
+        
         public MortarProjectileBehaviour(Projectile projectile) : base(projectile)
         {
             _inAirTime = 2f;
@@ -21,7 +21,6 @@ namespace Projectile.Behaviour
             _speed = totalDistance / _inAirTime;
             _initialSpeedSprite = 10;
         }
-
         
         public override void Update()
         {

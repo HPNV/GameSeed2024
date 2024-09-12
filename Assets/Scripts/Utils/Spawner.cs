@@ -54,19 +54,23 @@ public class Spawner : MonoBehaviour
 
         // Decide enemy type using random
         int enemyGacha = Random.Range(0, 100);
+
+        var spawnedEnemyType = new List<EnemyType>();
         
         if (enemyGacha < 40)
         {
-            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Ranged, spawnPosition,multiplier);
+            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Ranged, EnemyType.RangedTwo, EnemyType.RangedThree });
         }
         else if (enemyGacha < 80)
         {
-            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Explosive, spawnPosition,multiplier);
+            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Melee, EnemyType.MeleeFast, EnemyType.MeleeStrong });
         }
         else
         {
-            SingletonGame.Instance.EnemyManager.Spawn(EnemyType.Melee, spawnPosition,multiplier);
+            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Explosive, EnemyType.Large });
         }
+        
+        SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition,multiplier);
     }
 
     private void OnDrawGizmos()

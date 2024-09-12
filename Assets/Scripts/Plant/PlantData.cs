@@ -16,6 +16,7 @@ namespace Plant
         public float range;
         public string description;
         public bool hasCollider = true;
+        public float growTimeMultiplier = 1;
         public int level;
 
         public Sprite sprite;

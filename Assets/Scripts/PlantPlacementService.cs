@@ -24,7 +24,7 @@ public class PlantPlacementService : SelectorService
 
     protected override void AfterPlace()
     {
-        plant.ChangeState(EPlantState.Idle);
+        plant.ChangeState(EPlantState.Grow);
         plant = null;
     }
 }

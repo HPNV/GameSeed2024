@@ -22,7 +22,7 @@ public class SeedpediaHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI atkSpeedValue;
     [SerializeField] private TextMeshProUGUI growTimeValue;
 
-    private List<Dictionary<string, object>> seedpediaList = new List<Dictionary<string, object>>();
+    private List<Dictionary<string, object>> seedpediaList = new ();
 
     void Start()
     {

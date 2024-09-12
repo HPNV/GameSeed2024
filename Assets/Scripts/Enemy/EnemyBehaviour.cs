@@ -20,6 +20,7 @@ namespace Enemy
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
         public PlantTargetService PlantTargetService { get; private set; }
+        public CircleCollider2D InnerCircleCollider { get; private set; }
         public const string TargetTag = "Plant";
         
         private IState _currentState;
@@ -38,9 +39,11 @@ namespace Enemy
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             PlantTargetService = GetComponentInChildren<PlantTargetService>(); 
+            InnerCircleCollider = GetComponent<CircleCollider2D>();
             _originalColor = SpriteRenderer.color;
             
-            InitHealth(enemyData.health, enemyData.health);
+            InnerCircleCollider.enabled = true;
+            Init(enemyData.health, enemyData.health);
             SetupStates();
             SetupAnimationController();
         }
@@ -78,10 +81,40 @@ namespace Enemy
                     { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
+                EnemyType.MeleeStrong => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.MeleeFast => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
                 EnemyType.Ranged => new Dictionary<State, IState>
                 {
                     { State.Move, new RangedMoveState(this) },
                     { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.RangedTwo => new Dictionary<State, IState>
+                {
+                    { State.Move, new RangedMoveState(this) },
+                    { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.RangedThree => new Dictionary<State, IState>
+                {
+                    { State.Move, new RangedMoveState(this) },
+                    { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.Large => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
                 EnemyType.Explosive => new Dictionary<State, IState>
@@ -120,6 +153,16 @@ namespace Enemy
         {
             if (_currentState is not DieState)
                 ChangeState(State.Die);
+        }
+
+        protected override void OnSpeedUp()
+        {
+            Animator.speed += 0.05f;
+        }
+
+        protected override void OnSpeedUpClear()
+        {
+            Animator.speed -= 0.05f;
         }
 
         public void ChangeState(State state)

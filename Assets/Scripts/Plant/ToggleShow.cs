@@ -29,7 +29,8 @@ namespace Plant
 
         private void Update()
         {
-
+            Debug.Log(plant.CurrentState);
+            if(plant.CurrentState == EPlantState.Grow) return;
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -60,12 +61,14 @@ namespace Plant
         }
 
         public void Upgrade() {
+            if(SingletonGame.Instance.homeBase.sun < 5) return;
             if(plant.Data.level == 3) return;
             PlantData plantData = plant.Data;
             plantData.health += plantData.health * 0.3f;
             plantData.damage += plantData.damage * 0.3f;
             plantData.level++;
-            plant.Data = plantData;
+            SingletonGame.Instance.homeBase.sun -= 5;
+            plant.Data = plantData; 
         }
 
         public void Toggle()

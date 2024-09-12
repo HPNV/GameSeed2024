@@ -19,4 +19,5 @@ MonoBehaviour:
   damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: c74fd73d145267048841264edd46c458, type: 2}
-  enemyType: 1
+  enemyType: 3
+  projectileCount: 1

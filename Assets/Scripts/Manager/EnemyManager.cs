@@ -21,7 +21,12 @@ namespace Manager
             {
                 {EnemyType.Melee, Resources.Load<EnemyData>("Enemy/Melee")},
                 {EnemyType.Ranged, Resources.Load<EnemyData>("Enemy/Ranged")},
-                {EnemyType.Explosive, Resources.Load<EnemyData>("Enemy/Explosive")}
+                {EnemyType.Explosive, Resources.Load<EnemyData>("Enemy/Explosive")},
+                {EnemyType.MeleeFast, Resources.Load<EnemyData>("Enemy/MeleeFast")},
+                {EnemyType.MeleeStrong, Resources.Load<EnemyData>("Enemy/MeleeHard")},
+                {EnemyType.RangedTwo, Resources.Load<EnemyData>("Enemy/RangedTwo")},
+                {EnemyType.RangedThree, Resources.Load<EnemyData>("Enemy/RangedThree")},
+                {EnemyType.Large, Resources.Load<EnemyData>("Enemy/Large")},
             };
         }
         

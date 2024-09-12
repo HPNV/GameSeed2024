@@ -19,6 +19,7 @@ MonoBehaviour:
   range: 15
   description: 
   hasCollider: 1
+  growTimeMultiplier: 1
   level: 0
   sprite: {fileID: 21300000, guid: c2601ace15b86ea4983ef919acd1b37b, type: 3}
   animatorController: {fileID: 9100000, guid: dc251678e4cc8e0408a8f43ff326d82a, type: 2}

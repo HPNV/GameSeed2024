@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Plant.Factory;
+using Plant.States;
 using Script;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace Plant
             set
             {
                 _data = value;
+                AttackCooldown = _data.attackCooldown;
                 InitDetector();
             }
         }
@@ -22,7 +24,8 @@ namespace Plant
         public Animator Animator { get; private set; }
         public TargetService TargetService { get; private set; }
         public EPlantState CurrentState => _states.FirstOrDefault(x => x.Value == _state).Key;
-    
+        public float AttackCooldown { get; set; }
+        
         private PlantData _data;
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
@@ -35,10 +38,6 @@ namespace Plant
 
         private void Update()
         {
-            // if (_currentHealth <= 0 && CurrentState != EPlantState.Die)
-                // ChangeState(EPlantState.Die);
-            
-            Debug.Log(CurrentState);
             _state.Update();
         }
 
@@ -54,7 +53,7 @@ namespace Plant
                     Destroy(collider2d);
             }
             
-            InitHealth(_data.health, _data.health);
+            Init(_data.health, _data.health);
             InitState();
             InitTargetService();
         }
@@ -118,7 +117,20 @@ namespace Plant
             if (CurrentState != EPlantState.Die)
                 ChangeState(EPlantState.Die);
         }
-        
+
+        protected override void OnSpeedUp()
+        {
+            Animator.speed += 0.5f;
+            AttackCooldown -= 0.5f;
+            StartCoroutine(Flash(Color.blue));
+        }
+
+        protected override void OnSpeedUpClear()
+        {
+            Animator.speed -= 0.5f;
+            AttackCooldown += 0.5f;
+        }
+
         private IEnumerator Flash(Color color)
         {
             _spriteRenderer.color = color;

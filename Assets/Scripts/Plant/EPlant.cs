@@ -1,17 +1,21 @@
-﻿public enum EPlant
+﻿namespace Plant
 {
-    Boomkin,
-    Cactharn,
-    Cobcorn,
-    Raflessnare,
-    Weisshooter,
-    Duricane,
-    Aloecure,
-    Bamburst,
-    Cocowall,
-    Triblastberry,
-    ExplosiveMortarPlant,
-    LuckPlant,
-    Sneezeweed,
-    Magnetsprout,
+    public enum EPlant
+    {
+        Boomkin,
+        Cactharn,
+        Cobcorn,
+        Raflessnare,
+        Weisshooter,
+        Duricane,
+        Aloecura,
+        Bamburst,
+        Cocowall,
+        Triblastberry,
+        Explomato,
+        Luckyclover,
+        Sneezeweed,
+        Magnesprout,
+        Swiftglory
+    }
 }

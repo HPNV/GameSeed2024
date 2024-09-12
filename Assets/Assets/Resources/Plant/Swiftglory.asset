@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6679dcf193a40c4f858310178f9124c, type: 3}
+  m_Name: Swiftglory
+  m_EditorClassIdentifier: 
+  plantType: 14
+  health: 1000
+  damage: 2
+  attackCooldown: 1
+  range: 0
+  description: 
+  hasCollider: 1
+  growTimeMultiplier: 1
+  level: 0
+  sprite: {fileID: 21300000, guid: ded974e4ba5e2264e8fd56c84edf311f, type: 3}
+  animatorController: {fileID: 9100000, guid: 35e497ef3ac5b844283d4235f7c9cd64, type: 2}
+  targetType: 0
