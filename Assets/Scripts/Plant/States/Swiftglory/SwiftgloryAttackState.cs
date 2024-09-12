@@ -25,7 +25,7 @@ namespace Plant.States.Swiftglory
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime < 0.5)
                 _hasSpawnedProjectile = false;
             
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.8)
+            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 0.5)
                 SpawnProjectile();
             
             if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1)

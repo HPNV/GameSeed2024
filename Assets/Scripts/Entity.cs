@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Manager;
+using Particles;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -7,6 +10,7 @@ public abstract class Entity : MonoBehaviour
     protected float Health;
     protected float MaxHealth;
     private Coroutine _speedCoroutine;
+    private Particle _particle;
 
     protected void Init(float health, float maxHealth)
     {
@@ -33,6 +37,8 @@ public abstract class Entity : MonoBehaviour
 
     public void SpeedUp(float duration)
     {
+        if (_particle == null)
+            _particle = SingletonGame.Instance.ParticleManager.Spawn(ParticleName.SpeedUp, transform.position, duration);
         _speedCoroutine = StartCoroutine(SpeedUpCoroutine(duration));
     }
     
@@ -43,7 +49,19 @@ public abstract class Entity : MonoBehaviour
         yield return new WaitForSeconds(duration);
         OnSpeedUpClear();
     }
-    
+
+    protected void OnDestroy()
+    {
+        if (_speedCoroutine != null)
+            StopCoroutine(_speedCoroutine);
+
+        if (_particle != null)
+        {
+            _particle.Despawn();
+            _particle = null;
+        }
+    }
+
     protected abstract bool ValidateDamage();
     protected abstract void OnDamage();
     protected abstract void OnHeal();

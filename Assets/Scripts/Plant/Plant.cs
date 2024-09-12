@@ -16,6 +16,7 @@ namespace Plant
             set
             {
                 _data = value;
+                AttackCooldown = _data.attackCooldown;
                 InitDetector();
             }
         }
@@ -23,7 +24,8 @@ namespace Plant
         public Animator Animator { get; private set; }
         public TargetService TargetService { get; private set; }
         public EPlantState CurrentState => _states.FirstOrDefault(x => x.Value == _state).Key;
-    
+        public float AttackCooldown { get; set; }
+        
         private PlantData _data;
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
@@ -122,11 +124,15 @@ namespace Plant
         protected override void OnSpeedUp()
         {
             Animator.speed += 0.5f;
+            AttackCooldown -= 0.5f;
+            Debug.Log($"speed up {Animator.speed} {AttackCooldown}");
         }
 
         protected override void OnSpeedUpClear()
         {
             Animator.speed -= 0.5f;
+            AttackCooldown += 0.5f;
+            Debug.Log("speed up clear");
         }
 
         private IEnumerator Flash(Color color)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
   m_Name: SwiftgloryProjectile
   m_EditorClassIdentifier: 
-  projectileType: 4
+  projectileType: 5
   movementSpeed: 8
   attackRadius: 0.5
   lifetime: 2

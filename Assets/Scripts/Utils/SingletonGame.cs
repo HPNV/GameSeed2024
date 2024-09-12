@@ -6,6 +6,7 @@ using System.Resources;
 using Card;
 using Enemy;
 using Manager;
+using Particles;
 using Plant;
 using Plant.Factory;
 using UnityEngine;
@@ -44,6 +45,7 @@ public class SingletonGame : MonoBehaviour
     public EnemyManager EnemyManager { get; set; } = new();
     public PlayerManager PlayerManager { get; set; } = new();
     public AchievementManager AchievementManager { get; set; } = new();
+    public ParticleManager ParticleManager { get; set; } = new();
 
 
     [SerializeField] private GameObject CardDisplayPrefab;
@@ -67,6 +69,7 @@ public class SingletonGame : MonoBehaviour
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
         EnemyManager.Initialize();
+        ParticleManager.Initialize();
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
         cardDisplays.Add(card1);

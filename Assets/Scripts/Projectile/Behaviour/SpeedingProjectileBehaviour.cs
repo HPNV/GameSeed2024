@@ -47,7 +47,6 @@ namespace Projectile.Behaviour
             if (plant.Data.plantType == EPlant.Aloecura)
                 return;
             
-            Debug.Log("SPEED UP");
             plant.SpeedUp(Projectile.AttackPower);
         }
 
