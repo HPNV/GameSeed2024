@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 30
   attackCooldown: 0
   range: 15
-  description: 
+  description: Fires three berries in one direction.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

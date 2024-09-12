@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 0
   attackCooldown: 1
   range: 10
-  description: 
+  description: Blow the enemies away.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

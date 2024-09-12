@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 2
   attackCooldown: 1
   range: 0
-  description: 
+  description: Enhances attack speed of nearby plants.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

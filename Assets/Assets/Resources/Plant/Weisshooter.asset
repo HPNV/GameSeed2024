@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 1
   attackCooldown: 0
   range: 15
-  description: 
+  description: Shoots one direction
   hasCollider: 1
   growTimeMultiplier: 5
   level: 0

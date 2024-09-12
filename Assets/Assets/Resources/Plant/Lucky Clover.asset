@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 0
   attackCooldown: 0
   range: 0
-  description: 
+  description: Boosts resource drop rates.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

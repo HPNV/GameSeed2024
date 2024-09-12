@@ -11,13 +11,13 @@ namespace Card
     {
         public EPlant plantType;
         public PlantData cardData;
-        public TextMeshPro cardNameText;
+        public TextMeshProUGUI cardNameText;
         public Sprite cardImageHolder;
-        public TextMeshPro descriptionText;
-        public TextMeshPro attackText;
-        public TextMeshPro healthText;
-        public TextMeshPro attackSpeedText;
-        public TextMeshPro rangeText;
+        public TextMeshProUGUI descriptionText;
+        public TextMeshProUGUI attackText;
+        public TextMeshProUGUI healthText;
+        public TextMeshProUGUI attackSpeedText;
+        public TextMeshProUGUI rangeText;
         public SpriteRenderer spriteRenderer;
         void Start()
         {

@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 0
   attackCooldown: 0
   range: 0
-  description: nobol wol
+  description: Sturdy defense to sheild other plants.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

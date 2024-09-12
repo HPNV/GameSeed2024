@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 50
   attackCooldown: 1
   range: 1
-  description: 
+  description: Releasing spike puncturing enemies who steps on them.
   hasCollider: 0
   growTimeMultiplier: 1
   level: 0
