@@ -7,10 +7,41 @@ using Script; // Assuming your AchievementManager is under Manager namespace
 public class PlayerManager : MonoBehaviour
 {
     private int enemyKillCounter = 0;
+
+    public int Kill
+    {
+        get => enemyKillCounter;
+        set => enemyKillCounter = value;
+    }
+    
     private int plantedPlants = 0;
+    public int Planted
+    {
+        get => plantedPlants;
+        set => plantedPlants = value;
+    }
+    
     private int fullyUpgrade = 0;
+    public int FullyUpgrade
+    {
+        get => fullyUpgrade;
+        set => fullyUpgrade = value;
+    }
+    
     private int upgradedPlants = 0;
-    private int firstDie = 0;
+    public int Upgraded
+    {
+        get => upgradedPlants;
+        set => upgradedPlants = value;
+    }
+    
+    private int die = 0;
+    public int Die
+    {
+        get => die;
+        set => die = value;
+    }
+    
     public int tutorialCompleted = 0;  
     private AchievementManager achievementManager;
 
@@ -50,7 +81,7 @@ public class PlayerManager : MonoBehaviour
     public void OnPlayerDied()
     {
         _gameState = GameState.Dead;
-        firstDie++;
+        die++;
         CheckDeathAchievements();
     }
 
@@ -126,7 +157,7 @@ public class PlayerManager : MonoBehaviour
     private void CheckDeathAchievements()
     {
         // First Fall: Die for the first time
-        if (firstDie == 1)
+        if (die == 1)
         {
             achievementManager.UnlockAchievement("First Fall");
         }
