@@ -4,6 +4,8 @@ namespace Plant.States
 {
     public class PlantGrowState : PlantState
     {
+        private static readonly int Grow = Animator.StringToHash("Grow");
+
         public PlantGrowState(Plant plant) : base(plant)
         {
         }
@@ -20,6 +22,7 @@ namespace Plant.States
 
         public override void OnEnter()
         {
+            Plant.Animator.SetTrigger(Grow);
             Plant.Animator.speed = 1 / Plant.Data.growTimeMultiplier;
         }
 

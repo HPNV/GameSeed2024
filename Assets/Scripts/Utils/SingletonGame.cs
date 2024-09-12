@@ -25,7 +25,6 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
-    [SerializeField] private GameObject PickCardObject;
 
     private int Tutorial1Check = 0;
     private int Tutorial2Check = 0;
@@ -47,6 +46,7 @@ public class SingletonGame : MonoBehaviour
     public PlayerManager PlayerManager { get; set; } = new();
     public AchievementManager AchievementManager { get; set; } = new();
     public ParticleManager ParticleManager { get; set; } = new();
+
 
     [SerializeField] private GameObject CardDisplayPrefab;
     private void Awake()
@@ -72,11 +72,13 @@ public class SingletonGame : MonoBehaviour
         ParticleManager.Initialize();
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
-        PickCardObject.SetActive(false);
+        cardDisplays.Add(card1);
+        cardDisplays.Add(card2);
+        cardDisplays.Add(card3);
         
         _gameState = GameState.Play;
 
-        if(true && PlayerManager.tutorialCompleted == 0) {
+        if(false && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
         }
     }
@@ -91,7 +93,7 @@ public class SingletonGame : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial1Check = 1;
                 Tutorial1.SetActive(false);
-                PickCardObject.SetActive(true);
+                ResumeGame();
             }
         }
 
@@ -112,7 +114,7 @@ public class SingletonGame : MonoBehaviour
 
     private void Update()
     {
-        if(true && PlayerManager.tutorialCompleted == 0) {
+        if(false && PlayerManager.tutorialCompleted == 0) {
             checkTutorial();
         }
     }
@@ -135,9 +137,8 @@ public class SingletonGame : MonoBehaviour
             assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);
             cardDisplay.SetCard(data, ePlant);
+            cardDisplay.gameObject.SetActive(true);
         }
-
-        PickCardObject.SetActive(true);
     }
 
     public void PickCard(EPlant plantType)
@@ -149,7 +150,9 @@ public class SingletonGame : MonoBehaviour
 
     private void DestroyRemainingCards()
     {
-        PickCardObject.SetActive(false);
+        foreach (var cardDisplay in cardDisplays) {
+            cardDisplay.gameObject.SetActive(false);
+        }
     }
     
 
