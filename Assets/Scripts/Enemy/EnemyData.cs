@@ -30,6 +30,7 @@ namespace Enemy
         RangedTwo,
         RangedThree,
         Explosive,
+        Large
     }
 }
 

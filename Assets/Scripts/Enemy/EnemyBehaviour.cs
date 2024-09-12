@@ -111,6 +111,12 @@ namespace Enemy
                     { State.Attack, new RangedAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
+                EnemyType.Large => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
                 EnemyType.Explosive => new Dictionary<State, IState>
                 {
                     { State.Move, new ExplosiveMoveState(this) },

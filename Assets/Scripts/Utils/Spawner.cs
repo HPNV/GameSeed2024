@@ -59,15 +59,15 @@ public class Spawner : MonoBehaviour
         
         if (enemyGacha < 40)
         {
-            spawnedEnemyType.AddRange(new List<EnemyType>() { EnemyType.Ranged, EnemyType.RangedTwo, EnemyType.RangedThree });
+            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Ranged, EnemyType.RangedTwo, EnemyType.RangedThree });
         }
         else if (enemyGacha < 80)
         {
-            spawnedEnemyType.AddRange(new List<EnemyType>() { EnemyType.Melee, EnemyType.MeleeFast, EnemyType.MeleeStrong });
+            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Melee, EnemyType.MeleeFast, EnemyType.MeleeStrong });
         }
         else
         {
-            spawnedEnemyType.Add(EnemyType.Explosive);
+            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Explosive, EnemyType.Large });
         }
         
         SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition,multiplier);
