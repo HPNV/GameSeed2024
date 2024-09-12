@@ -19,6 +19,7 @@ public class SingletonGame : MonoBehaviour
     public static SingletonGame Instance { get; private set; }
     [SerializeField] public HomeBase homeBase;
     [SerializeField] public PlantFactory plantFactory;
+    [SerializeField] public GameObject PickCardObject;
     [SerializeField] public CardDisplay card1;
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
@@ -79,7 +80,7 @@ public class SingletonGame : MonoBehaviour
         
         _gameState = GameState.Play;
 
-        if(false && PlayerManager.tutorialCompleted == 0) {
+        if(true && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
         }
     }
@@ -94,7 +95,7 @@ public class SingletonGame : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial1Check = 1;
                 Tutorial1.SetActive(false);
-                ResumeGame();
+                PickCardObject.SetActive(true);
             }
         }
 
@@ -115,7 +116,7 @@ public class SingletonGame : MonoBehaviour
 
     private void Update()
     {
-        if(false && PlayerManager.tutorialCompleted == 0) {
+        if(true && PlayerManager.tutorialCompleted == 0) {
             checkTutorial();
         }
     }
@@ -139,8 +140,9 @@ public class SingletonGame : MonoBehaviour
             assignedPlants.Add(ePlant);
             PlantData data = plantFactory.GetPlantData(ePlant);
             cardDisplay.SetCard(data, ePlant);
-            cardDisplay.gameObject.SetActive(true);
         }
+
+        PickCardObject.SetActive(true);
     }
 
     public void PickCard(EPlant plantType)
@@ -152,9 +154,7 @@ public class SingletonGame : MonoBehaviour
 
     private void DestroyRemainingCards()
     {
-        foreach (var cardDisplay in cardDisplays) {
-            cardDisplay.gameObject.SetActive(false);
-        }
+        PickCardObject.SetActive(false);
     }
     
 
