@@ -81,7 +81,31 @@ namespace Enemy
                     { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
+                EnemyType.MeleeStrong => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.MeleeFast => new Dictionary<State, IState>
+                {
+                    { State.Move, new MeleeMoveState(this) },
+                    { State.Attack, new MeleeAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
                 EnemyType.Ranged => new Dictionary<State, IState>
+                {
+                    { State.Move, new RangedMoveState(this) },
+                    { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.RangedTwo => new Dictionary<State, IState>
+                {
+                    { State.Move, new RangedMoveState(this) },
+                    { State.Attack, new RangedAttackState(this) },
+                    { State.Die, new DieState(this) }
+                },
+                EnemyType.RangedThree => new Dictionary<State, IState>
                 {
                     { State.Move, new RangedMoveState(this) },
                     { State.Attack, new RangedAttackState(this) },

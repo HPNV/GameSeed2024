@@ -7,6 +7,7 @@ namespace Enemy.States.Ranged
 {
     public class RangedAttackState : AttackState
     {
+        private float angleDifference = 30f;
         private bool _hasSpawnedProjectile;
         public RangedAttackState(EnemyBehaviour enemy) : base(enemy){}
 
@@ -37,13 +38,21 @@ namespace Enemy.States.Ranged
             
             _hasSpawnedProjectile = true;
             var direction = (target.transform.position - Enemy.transform.position).normalized;
+
             
-            SingletonGame.Instance.ProjectileManager.Spawn(
-                ProjectileName.Enemy, 
-                Enemy.transform.position,
-                Enemy.enemyData.attackPower,
-                direction: direction
-                );
+            for (var i = 0; i < Enemy.enemyData.projectileCount; i++)
+            {
+                var angle = (i % 2 == 0 ? 1 : -1) * angleDifference * (i / 2);
+                var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                var rotatedDirection = rotation * direction;
+                
+                SingletonGame.Instance.ProjectileManager.Spawn(
+                    ProjectileName.Enemy, 
+                    Enemy.transform.position,
+                    Enemy.enemyData.attackPower,
+                    direction: rotatedDirection
+                    );
+            }
         }
     }
 }

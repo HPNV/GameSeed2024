@@ -13,6 +13,7 @@ namespace Enemy
         public float movementSpeed = 10;
         public RuntimeAnimatorController animatorController;
         public EnemyType enemyType = EnemyType.Melee;
+        public int projectileCount = 1;
 
         public int Experience
         {
@@ -23,7 +24,11 @@ namespace Enemy
     public enum EnemyType
     {
         Melee,
+        MeleeFast,
+        MeleeStrong,
         Ranged,
+        RangedTwo,
+        RangedThree,
         Explosive,
     }
 }
