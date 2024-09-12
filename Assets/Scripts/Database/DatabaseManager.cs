@@ -45,7 +45,7 @@ public class DatabaseManager : MonoBehaviour
                 Db = FirebaseFirestore.DefaultInstance;
                 isInitialized = true;
                 
-                // Debug.Log("Firebase Firestore Initialized");
+                Debug.Log("Firebase Firestore Initialized");
                 OnFirebaseInitialized?.Invoke();  // Invoke the event to notify listeners
             }
             else
