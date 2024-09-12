@@ -115,7 +115,7 @@ public class SingletonGame : MonoBehaviour
 
     private void Update()
     {
-        if(false && PlayerManager.tutorialCompleted == 0) {
+        if(true && PlayerManager.tutorialCompleted == 0) {
             checkTutorial();
         }
     }
