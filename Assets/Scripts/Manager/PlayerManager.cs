@@ -85,6 +85,9 @@ public class PlayerManager
     
     // Remake
     private int rafflesiaDmg = 0;
+    private int plantDie = 0;
+    private int plantHeal = 0;
+    
     
     public void OnPlantPlanted()
     {
@@ -153,6 +156,18 @@ public class PlayerManager
     {
         rafflesiaDmg += amount;
         if(rafflesiaDmg >= 1000) achievementManager.UnlockAchievement(EAchievement.TauntMaster);
+    }
+
+    public void OnPlantDie()
+    {
+        plantDie++;
+        if(plantDie >= 500) achievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+    }
+
+    public void OnPlantHeal(int amt)
+    {
+        plantHeal += amt;
+        if(plantHeal >= 500) achievementManager.UnlockAchievement(EAchievement.GreenThumb);
     }
     
     private int GetPlantsPlantedInLast5Minutes()

@@ -55,5 +55,7 @@
         
         // Remake
         TauntMaster,
+        NaturesAvatar,
+        GreenThumb,
     }
 }
