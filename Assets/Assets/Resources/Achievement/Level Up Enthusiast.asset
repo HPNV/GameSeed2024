@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
-  m_Name: New Gardener
+  m_Name: Level Up Enthusiast
   m_EditorClassIdentifier: 
-  achievement: 0
-  achievementName: New Gardener
-  description: Plant two plants
-  achievementImage: {fileID: 21300000, guid: 15f774afc698fbd45a7564fbc027eb9e, type: 3}
+  achievement: 12
+  achievementName: Level Up Enthusiast
+  description: Level up 20 times
+  achievementImage: {fileID: 21300000, guid: 66af556adf1aefe42bca401eabdb4317, type: 3}

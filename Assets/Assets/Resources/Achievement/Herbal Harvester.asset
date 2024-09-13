@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
-  m_Name: New Gardener
+  m_Name: Herbal Harvester
   m_EditorClassIdentifier: 
-  achievement: 0
-  achievementName: New Gardener
-  description: Plant two plants
-  achievementImage: {fileID: 21300000, guid: 15f774afc698fbd45a7564fbc027eb9e, type: 3}
+  achievement: 31
+  achievementName: Herbal Harvester
+  description: Upgrade 50  plants
+  achievementImage: {fileID: 21300000, guid: 572fef03150e89848b6eb110eef1d9d8, type: 3}
