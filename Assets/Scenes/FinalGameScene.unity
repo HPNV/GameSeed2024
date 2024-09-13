@@ -6129,6 +6129,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: blockedTiles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: cornerSprites.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -6159,6 +6163,14 @@ PrefabInstance:
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: sideSpritesRight.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: blockedTiles.Array.data[0].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: blockedTiles.Array.data[2].x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: sideSpritesBottom.Array.size
