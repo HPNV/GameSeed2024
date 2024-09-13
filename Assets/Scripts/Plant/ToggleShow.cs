@@ -76,7 +76,7 @@ namespace Plant
             plantData.damage += plantData.damage * 0.3f;
             plantData.level++;
             SingletonGame.Instance.homeBase.sun -= 5;
-            plant.Data = plantData; 
+            plant.Data = plantData;
         }
 
         public void Water()
