@@ -38,7 +38,7 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = masterVolume * musicVolume;
         audioSource.Play();
         // loop the sound
-        audioSource.loop = true;    
+        audioSource.loop = true;
     }
     
     public void PlaySoundOnce(AudioClip audioClip, Transform transform, float volume)
