@@ -20,3 +20,4 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 4ac4af22882d06d41ad011b96c7809b2, type: 2}
   enemyName: 4
   projectileCount: 3
+  maxExperienceDrop: 10

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Sludge Grunt
   m_EditorClassIdentifier: 
-  enemyName: Slime
   health: 70
   attackPower: 10
   attackRange: 1
   damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: 8ef5ec7814e2a3047909e6c80b18b724, type: 2}
-  enemyType: 0
+  enemyName: 0
+  projectileCount: 1
+  maxExperienceDrop: 5

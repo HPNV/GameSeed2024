@@ -14,11 +14,7 @@ namespace Enemy
         public RuntimeAnimatorController animatorController;
         public EnemyName enemyName = EnemyName.SludgeGrunt;
         public int projectileCount = 1;
-
-        public int Experience
-        {
-            get => (int)(health * attackPower * movementSpeed / 100);
-        }
+        public int maxExperienceDrop = 1;
     }
 
     public enum EnemyName
