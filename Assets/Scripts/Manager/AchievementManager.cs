@@ -1,34 +1,34 @@
 ﻿using System.Collections.Generic;
 using Achievement;
+using Script;
 using UnityEngine;
 
 namespace Manager
 {
     public class AchievementManager
     {
-        private Dictionary<string, AchievementData> _achievementData = new();
-        private List<AchievementData> _unlockedAchievements = new();
-
+        private Dictionary<EAchievement, AchievementData> _achievements = new();
+        public List<AchievementData> UnlockedAchievements { get; private set; } = new();
 
         public void Initialize()
         {
-            _unlockedAchievements = new List<AchievementData>();
+            UnlockedAchievements = new List<AchievementData>();
             
-            _achievementData = new Dictionary<string, AchievementData>
+            _achievements = new Dictionary<EAchievement, AchievementData>
             {
-                { "test", Resources.Load<AchievementData>("Achievement/New Gardener") }
+                { EAchievement.NewGardener, Resources.Load<AchievementData>("Achievement/New Gardener") }
             };
         }
         
-        public void UnlockAchievement(string achievementId)
+        public void UnlockAchievement(EAchievement achievement)
         {
-            if (_unlockedAchievements.Contains(_achievementData[achievementId]))
+            if (UnlockedAchievements.Contains(_achievements[achievement]))
             {
                 return;
             }
             
-            _unlockedAchievements.Add(_achievementData[achievementId]);
-            Debug.Log("Achievement Unlocked: " + _achievementData[achievementId].name);
+            UnlockedAchievements.Add(_achievements[achievement]);
+            Debug.Log("Achievement Unlocked: " + _achievements[achievement].name);
         }
         
     }
