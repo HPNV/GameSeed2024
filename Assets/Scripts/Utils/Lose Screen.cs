@@ -11,6 +11,8 @@ public class LoseScreen : MonoBehaviour
     [SerializeField] private TextMeshPro PlantPlantedValue;
     [SerializeField] private TextMeshPro TimeValue;
 
+    public string time;
+
     void Start()
     {
         
@@ -21,7 +23,7 @@ public class LoseScreen : MonoBehaviour
         
     }
 
-    public void UpdateUI(int score,int enemyKilled, int plantPlanted, string time) {
+    public void UpdateUI(int score,int enemyKilled, int plantPlanted) {
         ScoreValue.text = score.ToString();
         EnemyKilledValue.text = enemyKilled.ToString();
         PlantPlantedValue.text = plantPlanted.ToString();

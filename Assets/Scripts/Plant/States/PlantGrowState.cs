@@ -22,6 +22,8 @@ namespace Plant.States
 
         public override void OnEnter()
         {
+            SingletonGame.Instance.addPlantPlanted();
+            // SingletonGame.Instance.AchievementManager
             Plant.Animator.SetTrigger(Grow);
             Plant.Animator.speed = 1 / Plant.Data.growTimeMultiplier;
         }
