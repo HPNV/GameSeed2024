@@ -17,9 +17,18 @@ public class PlayerManager : MonoBehaviour
     private List<DateTime> levelupTimeStamps = new();
     private int levelupCounter = 0;
     
-    private int enemyKillCounter = 0;
-    private int fullyUpgrade = 0;
-    private int upgradedPlants = 0;
+    // Upgrade Plant category
+    private int upgradePlantCounter = 0;
+    private int fullUpgradePlantCounter = 0;
+    
+    // Kill enemy category
+    private int killEnemyCounter = 0;
+    private List<DateTime> killEnemyTimeStamps = new();
+    private int killEnemyExplosiveCounter = 0;
+    
+    // Explosive
+    
+    
     private int firstDie = 0;
     public int tutorialCompleted = 0;
     private AchievementManager achievementManager;
@@ -28,12 +37,6 @@ public class PlayerManager : MonoBehaviour
     {
         achievementManager = GetComponent<AchievementManager>();
         
-    }
-
-    public void OnEnemyKilled()
-    {
-        enemyKillCounter++;
-        CheckKillAchievements();
     }
 
     public void OnPlantPlanted()
@@ -47,14 +50,14 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlantFullyUpgraded()
     {
-        fullyUpgrade++;
-        CheckUpgradeAchievements();
+        fullUpgradePlantCounter++;
+        CheckUpgradePlantAchievements();
     }
 
     public void OnPlantUpgraded()
     {
-        upgradedPlants++;
-        CheckUpgradeAchievements();
+        upgradePlantCounter++;
+        CheckUpgradePlantAchievements();
     }
 
     public void OnPlayerDied()
@@ -67,6 +70,20 @@ public class PlayerManager : MonoBehaviour
     {
         levelupCounter++;
         levelupTimeStamps.Add(DateTime.Now);
+        CheckLevelUpAchievements();
+    }
+
+    public void OnEnemyKill()
+    {
+        killEnemyCounter++;
+        killEnemyTimeStamps.Add(DateTime.Now);
+        CheckKillEnemyAchievements();
+    }
+
+    public void OnEnemyExploded()
+    {
+        killEnemyExplosiveCounter++;
+        CheckKillEnemyAchievements();
     }
     
     private int GetPlantsPlantedInLast5Minutes()
@@ -89,6 +106,110 @@ public class PlayerManager : MonoBehaviour
         levelupTimeStamps.RemoveAll(t => (now - t).TotalMinutes > 1);
         return levelupTimeStamps.Count;
     }
+
+    private int GetEnemyKilledInLast5Minutes()
+    {
+        var now = DateTime.Now;
+        return killEnemyTimeStamps.Select(t => (now - t).TotalMinutes <= 5).ToList().Count;
+    }
+
+    private int GetEnemyKilledInLast10Minutes()
+    {
+        var now = DateTime.Now;
+        killEnemyTimeStamps.RemoveAll(t => (now - t).TotalMinutes > 10);
+        return killEnemyTimeStamps.Count;
+    }
+    
+    private void CheckKillEnemyAchievements()
+    {
+        // First Blood: Kill your first enemy
+        if (killEnemyCounter == 1)
+        {
+            achievementManager.UnlockAchievement("First Blood");
+        }
+
+        // Killer Seed: Kill 10 enemies
+        if (killEnemyCounter == 10)
+        {
+            achievementManager.UnlockAchievement("Killer Seed");
+        }
+
+        // Efficient Killer: Kill 50 enemies in 5 minutes
+        if (GetEnemyKilledInLast5Minutes() >= 50)
+        {
+            achievementManager.UnlockAchievement("Efficient Killer");
+        }
+
+        // Monster Slayer: Kill 500 enemies
+        if (killEnemyCounter == 500)
+        {
+            achievementManager.UnlockAchievement("Monster Slayer");
+        }
+
+        // Unstoppable Force: Defeat 1000 enemies in total
+        if (killEnemyCounter == 1000)
+        {
+            achievementManager.UnlockAchievement("Unstoppable Force");
+        }
+
+        // Endless Onslaught: Kill 5000 enemies in total
+        if (killEnemyCounter == 5000)
+        {
+            achievementManager.UnlockAchievement("Endless Onslaught");
+        }
+
+        // Monster Frenzy: Kill 200 enemies in under 10 minutes
+        if (GetEnemyKilledInLast10Minutes() >= 200)
+        {
+            achievementManager.UnlockAchievement("Monster Frenzy");
+        }
+
+        // Doomsday Gardener: Kill 200 enemies using explosive plants
+        if (killEnemyExplosiveCounter == 200)
+        {
+            achievementManager.UnlockAchievement("Doomsday Gardener");
+        }
+
+        // Trap Specialist: Kill 50 enemies with Boomkin
+        if (killEnemyExplosiveCounter == 50)
+        {
+            achievementManager.UnlockAchievement("Trap Specialist");
+        }
+    }
+    
+    private void CheckUpgradePlantAchievements()
+    {
+        // Upgrade Apprentice: Upgrade at least 3 plants
+        if (upgradePlantCounter == 3)
+        {
+            achievementManager.UnlockAchievement("Upgrade Apprentice");
+        }
+
+        // Upgrade Master: Upgrade at least 10 plants
+        if (upgradePlantCounter == 10)
+        {
+            achievementManager.UnlockAchievement("Upgrade Master");
+        }
+
+        // Upgrade Overachiever: Upgrade at least 30 plants
+        if (upgradePlantCounter == 30)
+        {
+            achievementManager.UnlockAchievement("Upgrade Overachiever");
+        }
+
+        // Fully Bloomed: Fully upgrade any plant
+        if (fullUpgradePlantCounter >= 1)
+        {
+            achievementManager.UnlockAchievement("Fully Bloomed");
+        }
+
+        // Gardener's Glory: Achieve 10 upgraded plants
+        if (fullUpgradePlantCounter >= 10)
+        {
+            achievementManager.UnlockAchievement("Gardener's Glory");
+        }
+    }
+
 
     private void CheckLevelUpAchievements()
     {
@@ -114,36 +235,6 @@ public class PlayerManager : MonoBehaviour
         if (levelupCounter == 50)
         {
             achievementManager.UnlockAchievement("Level Up Veteran");
-        }
-    }
-    
-    private void CheckKillAchievements()
-    {
-        //TEMP
-        if (achievementManager == null)
-            return;
-        // First Blood: Kill your first enemy
-        if (enemyKillCounter == 1)
-        {
-            achievementManager.UnlockAchievement("First Blood");
-        }
-
-        // Killer Seed: Kill 10 enemies
-        if (enemyKillCounter == 10)
-        {
-            achievementManager.UnlockAchievement("Killer Seed");
-        }
-
-        // Monster Slayer: Kill 500 enemies
-        if (enemyKillCounter == 500)
-        {
-            achievementManager.UnlockAchievement("Monster Slayer");
-        }
-
-        // Unstoppable Force: Kill 1000 enemies
-        if (enemyKillCounter == 1000)
-        {
-            achievementManager.UnlockAchievement("Unstoppable Force");
         }
     }
 
@@ -207,29 +298,6 @@ public class PlayerManager : MonoBehaviour
         if (activePlants == 100)
         {
             achievementManager.UnlockAchievement("Plant Hoarder");
-        }
-    }
-
-    private void CheckUpgradeAchievements()
-    {
-        if (achievementManager == null)
-            return;
-        // Fully Bloomed: Fully upgrade any plant
-        if (fullyUpgrade >= 1)
-        {
-            achievementManager.UnlockAchievement("Fully Bloomed");
-        }
-
-        // Upgrade Apprentice: Upgrade at least 3 plants
-        if (upgradedPlants >= 3)
-        {
-            achievementManager.UnlockAchievement("Upgrade Apprentice");
-        }
-
-        // Upgrade Master: Upgrade at least 10 plants
-        if (upgradedPlants >= 10)
-        {
-            achievementManager.UnlockAchievement("Upgrade Master");
         }
     }
 
