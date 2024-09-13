@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Building;
@@ -124,4 +125,20 @@ public class HomeBase : Entity
     protected override void OnSpeedUp() { }
 
     protected override void OnSpeedUpClear() { }
+
+    private void OnMouseEnter()
+    {
+        var sp = transform.gameObject.GetComponent<SpriteRenderer>();
+        var color = Color.white;
+        color.a = 0.75f;
+        sp.color = color;
+    }
+
+    private void OnMouseExit()
+    {
+        var sp = transform.gameObject.GetComponent<SpriteRenderer>();
+        var color = Color.white;
+        color.a = 1f;
+        sp.color = color;
+    }
 }
