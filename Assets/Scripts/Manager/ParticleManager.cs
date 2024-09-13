@@ -18,16 +18,17 @@ namespace Manager
             _particleData = new Dictionary<ParticleName, GameObject>
             {
                 { ParticleName.SpeedUp, Resources.Load<GameObject>("Prefabs/Particles/SpeedUp") },
+                { ParticleName.Heal, Resources.Load<GameObject>("Prefabs/Particles/Heal") },
+                { ParticleName.LevelUp, Resources.Load<GameObject>("Prefabs/Particles/LevelUp") },
             };
         }
         public Particle Spawn(ParticleName type, Vector3 position, float duration)
         {
             var particleObject = Object.Instantiate(_particleData[type], position, Quaternion.identity);
             var particle = particleObject.GetComponent<Particle>();
-            Debug.Log($"SPAWNED {particle}");
+    
             particle.StartParticles(duration);
-        
-
+            
             return particle;
         }
     }
@@ -35,6 +36,7 @@ namespace Manager
     public enum ParticleName
     {
         SpeedUp,
-        Heal
+        Heal,
+        LevelUp
     }
 }

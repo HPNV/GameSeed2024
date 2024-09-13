@@ -25,13 +25,13 @@ namespace Particles
         private IEnumerator DespawnCoroutine(float duration)
         {
             yield return new WaitForSeconds(duration);
+            ParticleSystem.Stop();
+            yield return new WaitForSeconds(3);
             Despawn();
         }
         
         public void Despawn()
         {
-            ParticleSystem.Stop();
-            ParticleSystem.Clear();
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

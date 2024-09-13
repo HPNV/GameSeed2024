@@ -53,7 +53,7 @@ namespace Card
                     rarity.sprite = Resources.Load<Sprite>("Rarity/card_epic");
                     break;
                 case ERarity.Legendary:
-                    rarity.sprite = Resources.Load<Sprite>("Rarity/card_legendary");
+                    rarity.sprite = Resources.Load<Sprite>("Rarity/card_legend");
                     break;
             }
         }

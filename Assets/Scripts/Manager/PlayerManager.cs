@@ -73,8 +73,6 @@ public class PlayerManager
     // Explosive
     private int enemyExplodeCounter = 0;
     
-    // Surviving
-    
     // Resources
     private int collectResourceCounter = 0;
     
@@ -84,6 +82,12 @@ public class PlayerManager
     private int firstDie = 0;
     public int tutorialCompleted = 0;
     private AchievementManager achievementManager  = new();
+    
+    // Remake
+    private int rafflesiaDmg = 0;
+    private int plantDie = 0;
+    private int plantHeal = 0;
+    
     
     public void OnPlantPlanted()
     {
@@ -142,10 +146,28 @@ public class PlayerManager
         CheckResourceAchievements();
     }
 
-    public void OnPlantSacrafice()
+    public void OnPlantSacrifice()
     {
         sacrificeCounter++;
         CheckSpecialChallengesAchievements();
+    }
+
+    public void OnRafflesiaDamage(int amount)
+    {
+        rafflesiaDmg += amount;
+        if(rafflesiaDmg >= 1000) achievementManager.UnlockAchievement(EAchievement.TauntMaster);
+    }
+
+    public void OnPlantDie()
+    {
+        plantDie++;
+        if(plantDie >= 500) achievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+    }
+
+    public void OnPlantHeal(int amt)
+    {
+        plantHeal += amt;
+        if(plantHeal >= 500) achievementManager.UnlockAchievement(EAchievement.GreenThumb);
     }
     
     private int GetPlantsPlantedInLast5Minutes()
