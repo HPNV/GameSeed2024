@@ -6012,6 +6012,10 @@ PrefabInstance:
       value: GameGrid
       objectReference: {fileID: 0}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: zPos
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: width
       value: 54
       objectReference: {fileID: 0}

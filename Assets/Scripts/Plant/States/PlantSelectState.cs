@@ -5,6 +5,7 @@ namespace Plant.States
     public class PlantSelectState : PlantState
     {
         private SpriteRenderer _sp;
+
         public PlantSelectState(global::Plant.Plant plant) : base(plant)
         {
             _sp = Plant.transform.GetComponent<SpriteRenderer>();
@@ -15,7 +16,7 @@ namespace Plant.States
         {
             var origin = Plant.transform.position;
             var temp = SingletonGame.Instance.TileProvider.GetCurrTile().transform.position;
-            temp.z = origin.z;
+            temp.z = -2;
             Plant.transform.position = temp;
 
             var sg = SingletonGame.Instance;
@@ -34,8 +35,9 @@ namespace Plant.States
             var collider = Plant.transform.GetComponent<Collider2D>();
         
             collider.enabled = false;
-        
+
             var detector = Plant.transform.Find("Detector");
+            
         
             var rangeScale = Plant.Data.range / 3;
         
