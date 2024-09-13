@@ -73,8 +73,9 @@ namespace Plant
         }
 
         public void Water() {
-            if(SingletonGame.Instance.homeBase.water < 5) return;
-            plant.ChangeState(EPlantState.Idle);
+            if(SingletonGame.Instance.homeBase.water < 5) 
+                return;
+            plant.Grow();
         }
 
         public void Toggle()
