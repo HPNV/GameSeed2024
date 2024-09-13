@@ -4,8 +4,11 @@ namespace Plant.States
 {
     public class PlantSelectState : PlantState
     {
+        private SpriteRenderer _sp;
         public PlantSelectState(global::Plant.Plant plant) : base(plant)
         {
+            _sp = Plant.transform.GetComponent<SpriteRenderer>();
+            
         }
 
         public override void Update()
@@ -14,15 +17,20 @@ namespace Plant.States
             var temp = SingletonGame.Instance.TileProvider.GetCurrTile().transform.position;
             temp.z = origin.z;
             Plant.transform.position = temp;
+
+            var sg = SingletonGame.Instance;
+            if (sg.GameGrid.ValidateSlot(sg.TileProvider.GetCurrTile()))
+            {
+                ChangeGreen();
+            }
+            else
+            {
+                ChangeRed();
+            }
         }
 
         public override void OnEnter()
         {
-            var sp = Plant.transform.GetComponent<SpriteRenderer>();
-            var color = Color.red;
-            color.a = 0.5f;
-            sp.color = color;
-
             var collider = Plant.transform.GetComponent<Collider2D>();
         
             collider.enabled = false;
@@ -46,6 +54,22 @@ namespace Plant.States
         
             var detector = Plant.transform.Find("Detector");
             detector.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+        private void ChangeRed()
+        {
+            var color = Color.red;
+            color.a = 0.5f;
+            _sp.color = color;
+
+        }
+
+        private void ChangeGreen()
+        {
+            var color = Color.green;
+            color.a = 0.5f;
+            _sp.color = color;
+
         }
     }
 }
