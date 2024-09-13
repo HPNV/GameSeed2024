@@ -6,8 +6,52 @@ using UnityEngine;
 using Manager;
 using Script; // Assuming your AchievementManager is under Manager namespace
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Manager;
+using Script; // Assuming your AchievementManager is under Manager namespace
+
+
 public class PlayerManager : MonoBehaviour
 {
+    private int enemyKillCounter = 0;
+
+    public int Kill
+    {
+        get => enemyKillCounter;
+        set => enemyKillCounter = value;
+    }
+    
+    public int Planted
+    {
+        get => plantedPlants;
+        set => plantedPlants = value;
+    }
+    
+    private int fullyUpgrade = 0;
+    public int FullyUpgrade
+    {
+        get => fullyUpgrade;
+        set => fullyUpgrade = value;
+    }
+    
+    private int upgradedPlants = 0;
+    public int Upgraded
+    {
+        get => upgradedPlants;
+        set => upgradedPlants = value;
+    }
+    
+    private int die = 0;
+    public int Die
+    {
+        get => die;
+        set => die = value;
+    }
+
+    private GameState _gameState;
+
     // Planting category
     private int plantedPlants = 0;
     private List<DateTime> plantTimeStamps = new();
