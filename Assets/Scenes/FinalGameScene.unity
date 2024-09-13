@@ -6114,12 +6114,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: offsetX
-      value: -32
+      value: -27
       objectReference: {fileID: 0}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: offsetY
       value: -32
       objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: homeBase
+      value: 
+      objectReference: {fileID: 1121730282}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: sideSpritesCount
       value: 4
@@ -8131,6 +8135,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1121730282 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3226731058223787149, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+  m_PrefabInstance: {fileID: 1938278133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1123438874
 GameObject:
   m_ObjectHideFlags: 0

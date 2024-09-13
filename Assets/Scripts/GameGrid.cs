@@ -10,6 +10,8 @@ public class GameGrid : MonoBehaviour
     private int offsetX, offsetY;
     [SerializeField]
     private int zPos;
+    [SerializeField]
+    private Transform homeBase;
     
     private Transform _cam;
 
@@ -79,6 +81,7 @@ public class GameGrid : MonoBehaviour
         
         
         // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        // homeBase.position = temp;
         // _cam.transform.position  = temp;
     }
     
