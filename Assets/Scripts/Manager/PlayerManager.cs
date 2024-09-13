@@ -73,8 +73,6 @@ public class PlayerManager
     // Explosive
     private int enemyExplodeCounter = 0;
     
-    // Surviving
-    
     // Resources
     private int collectResourceCounter = 0;
     
@@ -84,6 +82,8 @@ public class PlayerManager
     private int firstDie = 0;
     public int tutorialCompleted = 0;
     private AchievementManager achievementManager  = new();
+    
+    // Remake
     
     public void OnPlantPlanted()
     {
@@ -142,7 +142,7 @@ public class PlayerManager
         CheckResourceAchievements();
     }
 
-    public void OnPlantSacrafice()
+    public void OnPlantSacrifice()
     {
         sacrificeCounter++;
         CheckSpecialChallengesAchievements();

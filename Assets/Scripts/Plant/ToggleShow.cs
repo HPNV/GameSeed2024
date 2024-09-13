@@ -60,6 +60,7 @@ namespace Plant
                 if (removeButton.OverlapPoint(mousePos))
                 {
                     Destroy(plantObject);
+                    SingletonGame.Instance.PlayerManager.OnPlantSacrifice();
                 }
 
                 if (waterButton.OverlapPoint(mousePos))
