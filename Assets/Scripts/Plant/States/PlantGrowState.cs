@@ -14,7 +14,7 @@ namespace Plant.States
         {
             var stateInfo = Plant.Animator.GetCurrentAnimatorStateInfo(0);
             
-            if (!stateInfo.IsName("Grow"))
+            if (stateInfo.IsName("Grow") && stateInfo.normalizedTime >= 0.8)
             {
                 Plant.ChangeState(EPlantState.Idle);
             }

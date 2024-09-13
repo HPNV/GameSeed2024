@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Plant.Factory;
 using Plant.States;
 using Script;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Plant
 {
@@ -38,6 +40,7 @@ namespace Plant
 
         private void Update()
         {
+            Debug.Log($"{CurrentState} {_state}");
             _state.Update();
         }
 
