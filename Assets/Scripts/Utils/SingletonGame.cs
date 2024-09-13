@@ -27,6 +27,7 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
 
+    private const int CARD_AMOUNT = 3;
     private int Tutorial1Check = 0;
     private int Tutorial2Check = 0;
 
@@ -127,19 +128,24 @@ public class SingletonGame : MonoBehaviour
     public void SpawnPlant() {
         PauseGame();
         SoundFXManager.instance.PlayGameSoundOnce("Audio/Level Up");
-        HashSet<EPlant> assignedPlants = new HashSet<EPlant>();
 
-        foreach (CardDisplay cardDisplay in cardDisplays) {
-            EPlant ePlant;
-            Debug.Log("Spawning Plant");
-            do {
-                ePlant = plantFactory.GetRandomEPlant();
-           } while (assignedPlants.Contains(ePlant));
+        // foreach (CardDisplay cardDisplay in cardDisplays) {
+        //     EPlant ePlant;
+        //     Debug.Log("Spawning Plant");
+        //     do {
+        //         ePlant = plantFactory.GetRandomEPlant();
+        //    } while (assignedPlants.Contains(ePlant));
+        //
+        //     Debug.Log(ePlant);
+        //     assignedPlants.Add(ePlant);
+        //     PlantData data = plantFactory.GetPlantData(ePlant);
+        //     cardDisplay.SetCard(data, ePlant);
+        // }
 
-            Debug.Log(ePlant);
-            assignedPlants.Add(ePlant);
-            PlantData data = plantFactory.GetPlantData(ePlant);
-            cardDisplay.SetCard(data, ePlant);
+        var assignedPlants = plantFactory.GetUnlockedPlants(CARD_AMOUNT);
+        for (var i = 0; i < CARD_AMOUNT; i++)
+        {
+            cardDisplays[i].SetCard(plantFactory.GetPlantData(assignedPlants[i]), assignedPlants[i]);
         }
 
         PickCardObject.SetActive(true);

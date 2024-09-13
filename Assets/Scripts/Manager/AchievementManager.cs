@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Achievement;
 using Script;
 using UnityEngine;
@@ -9,6 +11,7 @@ namespace Manager
     {
         private Dictionary<EAchievement, AchievementData> _achievements = new();
         public List<AchievementData> UnlockedAchievements { get; private set; } = new();
+        public List<EAchievement> UnlockedEAchievements { get; private set; } = new();
 
         public void Initialize()
         {
@@ -22,14 +25,20 @@ namespace Manager
         
         public void UnlockAchievement(EAchievement achievement)
         {
-            if (UnlockedAchievements.Contains(_achievements[achievement]))
+            if (UnlockedEAchievements.Contains(achievement))
             {
                 return;
             }
             
+            UnlockedEAchievements.Add(achievement);
             UnlockedAchievements.Add(_achievements[achievement]);
             Debug.Log("Achievement Unlocked: " + _achievements[achievement].name);
         }
-        
+
+        public IEnumerable<EAchievement> GetRandomEAchievements(int amt)
+        {
+            var temp = UnlockedEAchievements.OrderBy(x => Guid.NewGuid());
+            return temp.Take(amt);
+        }
     }
 }
