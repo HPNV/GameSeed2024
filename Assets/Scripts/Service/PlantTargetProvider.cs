@@ -12,7 +12,7 @@ namespace Service
         {
             var plants = plantDetectorService
                 .GetPlantsInRange()
-                .Where(p => p is not null)
+                .Where(p => p != null)
                 .Where(p =>
                 {
                     var plant = p.GetComponent<Plant.Plant>();
@@ -23,7 +23,7 @@ namespace Service
             
             var taunter = plants
                 .Select(p => p.GetComponent<Plant.Plant>())
-                .FirstOrDefault(p => p is not null 
+                .FirstOrDefault(p => p != null 
                      && p.Data.plantType.Equals(EPlant.Raflessnare) 
                      && Vector2.Distance(p.transform.position, transform.position) < p.Data.range);
             
@@ -38,7 +38,7 @@ namespace Service
         {
             return plantDetectorService
                 .GetPlantsInRange()
-                .Where(p => p is not null)
+                .Where(p => p != null)
                 .Where(p =>
                 {
                     var plant = p.GetComponent<Plant.Plant>();

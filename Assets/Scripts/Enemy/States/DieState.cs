@@ -26,7 +26,7 @@ namespace Enemy.States
             {
                 SingletonGame.Instance.PlayerManager.OnEnemyKill();
                 SoundFXManager.instance.PlayGameSoundOnce("Audio/Enemy/Slime Death");
-                SingletonGame.Instance.homeBase.GainScore(Enemy.enemyData.maxExperienceDrop * 10);
+                SingletonGame.Instance.homeBase.GainScore(Enemy.enemyData.maxExperienceDrop * 20);
                 SingletonGame.Instance.EnemyManager.Despawn(Enemy);
             }
         }

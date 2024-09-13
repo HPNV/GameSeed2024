@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using Enemy;
+using Plant;
 using Projectile.Behaviour;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -85,9 +86,13 @@ namespace Projectile
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("HELLO", other.gameObject);
             if (other.gameObject.CompareTag(data.targetTag))
             {
+                var plant = other.gameObject.GetComponent<Plant.Plant>();
+
+                if (plant != null && plant.Data.plantType == EPlant.Bamburst)
+                    return;
+                
                 Behaviour.OnCollide(other);
             }
         }

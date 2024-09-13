@@ -69,7 +69,6 @@ public class AchievementHandler : MonoBehaviour
         new Dictionary<string, object> { { "name", "zen_master" }, { "description", "Achieve ultimate peace and balance." } }
     };
     
-    // Start is called before the first frame update
     void Start()
     {
         db = FirebaseFirestore.DefaultInstance;

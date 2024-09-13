@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Manager;
 using UnityEngine;
 using Utils;
@@ -8,7 +10,7 @@ namespace PickupableResource
     {
         [SerializeField] 
         public ResourceData resourceData;
-        
+        private Coroutine _despawnCoroutine;
         private Camera _camera;
 
         private void Start()
@@ -16,6 +18,7 @@ namespace PickupableResource
             _camera = Camera.main;
             var spriteRenderer = GetComponent<SpriteRenderer>();
             
+            _despawnCoroutine = StartCoroutine(Despawn());
             spriteRenderer.sprite = resourceData.sprite;
             transform.localScale = resourceData.scale;
         }
@@ -37,6 +40,18 @@ namespace PickupableResource
 
                 SingletonGame.Instance.homeBase.UpdateUI();
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (_despawnCoroutine != null)
+                StopCoroutine(_despawnCoroutine);
+        }
+
+        private IEnumerator Despawn()
+        {
+            yield return new WaitForSeconds(10);
+            SingletonGame.Instance.ResourceManager.Despawn(this);
         }
         
     }   
