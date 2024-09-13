@@ -77,6 +77,9 @@ namespace Plant
             plantData.level++;
             SingletonGame.Instance.homeBase.sun -= 5;
             plant.Data = plantData;
+            
+            SingletonGame.Instance.PlayerManager.OnPlantUpgraded();
+            if(plantData.level == 3) SingletonGame.Instance.PlayerManager.OnPlantFullyUpgraded();
         }
 
         public void Water()

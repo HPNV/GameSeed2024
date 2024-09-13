@@ -70,6 +70,7 @@ public class HomeBase : Entity
             currentExp -= expToNextLevel;
             expToNextLevel += 50;
             UpdateUI();
+            SingletonGame.Instance.PlayerManager.OnPlayerLevelUp();
             SingletonGame.Instance.SpawnPlant();
         }
     }
