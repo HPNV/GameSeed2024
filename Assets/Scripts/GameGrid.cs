@@ -10,6 +10,10 @@ public class GameGrid : MonoBehaviour
     private int offsetX, offsetY;
     [SerializeField]
     private int zPos;
+    [SerializeField]
+    private Transform homeBase;
+    [SerializeField] 
+    private List<Vector2> blockedTiles;
     
     private Transform _cam;
 
@@ -76,9 +80,13 @@ public class GameGrid : MonoBehaviour
             }
         }
         
-        
+        foreach (var t in blockedTiles)
+        {
+            Slots[Tiles[t]] = new GameObject();
+        }
         
         // var temp = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        // homeBase.position = temp;
         // _cam.transform.position  = temp;
     }
     
@@ -101,4 +109,5 @@ public class GameGrid : MonoBehaviour
     {
         return Slots[tile] == null;
     }
+    
 }
