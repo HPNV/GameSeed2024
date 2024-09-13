@@ -5,7 +5,7 @@ namespace Projectile.Behaviour
     public interface IProjectileBehaviour
     {
         public void Update();
-        public void OnCollide(Collision2D collider);
+        public void OnCollide(Collider2D collider);
         public void OnDespawn();
     }
 }

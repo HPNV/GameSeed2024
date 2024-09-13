@@ -19,7 +19,7 @@ namespace Projectile.Behaviour
                 Projectile.data.movementSpeed * Time.deltaTime);
         }
 
-        public override void OnCollide(Collision2D collider)
+        public override void OnCollide(Collider2D collider)
         {
             var enemy = collider.gameObject.GetComponent<EnemyBehaviour>();
             
@@ -29,7 +29,6 @@ namespace Projectile.Behaviour
             if (enemy.CurrentState == State.Die)
                 return;
             
-            Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             enemy.Damage(Projectile.AttackPower);
             
             SingletonGame.Instance.ProjectileManager.Despawn(Projectile);

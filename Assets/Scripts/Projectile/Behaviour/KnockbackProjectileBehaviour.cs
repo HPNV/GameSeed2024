@@ -34,7 +34,7 @@ namespace Projectile.Behaviour
                 Projectile.data.movementSpeed * Time.deltaTime);
         }
 
-        public override void OnCollide(Collision2D collider)
+        public override void OnCollide(Collider2D collider)
         {
             
         }

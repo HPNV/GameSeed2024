@@ -32,7 +32,6 @@ namespace Manager
             {
                 new (ResourceType.Water, Resources.Load<ResourceData>("PickupableResources/Water")),
                 new (ResourceType.Sunlight, Resources.Load<ResourceData>("PickupableResources/Sunlight")),
-                new (ResourceType.Mineral, Resources.Load<ResourceData>("PickupableResources/Mineral"))
             });
         }
         

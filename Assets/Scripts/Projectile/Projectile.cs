@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Text;
 using Enemy;
 using Projectile.Behaviour;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Projectile
@@ -33,9 +36,9 @@ namespace Projectile
             
             if (data.textureType == TextureType.Static)
             {
-                SpriteRenderer.sprite = data.sprite;
                 Animator.runtimeAnimatorController = null;
                 Animator.enabled = false;
+                SpriteRenderer.sprite = data.sprite;
             }
             
             if (data.textureType == TextureType.Animated)
@@ -79,8 +82,10 @@ namespace Projectile
             Behaviour.Update();
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("HELLO", other.gameObject);
             if (other.gameObject.CompareTag(data.targetTag))
             {
                 Behaviour.OnCollide(other);

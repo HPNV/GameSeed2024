@@ -31,7 +31,7 @@ namespace Projectile.Behaviour
             spriteRenderer.color = color;
         }
 
-        public override void OnCollide(Collision2D collider)
+        public override void OnCollide(Collider2D collider)
         {
             var plant = collider.gameObject.GetComponent<Plant.Plant>();
             
@@ -41,7 +41,6 @@ namespace Projectile.Behaviour
             if (_plantsHit.Contains(plant))
                 return;
             
-            Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             _plantsHit.Add(plant);
 
             if (plant.Data.plantType == EPlant.Aloecura)

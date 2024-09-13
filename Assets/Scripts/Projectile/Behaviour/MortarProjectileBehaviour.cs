@@ -51,17 +51,17 @@ namespace Projectile.Behaviour
             }
         }
 
-        public override void OnCollide(Collision2D collider)
+        public override void OnCollide(Collider2D collider)
         {
             var enemy = collider.gameObject.GetComponent<EnemyBehaviour>();
             
             if (enemy is null)
                 return;
             
+            
             if (enemy.CurrentState == State.Die)
                 return;
-
-            Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
+            
             _attackEnemy = enemy;
         }
     }

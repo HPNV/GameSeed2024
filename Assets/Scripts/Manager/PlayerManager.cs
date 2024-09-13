@@ -13,7 +13,7 @@ using Manager;
 using Script; // Assuming your AchievementManager is under Manager namespace
 
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager
 {
     private int enemyKillCounter = 0;
 
@@ -82,13 +82,9 @@ public class PlayerManager : MonoBehaviour
     
     private int firstDie = 0;
     public int tutorialCompleted = 0;
-    private AchievementManager achievementManager;
-
-    private void Start()
-    {
-        achievementManager = GetComponent<AchievementManager>();
-        
-    }
+    private AchievementManager achievementManager  = new();
+    
+    
 
     public void OnPlantPlanted()
     {
@@ -239,7 +235,7 @@ public class PlayerManager : MonoBehaviour
 
         // Efficient Killer: Kill 50 enemies in 5 minutes
         if (GetEnemyKilledInLast5Minutes() >= 50)
-        {
+        {   
             achievementManager.UnlockAchievement(EAchievement.EfficientKiller);
         }
 

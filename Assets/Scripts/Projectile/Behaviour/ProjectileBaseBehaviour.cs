@@ -12,7 +12,7 @@ namespace Projectile.Behaviour
         }
         public virtual void Update() {}
 
-        public virtual void OnCollide(Collision2D collider) {}
+        public virtual void OnCollide(Collider2D collider) {}
         
         public virtual void OnDespawn() {}
     }

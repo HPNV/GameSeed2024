@@ -25,6 +25,8 @@ namespace Manager
         
         public void UnlockAchievement(EAchievement achievement)
         {
+            //TEMP 
+            return;
             if (UnlockedEAchievements.Contains(achievement))
             {
                 return;

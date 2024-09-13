@@ -40,7 +40,6 @@ namespace Plant
 
         private void Update()
         {
-            Debug.Log($"{CurrentState} {_state}");
             _state.Update();
         }
 

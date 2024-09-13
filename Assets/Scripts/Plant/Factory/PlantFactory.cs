@@ -94,7 +94,14 @@ namespace Plant.Factory
         {
             var count = SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count;
             var unlocked = UNLOCKED + count / STEP;
-            var temp = data.Take(unlocked);
+            //TEMP: REVERT
+            var temp = data.Take(1000);
+            return new List<PlantData>
+            {
+                temp.First(x => x.plantType == EPlant.Explomato),
+                temp.First(x => x.plantType == EPlant.Explomato),
+                temp.First(x => x.plantType == EPlant.Explomato),
+            };
             return temp.OrderBy(x => Guid.NewGuid()).Take(amt).ToList();
         }
     }

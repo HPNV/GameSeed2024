@@ -28,8 +28,8 @@ namespace Card
             
         }
 
-        public void SetCard(PlantData plantData) {
-            Debug.Log($"plantdata: {plantData}");
+        public void SetCard(PlantData plantData) 
+        {
             cardData = plantData;
             cardNameText.text = plantData.plantType.ToString();
             descriptionText.text = plantData.description;

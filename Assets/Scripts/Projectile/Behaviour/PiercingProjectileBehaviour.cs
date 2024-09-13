@@ -20,7 +20,7 @@ namespace Projectile.Behaviour
                 Projectile.data.movementSpeed * Time.deltaTime);
         }
 
-        public override void OnCollide(Collision2D collider)
+        public override void OnCollide(Collider2D collider)
         {
             var enemy = collider.gameObject.GetComponent<EnemyBehaviour>();
             
@@ -33,7 +33,6 @@ namespace Projectile.Behaviour
             if (_enemiesHit.Contains(enemy))
                 return;
             
-            Physics2D.IgnoreCollision(Projectile.GetComponent<Collider2D>(), collider.collider);
             _enemiesHit.Add(enemy);
             
             enemy.Damage(Projectile.AttackPower);

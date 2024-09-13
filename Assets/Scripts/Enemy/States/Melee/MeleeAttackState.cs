@@ -44,7 +44,6 @@ namespace Enemy.States.Melee
             if (_hasAttacked || target is null)
                 return;
             
-            Debug.Log("HAS ATTACKED");
             _hasAttacked = true;
 
             var entity = target.GetComponent<Entity>();

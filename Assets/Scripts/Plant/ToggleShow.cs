@@ -31,7 +31,6 @@ namespace Plant
 
         private void Update()
         {
-            Debug.Log(plant.CurrentState);
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);

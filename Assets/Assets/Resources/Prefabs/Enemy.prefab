@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d54a74679d063674ea7748fd36ba33f5, type: 2}
+  baseData: {fileID: 0}
 --- !u!95 &6368138351320663142
 Animator:
   serializedVersion: 5
@@ -171,7 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2469652faf5d427baf88f057fcc17e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPlant: {fileID: 3922051042449618282}
   plantDetectorService: {fileID: 4122960652951535827}
 --- !u!50 &2617444947042068721
 Rigidbody2D:
