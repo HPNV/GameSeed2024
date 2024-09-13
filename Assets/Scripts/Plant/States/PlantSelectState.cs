@@ -32,7 +32,7 @@ namespace Plant.States
 
         public override void OnEnter()
         {
-            var collider = Plant.transform.GetComponent<Collider2D>();
+            var collider = Plant.transform.GetComponent<CircleCollider2D>();
         
             collider.enabled = false;
 
@@ -52,7 +52,7 @@ namespace Plant.States
         {
             Plant.transform.GetComponent<SpriteRenderer>().color = Color.white;
         
-            Plant.transform.GetComponent<Collider2D>().enabled = true;
+            Plant.transform.GetComponent<CircleCollider2D>().enabled = true;
         
             var detector = Plant.transform.Find("Detector");
             detector.GetComponent<SpriteRenderer>().enabled = false;
