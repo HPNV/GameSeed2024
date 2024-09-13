@@ -30,6 +30,8 @@ public abstract class Entity : MonoBehaviour
 
     public void Heal(float heal)
     {
+        if (_particle == null)
+            _particle = SingletonGame.Instance.ParticleManager.Spawn(ParticleName.Heal, transform.position, 3);
         Health += heal;
         Health = Mathf.Min(Health, MaxHealth);
         OnHeal();
