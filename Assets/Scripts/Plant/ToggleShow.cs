@@ -29,7 +29,6 @@ namespace Plant
 
         private void Update()
         {
-            Debug.Log(plant.CurrentState);
             if(plant.CurrentState == EPlantState.Grow) return;
             if (Input.GetMouseButtonDown(0))
             {
