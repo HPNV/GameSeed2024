@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boomkin
   m_EditorClassIdentifier: 
   plantType: 0
-  health: 5
+  health: 30
   damage: 100
   attackCooldown: 0
   range: 5

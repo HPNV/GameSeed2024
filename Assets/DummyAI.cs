@@ -6,14 +6,14 @@ using UnityEngine;
 public class DummyAI : MonoBehaviour
 {
     [SerializeField] private GameObject enemyObject;
-    private Dictionary<EnemyType, EnemyData> _enemyData;
+    private Dictionary<EnemyName, EnemyData> _enemyData;
     void Start()
     {
-        _enemyData = new Dictionary<EnemyType, EnemyData>
+        _enemyData = new Dictionary<EnemyName, EnemyData>
         {
-            {EnemyType.Melee, Resources.Load<EnemyData>("Enemy/Melee")},
-            {EnemyType.Ranged, Resources.Load<EnemyData>("Enemy/Ranged")},
-            {EnemyType.Explosive, Resources.Load<EnemyData>("Enemy/Explosive")}
+            {EnemyName.SludgeGrunt, Resources.Load<EnemyData>("Enemy/Melee")},
+            {EnemyName.SlimeSpitter, Resources.Load<EnemyData>("Enemy/Ranged")},
+            {EnemyName.BlastBlob, Resources.Load<EnemyData>("Enemy/Explosive")}
         };
     }
 

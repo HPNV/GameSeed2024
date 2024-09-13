@@ -25,7 +25,6 @@ namespace Plant
         public TargetService TargetService { get; private set; }
         public EPlantState CurrentState => _states.FirstOrDefault(x => x.Value == _state).Key;
         public float AttackCooldown { get; set; }
-        
         private PlantData _data;
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;

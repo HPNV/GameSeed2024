@@ -111,7 +111,7 @@ public class SeedpediaHandler : MonoBehaviour
                         string plantId = seedpediaList[i]["id"].ToString();
 
                         // Construct the image path for the plant sprite
-                        string imagePath = "Images/Enemy/" + plantId + "/Walk/walk_2";
+                        string imagePath = $"Images/Enemy/{plantId}";
 
                         // Load the sprite from the Resources folde
                         Sprite plantSprite = Resources.Load<Sprite>(imagePath);

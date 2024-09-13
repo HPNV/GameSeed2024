@@ -55,19 +55,19 @@ public class Spawner : MonoBehaviour
         // Decide enemy type using random
         int enemyGacha = Random.Range(0, 100);
 
-        var spawnedEnemyType = new List<EnemyType>();
+        var spawnedEnemyType = new List<EnemyName>();
         
         if (enemyGacha < 40)
         {
-            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Ranged, EnemyType.RangedTwo, EnemyType.RangedThree });
+            spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.SlimeSpitter, EnemyName.GlobLobber, EnemyName.GelGrenadier });
         }
         else if (enemyGacha < 80)
         {
-            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Melee, EnemyType.MeleeFast, EnemyType.MeleeStrong });
+            spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.SludgeGrunt, EnemyName.SwiftSlimer, EnemyName.GooGuardian });
         }
         else
         {
-            spawnedEnemyType.AddRange(new List<EnemyType> { EnemyType.Explosive, EnemyType.Large });
+            spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.BlastBlob, EnemyName.GoliathOoze });
         }
         
         SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition,multiplier);
