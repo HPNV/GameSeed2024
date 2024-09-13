@@ -22,7 +22,9 @@ public class SeedpediaHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI atkSpeedValue;
     [SerializeField] private TextMeshProUGUI growTimeValue;
 
-    private List<Dictionary<string, object>> seedpediaList = new ();
+    private List<Dictionary<string, object>> seedpediaList = new List<Dictionary<string, object>>();
+    
+    [SerializeField] private string seedpediaCollection = "seedpedia";
 
     void Start()
     {
@@ -35,7 +37,7 @@ public class SeedpediaHandler : MonoBehaviour
 
     void GetSeedpediaData()
     {
-        CollectionReference seedpediaRef = db.Collection("seedpedia");
+        CollectionReference seedpediaRef = db.Collection(seedpediaCollection);
 
         // Fetch all documents in the "seedpedia" collection
         seedpediaRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -56,13 +58,94 @@ public class SeedpediaHandler : MonoBehaviour
                 }
 
                 // After fetching all data, update the UI
-                ReconcileSeedpedia();
+                if(seedpediaCollection == "seedpedia")
+                {
+                    ReconcileSeedpedia();    
+                }
+                else
+                {
+                    ReconcileSlimePedia();
+                }    
             }
             else
             {
                 Debug.LogError("Failed to retrieve data from Firestore: " + task.Exception);
             }
         });
+    }
+    
+    private void ReconcileSlimePedia() 
+    {
+        int i = 0;
+        
+        // Loop through each child (row) of the seedpediaPanel
+        foreach (Transform child in seedpediaPanel.transform)
+        {
+            if (i >= seedpediaList.Count)
+            {
+                Debug.LogWarning("More buttons than available data");
+                break;
+            }
+
+            // Iterate through buttons in each row (grandchildren of seedpediaPanel)
+            foreach (Transform grandchild in child)
+            {
+                if (i >= seedpediaList.Count)
+                {
+                    Debug.LogWarning("More buttons than available data");
+                    break;
+                }
+
+                Button button = grandchild.GetComponent<Button>();
+                if (button != null)
+                {
+                    // Set the background sprite for the button
+                    button.image.sprite = backgroundSprite;
+
+                    // Get all Image components in the button's children (ignoring the button's own image)
+                    Image[] images = button.GetComponentsInChildren<Image>();
+
+                    // Ensure the second image exists (assuming the plant image is in the second position)
+                    if (images.Length > 1)
+                    {
+                        string plantId = seedpediaList[i]["id"].ToString();
+
+                        // Construct the image path for the plant sprite
+                        string imagePath = "Images/Enemy/" + plantId + "/Walk/walk_2";
+
+                        // Load the sprite from the Resources folde
+                        Sprite plantSprite = Resources.Load<Sprite>(imagePath);
+
+                        if (plantSprite != null)
+                        {
+                            // Set the plant image sprite
+                            images[1].sprite = plantSprite;
+                        }
+                        else
+                        {
+                            Debug.LogError("Sprite not found at path: " + imagePath);
+                        }
+
+                        // Debug log for the loaded ID
+                        Debug.Log("Loaded Plant ID: " + plantId);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No Image component found in the child of the button.");
+                    }
+
+                    // Clear previous listeners to avoid multiple events triggering
+                    button.onClick.RemoveAllListeners();
+
+                    // Use a local copy of i for the lambda closure
+                    int index = i;
+                    Debug.Log(seedpediaList[index]);
+                    // button.onClick.AddListener(() => OnButtonClick(seedpediaList[index]));
+
+                    i++; // Move to the next plant in the list
+                }
+            }
+        }
     }
     
     private void ReconcileSeedpedia()
@@ -161,7 +244,7 @@ public class SeedpediaHandler : MonoBehaviour
             plantSpriteRenderer.sprite = plantSprite;
             
             plantSpriteRenderer.transform.localScale = new Vector3(320f, 320f, 4f);
-            plantSpriteRenderer.transform.localPosition = new Vector3(330f, 37f, -201f);
+            plantSpriteRenderer.transform.localPosition = new Vector3(0f, 121.999f, -201f);
             
             PlantData a = Resources.Load<PlantData>("Plant/" + plantId);
 
