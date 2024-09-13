@@ -73,51 +73,51 @@ namespace Enemy
 
         private void SetupStates()
         {
-            _states = enemyData.enemyType switch
+            _states = enemyData.enemyName switch
             {
-                EnemyType.Melee => new Dictionary<State, IState>
+                EnemyName.SludgeGrunt => new Dictionary<State, IState>
                 {
                     { State.Move, new MeleeMoveState(this) },
                     { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.MeleeStrong => new Dictionary<State, IState>
+                EnemyName.GooGuardian => new Dictionary<State, IState>
                 {
                     { State.Move, new MeleeMoveState(this) },
                     { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.MeleeFast => new Dictionary<State, IState>
+                EnemyName.SwiftSlimer => new Dictionary<State, IState>
                 {
                     { State.Move, new MeleeMoveState(this) },
                     { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.Ranged => new Dictionary<State, IState>
+                EnemyName.SlimeSpitter => new Dictionary<State, IState>
                 {
                     { State.Move, new RangedMoveState(this) },
                     { State.Attack, new RangedAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.RangedTwo => new Dictionary<State, IState>
+                EnemyName.GlobLobber => new Dictionary<State, IState>
                 {
                     { State.Move, new RangedMoveState(this) },
                     { State.Attack, new RangedAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.RangedThree => new Dictionary<State, IState>
+                EnemyName.GelGrenadier => new Dictionary<State, IState>
                 {
                     { State.Move, new RangedMoveState(this) },
                     { State.Attack, new RangedAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.Large => new Dictionary<State, IState>
+                EnemyName.GoliathOoze => new Dictionary<State, IState>
                 {
                     { State.Move, new MeleeMoveState(this) },
                     { State.Attack, new MeleeAttackState(this) },
                     { State.Die, new DieState(this) }
                 },
-                EnemyType.Explosive => new Dictionary<State, IState>
+                EnemyName.BlastBlob => new Dictionary<State, IState>
                 {
                     { State.Move, new ExplosiveMoveState(this) },
                     { State.Attack, new ExplosiveAttackState(this) },
