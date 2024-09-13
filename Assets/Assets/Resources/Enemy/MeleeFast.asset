@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
+  m_Name: MeleeFast
+  m_EditorClassIdentifier: 
+  enemyName: Slime
+  health: 50
+  attackPower: 10
+  attackRange: 1
+  damageRange: 1
+  movementSpeed: 2
+  animatorController: {fileID: 9100000, guid: f67c5f15b74e83141bffe2679e80aba9, type: 2}
+  enemyType: 1
+  projectileCount: 1

@@ -38,9 +38,6 @@ namespace Plant
 
         private void Update()
         {
-            // if (_currentHealth <= 0 && CurrentState != EPlantState.Die)
-                // ChangeState(EPlantState.Die);
-                
             _state.Update();
         }
 
@@ -125,14 +122,13 @@ namespace Plant
         {
             Animator.speed += 0.5f;
             AttackCooldown -= 0.5f;
-            Debug.Log($"speed up {Animator.speed} {AttackCooldown}");
+            StartCoroutine(Flash(Color.blue));
         }
 
         protected override void OnSpeedUpClear()
         {
             Animator.speed -= 0.5f;
             AttackCooldown += 0.5f;
-            Debug.Log("speed up clear");
         }
 
         private IEnumerator Flash(Color color)

@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 100
   attackCooldown: 0
   range: 20
-  description: 
+  description: Launches mortar shots with area-of-effect damage.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

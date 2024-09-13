@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 0
   attackCooldown: 0
   range: 20
-  description: 
+  description: Taunting enemies distracting them
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

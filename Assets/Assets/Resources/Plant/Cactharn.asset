@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 50
   attackCooldown: 0
   range: 15
-  description: 
+  description: Fires piercing shots that go through enemies.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0

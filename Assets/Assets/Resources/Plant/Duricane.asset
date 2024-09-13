@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 10
   attackCooldown: 0
   range: 15
-  description: 
+  description: Shoots all directions simultaneously.
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0
