@@ -84,7 +84,7 @@ namespace Plant
                 StopCoroutine(scalingCoroutine);
             }
 
-            if(plant.CurrentState == EPlantState.Grow) {
+            if(plant.CurrentState == EPlantState.Idle) {
                 waterButton.gameObject.SetActive(true);
             } else {
                 waterButton.gameObject.SetActive(false);
