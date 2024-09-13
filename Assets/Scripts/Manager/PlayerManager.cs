@@ -84,6 +84,7 @@ public class PlayerManager
     private AchievementManager achievementManager  = new();
     
     // Remake
+    private int rafflesiaDmg = 0;
     
     public void OnPlantPlanted()
     {
@@ -146,6 +147,12 @@ public class PlayerManager
     {
         sacrificeCounter++;
         CheckSpecialChallengesAchievements();
+    }
+
+    public void OnRafflesiaDamage(int amount)
+    {
+        rafflesiaDmg += amount;
+        if(rafflesiaDmg >= 1000) achievementManager.UnlockAchievement(EAchievement.TauntMaster);
     }
     
     private int GetPlantsPlantedInLast5Minutes()

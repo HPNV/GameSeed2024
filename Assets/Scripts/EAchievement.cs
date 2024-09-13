@@ -52,5 +52,8 @@
         PlantSacrifice,
         Perfectionist,
         FirstFall,              // Die for the first time
+        
+        // Remake
+        TauntMaster,
     }
 }
