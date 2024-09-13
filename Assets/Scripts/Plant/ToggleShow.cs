@@ -1,6 +1,7 @@
 using System.Collections;
 using Plant;
 using Plant.States;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace Plant
         [SerializeField] private Collider2D removeButton;
         [SerializeField] private Collider2D waterButton;
         [SerializeField] private GameObject plantObject;
+        [SerializeField] private TextMeshPro plantLevel;
         private Vector3 originalScale;
         private Vector3 hiddenScale = new Vector3(0.01f, 0.01f, 0.01f);
         private float animationDuration = 0.5f;
@@ -31,6 +33,7 @@ namespace Plant
 
         private void Update()
         {
+            plantLevel.text = $"Lvl {plant.Data.level + 1}";
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -67,7 +70,7 @@ namespace Plant
 
         public void Upgrade() {
             if(SingletonGame.Instance.homeBase.sun < 5) return;
-            if(plant.Data.level == 3) return;
+            if(plant.Data.level >= 2) return;
             PlantData plantData = plant.Data;
             plantData.health += plantData.health * 0.3f;
             plantData.damage += plantData.damage * 0.3f;
