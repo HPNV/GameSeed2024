@@ -18,6 +18,8 @@ namespace Card
         public TextMeshProUGUI attackSpeedText;
         public TextMeshProUGUI rangeText;
         public SpriteRenderer spriteRenderer;
+        public SpriteRenderer rarity;
+
         void Start()
         {
             SetCard(cardData);
@@ -39,6 +41,21 @@ namespace Card
             healthText.text = plantData.health.ToString();
             attackSpeedText.text = plantData.attackCooldown.ToString();
             rangeText.text = plantData.range.ToString();
+            switch (plantData.rarity)
+            {
+                case ERarity.Common:
+                    rarity.sprite = Resources.Load<Sprite>("Rarity/card_common");
+                    break;
+                case ERarity.Rare:
+                    rarity.sprite = Resources.Load<Sprite>("Rarity/card_rare");
+                    break;
+                case ERarity.Epic:
+                    rarity.sprite = Resources.Load<Sprite>("Rarity/card_epic");
+                    break;
+                case ERarity.Legendary:
+                    rarity.sprite = Resources.Load<Sprite>("Rarity/card_legendary");
+                    break;
+            }
         }
 
         public void OnMouseDown() {
