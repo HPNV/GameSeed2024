@@ -79,18 +79,17 @@ public class PlayerManager
     private int collectResourceCounter = 0;
     
     // Special Challenges
+    private int sacrificeCounter = 0;
     
     private int firstDie = 0;
     public int tutorialCompleted = 0;
     private AchievementManager achievementManager  = new();
     
-    
-
     public void OnPlantPlanted()
     {
         plantedPlants++;
         plantTimeStamps.Add(DateTime.Now);
-        CheckPlantAchievements();
+        CheckPlantAchievements(); 
     }
 
     public void OnPlantFullyUpgraded()
@@ -125,9 +124,9 @@ public class PlayerManager
         CheckKillEnemyAchievements();
     }
 
-    public void OnEnemyExploded()
+    public void OnEnemyExploded(int amount)
     {
-        killEnemyExplosiveCounter++;
+        killEnemyExplosiveCounter += amount;
         CheckKillEnemyAchievements();
     }
 
@@ -141,6 +140,12 @@ public class PlayerManager
     {
         collectResourceCounter += amount;
         CheckResourceAchievements();
+    }
+
+    public void OnPlantSacrafice()
+    {
+        sacrificeCounter++;
+        CheckSpecialChallengesAchievements();
     }
     
     private int GetPlantsPlantedInLast5Minutes()
@@ -175,6 +180,25 @@ public class PlayerManager
         var now = DateTime.Now;
         killEnemyTimeStamps.RemoveAll(t => (now - t).TotalMinutes > 10);
         return killEnemyTimeStamps.Count;
+    }
+
+    private bool CheckUnlockAllAchievement()
+    {
+        return SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count == 49;
+    }
+    
+    private void CheckSpecialChallengesAchievements()
+    {
+        // Plant Sacrificer: Sacrifice/Kill 5 of your plants
+        if (sacrificeCounter == 5)
+        {
+            achievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
+        }
+        // Perfectionist: Achieve 100% completion in the game
+        if (CheckUnlockAllAchievement())
+        {
+            achievementManager.UnlockAchievement(EAchievement.Perfectionist);
+        }
     }
     
     private void CheckEnemyExplodeAchievements()
@@ -401,8 +425,6 @@ public class PlayerManager
 
     private void CheckDeathAchievements()
     {
-        if (achievementManager == null)
-            return;
         // First Fall: Die for the first time
         if (firstDie == 1)
         {

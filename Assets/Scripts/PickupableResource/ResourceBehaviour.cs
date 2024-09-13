@@ -35,6 +35,7 @@ namespace PickupableResource
                 if (distance < resourceData.pickupDistance)
                 {
                     SingletonGame.Instance.ResourceManager.Pickup(this);
+                    SingletonGame.Instance.PlayerManager.OnResourceCollect(1);
                 }
 
                 SingletonGame.Instance.homeBase.UpdateUI();

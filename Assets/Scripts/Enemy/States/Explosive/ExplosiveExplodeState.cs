@@ -38,6 +38,7 @@ namespace Enemy.States.Explosive
             if (stateInfo.IsName("Explode") && stateInfo.normalizedTime >= 1) {
                 SoundFXManager.instance.PlayGameSoundOnce("Audio/Explode");
                 Object.Destroy(Enemy.gameObject);
+                SingletonGame.Instance.PlayerManager.OnEnemyExplode();
             }
         }
 

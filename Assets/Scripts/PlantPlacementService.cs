@@ -26,5 +26,6 @@ public class PlantPlacementService : SelectorService
     {
         plant.ChangeState(EPlantState.Grow);
         plant = null;
+        SingletonGame.Instance.PlayerManager.OnPlantPlanted();
     }
 }

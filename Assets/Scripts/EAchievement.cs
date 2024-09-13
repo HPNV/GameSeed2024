@@ -49,6 +49,8 @@
         ResourcefulMind,        // Collect 5000 resources in total
         
         // Special Challenges
+        PlantSacrifice,
+        Perfectionist,
         FirstFall,              // Die for the first time
     }
 }
