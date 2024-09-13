@@ -11494,10 +11494,10 @@ MonoBehaviour:
   minFieldOfView: 1
   maxFieldOfView: 100
   panSpeed: 50
-  leftLimit: -50
-  rightLimit: 50
-  topLimit: 50
-  bottomLimit: -50
+  leftLimit: -10
+  rightLimit: 10
+  topLimit: 25
+  bottomLimit: -25
 --- !u!114 &1443015627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17118,8 +17118,8 @@ MonoBehaviour:
   loseScreen: {fileID: 755566113}
   Tutorial1: {fileID: 687410303}
   Tutorial2: {fileID: 406606331}
-  Tutorial3: {fileID: 864302317}
-  AchivementPrefab: {fileID: 7145795311674285348}
+  Tutorial3: {fileID: 0}
+  AchivementPrefab: {fileID: 0}
   TileProvider: {fileID: 1590870006}
   GameGrid: {fileID: 1555180711}
   ExpPoint: 0
@@ -17277,12 +17277,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1421698235721428001, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7145795311674285348}
-    - targetCorrespondingSourceObject: {fileID: 4221292944091774366, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3309142058043968990, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
 --- !u!4 &7145795311674285344 stripped
 Transform:
