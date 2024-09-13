@@ -31,6 +31,7 @@ namespace Plant
 
         private void Update()
         {
+            Debug.Log(plant.CurrentState);
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -88,7 +89,7 @@ namespace Plant
                 StopCoroutine(scalingCoroutine);
             }
 
-            if(plant.CurrentState == EPlantState.Idle) {
+            if(plant.CurrentState == EPlantState.Grow) {
                 waterButton.gameObject.SetActive(true);
             } else {
                 waterButton.gameObject.SetActive(false);
