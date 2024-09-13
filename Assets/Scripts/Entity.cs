@@ -18,7 +18,7 @@ public abstract class Entity : MonoBehaviour
         MaxHealth = maxHealth;
     }
     
-    public void Damage(float damage)
+    public virtual void Damage(float damage)
     {
         if (!ValidateDamage()) return;
         Health -= damage;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Enemy;
 using Plant.Factory;
 using Plant.States;
 using Script;
@@ -87,6 +88,14 @@ namespace Plant
         {
             var detector = transform.Find("Detector");
             detector.localScale = new Vector3(Data.range, Data.range, 1);
+        }
+        
+        public override void Damage(float damage)
+        {
+            base.Damage(damage);
+            
+            if (CurrentState == EPlantState.Grow && Health <= _data.health - 5)
+                ChangeState(EPlantState.Die);
         }
 
         public void ChangeState(EPlantState state)

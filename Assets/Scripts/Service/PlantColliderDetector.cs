@@ -8,7 +8,7 @@ namespace Service
     public class PlantColliderDetector : PlantDetectorService
     {
 
-        private void SortPlants()
+        private void PreparePlants()
         {
             Plants = Plants.OrderBy(plant => Vector2.Distance(plant.transform.position, transform.position)).ToList();
         }
@@ -23,13 +23,12 @@ namespace Service
                     return;
                 
                 Plants.Add(other.gameObject);
-                SortPlants();
+                PreparePlants();
             }
 
             if(other.CompareTag("Base")) {
-                var plant = other.GetComponent<Plant.Plant>();
                 Plants.Add(other.gameObject);
-                SortPlants();
+                PreparePlants();
             }
         }
 
@@ -38,7 +37,7 @@ namespace Service
             if (other.CompareTag("Plant"))
             {
                 Plants.Remove(other.gameObject);
-                SortPlants();
+                PreparePlants();
             }
         }
     }
