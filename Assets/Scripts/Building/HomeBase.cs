@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Building;
+using Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,14 +55,11 @@ public class HomeBase : Entity
 
         timeText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
         SingletonGame.Instance.loseScreen.time = $"{hours:00}:{minutes:00}:{seconds:00}";
-    }
-
-    public string getTime() {
-        int hours = Mathf.FloorToInt(time / 3600);
-        int minutes = Mathf.FloorToInt((time % 3600) / 60);
-        int seconds = Mathf.FloorToInt(time % 60);
-
-        return $"{hours:00}:{minutes:00}:{seconds:00}";
+        
+        if(minutes == 1) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.BareMinimum);
+        if(minutes == 10) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.SurvivalNotice);
+        if(minutes == 30) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.Survivalist);
+        if(hours == 1) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.EnduranceExpert);
     }
 
     private void LevelUp() {

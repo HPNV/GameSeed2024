@@ -169,6 +169,17 @@ public class PlayerManager
         plantHeal += amt;
         if(plantHeal >= 500) achievementManager.UnlockAchievement(EAchievement.GreenThumb);
     }
+
+    public void OnSurviveAchievement(EAchievement achievement)
+    {
+        if (
+            achievement != EAchievement.SurvivalNotice &&
+            achievement != EAchievement.Survivalist &&
+            achievement != EAchievement.EnduranceExpert &&
+            achievement != EAchievement.BareMinimum
+        ) return;
+        achievementManager.UnlockAchievement(achievement);
+    }
     
     private int GetPlantsPlantedInLast5Minutes()
     {
