@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private int rightLimit = 100;
     [SerializeField] private int topLimit = 100;
     [SerializeField] private int bottomLimit = -100;
-    private bool _isDragging;
     private Vector3 _oldPosition;
     private Vector3 _panOrigin;
     
@@ -61,7 +60,6 @@ public class CameraController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            _isDragging = true;
             _oldPosition = cameraTarget.transform.position;
             _panOrigin = Camera.main.ScreenToViewportPoint(Input.mousePosition);				
         }
@@ -73,11 +71,7 @@ public class CameraController : MonoBehaviour
             cameraTarget.transform.position = _oldPosition + -pos * panSpeed; 				
             HandleCameraBounds();
         }
-
-        if(Input.GetMouseButtonUp(1))
-        {
-            _isDragging = false;
-        }
+        
     }
 
     private void HandleZoom()
