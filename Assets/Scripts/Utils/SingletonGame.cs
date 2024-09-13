@@ -26,10 +26,12 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public LoseScreen loseScreen;
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
+    [SerializeField] private GameObject Tutorial3;
 
     private const int CARD_AMOUNT = 3;
     private int Tutorial1Check = 0;
     private int Tutorial2Check = 0;
+    private int Tutorial3Check = 0;
     private int enemyKilled = 0;
     private int plantPlanted = 0;
 
@@ -87,6 +89,12 @@ public class SingletonGame : MonoBehaviour
 
         if(true && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
+        } else {
+            SpawnPlant();
+            Tutorial1.SetActive(false);
+            Tutorial1Check = 5;
+            Tutorial2Check = 5;
+            Tutorial3Check = 5;
         }
         
         CursorManager.ChangeCursor(CursorType.Arrow);
@@ -106,9 +114,15 @@ public class SingletonGame : MonoBehaviour
             }
         }
 
-        if(homeBase.sun == 5 && Tutorial2Check == 0) {
+        if(homeBase.sun >= 5 && Tutorial2Check == 0) {
             Tutorial2.SetActive(true);
             Tutorial2Check = 1;
+            PauseGame();
+        }
+
+        if(homeBase.water >= 5 && Tutorial3Check == 0) {
+            Tutorial3.SetActive(true);
+            Tutorial3Check = 1;
             PauseGame();
         }
 
@@ -119,6 +133,15 @@ public class SingletonGame : MonoBehaviour
                 ResumeGame();
             }
         }
+
+        if(Tutorial3Check == 1) {
+            if(Input.GetKeyDown(KeyCode.Mouse0)) {
+                Tutorial3Check = 2;
+                Tutorial3.SetActive(false);
+                ResumeGame();
+            }
+        }
+        
     }
 
     private void Update()
@@ -163,7 +186,6 @@ public class SingletonGame : MonoBehaviour
         PickCardObject.SetActive(false);
     }
     
-
     public void PauseGame() {
         Time.timeScale = 0;
         IsPaused = true;

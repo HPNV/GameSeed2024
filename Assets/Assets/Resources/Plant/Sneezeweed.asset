@@ -21,6 +21,7 @@ MonoBehaviour:
   hasCollider: 1
   growTimeMultiplier: 1
   level: 0
+  rarity: 3
   sprite: {fileID: 21300000, guid: 3b580594806bd6a469a4994691e777cf, type: 3}
   animatorController: {fileID: 9100000, guid: e43c9eb7f4a27834eaed0d928b28b98f, type: 2}
   targetType: 0

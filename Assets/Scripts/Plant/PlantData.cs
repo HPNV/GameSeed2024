@@ -18,6 +18,7 @@ namespace Plant
         public bool hasCollider = true;
         public float growTimeMultiplier = 1;
         public int level;
+        public ERarity rarity;
 
         public Sprite sprite;
         public RuntimeAnimatorController animatorController;
