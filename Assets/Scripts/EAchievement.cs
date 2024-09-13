@@ -46,6 +46,9 @@
         ResourceHoarder,        // Collect 30 resources
         HerbalHarvester,        // Collect 50 resources
         ResourceTycoon,         // Collect 1000 resources
-        ResourcefulMind         // Collect 5000 resources in total
+        ResourcefulMind,        // Collect 5000 resources in total
+        
+        // Special Challenges
+        FirstFall,              // Die for the first time
     }
 }
