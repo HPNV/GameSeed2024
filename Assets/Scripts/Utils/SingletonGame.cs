@@ -48,6 +48,7 @@ public class SingletonGame : MonoBehaviour
     public PlayerManager PlayerManager { get; set; } = new();
     public AchievementManager AchievementManager { get; set; } = new();
     public ParticleManager ParticleManager { get; set; } = new();
+    public CursorManager CursorManager { get; set; } = new();
 
 
     [SerializeField] private GameObject CardDisplayPrefab;
@@ -72,6 +73,7 @@ public class SingletonGame : MonoBehaviour
         ProjectileManager.Initialize();
         EnemyManager.Initialize();
         ParticleManager.Initialize();
+        CursorManager.Initialize();
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
         PickCardObject.SetActive(false);
@@ -84,6 +86,8 @@ public class SingletonGame : MonoBehaviour
         if(true && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
         }
+        
+        CursorManager.ChangeCursor(CursorType.Arrow);
     }
 
     private void Tutorial() {

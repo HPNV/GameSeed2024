@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Manager;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -60,13 +61,18 @@ public class CameraController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
+            SingletonGame.Instance.CursorManager.ChangeCursor(CursorType.Hand);
             _oldPosition = cameraTarget.transform.position;
             _panOrigin = Camera.main.ScreenToViewportPoint(Input.mousePosition);				
         }
 
+        if (Input.GetMouseButtonUp(1))
+        {
+            SingletonGame.Instance.CursorManager.ChangeCursor(CursorType.Arrow);
+        }
+
         if(Input.GetMouseButton(1))
         {
-            
             var pos = Camera.main.ScreenToViewportPoint(Input.mousePosition) - _panOrigin;
             cameraTarget.transform.position = _oldPosition + -pos * panSpeed; 				
             HandleCameraBounds();
