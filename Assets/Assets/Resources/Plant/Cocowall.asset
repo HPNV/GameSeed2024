@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cocowall
   m_EditorClassIdentifier: 
   plantType: 8
-  health: 100
+  health: 300
   damage: 0
   attackCooldown: 0
   range: 0

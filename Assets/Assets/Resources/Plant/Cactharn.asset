@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantType: 1
   health: 100
-  damage: 50
+  damage: 25
   attackCooldown: 0
   range: 15
   description: Fires piercing shots that go through enemies.

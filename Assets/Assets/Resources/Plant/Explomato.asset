@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantType: 10
   health: 100
-  damage: 100
+  damage: 30
   attackCooldown: 0
   range: 20
   description: Launches mortar shots with area-of-effect damage.

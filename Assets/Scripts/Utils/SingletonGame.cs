@@ -23,7 +23,7 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public CardDisplay card1;
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
-    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private LoseScreen loseScreen;
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
 
@@ -171,7 +171,9 @@ public class SingletonGame : MonoBehaviour
     public void LoseGame()
     {
         PauseGame();
-        loseScreen.SetActive(true);
+        loseScreen.gameObject.SetActive(true);
+        loseScreen.UpdateUI(homeBase.score, 0, 0,homeBase.getTime());
+
         PlayerManager.OnPlayerDied();
     }
 }

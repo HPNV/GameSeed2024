@@ -1,5 +1,6 @@
 using System.Collections;
 using Plant;
+using Plant.States;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace Plant
         [SerializeField] private Plant plant;
         [SerializeField] private Collider2D upgradeButton;
         [SerializeField] private Collider2D removeButton;
+        [SerializeField] private Collider2D waterButton;
         [SerializeField] private GameObject plantObject;
         private Vector3 originalScale;
         private Vector3 hiddenScale = new Vector3(0.01f, 0.01f, 0.01f);
@@ -29,8 +31,6 @@ namespace Plant
 
         private void Update()
         {
-            Debug.Log(plant.CurrentState);
-            if(plant.CurrentState == EPlantState.Grow) return;
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -57,6 +57,7 @@ namespace Plant
                 {
                     Destroy(plantObject);
                 }
+            
             }
         }
 
@@ -71,11 +72,22 @@ namespace Plant
             plant.Data = plantData; 
         }
 
+        public void Water() {
+            if(SingletonGame.Instance.homeBase.water < 5) return;
+            plant.ChangeState(EPlantState.Idle);
+        }
+
         public void Toggle()
         {
             if (scalingCoroutine != null)
             {
                 StopCoroutine(scalingCoroutine);
+            }
+
+            if(plant.CurrentState == EPlantState.Grow) {
+                waterButton.gameObject.SetActive(true);
+            } else {
+                waterButton.gameObject.SetActive(false);
             }
 
             Vector3 targetScale = onShow ? hiddenScale : originalScale;

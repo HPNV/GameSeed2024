@@ -3,6 +3,7 @@ using System.Linq;
 using Building;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 public class HomeBase : Entity
@@ -13,13 +14,15 @@ public class HomeBase : Entity
     [SerializeField] TextMeshPro sunText;
     [SerializeField] TextMeshPro levelText;
     [SerializeField] TextMeshPro scoreText;
+    [SerializeField] TextMeshPro timeText;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
     [SerializeField] private float startHealth;
     public int water = 0;
     public int sun = 0;
-    private int score = 0;
+    public int score = 0;
+    public float time = 0;
 
     void Start()
     {
@@ -29,6 +32,8 @@ public class HomeBase : Entity
 
     void Update()
     {
+        time += Time.deltaTime;
+        UpdateTimeText();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector3 mousePosition = Input.mousePosition;
@@ -38,6 +43,23 @@ public class HomeBase : Entity
         }
 
         LevelUp();
+    }
+
+    private void UpdateTimeText()
+    {
+        int hours = Mathf.FloorToInt(time / 3600);
+        int minutes = Mathf.FloorToInt((time % 3600) / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+
+        timeText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
+    }
+
+    public string getTime() {
+        int hours = Mathf.FloorToInt(time / 3600);
+        int minutes = Mathf.FloorToInt((time % 3600) / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+
+        return $"{hours:00}:{minutes:00}:{seconds:00}";
     }
 
     private void LevelUp() {
