@@ -8,22 +8,27 @@ using UnityEngine;
 
 namespace Manager
 {
-    public class AchievementManager
+    public class AchievementManager : MonoBehaviour
     {
+        [SerializeField]
+        private List<EAchievement> enums;
+        [SerializeField]
+        private List<AchievementData> data;
         private Dictionary<EAchievement, AchievementData> _achievements = new();
         public List<AchievementData> UnlockedAchievements { get; private set; } = new();
         public List<EAchievement> UnlockedEAchievements { get; private set; } = new();
 
-        public void Initialize()
+        private void Start()
         {
             UnlockedAchievements = new List<AchievementData>();
-            
-            _achievements = new Dictionary<EAchievement, AchievementData>
+            UnlockedEAchievements = new List<EAchievement>();
+            _achievements = new Dictionary<EAchievement, AchievementData>();
+            for (var i = 0; i < enums.Count; i++)
             {
-                { EAchievement.NewGardener, Resources.Load<AchievementData>("Achievement/New Gardener") }
-            };
+                _achievements[enums[i]] = data[i];
+            }
         }
-        
+
         public void UnlockAchievement(EAchievement achievement)
         {
             if (UnlockedEAchievements.Contains(achievement))
