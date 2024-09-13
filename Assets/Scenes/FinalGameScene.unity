@@ -17119,6 +17119,7 @@ MonoBehaviour:
   Tutorial1: {fileID: 687410303}
   Tutorial2: {fileID: 406606331}
   Tutorial3: {fileID: 864302317}
+  AchivementPrefab: {fileID: 7145795311674285348}
   TileProvider: {fileID: 1590870006}
   GameGrid: {fileID: 1555180711}
   ExpPoint: 0
@@ -17272,13 +17273,57 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1421698235721428001, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7145795311674285348}
+    - targetCorrespondingSourceObject: {fileID: 4221292944091774366, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3309142058043968990, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
 --- !u!4 &7145795311674285344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8741493857497693129, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
   m_PrefabInstance: {fileID: 7145795311674285343}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7145795311674285345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7281960736038878476, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
+  m_PrefabInstance: {fileID: 7145795311674285343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &7145795311674285346 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4128975692016200587, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
+  m_PrefabInstance: {fileID: 7145795311674285343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7145795311674285347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1421698235721428001, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
+  m_PrefabInstance: {fileID: 7145795311674285343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7145795311674285348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7145795311674285347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6f567f89555a441a616292585f6fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 7145795311674285346}
+  AchievementName: {fileID: 7145795311674285345}
 --- !u!1001 &8619139169033466441
 PrefabInstance:
   m_ObjectHideFlags: 0

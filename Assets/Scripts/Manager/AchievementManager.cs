@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Achievement;
@@ -33,12 +34,21 @@ namespace Manager
             UnlockedEAchievements.Add(achievement);
             UnlockedAchievements.Add(_achievements[achievement]);
             Debug.Log("Achievement Unlocked: " + _achievements[achievement].name);
+            ShowAchievement(achievement);
         }
 
         public IEnumerable<EAchievement> GetRandomEAchievements(int amt)
         {
             var temp = UnlockedEAchievements.OrderBy(x => Guid.NewGuid());
             return temp.Take(amt);
+        }
+
+        public IEnumerator ShowAchievement(EAchievement achievement)
+        {
+            SingletonGame.Instance.AchivementPrefab.SetAchievement(_achievements[achievement].achievementImage, _achievements[achievement].name);
+            SingletonGame.Instance.AchivementPrefab.gameObject.SetActive(true);
+            yield return new WaitForSeconds(3);
+            SingletonGame.Instance.AchivementPrefab.gameObject.SetActive(false);
         }
     }
 }

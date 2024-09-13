@@ -27,6 +27,7 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
     [SerializeField] private GameObject Tutorial3;
+    [SerializeField] public AchivementHolder AchivementPrefab;
 
     private const int CARD_AMOUNT = 3;
     private int Tutorial1Check = 0;
@@ -138,6 +139,7 @@ public class SingletonGame : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial3Check = 2;
                 Tutorial3.SetActive(false);
+                PlayerManager.tutorialCompleted = 1;
                 ResumeGame();
             }
         }
