@@ -27,7 +27,14 @@ public class PlayerManager : MonoBehaviour
     private int killEnemyExplosiveCounter = 0;
     
     // Explosive
+    private int enemyExplodeCounter = 0;
     
+    // Surviving
+    
+    // Resources
+    private int collectResourceCounter = 0;
+    
+    // Special Challenges
     
     private int firstDie = 0;
     public int tutorialCompleted = 0;
@@ -42,9 +49,7 @@ public class PlayerManager : MonoBehaviour
     public void OnPlantPlanted()
     {
         plantedPlants++;
-
         plantTimeStamps.Add(DateTime.Now);
-        
         CheckPlantAchievements();
     }
 
@@ -85,6 +90,18 @@ public class PlayerManager : MonoBehaviour
         killEnemyExplosiveCounter++;
         CheckKillEnemyAchievements();
     }
+
+    public void OnEnemyExplode()
+    {
+        enemyExplodeCounter++;
+        CheckEnemyExplodeAchievements();
+    }
+
+    public void OnResourceCollect(int amount)
+    {
+        collectResourceCounter += amount;
+        CheckResourceAchievements();
+    }
     
     private int GetPlantsPlantedInLast5Minutes()
     {
@@ -118,6 +135,72 @@ public class PlayerManager : MonoBehaviour
         var now = DateTime.Now;
         killEnemyTimeStamps.RemoveAll(t => (now - t).TotalMinutes > 10);
         return killEnemyTimeStamps.Count;
+    }
+    
+    private void CheckEnemyExplodeAchievements()
+    {
+        // Explosive Expertise: Explode 5 enemies
+        if (enemyExplodeCounter == 5)
+        {
+            achievementManager.UnlockAchievement("Explosive Expertise");
+        }
+    }
+
+    private void CheckResourceAchievements()
+    {
+        // Resource Collector: Collect 15 resources
+        if (collectResourceCounter == 15)
+        {
+            achievementManager.UnlockAchievement("Resource Collector");
+        }
+
+        // Resource Hoarder: Collect 30 resources
+        if (collectResourceCounter == 30)
+        {
+            achievementManager.UnlockAchievement("Resource Hoarder");
+        }
+
+        // Herbal Harvester: Collect 50 resources
+        if (collectResourceCounter == 50)
+        {
+            achievementManager.UnlockAchievement("Herbal Harvester");
+        }
+
+        // Resource Tycoon: Collect 1000 resources
+        if (collectResourceCounter == 1000)
+        {
+            achievementManager.UnlockAchievement("Resource Tycoon");
+        }
+
+        // Resourceful Mind: Collect 5000 resources in total
+        if (collectResourceCounter == 5000)
+        {
+            achievementManager.UnlockAchievement("Resourceful Mind");
+        }
+
+        // Resource Tycoon: Collect 1000 resources
+        if (collectResourceCounter == 1000)
+        {
+            achievementManager.UnlockAchievement("Resource Tycoon");
+        }
+
+        // Resourceful Mind: Collect 5000 resources in total
+        if (collectResourceCounter == 5000)
+        {
+            achievementManager.UnlockAchievement("Resourceful Mind");
+        }
+
+        // Resource Tycoon: Collect 1000 resources
+        if (collectResourceCounter == 1000)
+        {
+            achievementManager.UnlockAchievement("Resource Tycoon");
+        }
+
+        // Resourceful Mind: Collect 5000 resources in total
+        if (collectResourceCounter == 5000)
+        {
+            achievementManager.UnlockAchievement("Resourceful Mind");
+        }
     }
     
     private void CheckKillEnemyAchievements()
