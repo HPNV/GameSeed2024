@@ -34,7 +34,8 @@ namespace Plant.States
         {
             var collider = Plant.transform.GetComponent<CircleCollider2D>();
         
-            collider.enabled = false;
+            if (collider != null)
+                collider.enabled = false;
 
             var detector = Plant.transform.Find("Detector");
             
@@ -52,7 +53,10 @@ namespace Plant.States
         {
             Plant.transform.GetComponent<SpriteRenderer>().color = Color.white;
         
-            Plant.transform.GetComponent<CircleCollider2D>().enabled = true;
+            var collider = Plant.transform.GetComponent<CircleCollider2D>();
+        
+            if (collider != null)
+                collider.enabled = true;
         
             var detector = Plant.transform.Find("Detector");
             detector.GetComponent<SpriteRenderer>().enabled = false;

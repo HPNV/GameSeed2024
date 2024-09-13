@@ -12,8 +12,6 @@ namespace Plant.States.Boomkin
 
         public override void OnEnter()
         {
-            //base.OnEnter();
-            
             Plant.Animator.SetTrigger(DieTrigger);
             _hasDamaged = false;
         }
@@ -24,7 +22,7 @@ namespace Plant.States.Boomkin
             
             var stateInfo = Plant.Animator.GetCurrentAnimatorStateInfo(0);
             
-            Plant.transform.localScale = Vector3.Lerp(Plant.transform.localScale, Vector3.one * 6, Time.deltaTime);
+            Plant.transform.localScale = Vector3.Lerp(Plant.transform.localScale, Vector3.one * 10, Time.deltaTime);
             
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 0.8)
                 Damage();

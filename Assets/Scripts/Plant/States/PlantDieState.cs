@@ -21,8 +21,6 @@ namespace Plant.States
         public override void OnEnter()
         {
             Object.Destroy(Plant.gameObject);
-            //TODO UNCOMMENT
-            //Plant.Animator.SetTrigger(DieTrigger);
         }
 
         public override void OnExit()

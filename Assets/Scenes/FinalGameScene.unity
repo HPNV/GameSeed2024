@@ -7650,7 +7650,7 @@ Animator:
   m_GameObject: {fileID: 1009102850}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 564456f44f8eb614ca3972d5b30df429, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b875b63d21b1e8458f1ba2b788bcc32, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11497,10 +11497,10 @@ MonoBehaviour:
   minFieldOfView: 1
   maxFieldOfView: 100
   panSpeed: 50
-  leftLimit: -50
-  rightLimit: 50
-  topLimit: 50
-  bottomLimit: -50
+  leftLimit: -10
+  rightLimit: 10
+  topLimit: 25
+  bottomLimit: -25
 --- !u!114 &1443015627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17160,8 +17160,8 @@ MonoBehaviour:
   loseScreen: {fileID: 755566113}
   Tutorial1: {fileID: 687410303}
   Tutorial2: {fileID: 406606331}
-  Tutorial3: {fileID: 864302317}
-  AchivementPrefab: {fileID: 7145795311674285348}
+  Tutorial3: {fileID: 0}
+  AchivementPrefab: {fileID: 0}
   TileProvider: {fileID: 1590870006}
   GameGrid: {fileID: 1555180711}
   ExpPoint: 0
