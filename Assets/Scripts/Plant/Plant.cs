@@ -29,7 +29,8 @@ namespace Plant
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
         private SpriteRenderer _spriteRenderer;
-        
+        private static readonly int GrowUp = Animator.StringToHash("GrowUp");
+
         private void Start()
         {
             Init();
@@ -94,6 +95,15 @@ namespace Plant
             _state.OnExit();
             _state = _states[state];
             _state.OnEnter();
+        }
+        
+        public void Grow()
+        {
+            if (CurrentState != EPlantState.Grow)
+                return;
+                    
+            ChangeState(EPlantState.Idle);
+            Animator.SetTrigger(GrowUp);
         }
 
         protected override bool ValidateDamage()
