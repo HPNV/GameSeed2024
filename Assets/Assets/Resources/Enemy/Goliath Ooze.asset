@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Goliath Ooze
   m_EditorClassIdentifier: 
-  enemyName: Slime
-  health: 2000
+  health: 500
   attackPower: 10
   attackRange: 1
   damageRange: 1
   movementSpeed: 0.5
   animatorController: {fileID: 9100000, guid: 564456f44f8eb614ca3972d5b30df429, type: 2}
-  enemyType: 7
+  enemyName: 7
   projectileCount: 1

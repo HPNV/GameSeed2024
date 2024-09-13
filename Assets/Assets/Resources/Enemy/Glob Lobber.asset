@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Glob Lobber
   m_EditorClassIdentifier: 
-  enemyName: Slime Ranged
   health: 50
   attackPower: 5
   attackRange: 5
   damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: 4ac4af22882d06d41ad011b96c7809b2, type: 2}
-  enemyType: 4
+  enemyName: 4
   projectileCount: 3

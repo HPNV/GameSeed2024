@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Goo Guardian
   m_EditorClassIdentifier: 
-  enemyName: Slime
   health: 50
   attackPower: 10
   attackRange: 1
   damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: 3a4de635c2d95d940a2943665945f8df, type: 2}
-  enemyType: 2
+  enemyName: 2
   projectileCount: 1

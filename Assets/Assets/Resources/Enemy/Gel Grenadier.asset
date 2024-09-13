@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Gel Grenadier
   m_EditorClassIdentifier: 
-  enemyName: Slime Ranged
   health: 50
   attackPower: 5
   attackRange: 5
   damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: 046d5c64312a43948bd9b5a382a0623e, type: 2}
-  enemyType: 5
+  enemyName: 5
   projectileCount: 5

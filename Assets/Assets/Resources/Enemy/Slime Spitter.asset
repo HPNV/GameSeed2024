@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Slime Spitter
   m_EditorClassIdentifier: 
-  enemyName: Slime Ranged
   health: 50
   attackPower: 5
   attackRange: 5
   damageRange: 1
   movementSpeed: 2
   animatorController: {fileID: 9100000, guid: c74fd73d145267048841264edd46c458, type: 2}
-  enemyType: 3
+  enemyName: 3
   projectileCount: 1

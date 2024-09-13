@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ad89057680aa44cb67e8fc14fc9ca1, type: 3}
   m_Name: Blast Blob
   m_EditorClassIdentifier: 
-  enemyName: Bomb Slime
   health: 20
   attackPower: 50
   attackRange: 1
   damageRange: 5
   movementSpeed: 3
   animatorController: {fileID: 9100000, guid: a15e8afd863e01241a4fec0c7c4d5958, type: 2}
-  enemyType: 6
+  enemyName: 6
   projectileCount: 1
