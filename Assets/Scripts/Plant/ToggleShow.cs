@@ -77,7 +77,8 @@ namespace Plant
             plant.Data = plantData; 
         }
 
-        public void Water() {
+        public void Water()
+        {
             if(SingletonGame.Instance.homeBase.water < 5) 
                 return;
                 
