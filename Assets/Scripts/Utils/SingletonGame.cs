@@ -23,13 +23,15 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] public CardDisplay card1;
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
-    [SerializeField] private LoseScreen loseScreen;
+    [SerializeField] public LoseScreen loseScreen;
     [SerializeField] private GameObject Tutorial1;
     [SerializeField] private GameObject Tutorial2;
 
     private const int CARD_AMOUNT = 3;
     private int Tutorial1Check = 0;
     private int Tutorial2Check = 0;
+    private int enemyKilled = 0;
+    private int plantPlanted = 0;
 
     private List<CardDisplay> cardDisplays = new List<CardDisplay>();
     private AudioClip gameMusic; 
@@ -129,19 +131,6 @@ public class SingletonGame : MonoBehaviour
         PauseGame();
         SoundFXManager.instance.PlayGameSoundOnce("Audio/Level Up");
 
-        // foreach (CardDisplay cardDisplay in cardDisplays) {
-        //     EPlant ePlant;
-        //     Debug.Log("Spawning Plant");
-        //     do {
-        //         ePlant = plantFactory.GetRandomEPlant();
-        //    } while (assignedPlants.Contains(ePlant));
-        //
-        //     Debug.Log(ePlant);
-        //     assignedPlants.Add(ePlant);
-        //     PlantData data = plantFactory.GetPlantData(ePlant);
-        //     cardDisplay.SetCard(data, ePlant);
-        // }
-
         var assignedPlants = plantFactory.GetUnlockedPlants(CARD_AMOUNT);
         for (var i = 0; i < CARD_AMOUNT; i++)
         {
@@ -181,12 +170,19 @@ public class SingletonGame : MonoBehaviour
         IsPaused = false;
     }
 
+    public void addEnemyKilled() {
+        enemyKilled += 1;
+    }
+
+    public void addPlantPlanted() {
+        plantPlanted += 1;
+    }
+
     public void LoseGame()
     {
         PauseGame();
         loseScreen.gameObject.SetActive(true);
-        loseScreen.UpdateUI(homeBase.score, 0, 0,homeBase.getTime());
-
+        loseScreen.UpdateUI(homeBase.score, enemyKilled, plantPlanted);
         PlayerManager.OnPlayerDied();
     }
 }

@@ -52,6 +52,7 @@ public class HomeBase : Entity
         int seconds = Mathf.FloorToInt(time % 60);
 
         timeText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
+        SingletonGame.Instance.loseScreen.time = $"{hours:00}:{minutes:00}:{seconds:00}";
     }
 
     public string getTime() {

@@ -11,7 +11,7 @@ namespace Enemy.States
         public override void OnEnter()
         {
             Enemy.Animator.SetTrigger(Die);
-            
+            SingletonGame.Instance.addEnemyKilled();
             Enemy.InnerCircleCollider.enabled = false;
             var position = Enemy.transform.position;
             SingletonGame.Instance.ExperienceManager.SpawnBatch(3, new Vector3(position.x, position.y, position.z));
@@ -29,7 +29,6 @@ namespace Enemy.States
                 SingletonGame.Instance.homeBase.GainScore(50);
                 SingletonGame.Instance.EnemyManager.Despawn(Enemy);
             }
-                
         }
     }
 }
