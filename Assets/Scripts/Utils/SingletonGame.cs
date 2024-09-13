@@ -145,7 +145,7 @@ public class SingletonGame : MonoBehaviour
         var assignedPlants = plantFactory.GetUnlockedPlants(CARD_AMOUNT);
         for (var i = 0; i < CARD_AMOUNT; i++)
         {
-            cardDisplays[i].SetCard(plantFactory.GetPlantData(assignedPlants[i]), assignedPlants[i]);
+            cardDisplays[i].SetCard(assignedPlants[i]);
         }
 
         PickCardObject.SetActive(true);
@@ -154,6 +154,13 @@ public class SingletonGame : MonoBehaviour
     public void PickCard(EPlant plantType)
     {
         plantFactory.spawnPlant(plantType);
+        ResumeGame();
+        DestroyRemainingCards();
+    }
+    
+    public void PickCard(PlantData plantData)
+    {
+        plantFactory.SpawnPlant(plantData);
         ResumeGame();
         DestroyRemainingCards();
     }
