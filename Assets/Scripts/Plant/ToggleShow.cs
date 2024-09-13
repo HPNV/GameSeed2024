@@ -81,6 +81,7 @@ namespace Plant
         {
             if(SingletonGame.Instance.homeBase.water < 5) 
                 return;
+            SingletonGame.Instance.homeBase.water -= 5;
             plant.Grow();
         }
 

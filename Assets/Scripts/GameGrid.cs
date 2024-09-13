@@ -8,6 +8,8 @@ public class GameGrid : MonoBehaviour
     private int width, height;
     [SerializeField]
     private int offsetX, offsetY;
+    [SerializeField]
+    private int zPos;
     
     private Transform _cam;
 
@@ -85,7 +87,7 @@ public class GameGrid : MonoBehaviour
         if (Slots[tile] != null) return;
         var origin = obj.transform.position;
         var temp = tile.transform.position;
-        temp.z = origin.z;
+        temp.z = zPos;
         obj.transform.position = temp;
         Slots[tile] = obj;
     }
