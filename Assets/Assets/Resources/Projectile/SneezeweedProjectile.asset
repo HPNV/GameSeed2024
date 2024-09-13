@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b56e88cbb7e401889ec6dd25d535385, type: 3}
   m_Name: SneezeweedProjectile
   m_EditorClassIdentifier: 
-  projectileType: 6
+  projectileType: 7
   movementSpeed: 5
   attackRadius: 0.5
   lifetime: 2

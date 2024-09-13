@@ -1,4 +1,5 @@
 using System.Collections;
+using Manager;
 using Plant;
 using Plant.States;
 using TMPro;
@@ -69,17 +70,21 @@ namespace Plant
         }
 
         public void Upgrade() {
-            if(SingletonGame.Instance.homeBase.sun < 5) return;
-            if(plant.Data.level >= 2) return;
+            if(SingletonGame.Instance.homeBase.sun < 5) 
+                return;
+            if(plant.Data.level >= 2) 
+                return;
             PlantData plantData = plant.Data;
             plantData.health += plantData.health * 0.3f;
             plantData.damage += plantData.damage * 0.3f;
             plantData.level++;
             SingletonGame.Instance.homeBase.sun -= 5;
-            plant.Data = plantData; 
+            plant.Data = plantData;
             
             SingletonGame.Instance.PlayerManager.OnPlantUpgraded();
             if(plantData.level == 3) SingletonGame.Instance.PlayerManager.OnPlantFullyUpgraded();
+            
+            SingletonGame.Instance.ParticleManager.Spawn(ParticleName.LevelUp, plant.transform.position, 2);
         }
 
         public void Water()

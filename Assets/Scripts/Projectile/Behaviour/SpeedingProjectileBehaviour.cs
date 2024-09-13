@@ -14,6 +14,10 @@ namespace Projectile.Behaviour
         {
             _rigidbody2D = Projectile.GetComponent<Rigidbody2D>();
             _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition;
+            
+            var circleCollider2D = Projectile.GetComponent<CircleCollider2D>();
+            
+            circleCollider2D.radius = 0.5f;
         }
         
         
@@ -43,7 +47,7 @@ namespace Projectile.Behaviour
             
             _plantsHit.Add(plant);
 
-            if (plant.Data.plantType == EPlant.Aloecura)
+            if (plant.Data.plantType == EPlant.Swiftglory)
                 return;
             
             plant.SpeedUp(Projectile.AttackPower);
