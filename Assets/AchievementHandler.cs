@@ -100,7 +100,8 @@ public class AchievementHandler : MonoBehaviour
                         { "plant_counter", 0 },
                         { "upgrade_counter", 0 },
                         { "highest_score", 0 },
-                        { "max_upgrade", 0 }
+                        { "max_upgrade", 0 },
+                        { "complete_tutorial", false }
                     };
                     
                     docRef.SetAsync(data).ContinueWithOnMainThread(task =>

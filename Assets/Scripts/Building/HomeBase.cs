@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Building;
+using Firebase.Extensions;
+using Firebase.Firestore;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,7 @@ using Utils;
 
 public class HomeBase : Entity
 {
+    private FirebaseFirestore db;
     [SerializeField] Bar expBar;
     [SerializeField] Bar HpBar;
     [SerializeField] TextMeshPro waterText;
@@ -117,7 +120,57 @@ public class HomeBase : Entity
 
     protected override void OnDie()
     {
+        HighScoreUpdate();
         SingletonGame.Instance.LoseGame();
+    }
+
+    private void HighScoreUpdate()
+    {
+        string hostname = System.Environment.MachineName;
+        db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("users").Document(hostname);
+        
+        // get the user highest_score then compare it to the current score
+        docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                DocumentSnapshot snapshot = task.Result;
+                if (snapshot.Exists)
+                {
+                    Dictionary<string, object> data = snapshot.ToDictionary();
+                    int highest_score = (int) data["highest_score"];
+                    if (score > highest_score)
+                    {
+                        UpdateHighScore(docRef);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to fetch data: " + task.Exception);
+            }
+        });
+    }
+
+    private void UpdateHighScore(DocumentReference docRef)
+    {
+        
+        Dictionary<string, object> data = new Dictionary<string, object>
+        {
+            {"highest_score", score}
+        };
+        docRef.SetAsync(data).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("High Score Updated");
+            }
+            else
+            {
+                Debug.LogError("Failed to update high score: " + task.Exception);
+            }
+        });
     }
 
     protected override void OnSpeedUp() { }
