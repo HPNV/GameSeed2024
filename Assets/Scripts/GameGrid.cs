@@ -94,4 +94,9 @@ public class GameGrid : MonoBehaviour
     { 
         Slots[tile] = null;
     }
+
+    public bool ValidateSlot(Tile tile)
+    {
+        return Slots[tile] == null;
+    }
 }
