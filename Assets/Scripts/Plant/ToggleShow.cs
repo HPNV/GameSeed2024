@@ -57,7 +57,11 @@ namespace Plant
                 {
                     Destroy(plantObject);
                 }
-            
+
+                if (waterButton.OverlapPoint(mousePos))
+                {
+                    Water();
+                }
             }
         }
 

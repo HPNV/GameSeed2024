@@ -14,7 +14,7 @@ public class PlantPlacementService : SelectorService
 
     protected override bool Validate()
     {
-        return plant != null;
+        return (plant != null) && (gameGrid.ValidateSlot(tileService.GetCurrTile()));
     }
 
     protected override void OnPlace()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Plant;
 using Script;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,9 @@ namespace Plant.Factory
         private Dictionary<EPlant, PlantData> _plantsData;
         private Dictionary<EAchievement, EPlant> _achievementPlants;
 
+        private const int UNLOCKED = 6;
+        private const int STEP = 5;
+
         private void Start()
         {
             _plantsData = new Dictionary<EPlant, PlantData>();
@@ -37,6 +41,14 @@ namespace Plant.Factory
         {
             var obj = Instantiate(plant);
             obj.GetComponent<Plant>().Data = _plantsData[ePlant];
+            obj.GetComponent<Plant>().Init();
+            return obj;
+        }
+
+        public GameObject GeneratePlant(PlantData plantData)
+        {
+            var obj = Instantiate(plant);
+            obj.GetComponent<Plant>().Data = plantData;
             obj.GetComponent<Plant>().Init();
             return obj;
         }
@@ -65,10 +77,25 @@ namespace Plant.Factory
             plantPlacementService.plant = newPlant;
         }
 
-        public List<EPlant> GetUnlockedPlants(int amt)
+        public void SpawnPlant(PlantData plantData)
         {
-            var temp = SingletonGame.Instance.AchievementManager.GetRandomEAchievements(amt);
-            return temp.Select(o => _achievementPlants[o]).ToList();
+            var newPlant = GeneratePlant(plantData).GetComponent<Plant>();
+            newPlant.ChangeState(EPlantState.Select);
+
+            if (plantData.plantType == EPlant.Luckyclover)
+            {
+                SingletonGame.Instance.ResourceManager.LuckModifier += 0.01;
+            }
+
+            plantPlacementService.plant = newPlant;
+        }
+
+        public List<PlantData> GetUnlockedPlants(int amt)
+        {
+            var count = SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count;
+            var unlocked = UNLOCKED + count / STEP;
+            var temp = data.Take(unlocked);
+            return temp.OrderBy(x => Guid.NewGuid()).Take(amt).ToList();
         }
     }
 }
