@@ -57,5 +57,13 @@
         TauntMaster,
         NaturesAvatar,
         GreenThumb,
+        
+        // Survival
+        SurvivalNotice,
+        Survivalist,
+        EnduranceExpert,
+        BareMinimum,
+        ZenMaster,
+        EcoWarrior,
     }
 }
