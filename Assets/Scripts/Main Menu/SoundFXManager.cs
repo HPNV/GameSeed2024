@@ -148,35 +148,49 @@ public class SoundFXManager : MonoBehaviour
     private void UpdateAllVolumes()
     {
 
-        foreach (var audioSource in gameAudioSources)
+        if (gameAudioSources.Count > 0)
         {
-            if (audioSource.clip != null)
+            foreach (var audioSource in gameAudioSources)
             {
-                audioSource.volume = masterVolume * gameVolume;
+                if (audioSource.clip != null)
+                {
+                    audioSource.volume = masterVolume * gameVolume;
+                }
+            }   
+        }
+
+
+        if (musicAudioSources.Count > 0)
+        {
+            foreach (var audioSource in musicAudioSources)
+            {
+                if (audioSource.clip != null)
+                {
+                    audioSource.volume = masterVolume * musicVolume;
+                }
             }
         }
-        
-        foreach (var audioSource in musicAudioSources)
+
+
+        if (audioAudioSources.Count > 0)
         {
-            if (audioSource.clip != null)
+            foreach (var audioSource in audioAudioSources)
             {
-                audioSource.volume = masterVolume * musicVolume;
+                if (audioSource.clip != null)
+                {
+                    audioSource.volume = masterVolume * audioVolume;
+                }
             }
         }
-        
-        foreach (var audioSource in audioAudioSources)
+
+        if (activeAudioSources.Count > 0)
         {
-            if (audioSource.clip != null)
+            foreach (var audioSource in activeAudioSources)
             {
-                audioSource.volume = masterVolume * audioVolume;
-            }
-        }
-        
-        foreach (var audioSource in activeAudioSources)
-        {
-            if (audioSource.clip != null)
-            {
-                audioSource.volume = masterVolume * musicVolume;
+                if (audioSource.clip != null)
+                {
+                    audioSource.volume = masterVolume * musicVolume;
+                }
             }
         }
     }
@@ -207,7 +221,10 @@ public class SoundFXManager : MonoBehaviour
     {
         foreach (var audioSource in audioAudioSources)
         {
-            audioSource.volume = masterVolume * audioVolume;
+            if (audioSource != null)
+            {
+                audioSource.volume = masterVolume * audioVolume;
+            }
         }
     }
     

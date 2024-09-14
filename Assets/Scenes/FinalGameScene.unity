@@ -28166,7 +28166,7 @@ MonoBehaviour:
   card1: {fileID: 1550669930}
   card2: {fileID: 617835386}
   card3: {fileID: 283127829}
-  loseScreen: {fileID: 755566111}
+  loseScreen: {fileID: 755566113}
   Tutorial1: {fileID: 687410303}
   Tutorial2: {fileID: 406606331}
   TileProvider: {fileID: 1590870006}
