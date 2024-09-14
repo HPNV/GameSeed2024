@@ -20,6 +20,14 @@ public class PlantPlacementService : SelectorService
     protected override void OnPlace()
     {
         gameGrid.PutOnTile(tileService.GetCurrTile(), plant.gameObject);
+
+        if (plant.Data.plantType == EPlant.Aloecura)
+        {
+            SingletonGame.Instance.PlayerManager.OnPlantAlocure();
+        } else if (plant.Data.plantType == EPlant.Cocowall)
+        {
+            SingletonGame.Instance.PlayerManager.OnPlantCocoWall();
+        }
     }
 
     protected override void AfterPlace()
