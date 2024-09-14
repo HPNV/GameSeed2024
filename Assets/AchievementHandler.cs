@@ -126,6 +126,8 @@ public class AchievementHandler : MonoBehaviour
                             // Set the plant image sprite
                             images[1].sprite = plantSprite;
                             texts[0].text = formattedName;
+                            // 
+                            
                             texts[2].text = achievementList[i]["description"].ToString();
                         }
                         else
