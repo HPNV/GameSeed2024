@@ -1,18 +1,19 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;  // Required for scene management
 
 public class SoundFXManager : MonoBehaviour
 {
     public static SoundFXManager instance;
     [SerializeField] private AudioSource soundFXObject;
 
-    private float masterVolume = 1.0f;
-    private float musicVolume = 1.0f;
-    private float audioVolume = 1.0f;
-    private float gameVolume = 0.6f;
-
-    // List to keep track of active AudioSources
     private List<AudioSource> activeAudioSources = new List<AudioSource>();
+    private List<AudioSource> gameAudioSources = new List<AudioSource>();
+    private List<AudioSource> musicAudioSources = new List<AudioSource>();
+    private List<AudioSource> audioAudioSources = new List<AudioSource>();
+
+    private float masterVolume = 1.0f;
     
     public float MasterVolume
     {
@@ -20,9 +21,11 @@ public class SoundFXManager : MonoBehaviour
         set
         {
             masterVolume = value;
-            UpdateAllVolumes();
+            UpdateAllVolumes(); // Update all volumes when master volume changes
         }
     }
+    
+    private float musicVolume = 1.0f;
     
     public float MusicVolume
     {
@@ -30,27 +33,31 @@ public class SoundFXManager : MonoBehaviour
         set
         {
             musicVolume = value;
-            UpdateAllVolumes();
+            UpdateMusicVolumes(); // Update all volumes when music volume changes
         }
     }
-
+    
+    private float audioVolume = 1.0f;
+    
     public float AudioVolume
     {
         get => audioVolume;
         set
         {
             audioVolume = value;
-            UpdateAllVolumes();
+            UpdateAudioVolumes(); // Update all volumes when audio volume changes
         }
     }
-
+    
+    private float gameVolume = 1.0f;
+    
     public float GameVolume
     {
         get => gameVolume;
         set
         {
             gameVolume = value;
-            UpdateAllVolumes();
+            UpdateGameVolumes(); // Update all volumes when game volume changes
         }
     }
 
@@ -65,30 +72,10 @@ public class SoundFXManager : MonoBehaviour
 
     public static void Initialize()
     {
-        if (instance is null)
+        if (instance == null)
         {
             instance = new GameObject("SoundFXManager").AddComponent<SoundFXManager>();
             instance.soundFXObject = new GameObject("SoundFXObject").AddComponent<AudioSource>();
-        }
-    }
-
-    private void UpdateAllVolumes()
-    {
-        // Iterate through the list in reverse to safely remove destroyed audio sources
-        for (int i = activeAudioSources.Count - 1; i >= 0; i--)
-        {
-            AudioSource audioSource = activeAudioSources[i];
-
-            // Check if the AudioSource has been destroyed or is null
-            if (audioSource == null)
-            {
-                activeAudioSources.RemoveAt(i);  // Remove it from the list
-            }
-            else
-            {
-                // Update the volume of the active AudioSource
-                audioSource.volume = masterVolume * musicVolume; // Adjust this logic for each type of sound
-            }
         }
     }
 
@@ -99,11 +86,9 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = masterVolume * musicVolume;
         audioSource.Play();
         audioSource.loop = true;
-
-        // Add to the list of active AudioSources
-        activeAudioSources.Add(audioSource);
+        musicAudioSources.Add(audioSource); // Add to active sources list
     }
-    
+
     public void PlaySoundOnce(AudioClip audioClip, Transform transform, float volume)
     {
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
@@ -111,13 +96,20 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = masterVolume * audioVolume;
         audioSource.Play();
         audioSource.loop = false;
-
-        // Add to the list of active AudioSources
-        activeAudioSources.Add(audioSource);
-
-        Destroy(audioSource.gameObject, audioClip.length); // Clean up after the sound finishes playing
+        audioAudioSources.Add(audioSource); // Add to active sources list
     }
 
+    public void PlaySound(string audioClip)
+    {
+        AudioClip clip = Resources.Load<AudioClip>(audioClip);
+        AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+        audioSource.clip = clip;
+        audioSource.volume = masterVolume * musicVolume;
+        audioSource.Play();
+        audioSource.loop = true;
+        musicAudioSources.Add(audioSource); // Add to active sources list
+    }
+    
     public void PlayGameSound(string audioClip)
     {
         AudioClip clip = Resources.Load<AudioClip>(audioClip);
@@ -126,9 +118,7 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = masterVolume * gameVolume;
         audioSource.Play();
         audioSource.loop = true;
-
-        // Add to the list of active AudioSources
-        activeAudioSources.Add(audioSource);
+        gameAudioSources.Add(audioSource); // Add to active sources list
     }
 
     public void PlayGameSoundOnce(string audioClip)
@@ -139,11 +129,8 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = masterVolume * gameVolume;
         audioSource.Play();
         audioSource.loop = false;
-
-        // Add to the list of active AudioSources
-        activeAudioSources.Add(audioSource);
-
-        Destroy(audioSource.gameObject, clip.length); // Clean up after the sound finishes playing
+        gameAudioSources.Add(audioSource); // Add to active sources list
+        Destroy(audioSource.gameObject, clip.length);
     }
 
     public void PlayMusic(string audioClip)
@@ -154,18 +141,74 @@ public class SoundFXManager : MonoBehaviour
         audioSource.volume = masterVolume * musicVolume;
         audioSource.Play();
         audioSource.loop = true;
-
-        // Add to the list of active AudioSources
-        activeAudioSources.Add(audioSource);
+        musicAudioSources.Add(audioSource); // Add to active sources list
     }
 
-    private void OnDestroy()
+    // This method will update the volume of all active audio sources
+    private void UpdateAllVolumes()
     {
-        // Clean up AudioSources when the manager is destroyed
-        foreach (AudioSource source in activeAudioSources)
+
+        foreach (var audioSource in gameAudioSources)
         {
-            if (source != null)
-                Destroy(source.gameObject);
+            if (audioSource.clip != null)
+            {
+                audioSource.volume = masterVolume * gameVolume;
+            }
+        }
+        
+        foreach (var audioSource in musicAudioSources)
+        {
+            if (audioSource.clip != null)
+            {
+                audioSource.volume = masterVolume * musicVolume;
+            }
+        }
+        
+        foreach (var audioSource in audioAudioSources)
+        {
+            if (audioSource.clip != null)
+            {
+                audioSource.volume = masterVolume * audioVolume;
+            }
+        }
+        
+        foreach (var audioSource in activeAudioSources)
+        {
+            if (audioSource.clip != null)
+            {
+                audioSource.volume = masterVolume * musicVolume;
+            }
         }
     }
+    
+    private void UpdateMusicVolumes()
+    {
+        foreach (var audioSource in musicAudioSources)
+        {
+            if (audioSource != null)
+            {
+                audioSource.volume = masterVolume * musicVolume;
+            }
+        }
+    }
+
+    private void UpdateGameVolumes()
+    {
+        foreach (var audioSource in gameAudioSources)
+        {
+            if (audioSource != null)
+            {
+                audioSource.volume = masterVolume * gameVolume;
+            }
+        }
+    }
+
+    private void UpdateAudioVolumes()
+    {
+        foreach (var audioSource in audioAudioSources)
+        {
+            audioSource.volume = masterVolume * audioVolume;
+        }
+    }
+    
 }

@@ -32,7 +32,7 @@ public class DatabaseManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeFirebase();
+        InitializeFirebase();  // Start Firebase initialization
     }
 
     private void InitializeFirebase()
@@ -44,9 +44,11 @@ public class DatabaseManager : MonoBehaviour
                 FirebaseApp app = FirebaseApp.DefaultInstance;
                 Db = FirebaseFirestore.DefaultInstance;
                 isInitialized = true;
+
+                OnFirebaseInitialized?.Invoke();  // Notify listeners Firebase is ready
                 
-                Debug.Log("Firebase Firestore Initialized");
-                OnFirebaseInitialized?.Invoke();  // Invoke the event to notify listeners
+                // Now that Firebase is initialized, initialize the user data
+                initializeUserData();
             }
             else
             {
@@ -60,92 +62,72 @@ public class DatabaseManager : MonoBehaviour
     {
         return isInitialized;
     }
-    
-    public void AddData(string collectionName, string documentId, Dictionary<string, object> data)
+
+    private void initializeUserData()
     {
-        if (!IsInitialized())
+        if (!isInitialized)
         {
-            Debug.LogError("Firestore has not been initialized");
+            Debug.LogError("Firebase is not initialized yet.");
             return;
         }
 
-        DocumentReference docRef = Db.Collection(collectionName).Document(documentId);
-        docRef.SetAsync(data).ContinueWithOnMainThread(task =>
+        string hostname = System.Environment.MachineName;
+        DocumentReference docRef = Db.Collection("users").Document(hostname);
+
+        try
         {
-            if (task.IsCompleted)
+            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
-                Debug.Log("Data successfully written!");
-            }
-            else
-            {
-                Debug.LogError("Failed to write data: " + task.Exception);
-            }
-        });
-    }
-    
-    public void GetData(string collectionName, string documentId, Action<DocumentSnapshot> callback)
-    {
-        if (!IsInitialized())
-        {
-            Debug.LogError("Firestore has not been initialized");
-            return;
+                DocumentSnapshot snapshot = task.Result;
+
+                if (!snapshot.Exists)
+                {
+
+                    Dictionary<string, object> data = new Dictionary<string, object>
+                    {
+                        { "die_counter", 0 },
+                        { "kill_counter", 0 },
+                        { "plant_counter", 0 },
+                        { "upgrade_counter", 0 },
+                        { "highest_score", 0 },
+                        { "max_upgrade", 0 },
+                        { "complete_tutorial", false }
+                    };
+
+                    docRef.SetAsync(data).ContinueWithOnMainThread(task =>
+                    {
+                        if (task.IsCompleted)
+                        {
+                            // Initialize player data with default values
+                            SingletonGame.Instance.PlayerManager.Die = 0;
+                            SingletonGame.Instance.PlayerManager.Kill = 0;
+                            SingletonGame.Instance.PlayerManager.Planted = 0;
+                            SingletonGame.Instance.PlayerManager.Upgraded = 0;
+                            SingletonGame.Instance.PlayerManager.FullyUpgrade = 0;
+                        }
+                        else
+                        {
+                            Debug.LogError("Failed to write user data: " + task.Exception);
+                        }
+                    });
+                }
+                else
+                {
+                    // If user data exists, retrieve it using snapshot.ToDictionary()
+                    Dictionary<string, object> documentData = snapshot.ToDictionary();
+
+                    // Retrieve counters
+                    SingletonGame.Instance.PlayerManager.Die = Convert.ToInt32(documentData.GetValueOrDefault("die_counter", 0));
+                    SingletonGame.Instance.PlayerManager.Kill = Convert.ToInt32(documentData.GetValueOrDefault("kill_counter", 0));
+                    SingletonGame.Instance.PlayerManager.Planted = Convert.ToInt32(documentData.GetValueOrDefault("plant_counter", 0));
+                    SingletonGame.Instance.PlayerManager.Upgraded = Convert.ToInt32(documentData.GetValueOrDefault("upgrade_counter", 0));
+                    SingletonGame.Instance.PlayerManager.FullyUpgrade = Convert.ToInt32(documentData.GetValueOrDefault("max_upgrade", 0));
+                }
+            });
         }
-
-        DocumentReference docRef = Db.Collection(collectionName).Document(documentId);
-        docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        catch (Exception ex)
         {
-            if (task.IsCompleted)
-            {
-                callback(task.Result);
-            }
-            else
-            {
-                Debug.LogError("Failed to get data: " + task.Exception);
-            }
-        });
-    }
-
-    public void UpdateData(string collectionName, string documentId, Dictionary<string, object> data)
-    {
-        if (!IsInitialized())
-        {
-            Debug.LogError("Firestore has not been initialized");
-            return;
+            Debug.LogError("Error getting or setting user data: " + ex.Message);
         }
-
-        DocumentReference docRef = Db.Collection(collectionName).Document(documentId);
-        docRef.UpdateAsync(data).ContinueWithOnMainThread(task =>
-        {
-            if (task.IsCompleted)
-            {
-                Debug.Log("Data successfully updated!");
-            }
-            else
-            {
-                Debug.LogError("Failed to update data: " + task.Exception);
-            }
-        });
-    }
-
-    public void DeleteData(string collectionName, string documentId)
-    {
-        if (!IsInitialized())
-        {
-            Debug.LogError("Firestore has not been initialized");
-            return;
-        }
-
-        DocumentReference docRef = Db.Collection(collectionName).Document(documentId);
-        docRef.DeleteAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsCompleted)
-            {
-                Debug.Log("Data successfully deleted!");
-            }
-            else
-            {
-                Debug.LogError("Failed to delete data: " + task.Exception);
-            }
-        });
     }
 }

@@ -201,7 +201,7 @@ public class SeedpediaHandler : MonoBehaviour
                         }
 
                         // Debug log for the loaded ID
-                        Debug.Log("Loaded Plant ID: " + plantId);
+                        // Debug.Log("Loaded Plant ID: " + plantId);
                     }
                     else
                     {

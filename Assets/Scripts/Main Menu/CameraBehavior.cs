@@ -36,7 +36,6 @@ public class NewBehaviourScript : MonoBehaviour
 
     IEnumerator SwitchCinemachineCameraAfterDelay(float delay)
     {
-        Debug.Log("FJDSJFHDSJKLHF DSJKHFJKDSHKJFDSHJKFLHSDLHFJKSDHFJKSDHKFDLSHJFSD");
         
         // Wait for the specified delay
         yield return new WaitForSeconds(delay);
