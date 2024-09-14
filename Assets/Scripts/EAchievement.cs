@@ -63,5 +63,7 @@
         Survivalist,
         EnduranceExpert,
         BareMinimum,
+        ZenMaster,
+        EcoWarrior,
     }
 }

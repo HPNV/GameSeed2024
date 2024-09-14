@@ -87,6 +87,8 @@ public class PlayerManager
     private int rafflesiaDmg = 0;
     private int plantDie = 0;
     private int plantHeal = 0;
+    private int plantAlocure = 0;
+    private int plantcocoWall = 0;
     
     
     public void OnPlantPlanted()
@@ -179,6 +181,18 @@ public class PlayerManager
             achievement != EAchievement.BareMinimum
         ) return;
         achievementManager.UnlockAchievement(achievement);
+    }
+
+    public void OnPlantAlocure()
+    {
+        plantAlocure++;
+        if(plantAlocure == 100) achievementManager.UnlockAchievement(EAchievement.ZenMaster);
+    }
+
+    public void OnPlantCocoWall()
+    {
+        plantcocoWall++;
+        if(plantcocoWall == 100) achievementManager.UnlockAchievement(EAchievement.EcoWarrior);
     }
     
     private int GetPlantsPlantedInLast5Minutes()
