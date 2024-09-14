@@ -111,6 +111,7 @@ public class HomeBase : Entity
 
     protected override void OnDamage()
     {
+        StartCoroutine(Flash(Color.red));
         UpdateUI();
     }
 
@@ -142,4 +143,5 @@ public class HomeBase : Entity
         color.a = 1f;
         sp.color = color;
     }
+    
 }

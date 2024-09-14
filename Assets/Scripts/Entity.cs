@@ -11,11 +11,13 @@ public abstract class Entity : MonoBehaviour
     protected float MaxHealth;
     private Coroutine _speedCoroutine;
     private Particle _particle;
+    protected SpriteRenderer SpriteRenderer;
 
     protected void Init(float health, float maxHealth)
     {
         Health = health;
         MaxHealth = maxHealth;
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     public virtual void Damage(float damage)
@@ -62,6 +64,13 @@ public abstract class Entity : MonoBehaviour
             _particle.Despawn();
             _particle = null;
         }
+    }
+    
+    protected IEnumerator Flash(Color color)
+    {
+        SpriteRenderer.color = color;
+        yield return new WaitForSeconds(0.1f);
+        SpriteRenderer.color = Color.white;
     }
 
     protected abstract bool ValidateDamage();
