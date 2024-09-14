@@ -30,7 +30,7 @@ namespace Manager
             };
         }
         
-        public GameObject Spawn(EnemyName name, Vector2 position, float multiplier)
+        public void Spawn(EnemyName name, Vector2 position, float multiplier)
         {
             if (_enemyPool.Count == 0)
             {
@@ -40,7 +40,7 @@ namespace Manager
                 enemyBehaviour.enemyData.health *= multiplier;
                 enemyBehaviour.enemyData.attackPower *= multiplier;
                 enemyBehaviour.enemyData.movementSpeed *= multiplier;
-                return enemyObject;
+                return;
             }
             
             var enemy = _enemyPool.Dequeue();
@@ -53,8 +53,6 @@ namespace Manager
 
             enemy.gameObject.SetActive(true);
             enemy.Initialize();
-            
-            return enemy.gameObject;
         }
         
         public void Despawn(EnemyBehaviour enemy)
@@ -63,7 +61,5 @@ namespace Manager
             enemy.enemyData = enemy.baseData;
             _enemyPool.Enqueue(enemy);
         }
-
-        
     }
 }

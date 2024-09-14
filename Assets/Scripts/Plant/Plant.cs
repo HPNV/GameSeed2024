@@ -31,7 +31,6 @@ namespace Plant
         private PlantData _data;
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
-        private SpriteRenderer _spriteRenderer;
         private static readonly int GrowUp = Animator.StringToHash("GrowUp");
 
         private void Start()
@@ -47,7 +46,7 @@ namespace Plant
         public void Init()
         {
             GetComponent<Animator>().runtimeAnimatorController = Data.animatorController;
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
 
             if (!Data.hasCollider)
             {
@@ -151,11 +150,6 @@ namespace Plant
             AttackCooldown += 0.5f;
         }
 
-        private IEnumerator Flash(Color color)
-        {
-            _spriteRenderer.color = color;
-            yield return new WaitForSeconds(0.1f);
-            _spriteRenderer.color = Color.white;
-        }
+
     }
 }

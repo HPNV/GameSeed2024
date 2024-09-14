@@ -42,6 +42,7 @@ namespace Enemy
             InnerCircleCollider = GetComponent<CircleCollider2D>();
             _originalColor = SpriteRenderer.color;
             
+            
             InnerCircleCollider.enabled = true;
             Init(enemyData.health, enemyData.health);
             SetupStates();

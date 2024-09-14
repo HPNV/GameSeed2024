@@ -21,12 +21,14 @@ public class GameGrid : MonoBehaviour
     private Tile tilePrefab;
     public Dictionary<Vector2, Tile> Tiles { get; private set; }
     public Dictionary<Tile, GameObject> Slots { get; private set; }
+    [SerializeField] private List<Sprite> outerSprites;
     [SerializeField] private List<Sprite> cornerSprites;
     [SerializeField] private List<Sprite> sideSpritesTop;
     [SerializeField] private List<Sprite> sideSpritesLeft;
     [SerializeField] private List<Sprite> sideSpritesRight;
     [SerializeField] private List<Sprite> sideSpritesBottom;
     [SerializeField] private int sideSpritesCount;
+    [SerializeField] private int cornerSpritesCount;
     
     void Start()
     {
@@ -38,22 +40,24 @@ public class GameGrid : MonoBehaviour
     {
         Tiles = new Dictionary<Vector2, Tile>();
         Slots = new Dictionary<Tile, GameObject>();
-        for (int x = 0; x < width; x++)
+        for (int x = -cornerSpritesCount; x < width + cornerSpritesCount; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = -cornerSpritesCount; y < height + cornerSpritesCount; y++)
             {
                 int a = x + offsetX;
                 int b = y + offsetY;
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(a, b, 200), Quaternion.identity);
-
-                var isOffset = (a % 2 == 0 && b % 2 != 0) || (a % 2 != 0 && b % 2 == 0);
+                
                 spawnedTile.Init();
                 spawnedTile.transform.SetParent(transform);
 
                 Tiles[new Vector2(a, b)] = spawnedTile;
                 Slots[spawnedTile] = null;
 
-                if (x == 0 && y == 0)
+                if (x < 0 || y < 0 || x >= width || y >= height) 
+                    spawnedTile.GetComponent<SpriteRenderer>().sprite =
+                        outerSprites[Random.Range(0, outerSprites.Count)];
+                else if (x == 0 && y == 0)
                     spawnedTile.transform.Find("Deco").gameObject.GetComponent<SpriteRenderer>().sprite =
                         cornerSprites[3];
                 else if (x == 0 && y == height - 1)
