@@ -18,7 +18,6 @@ public class DatabaseManager : MonoBehaviour
 
     void Awake()
     {
-        // Ensure there's only one instance of DatabaseManager
         if (Instance == null)
         {
             Instance = this;
@@ -45,9 +44,8 @@ public class DatabaseManager : MonoBehaviour
                 Db = FirebaseFirestore.DefaultInstance;
                 isInitialized = true;
 
-                OnFirebaseInitialized?.Invoke();  // Notify listeners Firebase is ready
+                OnFirebaseInitialized?.Invoke();  
                 
-                // Now that Firebase is initialized, initialize the user data
                 initializeUserData();
             }
             else
@@ -57,7 +55,7 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    // Method to check if Firebase is initialized
+
     public bool IsInitialized()
     {
         return isInitialized;
@@ -98,7 +96,6 @@ public class DatabaseManager : MonoBehaviour
                     {
                         if (task.IsCompleted)
                         {
-                            // Initialize player data with default values
                             SingletonGame.Instance.PlayerManager.Die = 0;
                             SingletonGame.Instance.PlayerManager.Kill = 0;
                             SingletonGame.Instance.PlayerManager.Planted = 0;
@@ -113,10 +110,8 @@ public class DatabaseManager : MonoBehaviour
                 }
                 else
                 {
-                    // If user data exists, retrieve it using snapshot.ToDictionary()
                     Dictionary<string, object> documentData = snapshot.ToDictionary();
-
-                    // Retrieve counters
+                    
                     SingletonGame.Instance.PlayerManager.Die = Convert.ToInt32(documentData.GetValueOrDefault("die_counter", 0));
                     SingletonGame.Instance.PlayerManager.Kill = Convert.ToInt32(documentData.GetValueOrDefault("kill_counter", 0));
                     SingletonGame.Instance.PlayerManager.Planted = Convert.ToInt32(documentData.GetValueOrDefault("plant_counter", 0));
