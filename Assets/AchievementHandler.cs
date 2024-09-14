@@ -93,6 +93,14 @@ public class AchievementHandler : MonoBehaviour
                 
                 if (!snapshot.Exists)
                 {
+                    Dictionary<string, float> settings = new Dictionary<string, float>()
+                    {
+                        { "master_volume", 0.5f },
+                        { "music_volume", 0.5f },
+                        { "audio_volume", 0.5f },
+                        { "game_volume", 0.5f }
+                    };
+                    
                     Dictionary<string, object> data = new Dictionary<string, object>
                     {
                         { "die_counter", 0 },
@@ -101,19 +109,25 @@ public class AchievementHandler : MonoBehaviour
                         { "upgrade_counter", 0 },
                         { "highest_score", 0 },
                         { "max_upgrade", 0 },
-                        { "complete_tutorial", false }
+                        { "complete_tutorial", false },
+                        { "settings", settings }  
                     };
                     
                     docRef.SetAsync(data).ContinueWithOnMainThread(task =>
                     {
                         if (task.IsCompleted)
                         {
-                            // Debug.Log("User data successfully written!");
                             SingletonGame.Instance.PlayerManager.Die = 0;
                             SingletonGame.Instance.PlayerManager.Kill = 0;
                             SingletonGame.Instance.PlayerManager.Planted = 0;
                             SingletonGame.Instance.PlayerManager.Upgraded = 0;
                             SingletonGame.Instance.PlayerManager.FullyUpgrade = 0;
+
+                            SoundFXManager.instance.MasterVolume = 0.5f;
+                            SoundFXManager.instance.MusicVolume = 0.5f;
+                            SoundFXManager.instance.AudioVolume = 0.5f;
+                            SoundFXManager.instance.GameVolume = 0.5f;
+                            
                         }
                         else
                         {
@@ -129,6 +143,11 @@ public class AchievementHandler : MonoBehaviour
                     SingletonGame.Instance.PlayerManager.Planted = snapshot.GetValue<int>("plant_counter");
                     SingletonGame.Instance.PlayerManager.Upgraded = snapshot.GetValue<int>("upgrade_counter");
                     SingletonGame.Instance.PlayerManager.FullyUpgrade = snapshot.GetValue<int>("max_upgrade");
+                    
+                    SoundFXManager.instance.MasterVolume = snapshot.GetValue<float>("settings.master_volume");
+                    SoundFXManager.instance.MusicVolume = snapshot.GetValue<float>("settings.music_volume");
+                    SoundFXManager.instance.AudioVolume = snapshot.GetValue<float>("settings.audio_volume");
+                    SoundFXManager.instance.GameVolume = snapshot.GetValue<float>("settings.game_volume");
                 }
             });
             
