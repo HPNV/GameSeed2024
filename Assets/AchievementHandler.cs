@@ -73,68 +73,7 @@ public class AchievementHandler : MonoBehaviour
     {
         db = FirebaseFirestore.DefaultInstance;
         
-        initializeUserData();
-        
         ReconcileAchievement();
-    }
-    
-    private void initializeUserData()
-    {
-        string hostname = System.Environment.MachineName;
-        // Debug.Log("Hostname: " + hostname);
-        DocumentReference docRef = db.Collection("users").Document(hostname);
-
-        try
-        {
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot snapshot = task.Result;
-                
-                if (!snapshot.Exists)
-                {
-                    Dictionary<string, object> data = new Dictionary<string, object>
-                    {
-                        { "die_counter", 0 },
-                        { "kill_counter", 0 },
-                        { "plant_counter", 0 },
-                        { "upgrade_counter", 0 },
-                        { "highest_score", 0 },
-                        { "max_upgrade", 0 }
-                    };
-                    
-                    docRef.SetAsync(data).ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompleted)
-                        {
-                            // Debug.Log("User data successfully written!");
-                            SingletonGame.Instance.PlayerManager.Die = 0;
-                            SingletonGame.Instance.PlayerManager.Kill = 0;
-                            SingletonGame.Instance.PlayerManager.Planted = 0;
-                            SingletonGame.Instance.PlayerManager.Upgraded = 0;
-                            SingletonGame.Instance.PlayerManager.FullyUpgrade = 0;
-                        }
-                        else
-                        {
-                            Debug.LogError("Failed to write user data: " + task.Exception);
-                        }
-                    });
-                }
-                else
-                {
-                    // get the data from the firebase snapshot
-                    SingletonGame.Instance.PlayerManager.Die = snapshot.GetValue<int>("die_counter");
-                    SingletonGame.Instance.PlayerManager.Kill = snapshot.GetValue<int>("kill_counter");
-                    SingletonGame.Instance.PlayerManager.Planted = snapshot.GetValue<int>("plant_counter");
-                    SingletonGame.Instance.PlayerManager.Upgraded = snapshot.GetValue<int>("upgrade_counter");
-                    SingletonGame.Instance.PlayerManager.FullyUpgrade = snapshot.GetValue<int>("max_upgrade");
-                }
-            });
-            
-        } 
-        catch (Exception ex)
-        {
-            Debug.LogError("Error getting or setting user data: " + ex.Message);
-        }
     }
 
     private void ReconcileAchievement() 
