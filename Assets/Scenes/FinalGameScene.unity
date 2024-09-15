@@ -1723,6 +1723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 147451890}
   LoadingBarFill: {fileID: 1789503100}
+  cutscene: {fileID: 0}
 --- !u!1 &151865323
 GameObject:
   m_ObjectHideFlags: 0
@@ -18549,7 +18550,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eee64b170c2500642830a6ab3a29d8ce, type: 2}
   - {fileID: 11400000, guid: bcf19bf8cd9ae1d4d9a0288c1edee0ce, type: 2}
   - {fileID: 11400000, guid: 558d0e26f9a4535468091bce4aebfb09, type: 2}
-  eAchievements: 0e000000000000000b00000014000000220000000000000001000000000000000c0000001100000000000000000000000200000000000000
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:
@@ -29416,6 +29416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2101164660}
   - component: {fileID: 2101164659}
+  - component: {fileID: 2101164661}
   m_Layer: 0
   m_Name: SingeltonGame
   m_TagString: Untagged
@@ -29465,6 +29466,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2101164661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101164658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8635e4437a47259d192046ebd8b3e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enums: 00000000140000000b0000000e00000024000000010000002800000000000000110000000c0000000d00000002000000000000000f000000100000001c0000001d0000001e00000022000000000000001f0000001600000003000000000000000600000015000000000000002000000000000000170000001200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  data:
+  - {fileID: 11400000, guid: dd6fb0b9862bab145b969a0330293d2a, type: 2}
+  - {fileID: 11400000, guid: 692fba418a2cddb4289aa24a98f8f233, type: 2}
+  - {fileID: 11400000, guid: f7c21d6b8e2fc7a4f835bd83c55b2ff9, type: 2}
+  - {fileID: 11400000, guid: c767dacca1275294ea65cbe9bc785cbf, type: 2}
+  - {fileID: 11400000, guid: 4fab02ccec729ad4e8e5b81226380207, type: 2}
+  - {fileID: 11400000, guid: 03ace1ae62890a442a750e0a72b6d291, type: 2}
+  - {fileID: 11400000, guid: bd8f8674841bb90498981fca3182f609, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 6f92ea3cbef419749b89cc2d2ebaf6e0, type: 2}
+  - {fileID: 11400000, guid: 9d2d150b7af42cf4896369fd369ea49c, type: 2}
+  - {fileID: 11400000, guid: d4d7274685bbe234d87ec6a49d80dfeb, type: 2}
+  - {fileID: 11400000, guid: 99f6ef4952b7f0a43ae939de7794c536, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: df6778176586a2e4fa181f3eb3f4d602, type: 2}
+  - {fileID: 11400000, guid: 13d326537b8ce384b9e824373e44bc1f, type: 2}
+  - {fileID: 11400000, guid: 6af891c022774624aaedba57dce67994, type: 2}
+  - {fileID: 11400000, guid: 5c44a29ec738ebc44b819ce2a0749806, type: 2}
+  - {fileID: 11400000, guid: e17d0e6085010f24fa3c08e12c9b9609, type: 2}
+  - {fileID: 11400000, guid: a64c46d12707b6041ba6dc3733cf8877, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 0226204056e908845b97d7ad5677df01, type: 2}
+  - {fileID: 11400000, guid: deedf99055261e048b1e9fd4cee4ea8d, type: 2}
+  - {fileID: 11400000, guid: a30fb5503f238b04384a6cf877f16c05, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 66d056733fcb1a846a05037388cf08dc, type: 2}
+  - {fileID: 11400000, guid: d3c3541b77c8e534c95b06e4c1293f31, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 4203e4ab035cb3348a0843afef8322e5, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 9ca21019b35c0fc42a203ed5c954d58e, type: 2}
+  - {fileID: 11400000, guid: 8e17a17f00f6221458dcb876b1b0d71d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2104842742
 GameObject:
   m_ObjectHideFlags: 0
