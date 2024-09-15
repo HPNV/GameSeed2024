@@ -27978,6 +27978,10 @@ PrefabInstance:
       propertyPath: startHealth
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 8810525150189405065, guid: 2c8c024a88906c042a92101c2d32f7eb, type: 3}
+      propertyPath: _takeDamageScript
+      value: 
+      objectReference: {fileID: 1438297362}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

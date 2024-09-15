@@ -6,27 +6,12 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class TakeDamageScript : MonoBehaviour
 {
-    public static TakeDamageScript Instance { get; private set; }
     [SerializeField] private float time;
     [SerializeField] private float speed;
     [SerializeField] private float intensity;
 
     private PostProcessVolume _volume;
     private Vignette _vignette;
-    
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {   
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -53,18 +38,19 @@ public class TakeDamageScript : MonoBehaviour
 
     private IEnumerator TakeDamageEffect()
     {
+        var temp = intensity;
         _vignette.enabled.Override(true);
-        _vignette.intensity.Override(intensity);
+        _vignette.intensity.Override(temp);
 
         yield return new WaitForSeconds(time);
 
-        while (intensity > 0)
+        while (temp > 0)
         {
-            intensity -= speed;
+            temp -= speed;
 
-            if (intensity < 0) intensity = 0;
+            if (temp < 0) temp = 0;
             
-            _vignette.intensity.Override(intensity);
+            _vignette.intensity.Override(temp);
 
             yield return new WaitForSeconds(0.1f);
         }
