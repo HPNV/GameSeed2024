@@ -103,11 +103,18 @@ namespace Plant.Factory
                     _ => null
                 };
 
-                if (selected == null) continue;
+                if (selected == null || res.Contains(selected)) continue;
                 res.Add(selected);
                 i++;
             }
             return res;
+        }
+
+        public PlantData GetLastUnlockedPlant()
+        {
+            var count = SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count;
+            var unlocked = UNLOCKED + (count / STEP);
+            return data[unlocked - 1];
         }
     }
 }

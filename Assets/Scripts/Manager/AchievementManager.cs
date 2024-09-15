@@ -18,6 +18,7 @@ namespace Manager
         private List<AchievementData> data;
         public Dictionary<EAchievement, AchievementData> Achievements = new();
         public List<EAchievement> UnlockedEAchievements { get; private set; }
+        private int _unlockPlantCounter = 0;
         
         private void Awake()
         {
@@ -49,9 +50,13 @@ namespace Manager
             if (UnlockedEAchievements.Contains(achievement)) 
                 return;
             
-            
-            
             PlayerManager.Instance.UnlockedAchievements += 1;
+            _unlockPlantCounter += 1;
+            if (_unlockPlantCounter == 5)
+            {
+                _unlockPlantCounter = 0;
+                UnlockedNewPlant();
+            }
             // Debug.Log($"befcount: {UnlockedEAchievements.Count}");
             UnlockedEAchievements.Add(achievement);
             // Debug.Log($"aftcount: {UnlockedEAchievements.Count}");
@@ -61,6 +66,11 @@ namespace Manager
             CheckUnlockAllAchievement();
             CheckUnlock8Plants();
             SingletonGame.Instance.SaveData();
+        }
+
+        private void UnlockedNewPlant()
+        {
+            var data = SingletonGame.Instance.plantFactory.GetLastUnlockedPlant();
         }
 
         private void CheckUnlockAllAchievement()
