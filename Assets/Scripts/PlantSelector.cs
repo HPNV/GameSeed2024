@@ -11,37 +11,37 @@ public class PlantSelector : MonoBehaviour
     private PlantPlacementService plantPlacementService;
     [SerializeField] 
     private PlantFactory plantFactory;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            var plant = plantFactory.GeneratePlant(EPlant.Boomkin).GetComponent<Plant.Plant>();
-            plant.ChangeState(EPlantState.Select);
-            plantPlacementService.plant = plant;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            var plant = plantFactory.GeneratePlant(EPlant.Cactharn).GetComponent<Plant.Plant>();
-            plant.ChangeState(EPlantState.Select);
-            plantPlacementService.plant = plant;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            var plant = plantFactory.GeneratePlant(EPlant.Cobcorn).GetComponent<Plant.Plant>();
-            plant.ChangeState(EPlantState.Select);
-            plantPlacementService.plant = plant;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            var plant = plantFactory.GeneratePlant(EPlant.Raflessnare).GetComponent<Plant.Plant>();
-            plant.ChangeState(EPlantState.Select);
-            plantPlacementService.plant = plant;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            var plant = plantFactory.GeneratePlant(EPlant.Weisshooter).GetComponent<Plant.Plant>();
-            plant.ChangeState(EPlantState.Select);
-            plantPlacementService.plant = plant;
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Alpha1))
+    //     {
+    //         var plant = plantFactory.GeneratePlant(EPlant.Boomkin).GetComponent<Plant.Plant>();
+    //         plant.ChangeState(EPlantState.Select);
+    //         plantPlacementService.plant = plant;
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.Alpha2))
+    //     {
+    //         var plant = plantFactory.GeneratePlant(EPlant.Cactharn).GetComponent<Plant.Plant>();
+    //         plant.ChangeState(EPlantState.Select);
+    //         plantPlacementService.plant = plant;
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.Alpha3))
+    //     {
+    //         var plant = plantFactory.GeneratePlant(EPlant.Cobcorn).GetComponent<Plant.Plant>();
+    //         plant.ChangeState(EPlantState.Select);
+    //         plantPlacementService.plant = plant;
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.Alpha4))
+    //     {
+    //         var plant = plantFactory.GeneratePlant(EPlant.Raflessnare).GetComponent<Plant.Plant>();
+    //         plant.ChangeState(EPlantState.Select);
+    //         plantPlacementService.plant = plant;
+    //     }
+    //     else if (Input.GetKeyDown(KeyCode.Alpha5))
+    //     {
+    //         var plant = plantFactory.GeneratePlant(EPlant.Weisshooter).GetComponent<Plant.Plant>();
+    //         plant.ChangeState(EPlantState.Select);
+    //         plantPlacementService.plant = plant;
+    //     }
+    // }
 }

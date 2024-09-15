@@ -75,15 +75,13 @@ namespace Plant
                 return;
             if(plant.Data.level >= 2) 
                 return;
-            PlantData plantData = plant.Data;
-            plantData.health += plantData.health * 0.3f;
-            plantData.damage += plantData.damage * 0.3f;
-            plantData.level++;
+            plant.health += plant.health * 0.3f;
+            plant.damage += plant.damage * 0.3f;
+            plant.level++;
             SingletonGame.Instance.homeBase.sun -= 5;
-            plant.Data = plantData;
             
             PlayerManager.Instance.OnPlantUpgraded();
-            if(plantData.level == 3) PlayerManager.Instance.OnPlantFullyUpgraded();
+            if(plant.level == 3) PlayerManager.Instance.OnPlantFullyUpgraded();
             
             SingletonGame.Instance.ParticleManager.Spawn(ParticleName.LevelUp, plant.transform.position, 2);
         }

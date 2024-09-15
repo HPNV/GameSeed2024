@@ -20,6 +20,7 @@ public class HomeBase : Entity
     [SerializeField] TextMeshPro levelText;
     [SerializeField] TextMeshPro scoreText;
     [SerializeField] TextMeshPro timeText;
+    [SerializeField] TextMeshPro healthText;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
@@ -98,6 +99,7 @@ public class HomeBase : Entity
         sunText.text = sun.ToString();
         levelText.text = "Lvl " + currentLevel.ToString();
         scoreText.text = score.ToString();
+        healthText.text = this.Health.ToString() + "/" + this.MaxHealth;
     }
 
     public void addSun(int sun) {
