@@ -16,7 +16,11 @@ public class AchievementHandler : MonoBehaviour
     private FirebaseFirestore db;
     [SerializeField] private GameObject seedpediaPanel;
     [SerializeField] private Sprite backgroundSprite;
+    [SerializeField] private Slider totalAchievementSlider;
+    [SerializeField] private TextMeshProUGUI totalAchievementText;
 
+    private int completedAchievements = 0;
+    
     void Start()
     {
         db = FirebaseFirestore.DefaultInstance;
