@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
-  m_Name: Endless Onslaught
+  m_Name: Nature's Avatar
   m_EditorClassIdentifier: 
-  achievement: 23
-  achievementName: Endless Onslaugh
-  description: Kill 5000 enemies
-  achievementImage: {fileID: 21300000, guid: 8504627a9a708e7438d6fd89d04eaf4a, type: 3}
+  achievement: 37
+  achievementName: Nature's Avatar
+  description: Plant dies 500 times
+  achievementImage: {fileID: 21300000, guid: 642a3a987032752499feccdb26e705e2, type: 3}

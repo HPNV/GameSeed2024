@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
   m_Name: Explosive Expertise
   m_EditorClassIdentifier: 
-  achievement: 28
+  achievement: 27
   achievementName: Explosive Expertise
   description: Damange 5 enemies with explosion
   achievementImage: {fileID: 21300000, guid: 080dc05ed052c7a4381b064608700495, type: 3}

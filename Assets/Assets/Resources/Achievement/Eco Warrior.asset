@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
-  m_Name: Endless Onslaught
+  m_Name: Eco Warrior
   m_EditorClassIdentifier: 
-  achievement: 23
-  achievementName: Endless Onslaugh
-  description: Kill 5000 enemies
-  achievementImage: {fileID: 21300000, guid: 8504627a9a708e7438d6fd89d04eaf4a, type: 3}
+  achievement: 44
+  achievementName: Eco Warrior
+  description: Plant 100 Cocowall
+  achievementImage: {fileID: 21300000, guid: f8e6311a7029e1d4e80a0b5ad8c460fb, type: 3}
