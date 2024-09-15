@@ -10,7 +10,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Manager;
-using Script; // Assuming your AchievementManager is under Manager namespace
+using Script;
+using UnityEngine.Serialization; // Assuming your AchievementManager is under Manager namespace
 
 
 public class PlayerManager : MonoBehaviour
@@ -114,7 +115,7 @@ public class PlayerManager : MonoBehaviour
     }
     
     public int tutorialCompleted = 0;
-    private AchievementManager achievementManager  = new();
+    public AchievementManager AchievementManager  = new();
     
     // Remake
     private int rafflesiaDmg = 0;
@@ -199,26 +200,26 @@ public class PlayerManager : MonoBehaviour
     public void OnPlantSacrifice()
     {
         sacrificeCounter++;
-        if (sacrificeCounter == 5) achievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
-        else if (sacrificeCounter == 5000) achievementManager.UnlockAchievement(EAchievement.AgainstAllOdds);
+        if (sacrificeCounter == 5) AchievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
+        else if (sacrificeCounter == 5000) AchievementManager.UnlockAchievement(EAchievement.AgainstAllOdds);
     }
 
     public void OnRafflesiaDamage(float amount)
     {
         rafflesiaDmg += (int)amount;
-        if(rafflesiaDmg >= 1000) achievementManager.UnlockAchievement(EAchievement.TauntMaster);
+        if(rafflesiaDmg >= 1000) AchievementManager.UnlockAchievement(EAchievement.TauntMaster);
     }
 
     public void OnPlantDie()
     {
         plantDie++;
-        if(plantDie >= 500) achievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+        if(plantDie >= 500) AchievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
     }
 
     public void OnPlantHeal(int amt)
     {
         plantHeal += amt;
-        if(plantHeal >= 500) achievementManager.UnlockAchievement(EAchievement.GreenThumb);
+        if(plantHeal >= 500) AchievementManager.UnlockAchievement(EAchievement.GreenThumb);
     }
 
     public void OnSurviveAchievement(EAchievement achievement)
@@ -230,19 +231,19 @@ public class PlayerManager : MonoBehaviour
             achievement != EAchievement.BareMinimum &&
             achievement != EAchievement.Untouchable
         ) return;
-        achievementManager.UnlockAchievement(achievement);
+        AchievementManager.UnlockAchievement(achievement);
     }
 
     public void OnPlantAlocure()
     {
         plantAlocure++;
-        if(plantAlocure == 100) achievementManager.UnlockAchievement(EAchievement.ZenMaster);
+        if(plantAlocure == 100) AchievementManager.UnlockAchievement(EAchievement.ZenMaster);
     }
 
     public void OnPlantCocoWall()
     {
         plantcocoWall++;
-        if(plantcocoWall == 100) achievementManager.UnlockAchievement(EAchievement.EcoWarrior);
+        if(plantcocoWall == 100) AchievementManager.UnlockAchievement(EAchievement.EcoWarrior);
     }
     
     private int GetPlantsPlantedInLast5Minutes()
@@ -284,7 +285,7 @@ public class PlayerManager : MonoBehaviour
         // Explosive Expertise: Explode 5 enemies
         if (enemyExplodeCounter == 5)
         {
-            achievementManager.UnlockAchievement(EAchievement.ExplosiveExpertise);
+            AchievementManager.UnlockAchievement(EAchievement.ExplosiveExpertise);
         }
     }
 
@@ -293,31 +294,31 @@ public class PlayerManager : MonoBehaviour
         // Resource Collector: Collect 15 resources
         if (collectResourceCounter == 15)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourceCollector);
+            AchievementManager.UnlockAchievement(EAchievement.ResourceCollector);
         }
 
         // Resource Hoarder: Collect 30 resources
         if (collectResourceCounter == 30)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourceHoarder);
+            AchievementManager.UnlockAchievement(EAchievement.ResourceHoarder);
         }
 
         // Herbal Harvester: Collect 50 resources
         if (collectResourceCounter == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.HerbalHarvester);
+            AchievementManager.UnlockAchievement(EAchievement.HerbalHarvester);
         }
 
         // Resource Tycoon: Collect 1000 resources
         if (collectResourceCounter == 1000)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourceTycoon);
+            AchievementManager.UnlockAchievement(EAchievement.ResourceTycoon);
         }
 
         // Resourceful Mind: Collect 5000 resources in total
         if (collectResourceCounter == 5000)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourcefulMind);
+            AchievementManager.UnlockAchievement(EAchievement.ResourcefulMind);
         }
     }
 
@@ -326,55 +327,55 @@ public class PlayerManager : MonoBehaviour
         // First Blood: Kill your first enemy
         if (killEnemyCounter == 1)
         {
-            achievementManager.UnlockAchievement(EAchievement.FirstBlood);
+            AchievementManager.UnlockAchievement(EAchievement.FirstBlood);
         }
 
         // Killer Seed: Kill 10 enemies
         if (killEnemyCounter == 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.KillerSeed);
+            AchievementManager.UnlockAchievement(EAchievement.KillerSeed);
         }
 
         // Efficient Killer: Kill 50 enemies in 5 minutes
         if (GetEnemyKilledInLast5Minutes() >= 50)
         {   
-            achievementManager.UnlockAchievement(EAchievement.EfficientKiller);
+            AchievementManager.UnlockAchievement(EAchievement.EfficientKiller);
         }
 
         // Monster Slayer: Kill 500 enemies
         if (killEnemyCounter == 500)
         {
-            achievementManager.UnlockAchievement(EAchievement.MonsterSlayer);
+            AchievementManager.UnlockAchievement(EAchievement.MonsterSlayer);
         }
 
         // Unstoppable Force: Defeat 1000 enemies in total
         if (killEnemyCounter == 1000)
         {
-            achievementManager.UnlockAchievement(EAchievement.UnstoppableForce);
+            AchievementManager.UnlockAchievement(EAchievement.UnstoppableForce);
         }
 
         // Endless Onslaught: Kill 5000 enemies in total
         if (killEnemyCounter == 5000)
         {
-            achievementManager.UnlockAchievement(EAchievement.EndlessOnslaught);
+            AchievementManager.UnlockAchievement(EAchievement.EndlessOnslaught);
         }
 
         // Monster Frenzy: Kill 200 enemies in under 10 minutes
         if (GetEnemyKilledInLast10Minutes() >= 200)
         {
-            achievementManager.UnlockAchievement(EAchievement.MonsterFrenzy);
+            AchievementManager.UnlockAchievement(EAchievement.MonsterFrenzy);
         }
 
         // Doomsday Gardener: Kill 200 enemies using explosive plants
         if (killEnemyExplosiveCounter == 200)
         {
-            achievementManager.UnlockAchievement(EAchievement.DoomsdayGardener);
+            AchievementManager.UnlockAchievement(EAchievement.DoomsdayGardener);
         }
 
         // Trap Specialist: Kill 50 enemies with Boomkin
         if (killEnemyExplosiveCounter == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.TrapSpecialist);
+            AchievementManager.UnlockAchievement(EAchievement.TrapSpecialist);
         }
     }
 
@@ -383,31 +384,31 @@ public class PlayerManager : MonoBehaviour
         // Upgrade Apprentice: Upgrade at least 3 plants
         if (upgradePlantCounter == 3)
         {
-            achievementManager.UnlockAchievement(EAchievement.UpgradeApprentice);
+            AchievementManager.UnlockAchievement(EAchievement.UpgradeApprentice);
         }
 
         // Upgrade Master: Upgrade at least 10 plants
         if (upgradePlantCounter == 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.UpgradeMaster);
+            AchievementManager.UnlockAchievement(EAchievement.UpgradeMaster);
         }
 
         // Upgrade Overachiever: Upgrade at least 30 plants
         if (upgradePlantCounter == 30)
         {
-            achievementManager.UnlockAchievement(EAchievement.UpgradeOverachiever);
+            AchievementManager.UnlockAchievement(EAchievement.UpgradeOverachiever);
         }
 
         // Fully Bloomed: Fully upgrade any plant
         if (fullUpgradePlantCounter >= 1)
         {
-            achievementManager.UnlockAchievement(EAchievement.FullyBloomed);
+            AchievementManager.UnlockAchievement(EAchievement.FullyBloomed);
         }
 
         // Gardener's Glory: Achieve 10 upgraded plants
         if (fullUpgradePlantCounter >= 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.GardenersGlory);
+            AchievementManager.UnlockAchievement(EAchievement.GardenersGlory);
         }
     }
 
@@ -416,25 +417,25 @@ public class PlayerManager : MonoBehaviour
         // Quick Learner: Level up 3 times in under 1 minute
         if (GetLevelUpInLast1Minutes() == 3)
         {
-            achievementManager.UnlockAchievement(EAchievement.QuickLearner);
+            AchievementManager.UnlockAchievement(EAchievement.QuickLearner);
         }
 
         // Plant Potential: Level up 5 times
         if (levelupCounter == 5)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantPotential);
+            AchievementManager.UnlockAchievement(EAchievement.PlantPotential);
         }
 
         // Level Up Enthusiast: Level up 20 times
         if (levelupCounter == 20)
         {
-            achievementManager.UnlockAchievement(EAchievement.LevelUpEnthusiast);
+            AchievementManager.UnlockAchievement(EAchievement.LevelUpEnthusiast);
         }
 
         // Level Up Veteran: Level up 50 times
         if (levelupCounter == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.LevelUpVeteran);
+            AchievementManager.UnlockAchievement(EAchievement.LevelUpVeteran);
         }
     }
 
@@ -443,67 +444,67 @@ public class PlayerManager : MonoBehaviour
         // New Gardener: Plant 2 plants
         if (plantedPlants == 2)
         {
-            achievementManager.UnlockAchievement(EAchievement.NewGardener);
+            AchievementManager.UnlockAchievement(EAchievement.NewGardener);
         }
 
         // Bloom Booster: Plant 20 plants
         if (plantedPlants == 20)
         {
-            achievementManager.UnlockAchievement(EAchievement.BloomBooster);
+            AchievementManager.UnlockAchievement(EAchievement.BloomBooster);
         }
 
         // Gardening Guru: Plant 50 plants
         if (plantedPlants == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.GardeningGuru);
+            AchievementManager.UnlockAchievement(EAchievement.GardeningGuru);
         }
 
         // Perfect Planter: Plant 100 plants
         if (plantedPlants == 100)
         {
-            achievementManager.UnlockAchievement(EAchievement.PerfectPlanter);
+            AchievementManager.UnlockAchievement(EAchievement.PerfectPlanter);
         }
 
         // Plant Invasion: Plant 1000 plants in total
         if (plantedPlants == 1000)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantInvasion);
+            AchievementManager.UnlockAchievement(EAchievement.PlantInvasion);
         }
         
         // Botanical Diversity: Plant 5000 plants
         if (plantedPlants == 5000)
         {
-            achievementManager.UnlockAchievement(EAchievement.BotanicalDiversity);
+            AchievementManager.UnlockAchievement(EAchievement.BotanicalDiversity);
         }
         
         // Master Gardener: Plant 10000 plants in total
         if (plantedPlants == 10000)
         {
-            achievementManager.UnlockAchievement(EAchievement.MasterGardener);
+            AchievementManager.UnlockAchievement(EAchievement.MasterGardener);
         }
 
         // Speed Planter: Plant 10 plants in 1 minute
         if (GetPlantsPlantedInLast1Minutes() == 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.SpeedPlanter);
+            AchievementManager.UnlockAchievement(EAchievement.SpeedPlanter);
         }
 
         // Frenzied Farmer: Plant 50 plants in under 5 minutes
         if (GetPlantsPlantedInLast5Minutes() == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.FrenziedFarmer);
+            AchievementManager.UnlockAchievement(EAchievement.FrenziedFarmer);
         }
 
         // Plant Commander: Have 50 plants on the field at once
         if (activePlants == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantCommander);
+            AchievementManager.UnlockAchievement(EAchievement.PlantCommander);
         }
 
         // Plant Hoarder: Have 100 plants on the field at once
         if (activePlants == 100)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantHoarder);
+            AchievementManager.UnlockAchievement(EAchievement.PlantHoarder);
         }
     }   
 
@@ -512,7 +513,7 @@ public class PlayerManager : MonoBehaviour
         // First Fall: Die for the first time
         if (firstDie == 1)
         {
-            achievementManager.UnlockAchievement(EAchievement.FirstFall);
+            AchievementManager.UnlockAchievement(EAchievement.FirstFall);
         }
     }
 

@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,82 +55,76 @@ public class AchievementHandler : MonoBehaviour
         });
     }
 
-    private static List<Dictionary<string, object>> achievementList = new List<Dictionary<string, object>>
+    private static Dictionary<EAchievement, Dictionary<string, object>> _achievementData = new()
     {
-        new() { { "name", "against_all_odds" }, { "description", "Complete the game with minimal resources." } },
-        new() { { "name", "bare_minimum" }, { "description", "Achieve victory with the least possible effort." } },
-        new() { { "name", "bloom_booster" }, { "description", "Boost the growth of plants significantly." }, {"counter", 20} },
-        new() { { "name", "Botanical_Diversity_" }, { "description", "Cultivate a wide variety of plants." } },
-        new() { { "name", "complete_tutorial" }, { "description", "Finish the tutorial." } },
-        new() { { "name", "doomsday_garden" }, { "description", "Create a garden capable of surviving an apocalypse." }, {"counter", 200} },
-        new() { { "name", "eco_warrior" }, { "description", "Defend the environment with plant power." } },
-        new() { { "name", "efficient_killer" }, { "description", "Eliminate enemies with minimal effort." }, {"counter", 50} },
-        new() { { "name", "endless_onslaught" }, { "description", "Survive against waves of enemies without end." }, {"counter", 5000} },
-        new() { { "name", "endurance_expert" }, { "description", "Demonstrate exceptional stamina and resilience." } },
-        new() { { "name", "explosive_expertise" }, { "description", "Master the use of explosives in battle."} , {"counter", 5} },
-        new() { { "name", "first_blood" }, { "description", "Be the first to deal damage in a battle." }, {"counter", 1} },
-        new() { { "name", "first_fall" }, { "description", "Experience your first defeat." }, {"counter", 1} },
-        new() { { "name", "flawless_defense" }, { "description", "Defend an area without taking any damaRge." } },
-        new() { { "name", "frenzied_farmer" }, { "description", "Harvest an enormous number of plants in a short time." }, {"counter", 50} },
-        new() { { "name", "fully bloomed" }, { "description", "Grow all plants to their full potential." }, {"counter", 1} },
-        new() { { "name", "gardening_guru" }, { "description", "Reach mastery in gardening skills." }, {"counter", 50} },
-        new() { { "name", "green_thumb" }, { "description", "Prove your natural talent for gardening." } },
-        new() { { "name", "herbal_harvester" }, { "description", "Harvest a large variety of herbs." }, {"counter", 50} },
-        new() { { "name", "killer_seed" }, { "description", "Use a seed to defeat a powerful enemy." }, {"counter", 10} },
-        new() { { "name", "level_up_enthusiast" }, { "description", "Level up quickly and consistently." }, {"counter", 20} },
-        new() { { "name", "level_up_veteran" }, { "description", "Reach high levels through experience and dedication." }, {"counter", 50} },
-        new() { { "name", "master_gardener" }, { "description", "Attain the title of master gardener." }, {"counter", 5000} },
-        new() { { "name", "monster_frenzy" }, { "description", "Defeat monsters in rapid succession." }, {"counter", 200} },
-        new() { { "name", "monster_slayer" }, { "description", "Slay a large number of monsters." }, {"counter", 500} },
-        new() { { "name", "natures_avatar" }, { "description", "Become one with nature and its creatures." } },
-        new() { { "name", "new_gardener" }, { "description", "Begin your journey as a gardener." }, {"counter", 2} },
-        new() { { "name", "perfect_planter" }, { "description", "Plant seeds with precision and care." }, {"counter", 100} },
-        new() { { "name", "plant_collector" }, { "description", "Collect a wide array of different plant species." } },
-        new() { { "name", "plant_commander" }, { "description", "Command a group of plants to fight for you." }, {"counter", 50} },
-        new() { { "name", "plant_hoarder" }, { "description", "Accumulate a vast number of plants." }, {"counter", 100} },
-        new() { { "name", "plant_invasion" }, { "description", "Unleash a plant invasion on your enemies." }, {"counter", 1000} },
-        new() { { "name", "plant_potential" }, { "description", "Realize the full potential of your plants." }, {"counter", 5} },
-        new() { { "name", "plant_sacrificer" }, { "description", "Sacrifice plants to achieve victory." } },
-        new() { { "name", "quick_learner" }, { "description", "Quickly master new skills and concepts." }, {"counter", 3} },
-        new() { { "name", "resourceful_mind" }, { "description", "Make the most of your available resources." }, {"counter", 5000} },
-        new() { { "name", "resource_collector" }, { "description", "Gather a wide variety of resources." }, {"counter", 15} },
-        new() { { "name", "resource_hoarder" }, { "description", "Amass an enormous amount of resources." }, {"counter", 30} },
-        new() { { "name", "resource_tycoon" }, { "description", "Become a master of resource management." }, {"counter", 1000} },
-        new() { { "name", "speed_planter" }, { "description", "Plant seeds at an incredible pace." }, {"counter", 10} },
-        new() { { "name", "survivalist" }, { "description", "Survive against all odds." } },
-        new() { { "name", "survival_notice" }, { "description", "Take action in time to ensure survival." } },
-        new() { { "name", "taunt_master" }, { "description", "Master the art of taunting enemies." } },
-        new() { { "name", "trap_specialist" }, { "description", "Become an expert at setting traps." }, {"counter", 50} },
-        new() { { "name", "ultimate_gardener" }, { "description", "Achieve the highest level of gardening." } },
-        new() { { "name", "unstoppable_force" }, { "description", "Become an unstoppable force in battle." }, {"counter", 1000} },
-        new() { { "name", "untouchable" }, { "description", "Avoid all damage during a fight." } },
-        new() { { "name", "upgrade_apprentice" }, { "description", "Learn the basics of upgrading items." }, {"counter", 3} },
-        new() { { "name", "upgrade_master" }, { "description", "Master the art of upgrading." }, {"counter", 10} },
-        new() { { "name", "upgrade_overarchieve" }, { "description", "Go beyond expectations in upgrading items." }, {"counter", 30} },
-        new() { { "name", "zen_master" }, { "description", "Achieve ultimate peace and balance." } }
+        { EAchievement.NewGardener, new Dictionary<string, object>() { { "counter", 2 } } },
+        { EAchievement.KillerSeed, new Dictionary<string, object>() { { "counter", 10 } } },
+        { EAchievement.PlantPotential, new Dictionary<string, object>() { { "counter", 5 } } },
+        { EAchievement.UpgradeApprentice, new Dictionary<string, object>() { { "counter", 3 } } },
+        { EAchievement.FirstFall, new Dictionary<string, object>() { { "counter", 1 } } },
+        { EAchievement.BloomBooster, new Dictionary<string, object>() { { "counter", 20 } } },
+        { EAchievement.SurvivalNotice, new Dictionary<string, object>() { } },
+        { EAchievement.Survivalist, new Dictionary<string, object>() { } },
+        { EAchievement.LevelUpEnthusiast, new Dictionary<string, object>() { { "counter", 20 } } },
+        { EAchievement.LevelUpVeteran, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.GardeningGuru, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.EnduranceExpert, new Dictionary<string, object>() { } },
+        { EAchievement.UpgradeMaster, new Dictionary<string, object>() { { "counter", 10 } } },
+        { EAchievement.UpgradeOverachiever, new Dictionary<string, object>() { { "counter", 30 } } },
+        { EAchievement.ExplosiveExpertise, new Dictionary<string, object>() { { "counter", 5 } } },
+        { EAchievement.ResourceCollector, new Dictionary<string, object>() { { "counter", 15 } } },
+        { EAchievement.ResourceHoarder, new Dictionary<string, object>() { { "counter", 30 } } },
+        { EAchievement.PlantSacrifice, new Dictionary<string, object>() { } },
+        { EAchievement.BotanicalDiversity, new Dictionary<string, object>() { } },
+        { EAchievement.HerbalHarvester, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.MonsterSlayer, new Dictionary<string, object>() { { "counter", 500 } } },
+        { EAchievement.PerfectPlanter, new Dictionary<string, object>() { { "counter", 100 } } },
+        { EAchievement.FlawlessDefense, new Dictionary<string, object>() { } },
+        { EAchievement.SpeedPlanter, new Dictionary<string, object>() { { "counter", 10 } } },
+        { EAchievement.EfficientKiller, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.TauntMaster, new Dictionary<string, object>() { } },
+        { EAchievement.ResourceTycoon, new Dictionary<string, object>() { { "counter", 1000 } } },
+        { EAchievement.PlantCollector, new Dictionary<string, object>() { } },
+        { EAchievement.UnstoppableForce, new Dictionary<string, object>() { { "counter", 1000 } } },
+        { EAchievement.GardenersGlory, new Dictionary<string, object>() {  } },
+        { EAchievement.TrapSpecialist, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.FirstBlood, new Dictionary<string, object>() { { "counter", 1 } } },
+        { EAchievement.PlantInvasion, new Dictionary<string, object>() { { "counter", 1000 } } },
+        { EAchievement.NaturesAvatar, new Dictionary<string, object>() { } },
+        { EAchievement.GreenThumb, new Dictionary<string, object>() { } },
+        { EAchievement.MonsterFrenzy, new Dictionary<string, object>() { { "counter", 200 } } },
+        { EAchievement.PlantCommander, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.AgainstAllOdds, new Dictionary<string, object>() { } },
+        { EAchievement.DoomsdayGardener, new Dictionary<string, object>() { { "counter", 200 } } },
+        { EAchievement.ZenMaster, new Dictionary<string, object>() { } },
+        { EAchievement.EcoWarrior, new Dictionary<string, object>() { } },
+        { EAchievement.BareMinimum, new Dictionary<string, object>() { } },
+        { EAchievement.PlantHoarder, new Dictionary<string, object>() { { "counter", 100 } } },
+        { EAchievement.MasterGardener, new Dictionary<string, object>() { { "counter", 5000 } } },
+        { EAchievement.ResourcefulMind, new Dictionary<string, object>() { { "counter", 5000 } } },
+        { EAchievement.EndlessOnslaught, new Dictionary<string, object>() { { "counter", 5000 } } },
+        { EAchievement.FrenziedFarmer, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.Untouchable, new Dictionary<string, object>() { } },
+        { EAchievement.UltimateGardener, new Dictionary<string, object>() { } },
+        { EAchievement.QuickLearner, new Dictionary<string, object>() { { "counter", 3 } } },
+        { EAchievement.FullyBloomed, new Dictionary<string, object>() { { "counter", 1 } } },
     };
+  
 
-    private void ReconcileAchievement() 
+    private void ReconcileAchievement()
     {
+        var data = PlayerManager.Instance.AchievementManager.Achievements;
+        var keys = data.Keys.ToList();
         int i = 0;
+        var selectedKey = keys[i];
         
         // Loop through each child (row) of the seedpediaPanel
         foreach (Transform child in seedpediaPanel.transform)
         {
-            if (i >= achievementList.Count)
-            {
-                Debug.LogWarning("More buttons than available data");
-                break;
-            }
 
             // Iterate through buttons in each row (grandchildren of seedpediaPanel)
             foreach (Transform grandchild in child)
             {
-                if (i >= achievementList.Count)
-                {
-                    Debug.LogWarning("More buttons than available data");
-                    break;
-                }
 
                 Button button = grandchild.GetComponent<Button>();
                 if (button != null)
@@ -144,12 +140,15 @@ public class AchievementHandler : MonoBehaviour
                     // // Ensure the second image exists (assuming the plant image is in the second position)
                     if (images.Length > 1)
                     {
-                        string plantId = achievementList[i]["name"].ToString();
+                        if (data[selectedKey] == null)
+                            continue;
+                        
+                        string plantId = data[selectedKey].name;
                     
                         // Construct the image path for the plant sprite
-                        string imagePath = "Images/Achievements/" + plantId;
+                        string imagePath = "Images/Achievements/" + plantId.Replace(' ', '_').ToLower();
                         
-                        string formattedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(achievementList[i]["name"].ToString().Replace('_', ' '));
+                        string formattedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(data[selectedKey].name.Replace('_', ' '));
                     
                         // Load the sprite from the Resources folder
                         Sprite plantSprite = Resources.Load<Sprite>(imagePath);
@@ -159,42 +158,42 @@ public class AchievementHandler : MonoBehaviour
                             // Set the plant image sprite
                             images[1].sprite = plantSprite;
                             texts[0].text = formattedName;
-                            if(achievementList[i].ContainsKey("counter"))
+                            if(_achievementData[selectedKey].ContainsKey("counter"))
                             {
                                 int achievementCounter = 0;
-                                int counter = Convert.ToInt32(achievementList[i]["counter"]);
+                                int counter = Convert.ToInt32(_achievementData[selectedKey]["counter"]);
                                 
-                                if (achievementList[i]["name"] is "new_gardener" || achievementList[i]["name"] is "bloom_booster" || achievementList[i]["name"] is "gardening_guru" || achievementList[i]["name"] is "perfect_planter" || achievementList[i]["name"] is "plant_invasion" || achievementList[i]["name"] is "master_gardener")
+                                if (data[selectedKey].name is "new_gardener" || data[selectedKey].name is "bloom_booster" || data[selectedKey].name is "gardening_guru" || data[selectedKey].name is "perfect_planter" || data[selectedKey].name is "plant_invasion" || data[selectedKey].name is "master_gardener")
                                 {
                                     achievementCounter = (PlayerManager.Instance.PlantedPlants > counter) ? counter : PlayerManager.Instance.PlantedPlants;
                                 } 
-                                else if(achievementList[i]["name"] is "quick_learner" || achievementList[i]["name"] is "plant_potential" || achievementList[i]["name"] is "level_up_enthusiast" || achievementList[i]["name"] is "level_up_veteran")
+                                else if(data[selectedKey].name is "quick_learner" || data[selectedKey].name is "plant_potential" || data[selectedKey].name is "level_up_enthusiast" || data[selectedKey].name is "level_up_veteran")
                                 {
                                     achievementCounter = (PlayerManager.Instance.LevelUpCounter > counter) ? counter : PlayerManager.Instance.LevelUpCounter;
                                 } 
-                                else if(achievementList[i]["name"] is "upgrade_apprentice" || achievementList[i]["name"] is "upgrade_master" || achievementList[i]["name"] is "upgrade_overarchieve")
+                                else if(data[selectedKey].name is "upgrade_apprentice" || data[selectedKey].name is "upgrade_master" || data[selectedKey].name is "upgrade_overarchieve")
                                 {
                                     achievementCounter = (PlayerManager.Instance.UpgradePlantCounter > counter) ? counter : PlayerManager.Instance.UpgradePlantCounter;
                                 } 
-                                else if(achievementList[i]["name"] is "fully_bloomed" || achievementList[i]["name"] is "gardening_glory")
+                                else if(data[selectedKey].name is "fully_bloomed" || data[selectedKey].name is "gardening_glory")
                                 {
                                     achievementCounter = (PlayerManager.Instance.FullUpgradePlantCounter > counter) ? counter : PlayerManager.Instance.FullUpgradePlantCounter;
                                 } 
-                                else if(achievementList[i]["name"].ToString() == "first_fall")
+                                else if(data[selectedKey].name.ToString() == "first_fall")
                                 {
                                   
                                     achievementCounter = (PlayerManager.Instance.Die > counter) ? counter : PlayerManager.Instance.Die;
                                     Debug.Log("FIRST FALLL" + achievementCounter);
                                 } 
-                                else if(achievementList[i]["name"] is "first_blood" || achievementList[i]["name"] is "killer_seed" || achievementList[i]["name"] is "efficient_killer" || achievementList[i]["name"] is "monster_frenzy" || achievementList[i]["name"] is "monster_slayer" || achievementList[i]["name"] is "unstoppable_force" || achievementList[i]["name"] is "endless_onslaught")
+                                else if(data[selectedKey].name is "first_blood" || data[selectedKey].name is "killer_seed" || data[selectedKey].name is "efficient_killer" || data[selectedKey].name is "monster_frenzy" || data[selectedKey].name is "monster_slayer" || data[selectedKey].name is "unstoppable_force" || data[selectedKey].name is "endless_onslaught")
                                 {
                                     achievementCounter = (PlayerManager.Instance.Kill > counter) ? counter : PlayerManager.Instance.Kill;
                                 }
                                 
-                                texts[1].text = achievementCounter + "/" + achievementList[i]["counter"];
+                                texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
                             
-                            texts[2].text = achievementList[i]["description"].ToString();
+                            texts[2].text = data[selectedKey].description;
                         }
                         else
                         {
@@ -217,7 +216,7 @@ public class AchievementHandler : MonoBehaviour
                     // Debug.Log(achievementList[index]);
                     // // button.onClick.AddListener(() => OnButtonClick(seedpediaList[index]));
                     //
-                    i++; // Move to the next plant in the list
+                    selectedKey = keys[++i];
                 }
             }
         }
