@@ -299,10 +299,19 @@ public class SingletonGame : MonoBehaviour
         loseScreen.UpdateUI(homeBase.score, enemyKilled, plantPlanted);
         PlayerManager.Instance.OnPlayerDied();
 
-        if (Input.GetMouseButton(0))
+        StartCoroutine(WaitForInputAndLoadScene(0));
+    }
+    
+    IEnumerator WaitForInputAndLoadScene(int sceneId)
+    {
+        // Wait for the player to click the left mouse button (button 0)
+        while (!Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(LoadScene(0));
+            yield return null;  // Wait for the next frame
         }
+
+        // Now start loading the scene asynchronously
+        StartCoroutine(LoadScene(sceneId));
     }
     
     IEnumerator LoadScene(int sceneId)
