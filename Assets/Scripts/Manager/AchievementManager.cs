@@ -25,6 +25,7 @@ namespace Manager
             {
                 Achievements[enums[i]] = data[i];
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         public void UnlockAchievement(EAchievement achievement)
