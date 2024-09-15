@@ -18100,23 +18100,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 521397313901571747, guid: c2b02f098d512724c8362eaf52526d8e, type: 3}
-  plants: 01000000020000000400000000000000080000000300000006000000050000000d0000000a000000070000000c000000090000000b0000000e000000
+  plants: 0100000002000000040000000800000007000000000000000600000003000000090000000e0000000d0000000c0000000a000000050000000b000000
   data:
   - {fileID: 11400000, guid: 99925b37cd3d3b040b10746d146f3b19, type: 2}
   - {fileID: 11400000, guid: 439e510460bfa0c4da47a1d8249dba64, type: 2}
   - {fileID: 11400000, guid: 57d93b490a056f243aabf4d100388a52, type: 2}
-  - {fileID: 11400000, guid: 4833b2a0a16cf8e46b12dea07c49c7eb, type: 2}
   - {fileID: 11400000, guid: 5aaef03699f17b64c837ab294964ace4, type: 2}
-  - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
-  - {fileID: 11400000, guid: 84882f216e56dda4caeed7faea46386e, type: 2}
-  - {fileID: 11400000, guid: b2a7c28ea589efa43b2c328e90b9e75b, type: 2}
-  - {fileID: 11400000, guid: 267457985c76d7447912c3762d953c41, type: 2}
-  - {fileID: 11400000, guid: ab741af68f4be5d4fbec0189f6162e5e, type: 2}
   - {fileID: 11400000, guid: bdfcc2be0c21de84cb5e77465b54f913, type: 2}
-  - {fileID: 11400000, guid: 981114de3a0f5b94482ee038a46f4cf8, type: 2}
+  - {fileID: 11400000, guid: 4833b2a0a16cf8e46b12dea07c49c7eb, type: 2}
+  - {fileID: 11400000, guid: 84882f216e56dda4caeed7faea46386e, type: 2}
+  - {fileID: 11400000, guid: a82af30fb772f664998b8b8dd0133dd3, type: 2}
   - {fileID: 11400000, guid: eee64b170c2500642830a6ab3a29d8ce, type: 2}
-  - {fileID: 11400000, guid: bcf19bf8cd9ae1d4d9a0288c1edee0ce, type: 2}
   - {fileID: 11400000, guid: 558d0e26f9a4535468091bce4aebfb09, type: 2}
+  - {fileID: 11400000, guid: 267457985c76d7447912c3762d953c41, type: 2}
+  - {fileID: 11400000, guid: 981114de3a0f5b94482ee038a46f4cf8, type: 2}
+  - {fileID: 11400000, guid: ab741af68f4be5d4fbec0189f6162e5e, type: 2}
+  - {fileID: 11400000, guid: b2a7c28ea589efa43b2c328e90b9e75b, type: 2}
+  - {fileID: 11400000, guid: bcf19bf8cd9ae1d4d9a0288c1edee0ce, type: 2}
   plantPlacementService: {fileID: 1590870005}
 --- !u!4 &1280682890
 Transform:
@@ -30592,12 +30592,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1421698235721428001, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7145795311674285348}
-    - targetCorrespondingSourceObject: {fileID: 4221292944091774366, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3309142058043968990, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 10b3dcc7847b65e4b84f56ae8ddb7e60, type: 3}
 --- !u!4 &7145795311674285344 stripped
 Transform:
