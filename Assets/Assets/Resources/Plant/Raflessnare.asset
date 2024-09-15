@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Raflessnare
   m_EditorClassIdentifier: 
   plantType: 3
-  health: 500
+  health: 200
   damage: 0
   attackCooldown: 0
   range: 20
