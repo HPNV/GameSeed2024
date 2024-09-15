@@ -120,7 +120,7 @@ public class PlayerManager : MonoBehaviour
     }
     
     public int tutorialCompleted = 0;
-    public AchievementManager AchievementManager  = new();
+    public AchievementManager AchievementManager;
     
     // Remake
     private int rafflesiaDmg = 0;
@@ -137,12 +137,18 @@ public class PlayerManager : MonoBehaviour
         {
             Instance = this;
 
+            Initialize();
             // DontDestroyOnLoad(gameObject);
         }
         // else
         // {   
         //     Destroy(gameObject);
         // }
+    }
+
+    private void Initialize()
+    {
+        AchievementManager = AchievementManager.Instance;
     }
     
     public void OnPlantPlanted()

@@ -93,7 +93,7 @@ public class SingletonGame : MonoBehaviour
         cardDisplays.Add(card2);
         cardDisplays.Add(card3);
 
-        AchievementManager = GetComponent<AchievementManager>();
+        AchievementManager = AchievementManager.Instance;
         
         _gameState = GameState.Play;
 

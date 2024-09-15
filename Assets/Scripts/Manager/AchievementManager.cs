@@ -10,12 +10,27 @@ namespace Manager
 {
     public class AchievementManager : MonoBehaviour
     {
+        public static AchievementManager Instance { get; private set; }
         [SerializeField]
         private List<EAchievement> enums;
         [SerializeField]
         private List<AchievementData> data;
         public Dictionary<EAchievement, AchievementData> Achievements = new();
         public List<EAchievement> UnlockedEAchievements { get; private set; }
+        
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {   
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
@@ -29,13 +44,12 @@ namespace Manager
 
         public void UnlockAchievement(EAchievement achievement)
         {
-            if (UnlockedEAchievements.Contains(achievement))
-            {
-                return;
-            }
+            if (UnlockedEAchievements.Contains(achievement)) return;
             
             PlayerManager.Instance.UnlockedAchievements += 1;
+            Debug.Log($"befcount: {UnlockedEAchievements.Count}");
             UnlockedEAchievements.Add(achievement);
+            Debug.Log($"aftcount: {UnlockedEAchievements.Count}");
             Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
             ShowAchievement(achievement);
             

@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using Manager;
 using Script;
 using TMPro;
 using UnityEngine;
@@ -136,7 +137,7 @@ public class AchievementHandler : MonoBehaviour
     
     private void ReconcileAchievement()
     {
-        var data = PlayerManager.Instance.AchievementManager.Achievements;
+        var data = AchievementManager.Instance.Achievements;
         var keys = data.Keys.ToList();
         int i = 0;
         
