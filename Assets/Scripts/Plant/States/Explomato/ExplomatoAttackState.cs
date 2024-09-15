@@ -42,7 +42,7 @@ namespace Plant.States.Explomato
                 return;
             
             _hasSpawnedProjectile = true;
-
+            SoundFXManager.instance.PlayGameSoundOnce("Audio/Plant/Cactharn Attack");
             SingletonGame.Instance.ProjectileManager.Spawn(
                 ProjectileName.Explomato, 
                 Plant.transform.position, 

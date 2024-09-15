@@ -80,7 +80,7 @@ public class SingletonGame : MonoBehaviour
         ParticleManager.Initialize();
         CursorManager.Initialize();
         SoundFXManager.Initialize();
-        SoundFXManager.instance.PlayGameSound("Audio/Game Music"); 
+        SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
         PickCardObject.SetActive(false);
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);
@@ -91,7 +91,8 @@ public class SingletonGame : MonoBehaviour
         if(true && PlayerManager.tutorialCompleted == 0) {
             Tutorial();
         } else {
-            SpawnPlant();
+            // SpawnPlant();
+            PickCardObject.SetActive(true);
             Tutorial1.SetActive(false);
             Tutorial1Check = 5;
             Tutorial2Check = 5;
