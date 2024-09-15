@@ -87,6 +87,7 @@ public class HomeBase : Entity
 
     public void GainScore(int score) {
         this.score += score;
+        PlayerManager.Instance.HighScore = Math.Max(PlayerManager.Instance.HighScore, this.score);
         UpdateUI();
     }
 
