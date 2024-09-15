@@ -8,7 +8,8 @@
         GardeningGuru,          // Plant 50 plants
         PerfectPlanter,         // Plant 100 plants
         PlantInvasion,          // Plant 1000 plants
-        MasterGardener,         // Plant 5000 plants
+        BotanicalDiversity,     // Plant 5000 plants
+        MasterGardener,         // Plant 10000 plants
         SpeedPlanter,           // Plant 10 plants in 1 minute
         FrenziedFarmer,         // Plant 50 plants in under 5 minutes
         PlantCommander,         // Have 50 plants on the field at once
@@ -22,10 +23,9 @@
 
         // Upgrade Plant
         UpgradeApprentice,      // Upgrade at least 3 plants
+        FullyBloomed,           // Fully upgrade any plant
         UpgradeMaster,          // Upgrade at least 10 plants
         UpgradeOverachiever,    // Upgrade at least 30 plants
-        FullyBloomed,           // Fully upgrade any plant
-        GardenersGlory,         // Achieve 10 upgraded plants ##########
 
         // Kill Enemy
         FirstBlood,             // Kill your first enemy
@@ -47,26 +47,29 @@
         HerbalHarvester,        // Collect 50 resources
         ResourceTycoon,         // Collect 1000 resources
         ResourcefulMind,        // Collect 5000 resources in total
-        
+
         // Special Challenges
-        PlantSacrifice,
-        Perfectionist,
+        PlantSacrifice,         // Sacrifice/Kill 5 of your plants
+        UltimateGardener,       // Unlock all achievements
         FirstFall,              // Die for the first time
-        
+
         // Remake
-        TauntMaster,
-        NaturesAvatar,
-        GreenThumb,
-        
+        TauntMaster,            // Rafflesia takes 1000 or more damage
+        NaturesAvatar,          // Plant dies 500 times
+        GreenThumb,             // Heal plants 500 times in total
+
         // Survival
-        SurvivalNotice,
-        Survivalist,
-        EnduranceExpert,
-        BareMinimum,
-        ZenMaster,
-        EcoWarrior,
-        Untouchable,
-        AgainstAllOdds,
-        PlantCollector,
+        SurvivalNotice,         // Survive for 10 minutes
+        Survivalist,            // Survive for 1 hour
+        EnduranceExpert,        // Survive for 5 hours
+        BareMinimum,            // Survive for 5 minutes with only 3 plants active
+        ZenMaster,              // Survive for 15 minutes without planting or upgrading any plants
+        EcoWarrior,             // Survive for 15 minutes without planting any explosive plants
+        Untouchable,            // Survive for 1 hour without taking any damage
+        AgainstAllOdds,         // Kill 5000 plants
+        PlantCollector,         // Unlock 8 plants
+        FlawlessDefense,        // Survive 20 minutes without taking damage
+        
+        GardenersGlory,         // Achieve 10 upgraded plants
     }
 }

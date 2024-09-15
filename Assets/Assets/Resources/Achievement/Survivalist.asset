@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
-  m_Name: Endless Onslaught
+  m_Name: Survivalist
   m_EditorClassIdentifier: 
-  achievement: 23
-  achievementName: Endless Onslaugh
-  description: Kill 5000 enemies
-  achievementImage: {fileID: 21300000, guid: 8504627a9a708e7438d6fd89d04eaf4a, type: 3}
+  achievement: 40
+  achievementName: Survivalist
+  description: Survive for 30 minutes
+  achievementImage: {fileID: 21300000, guid: 609fc3f1b8e5a4e41a35dbd69f750249, type: 3}

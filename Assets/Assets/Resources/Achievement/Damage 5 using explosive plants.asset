@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1134b39be2444787bc1484a4ab63fe, type: 3}
-  m_Name: Upgrade Overachiever 1
+  m_Name: Damage 5 using explosive plants
   m_EditorClassIdentifier: 
-  achievement: 22
-  achievementName: Monster Slayer
-  description: Kill 500 enemies
-  achievementImage: {fileID: 21300000, guid: 2ed90fa7cd625744581964892d8f3d7f, type: 3}
+  achievement: 17
+  achievementName: Upgrade Overachiever
+  description: Upgrade 30 plants
+  achievementImage: {fileID: 21300000, guid: 7e04de9b5fb50e34ebb159a38a8d0599, type: 3}

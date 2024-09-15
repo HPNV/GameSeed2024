@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cutscene : MonoBehaviour
 {
     public Animator animator;
     public TextMeshPro text;
     public GameObject cutscene;
+    [SerializeField] public BoxCollider2D skipButton;
+    [SerializeField] public Camera camera1;
 
-    public List<string> sentences;
+    public List<string> sentences = new List<string>();
     public int index = 0;
+    public bool isFinished = false;
     void Start()
     {
         initSentence();
@@ -20,7 +24,14 @@ public class Cutscene : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = camera1.ScreenToWorldPoint(Input.mousePosition);
+            if(skipButton.OverlapPoint(mousePos))
+            {
+                FinishCutscene();
+            }
+        }
     }
 
     private void initSentence()
@@ -42,8 +53,15 @@ public class Cutscene : MonoBehaviour
         }
     }
 
-    public void finishCutscene()
+    public void FinishCutscene()
     {
-        cutscene.SetActive(false);
+        isFinished = true;
+        // cutscene.SetActive(false);
+    }
+
+    public void StartCutscene()
+    {
+        cutscene.SetActive(true);
+        animator.SetBool("scene1",true);
     }
 }
