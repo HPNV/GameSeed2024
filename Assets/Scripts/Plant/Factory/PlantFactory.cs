@@ -84,11 +84,11 @@ namespace Plant.Factory
 
         public List<PlantData> GetUnlockedPlants(int amt)
         {
-            Debug.Log($"unlockedea: {SingletonGame.Instance.AchievementManager.UnlockedEAchievements}");
-            Debug.Log($"count: {SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count}");
+            // Debug.Log($"unlockedea: {SingletonGame.Instance.AchievementManager.UnlockedEAchievements}");
+            // Debug.Log($"count: {SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count}");
             var count = SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count;
-            var unlocked = UNLOCKED + count / STEP;
-            var temp = data.Take(1000);
+            var unlocked = UNLOCKED + (count / STEP);
+            var temp = data.Take(unlocked);
             return temp.OrderBy(x => Guid.NewGuid()).Take(amt).ToList();
         }
     }
