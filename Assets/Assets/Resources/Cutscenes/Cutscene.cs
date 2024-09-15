@@ -13,6 +13,8 @@ public class Cutscene : MonoBehaviour
     public GameObject cutscene;
     [SerializeField] public BoxCollider2D skipButton;
     [SerializeField] public Camera camera1;
+    [SerializeField] public GameObject loading;
+    [SerializeField] public GameObject mainMenu;
 
     public List<string> sentences = new List<string>();
     public int index = 0;
@@ -29,6 +31,7 @@ public class Cutscene : MonoBehaviour
             Vector2 mousePos = camera1.ScreenToWorldPoint(Input.mousePosition);
             if(skipButton.OverlapPoint(mousePos))
             {
+                Debug.Log("Skip");
                 FinishCutscene();
             }
         }
@@ -56,7 +59,9 @@ public class Cutscene : MonoBehaviour
     public void FinishCutscene()
     {
         isFinished = true;
-        // cutscene.SetActive(false);
+        cutscene.SetActive(false);
+        loading.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
     public void StartCutscene()
