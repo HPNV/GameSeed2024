@@ -40,58 +40,57 @@ public class Spawner : MonoBehaviour
     }
 
     private void SpawnEnemy()
+{
+    // Random spawn position on the edge of the radius
+    Vector2 spawnDirection = Random.insideUnitCircle.normalized; // This gives a direction on the edge
+    Vector2 spawnPosition = (Vector2)transform.position + spawnDirection * spawnRadius; // Scale by radius to get the edge position
+
+    // Decide enemy type using random
+    int enemyGacha = Random.Range(0, 100);
+
+    var spawnedEnemyType = new List<EnemyName>();
+    var time = SingletonGame.Instance.homeBase.time;
+    
+    if (enemyGacha < 40)
     {
-        // Update enemy count
-
-        // Random spawn position within radius
-        Vector2 spawnPosition = transform.position + Random.onUnitSphere * spawnRadius;
-
-        // Decide enemy type using random
-        int enemyGacha = Random.Range(0, 100);
-
-        var spawnedEnemyType = new List<EnemyName>();
-
-        var time = SingletonGame.Instance.homeBase.time;
-        if (enemyGacha < 40)
+        spawnedEnemyType.Add(EnemyName.SlimeSpitter);
+        
+        if (enemyGacha - (time / 100) < 30)
         {
             spawnedEnemyType.Add(EnemyName.SlimeSpitter);
-            
-            if (enemyGacha - (time / 100) < 30)
-            {
-                spawnedEnemyType.Add(EnemyName.SlimeSpitter);
-            }
-            if (enemyGacha - (time / 100) < 20)
-            {
-                spawnedEnemyType.Add(EnemyName.GlobLobber);
-            }
-
         }
-        else if (enemyGacha < 95)
+        if (enemyGacha - (time / 100) < 20)
+        {
+            spawnedEnemyType.Add(EnemyName.GlobLobber);
+        }
+
+    }
+    else if (enemyGacha < 95)
+    {
+        spawnedEnemyType.Add(EnemyName.SludgeGrunt);
+        
+        if (enemyGacha - (time / 100) < 80)
         {
             spawnedEnemyType.Add(EnemyName.SludgeGrunt);
-            
-            if (enemyGacha - (time / 100) < 80)
-            {
-                spawnedEnemyType.Add(EnemyName.SludgeGrunt);
-            }
-            
-            if (enemyGacha - (time / 100) < 60)
-            {
-                spawnedEnemyType.Add(EnemyName.SwiftSlimer);
-            }
-        }
-        else
-        {
-            spawnedEnemyType.Add(EnemyName.BlastBlob);
-            
-            if (enemyGacha - (time / 100) < 92)
-            {
-                spawnedEnemyType.Add(EnemyName.GoliathOoze);
-            }
         }
         
-        SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition, multiplier);
+        if (enemyGacha - (time / 100) < 60)
+        {
+            spawnedEnemyType.Add(EnemyName.SwiftSlimer);
+        }
     }
+    else
+    {
+        spawnedEnemyType.Add(EnemyName.BlastBlob);
+        
+        if (enemyGacha - (time / 100) < 92)
+        {
+            spawnedEnemyType.Add(EnemyName.GoliathOoze);
+        }
+    }
+    
+    SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition, multiplier);
+}
 
     private void OnDrawGizmos()
     {

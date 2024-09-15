@@ -71,6 +71,7 @@ namespace Manager
         private void UnlockedNewPlant()
         {
             var data = SingletonGame.Instance.plantFactory.GetLastUnlockedPlant();
+            SingletonGame.Instance.PlanttHolder.SetAchievement(data.sprite, data.name);
         }
 
         private void CheckUnlockAllAchievement()

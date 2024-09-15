@@ -31,6 +31,7 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] private GameObject Tutorial2;
     [SerializeField] private GameObject Tutorial3;
     [SerializeField] public AchivementHolder AchivementPrefab;
+    [SerializeField] public AchivementHolder PlanttHolder;
     
     FirebaseFirestore db;
 
