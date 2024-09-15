@@ -30,13 +30,6 @@ public class PlayerManager : MonoBehaviour
         get => plantedPlants;
         set => plantedPlants = value;
     }
-    
-    private int fullyUpgrade = 0;
-    public int FullyUpgrade
-    {
-        get => fullyUpgrade;
-        set => fullyUpgrade = value;
-    }
 
     private bool completeTutorial = false;
     public bool CompleteTutorial

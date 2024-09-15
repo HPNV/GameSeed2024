@@ -34,19 +34,42 @@ public class AchievementHandler : MonoBehaviour
         {
             DocumentSnapshot snapshot = task.Result;
 
+            // { "die_counter", 0 },
+            // { "kill_counter", 0 },
+            // { "planted_counter", 0 },
+            // { "upgrade_plant_counter", 0 },
+            // { "full_upgrade_plant_counter", 0 },
+            // { "collect_resource_counter", 0 },
+            // { "unlocked_achievements", 0 },
+            // { "sacrifice_counter", 0 },
+            // { "planted_plants_counter", 0 },
+            // { "level_up_counter", 0 },
+            // { "highest_score", 0 },
+            // { "complete_tutorial", false },
+            // { "survival_data", new List<bool> { false, false, false, false, false } },
+            // { "active_plant_data", new List<bool> { false, false } },
+            // { "explosive_data", new List<bool> { false } },
+            // { "planted_in_time_data", new List<bool> { false, false } },
+            // { "utils_data", new List<bool> { false, false, false, false, false, false, false } }
             if (snapshot.Exists)
             {
                 Dictionary<string, object> data = snapshot.ToDictionary();
                 PlayerManager.Instance.Die = Convert.ToInt32(data["die_counter"]);
                 PlayerManager.Instance.Kill = Convert.ToInt32(data["kill_counter"]);
                 PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["plant_counter"]);
-                PlayerManager.Instance.EnemyExplodeCounter = Convert.ToInt32(data["explode_counter"]);
-                PlayerManager.Instance.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
                 PlayerManager.Instance.UpgradePlantCounter = Convert.ToInt32(data["upgrade_counter"]);
-                PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
-                // PlayerManager.Instance.HighestScore = Convert.ToInt32(data["highest_score"]);
                 PlayerManager.Instance.FullUpgradePlantCounter = Convert.ToInt32(data["max_upgrade"]);
+                PlayerManager.Instance.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
+                PlayerManager.Instance.UnlockedAchievements = Convert.ToInt32(data["unlocked_achievements"]);
+                PlayerManager.Instance.SacrificeCounter = Convert.ToInt32(data["sacrifice_counter"]);
+                PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["planted_plants_counter"]);
+                PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
                 PlayerManager.Instance.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
+                PlayerManager.Instance.SurvivalData =data["survival_data"] as List<bool>;
+                PlayerManager.Instance.ActivePlantData = data["active_plant_data"] as List<bool>;
+                PlayerManager.Instance.ExplosiveData = data["explosive_data"] as List<bool>;
+                PlayerManager.Instance.PlantedInTimeData = data["planted_in_time_data"] as List<bool>;
+                PlayerManager.Instance.UtilsData = data["utils_data"] as List<bool>;
             }
             else
             {

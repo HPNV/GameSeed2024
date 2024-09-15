@@ -85,16 +85,21 @@ public class DatabaseManager : MonoBehaviour
                     {
                         { "die_counter", 0 },
                         { "kill_counter", 0 },
-                        { "plant_counter", 0 },
-                        { "explode_counter", 0 },
-                        { "resource_counter", 0 },
-                        { "upgrade_counter", 0 },
+                        { "planted_counter", 0 },
+                        { "upgrade_plant_counter", 0 },
+                        { "full_upgrade_plant_counter", 0 },
+                        { "collect_resource_counter", 0 },
+                        { "unlocked_achievements", 0 },
+                        { "sacrifice_counter", 0 },
+                        { "planted_plants_counter", 0 },
                         { "level_up_counter", 0 },
                         { "highest_score", 0 },
-                        { "max_upgrade", 0 },
-                        { "sacrifice_counter", 0 },
                         { "complete_tutorial", false },
-                        { "survival_data", new List<bool> { false, false, false, false, false } }
+                        { "survival_data", new List<bool> { false, false, false, false, false } },
+                        { "active_plant_data", new List<bool> { false, false } },
+                        { "explosive_data", new List<bool> { false } },
+                        { "planted_in_time_data", new List<bool> { false, false } },
+                        { "utils_data", new List<bool> { false, false, false, false, false, false, false } }
                     };
 
                     docRef.SetAsync(data).ContinueWithOnMainThread(task =>
@@ -105,9 +110,17 @@ public class DatabaseManager : MonoBehaviour
                             PlayerManager.Instance.Kill = 0;
                             PlayerManager.Instance.Planted = 0;
                             PlayerManager.Instance.UpgradePlantCounter = 0;
-                            PlayerManager.Instance.FullyUpgrade = 0;
+                            PlayerManager.Instance.FullUpgradePlantCounter = 0;
+                            PlayerManager.Instance.CollectResourceCounter = 0;
+                            PlayerManager.Instance.UnlockedAchievements = 0;
                             PlayerManager.Instance.SacrificeCounter = 0;
+                            PlayerManager.Instance.PlantedPlants = 0;
+                            PlayerManager.Instance.LevelUpCounter = 0;
                             PlayerManager.Instance.SurvivalData = new List<bool> { false, false, false, false, false };
+                            PlayerManager.Instance.ActivePlantData = new List<bool> { false, false };
+                            PlayerManager.Instance.ExplosiveData = new List<bool> { false };
+                            PlayerManager.Instance.PlantedInTimeData = new List<bool> { false, false };
+                            PlayerManager.Instance.UtilsData = new List<bool> { false, false, false, false, false, false, false };
                         }
                     });
                 }
