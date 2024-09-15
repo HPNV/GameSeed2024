@@ -444,6 +444,7 @@ public class PlayerManager : MonoBehaviour
         {
             AchievementManager.UnlockAchievement(EAchievement.FullyBloomed);
         }
+
     }
 
     private void CheckLevelUpAchievements()
