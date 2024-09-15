@@ -8435,7 +8435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &687410304
 Transform:
   m_ObjectHideFlags: 0
@@ -21555,7 +21555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516508124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23798,8 +23798,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Now i will give you my verdant seeds. Please Defend our homeland with your
-    gardening skill...
+  m_text: 'Now i will give you my verdant seeds. Please Defend our homeland with
+    your gardening skill....
+
+
+    You can move camera using right click and CTRL'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d711c93dd0bd57042b9da87a19aa60ed, type: 2}
   m_sharedMaterial: {fileID: -3147972930845485984, guid: d711c93dd0bd57042b9da87a19aa60ed, type: 2}
@@ -23826,8 +23829,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.5
-  m_fontSizeBase: 1.5
+  m_fontSize: 1.4
+  m_fontSizeBase: 1.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -29785,7 +29788,7 @@ MonoBehaviour:
   Tutorial1: {fileID: 687410303}
   Tutorial2: {fileID: 406606331}
   Tutorial3: {fileID: 864302317}
-  AchivementPrefab: {fileID: 0}
+  AchivementPrefab: {fileID: 7145795311674285348}
   TileProvider: {fileID: 1590870006}
   GameGrid: {fileID: 1555180711}
   ExpPoint: 0

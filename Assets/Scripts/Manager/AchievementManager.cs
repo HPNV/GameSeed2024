@@ -40,7 +40,7 @@ namespace Manager
             UnlockedEAchievements.Add(achievement);
             UnlockedAchievements.Add(Achievements[achievement]);
             Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
-            ShowAchievement(achievement);
+            StartCoroutine(ShowAchievement(achievement));
             
             CheckUnlockAllAchievement();
             CheckUnlock8Plants();
