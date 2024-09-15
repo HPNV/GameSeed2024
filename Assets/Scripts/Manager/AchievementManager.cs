@@ -47,7 +47,7 @@ namespace Manager
 
         private void CheckUnlockAllAchievement()
         {
-            if (UnlockedEAchievements.Count == 49) UnlockAchievement(EAchievement.Perfectionist);
+            if (UnlockedEAchievements.Count == 49) UnlockAchievement(EAchievement.UltimateGardener);
         }
 
         private void CheckUnlock8Plants()

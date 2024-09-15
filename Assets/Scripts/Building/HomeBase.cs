@@ -65,6 +65,7 @@ public class HomeBase : Entity
         if(minutes == 30) pm.OnSurviveAchievement(EAchievement.Survivalist);
         if(hours == 1) pm.OnSurviveAchievement(EAchievement.EnduranceExpert);
         if((pm.LastHitTimeStamp - DateTime.Now).TotalHours >= 1) pm.OnSurviveAchievement(EAchievement.Untouchable);
+        if((pm.LastHitTimeStamp - DateTime.Now).TotalMinutes >= 20) pm.OnSurviveAchievement(EAchievement.FlawlessDefense);
     }
 
     private void LevelUp() {

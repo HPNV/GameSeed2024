@@ -50,7 +50,7 @@
         
         // Special Challenges
         PlantSacrifice,
-        Perfectionist,
+        UltimateGardener,
         FirstFall,              // Die for the first time
         
         // Remake
@@ -68,5 +68,6 @@
         Untouchable,
         AgainstAllOdds,
         PlantCollector,
+        FlawlessDefense,
     }
 }
