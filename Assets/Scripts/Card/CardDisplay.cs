@@ -60,7 +60,7 @@ namespace Card
 
         public void OnMouseDown() {
             SingletonGame.Instance.PickCard(cardData);
-            Debug.Log("Mouse Down");
+            // Debug.Log("Mouse Down");
         }
     }
 }
