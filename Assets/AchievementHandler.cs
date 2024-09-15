@@ -17,7 +17,7 @@ public class AchievementHandler : MonoBehaviour
     [SerializeField] private GameObject seedpediaPanel;
     [SerializeField] private Sprite backgroundSprite;
     [SerializeField] private Slider totalAchievementSlider;
-    [SerializeField] private TextMeshProUGUI totalAchievementText;
+    [SerializeField] private TextMeshPro totalAchievementText;
 
     private int completedAchievements = 0;
     
@@ -185,6 +185,10 @@ public class AchievementHandler : MonoBehaviour
                                 var achievementCounter = GetAchievementCounter(selectedKey, counter);
                                 sliders[0].maxValue = counter;
                                 sliders[0].value = achievementCounter;
+                                if(achievementCounter >= counter)
+                                {
+                                    completedAchievements++;
+                                }
                                 texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
                             else
@@ -194,6 +198,7 @@ public class AchievementHandler : MonoBehaviour
                                  
                                 if (unlock)
                                 {
+                                    completedAchievements++;
                                     sliders[0].maxValue = 1;
                                     sliders[0].value = 1;
                                     texts[1].text = "1/1";
@@ -210,6 +215,7 @@ public class AchievementHandler : MonoBehaviour
                             
                             
                             texts[2].text = data[selectedKey].description;
+                            Debug.Log("ACUHFEIUSAHFIUEHAYUFA" + completedAchievements);
                         }
                         else
                         {
@@ -221,6 +227,14 @@ public class AchievementHandler : MonoBehaviour
                 }
             }
         }
+        totalAchievementSlider.maxValue = 50;
+        totalAchievementSlider.minValue = 0;
+        totalAchievementSlider.value = completedAchievements;
+        
+        Debug.Log(completedAchievements);
+        Debug.Log(totalAchievementSlider.value);
+        
+        totalAchievementText.text = ((float)completedAchievements / 50f * 100f) + "%";
     }
 
 
@@ -318,7 +332,6 @@ public class AchievementHandler : MonoBehaviour
         if (_dieAchievements.Contains(achievement))
         {
             var dieCount = PlayerManager.Instance.Die;
-            // Debug.Log("Die Counts" + dieCount);
             return Math.Min(dataCount, dieCount);
         }
         if (_killAchievements.Contains(achievement))
@@ -389,9 +402,7 @@ public class AchievementHandler : MonoBehaviour
         if (_survivalAchievements.Contains(achievement))
         {
             var survivalData = PlayerManager.Instance.SurvivalData;
-            Debug.Log("UNLOCKEDDDDDD");  
             var index = _survivalAchievements.IndexOf(achievement);
-            Debug.Log("UNLOCKEDDDDD" + survivalData.ToString());
             return survivalData[index];
         }  
         if (_activePlantAchievements.Contains(achievement))
