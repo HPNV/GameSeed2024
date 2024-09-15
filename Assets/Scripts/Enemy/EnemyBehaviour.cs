@@ -135,7 +135,7 @@ namespace Enemy
             return _currentState is not DieState;
         }
 
-        protected override void OnDamage()
+        protected override void OnDamage(float dmg)
         {
             StartCoroutine(FlashRed());
         }

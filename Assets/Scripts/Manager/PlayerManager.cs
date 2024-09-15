@@ -156,9 +156,9 @@ public class PlayerManager
         else if (sacrificeCounter == 5000) achievementManager.UnlockAchievement(EAchievement.AgainstAllOdds);
     }
 
-    public void OnRafflesiaDamage(int amount)
+    public void OnRafflesiaDamage(float amount)
     {
-        rafflesiaDmg += amount;
+        rafflesiaDmg += (int)amount;
         if(rafflesiaDmg >= 1000) achievementManager.UnlockAchievement(EAchievement.TauntMaster);
     }
 
