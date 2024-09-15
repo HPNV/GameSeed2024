@@ -152,7 +152,7 @@ public class SoundFXManager : MonoBehaviour
         {
             foreach (var audioSource in gameAudioSources)
             {
-                if (audioSource.clip != null)
+                if (audioSource != null)
                 {
                     audioSource.volume = masterVolume * gameVolume;
                 }
@@ -164,7 +164,7 @@ public class SoundFXManager : MonoBehaviour
         {
             foreach (var audioSource in musicAudioSources)
             {
-                if (audioSource.clip != null)
+                if (audioSource != null)
                 {
                     audioSource.volume = masterVolume * musicVolume;
                 }
@@ -176,20 +176,9 @@ public class SoundFXManager : MonoBehaviour
         {
             foreach (var audioSource in audioAudioSources)
             {
-                if (audioSource.clip != null)
+                if (audioSource != null)
                 {
                     audioSource.volume = masterVolume * audioVolume;
-                }
-            }
-        }
-
-        if (activeAudioSources.Count > 0)
-        {
-            foreach (var audioSource in activeAudioSources)
-            {
-                if (audioSource.clip != null)
-                {
-                    audioSource.volume = masterVolume * musicVolume;
                 }
             }
         }
