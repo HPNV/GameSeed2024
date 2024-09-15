@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
     // Level up category
     private List<DateTime> levelupTimeStamps = new();
     private int levelupCounter = 0;
+    public int HighScore { get; set; }
     public int LevelUpCounter
     {
         get => levelupCounter;
