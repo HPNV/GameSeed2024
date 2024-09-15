@@ -1718,12 +1718,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 147451890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5df8f34061bfe1b429c7add7dcb741cd, type: 3}
+  m_Script: {fileID: 11500000, guid: a73395ba67cf0aa4aafc87f25817c155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 147451890}
   LoadingBarFill: {fileID: 1789503100}
-  cutscene: {fileID: 419712014}
   sceneId: 0
 --- !u!1 &151865323
 GameObject:
@@ -5463,17 +5462,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3138309888988660588, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
   m_PrefabInstance: {fileID: 419712011}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &419712014 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4794819173144291379, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
-  m_PrefabInstance: {fileID: 419712011}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800443263ac06314eab175f120f63037, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &424916560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12862,7 +12850,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 147451892}
-        m_TargetAssemblyTypeName: PlayButtonHandler, Assembly-CSharp
+        m_TargetAssemblyTypeName: ExitSceneHandler, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 3
         m_Arguments:
