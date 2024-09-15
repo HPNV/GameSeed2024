@@ -196,6 +196,7 @@ public class AchievementHandler : MonoBehaviour
                                 if(achievementCounter >= counter)
                                 {
                                     completedAchievements++;
+                                    _unlockAchievements.Add(selectedKey);
                                 }
                                 texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
