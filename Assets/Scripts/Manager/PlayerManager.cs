@@ -445,11 +445,6 @@ public class PlayerManager : MonoBehaviour
             AchievementManager.UnlockAchievement(EAchievement.FullyBloomed);
         }
 
-        // Gardener's Glory: Achieve 10 upgraded plants
-        if (fullUpgradePlantCounter >= 10)
-        {
-            AchievementManager.UnlockAchievement(EAchievement.GardenersGlory);
-        }
     }
 
     private void CheckLevelUpAchievements()
