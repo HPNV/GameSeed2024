@@ -109,5 +109,12 @@ namespace Plant.Factory
             }
             return res;
         }
+
+        public PlantData GetLastUnlockedPlant()
+        {
+            var count = SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count;
+            var unlocked = UNLOCKED + (count / STEP);
+            return data[unlocked - 1];
+        }
     }
 }
