@@ -48,7 +48,7 @@ public class SingletonGame : MonoBehaviour
     
     public TileService TileProvider;
     public GameGrid GameGrid;
-    public bool IsPaused { get; private set; }
+    public bool IsPaused { get; set; }
 
     public int ExpPoint;
 
@@ -238,12 +238,14 @@ public class SingletonGame : MonoBehaviour
         PickCardObject.SetActive(false);
     }
     
-    public void PauseGame() {
+    public void PauseGame() 
+    {
         Time.timeScale = 0;
         IsPaused = true;
     }
 
-    public void ResumeGame() {
+    public void ResumeGame() 
+    {
         Time.timeScale = 1;
         IsPaused = false;
     }

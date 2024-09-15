@@ -12,9 +12,11 @@ public class PauseGameHandler : MonoBehaviour
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
+            SingletonGame.Instance.IsPaused = false;
             return;
         }
         
+        SingletonGame.Instance.IsPaused = true;
         Time.timeScale = 0;
     }
     

@@ -85,13 +85,15 @@ public class HomeBase : Entity
         UpdateUI();
     }
 
-    public void GainScore(int score) {
+    public void GainScore(int score) 
+    {
         this.score += score;
         PlayerManager.Instance.HighScore = Math.Max(PlayerManager.Instance.HighScore, this.score);
         UpdateUI();
     }
 
-    public void UpdateUI() {
+    public void UpdateUI() 
+    {
         expBar.Exp = currentExp;
         expBar.setMaxValue(expToNextLevel);
         HpBar.Exp = Health;

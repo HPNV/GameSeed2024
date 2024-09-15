@@ -63,7 +63,7 @@ namespace Manager
                 yield break;
             
             enemy.transform.position = new Vector3(-1000, -1000, enemy.transform.position.z);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(10);
             enemy.gameObject.SetActive(false);
             _enemyPool.Enqueue(enemy);
         }
