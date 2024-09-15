@@ -29,6 +29,9 @@ namespace Plant
         public EPlantState CurrentState => _states.FirstOrDefault(x => x.Value == _state).Key;
         public float AttackCooldown { get; set; }
         private PlantData _data;
+        public float health;
+        public float damage;
+        public int level;
         private Dictionary<EPlantState, PlantState> _states; 
         private PlantState _state;
         private static readonly int GrowUp = Animator.StringToHash("GrowUp");
@@ -54,6 +57,10 @@ namespace Plant
                 if (collider2d is not null)
                     Destroy(collider2d);
             }
+
+            Health = _data.health;
+            damage = _data.damage;
+            level = _data.level;
             
             Init(_data.health, _data.health);
             InitState();
