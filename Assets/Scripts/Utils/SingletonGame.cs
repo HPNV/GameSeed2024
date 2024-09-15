@@ -56,7 +56,7 @@ public class SingletonGame : MonoBehaviour
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
     public EnemyManager EnemyManager { get; set; } = new();
-    public AchievementManager AchievementManager { get; set; } = new();
+    public AchievementManager AchievementManager { get; set; }
     public ParticleManager ParticleManager { get; set; } = new();
     public CursorManager CursorManager { get; set; } = new();
 
@@ -92,6 +92,8 @@ public class SingletonGame : MonoBehaviour
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);
         cardDisplays.Add(card3);
+
+        AchievementManager = GetComponent<AchievementManager>();
         
         _gameState = GameState.Play;
 
