@@ -10,11 +10,22 @@ public class PlayButtonHandler : MonoBehaviour
     public GameObject LoadingScreen;
     public Image LoadingBarFill;
     public Cutscene cutscene;
+    public int sceneId;
 
     public void PlayGame(int sceneId)
     {
         Console.WriteLine("Loading scene " + sceneId);
-        StartCoroutine(LoadScene(sceneId));
+        cutscene.StartCutscene();
+        this.sceneId = sceneId;
+        
+    }
+
+    public void Update()
+    {
+        if(cutscene.isFinished) {
+            cutscene.isFinished = false;
+            StartCoroutine(LoadScene(sceneId));
+        }
     }
 
     IEnumerator LoadScene(int sceneId)
