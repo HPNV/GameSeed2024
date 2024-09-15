@@ -69,7 +69,5 @@
         AgainstAllOdds,         // Kill 5000 plants
         PlantCollector,         // Unlock 8 plants
         FlawlessDefense,        // Survive 20 minutes without taking damage
-        
-        GardenersGlory,         // Achieve 10 upgraded plants
     }
 }
