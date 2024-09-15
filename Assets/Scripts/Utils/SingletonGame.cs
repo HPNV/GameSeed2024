@@ -134,7 +134,7 @@ public class SingletonGame : MonoBehaviour
                 player.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
                 player.UpgradePlantCounter = Convert.ToInt32(data["upgrade_counter"]);
                 player.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
-                // SingletonGame.Instance.PlayerManager.HighestScore = Convert.ToInt32(data["highest_score"]);
+                Instance.homeBase.score = Convert.ToInt32(data["highest_score"]);
                 player.FullUpgradePlantCounter = Convert.ToInt32(data["max_upgrade"]);
                 player.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
             }
@@ -256,18 +256,26 @@ public class SingletonGame : MonoBehaviour
         plantPlanted += 1;
     }
 
-    public void LoseGame()
+    public void SaveData()
     {
         Dictionary<string, object> data = new Dictionary<string, object>
         {
             { "die_counter", PlayerManager.Instance.Die + 1 },
             { "kill_counter", PlayerManager.Instance.Kill },
             { "plant_counter", PlayerManager.Instance.Planted },
-            { "explode_counter", PlayerManager.Instance.EnemyExplodeCounter },
-            { "resource_counter", PlayerManager.Instance.CollectResourceCounter },
-            { "upgrade_counter", PlayerManager.Instance.UpgradePlantCounter },
+            { "full_upgrade_plant_counter", PlayerManager.Instance.FullUpgradePlantCounter },
+            { "collect_resource_counter", PlayerManager.Instance.CollectResourceCounter },
+            { "unlocked_achievements", PlayerManager.Instance.UnlockedAchievements },
+            { "sacrifice_counter", PlayerManager.Instance.SacrificeCounter },
+            { "planted_plants_counter", PlayerManager.Instance.PlantedPlants },
             { "level_up_counter", PlayerManager.Instance.LevelUpCounter },
-            { "max_upgrade", PlayerManager.Instance.UpgradePlantCounter }
+            { "highest_score", PlayerManager.Instance.HighScore },
+            { "complete_tutorial", PlayerManager.Instance.CompleteTutorial },
+            { "survival_data", PlayerManager.Instance.SurvivalData },
+            { "active_plant_data", PlayerManager.Instance.ActivePlantData },
+            { "explosive_data", PlayerManager.Instance.ExplosiveData },
+            { "planted_in_time_data", PlayerManager.Instance.PlantedInTimeData },
+            { "utils_data", PlayerManager.Instance.UtilsData }
         };
         
         DocumentReference docRef = db.Collection("users").Document(System.Environment.MachineName);
@@ -279,6 +287,12 @@ public class SingletonGame : MonoBehaviour
                 // Debug.Log("Document written with ID: " + docRef.Id);
             }
         });
+    }
+    
+    
+    public void LoseGame()
+    {
+        SaveData();
         
         PauseGame();
         loseScreen.gameObject.SetActive(true);

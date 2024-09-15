@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Achievement;
 using Script;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Manager
@@ -45,7 +46,10 @@ namespace Manager
 
         public void UnlockAchievement(EAchievement achievement)
         {
-            if (UnlockedEAchievements.Contains(achievement)) return;
+            if (UnlockedEAchievements.Contains(achievement)) 
+                return;
+            
+            
             
             PlayerManager.Instance.UnlockedAchievements += 1;
             // Debug.Log($"befcount: {UnlockedEAchievements.Count}");
@@ -56,6 +60,7 @@ namespace Manager
             
             CheckUnlockAllAchievement();
             CheckUnlock8Plants();
+            SingletonGame.Instance.SaveData();
         }
 
         private void CheckUnlockAllAchievement()
