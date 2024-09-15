@@ -13,7 +13,6 @@ using Particles;
 using Plant;
 using Plant.Factory;
 using UnityEngine;
-using Random = UnityEngine.Random;
 using ResourceManager = Manager.ResourceManager;
 using Script;
 using UnityEngine.SceneManagement;
@@ -49,6 +48,7 @@ public class SingletonGame : MonoBehaviour
     public TileService TileProvider;
     public GameGrid GameGrid;
     public bool IsPaused { get; set; }
+    public System.Random Random = new System.Random();
 
     public int ExpPoint;
 
