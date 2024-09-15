@@ -41,13 +41,10 @@ public class HomeBase : Entity
     {
         time += Time.deltaTime;
         UpdateTimeText();
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     Vector3 mousePosition = Input.mousePosition;
-        //     mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //     mousePosition.z = -2;
-        //     SingletonGame.Instance.ExperienceManager.SpawnBatch(5, mousePosition);
-        // }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.Health = 0;
+        }
 
         LevelUp();
     }
