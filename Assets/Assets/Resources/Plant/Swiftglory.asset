@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Swiftglory
   m_EditorClassIdentifier: 
   plantType: 14
-  health: 1000
+  health: 100
   damage: 5
   attackCooldown: 1
   range: 8
