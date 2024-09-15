@@ -44,7 +44,7 @@ public class HomeBase : Entity
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // this.Health = 0;
-           GainExp(20); 
+        //    GainExp(20); 
         }
 
         LevelUp();
