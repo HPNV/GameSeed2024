@@ -138,6 +138,7 @@ public class PlayerManager : MonoBehaviour
         {
             Instance = this;
 
+            Debug.Log("rawrrr");
             Initialize();
             // DontDestroyOnLoad(gameObject);
         }
