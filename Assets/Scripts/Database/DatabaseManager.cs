@@ -86,7 +86,10 @@ public class DatabaseManager : MonoBehaviour
                         { "die_counter", 0 },
                         { "kill_counter", 0 },
                         { "plant_counter", 0 },
+                        { "explode_counter", 0 },
+                        { "resource_counter", 0 },
                         { "upgrade_counter", 0 },
+                        { "level_up_counter", 0 },
                         { "highest_score", 0 },
                         { "max_upgrade", 0 },
                         { "complete_tutorial", false }
@@ -96,27 +99,13 @@ public class DatabaseManager : MonoBehaviour
                     {
                         if (task.IsCompleted)
                         {
-                            SingletonGame.Instance.PlayerManager.Die = 0;
-                            SingletonGame.Instance.PlayerManager.Kill = 0;
-                            SingletonGame.Instance.PlayerManager.Planted = 0;
-                            SingletonGame.Instance.PlayerManager.Upgraded = 0;
-                            SingletonGame.Instance.PlayerManager.FullyUpgrade = 0;
-                        }
-                        else
-                        {
-                            Debug.LogError("Failed to write user data: " + task.Exception);
+                            PlayerManager.Instance.Die = 0;
+                            PlayerManager.Instance.Kill = 0;
+                            PlayerManager.Instance.Planted = 0;
+                            PlayerManager.Instance.UpgradePlantCounter = 0;
+                            PlayerManager.Instance.FullyUpgrade = 0;
                         }
                     });
-                }
-                else
-                {
-                    Dictionary<string, object> documentData = snapshot.ToDictionary();
-                    
-                    SingletonGame.Instance.PlayerManager.Die = Convert.ToInt32(documentData.GetValueOrDefault("die_counter", 0));
-                    SingletonGame.Instance.PlayerManager.Kill = Convert.ToInt32(documentData.GetValueOrDefault("kill_counter", 0));
-                    SingletonGame.Instance.PlayerManager.Planted = Convert.ToInt32(documentData.GetValueOrDefault("plant_counter", 0));
-                    SingletonGame.Instance.PlayerManager.Upgraded = Convert.ToInt32(documentData.GetValueOrDefault("upgrade_counter", 0));
-                    SingletonGame.Instance.PlayerManager.FullyUpgrade = Convert.ToInt32(documentData.GetValueOrDefault("max_upgrade", 0));
                 }
             });
         }

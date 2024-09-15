@@ -25,7 +25,7 @@
         UpgradeMaster,          // Upgrade at least 10 plants
         UpgradeOverachiever,    // Upgrade at least 30 plants
         FullyBloomed,           // Fully upgrade any plant
-        GardenersGlory,         // Achieve 10 upgraded plants
+        GardenersGlory,         // Achieve 10 upgraded plants ##########
 
         // Kill Enemy
         FirstBlood,             // Kill your first enemy

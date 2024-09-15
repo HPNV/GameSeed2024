@@ -23,10 +23,10 @@ public class PlantPlacementService : SelectorService
 
         if (plant.Data.plantType == EPlant.Aloecura)
         {
-            SingletonGame.Instance.PlayerManager.OnPlantAlocure();
+            PlayerManager.Instance.OnPlantAlocure();
         } else if (plant.Data.plantType == EPlant.Cocowall)
         {
-            SingletonGame.Instance.PlayerManager.OnPlantCocoWall();
+            PlayerManager.Instance.OnPlantCocoWall();
         }
     }
 
@@ -34,6 +34,6 @@ public class PlantPlacementService : SelectorService
     {
         plant.ChangeState(EPlantState.Grow);
         plant = null;
-        SingletonGame.Instance.PlayerManager.OnPlantPlanted();
+        PlayerManager.Instance.OnPlantPlanted();
     }
 }

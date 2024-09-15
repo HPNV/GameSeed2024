@@ -59,7 +59,7 @@ public class HomeBase : Entity
         timeText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
         SingletonGame.Instance.loseScreen.time = $"{hours:00}:{minutes:00}:{seconds:00}";
 
-        var pm = SingletonGame.Instance.PlayerManager;
+        var pm = PlayerManager.Instance;
         if(minutes == 1) pm.OnSurviveAchievement(EAchievement.BareMinimum);
         if(minutes == 10) pm.OnSurviveAchievement(EAchievement.SurvivalNotice);
         if(minutes == 30) pm.OnSurviveAchievement(EAchievement.Survivalist);
@@ -73,7 +73,7 @@ public class HomeBase : Entity
             currentExp -= expToNextLevel;
             expToNextLevel += 50;
             UpdateUI();
-            SingletonGame.Instance.PlayerManager.OnPlayerLevelUp();
+            PlayerManager.Instance.OnPlayerLevelUp();
             SingletonGame.Instance.SpawnPlant();
         }
     }
@@ -116,7 +116,7 @@ public class HomeBase : Entity
     {
         StartCoroutine(Flash(Color.red));
         UpdateUI();
-        SingletonGame.Instance.PlayerManager.LastHitTimeStamp = DateTime.Now;
+        PlayerManager.Instance.LastHitTimeStamp = DateTime.Now;
     }
 
     protected override void OnHeal()

@@ -24,7 +24,7 @@ namespace Enemy.States
             
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1f)
             {
-                SingletonGame.Instance.PlayerManager.OnEnemyKill();
+                PlayerManager.Instance.OnEnemyKill();
                 SoundFXManager.instance.PlayGameSoundOnce("Audio/Enemy/Slime Death");
                 SingletonGame.Instance.homeBase.GainScore(Enemy.enemyData.maxExperienceDrop * 20);
                 SingletonGame.Instance.EnemyManager.Despawn(Enemy);
