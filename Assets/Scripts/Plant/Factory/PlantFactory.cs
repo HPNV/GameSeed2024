@@ -90,7 +90,7 @@ namespace Plant.Factory
             var unlocked = UNLOCKED + (count / STEP);
             var temp = data.Take(unlocked).OrderBy(x => Guid.NewGuid()).ToList();
             var res = new List<PlantData>();
-            for (int i = 0; i < amt;)
+            while (res.Count < amt)
             {
                 var rand = SingletonGame.Instance.Random.Next(1, 11);
 
@@ -103,10 +103,11 @@ namespace Plant.Factory
                     _ => null
                 };
 
-                if (selected == null || res.Contains(selected)) continue;
+                if (selected == null) continue;
                 res.Add(selected);
-                i++;
+                temp.Remove(selected);
             }
+
             return res;
         }
 
