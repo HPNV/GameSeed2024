@@ -67,5 +67,6 @@
         EcoWarrior,
         Untouchable,
         AgainstAllOdds,
+        PlantCollector,
     }
 }

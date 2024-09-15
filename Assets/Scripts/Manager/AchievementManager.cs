@@ -42,11 +42,17 @@ namespace Manager
             ShowAchievement(achievement);
             
             CheckUnlockAllAchievement();
+            CheckUnlock8Plants();
         }
 
         private void CheckUnlockAllAchievement()
         {
             if (UnlockedEAchievements.Count == 49) UnlockAchievement(EAchievement.Perfectionist);
+        }
+
+        private void CheckUnlock8Plants()
+        {
+            if (UnlockedEAchievements.Count == 10) UnlockAchievement(EAchievement.PlantCollector);
         }
 
         public IEnumerable<EAchievement> GetRandomEAchievements(int amt)
