@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
+    public static CameraController Instance { get; private set; }
     [SerializeField] private GameObject cameraTarget;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private float zoomSpeed = 1f;
@@ -18,17 +18,49 @@ public class CameraController : MonoBehaviour
     [SerializeField] private int rightLimit = 100;
     [SerializeField] private int topLimit = 100;
     [SerializeField] private int bottomLimit = -100;
+    [SerializeField] private float shakeIntensity = 1f;
+    [SerializeField] private float shakeTime = 0.2f;
+    private float _timer;
     private Vector3 _oldPosition;
     private Vector3 _panOrigin;
     
-    private void LateUpdate()
+    private void Awake()
     {
-        HandleCameraMovement();
+        if (Instance == null)
+        {
+            Instance = this;
+
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {   
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        StopShake();
     }
 
     private void Update()
     {
         HandleZoom();
+
+        if (_timer > 0)
+        {
+            _timer -= Time.deltaTime;
+
+            if (_timer <= 0)
+            {
+                StopShake();
+            }
+        }
+    }
+    
+    private void LateUpdate()
+    {
+        HandleCameraMovement();
     }
 
     private void HandleCameraBounds()
@@ -92,5 +124,19 @@ public class CameraController : MonoBehaviour
                 virtualCamera.m_Lens.OrthographicSize = newFOV;
             }
         } 
+    }
+
+    public void ShakeCamera()
+    {
+        var cbmcp = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cbmcp.m_AmplitudeGain = shakeIntensity;
+        _timer = shakeTime;
+    }
+
+    public void StopShake()
+    {
+        var cbmcp = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cbmcp.m_AmplitudeGain = 0f;
+        _timer = 0;
     }
 }
