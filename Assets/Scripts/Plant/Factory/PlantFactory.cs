@@ -103,7 +103,7 @@ namespace Plant.Factory
                     _ => null
                 };
 
-                if (selected == null) continue;
+                if (selected == null || res.Contains(selected)) continue;
                 res.Add(selected);
                 i++;
             }
