@@ -40,6 +40,7 @@ namespace Manager
             {
                 Achievements[enums[i]] = data[i];
             }
+            DontDestroyOnLoad(gameObject);
         }
 
         public void UnlockAchievement(EAchievement achievement)
@@ -51,7 +52,7 @@ namespace Manager
             UnlockedEAchievements.Add(achievement);
             Debug.Log($"aftcount: {UnlockedEAchievements.Count}");
             Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
-            ShowAchievement(achievement);
+            StartCoroutine(ShowAchievement(achievement));
             
             CheckUnlockAllAchievement();
             CheckUnlock8Plants();
