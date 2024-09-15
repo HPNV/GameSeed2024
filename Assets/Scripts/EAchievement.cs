@@ -66,5 +66,6 @@
         ZenMaster,
         EcoWarrior,
         Untouchable,
+        AgainstAllOdds,
     }
 }

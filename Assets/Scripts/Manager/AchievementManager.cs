@@ -40,6 +40,13 @@ namespace Manager
             UnlockedAchievements.Add(_achievements[achievement]);
             Debug.Log("Achievement Unlocked: " + _achievements[achievement].name);
             ShowAchievement(achievement);
+            
+            CheckUnlockAllAchievement();
+        }
+
+        private void CheckUnlockAllAchievement()
+        {
+            if (UnlockedEAchievements.Count == 49) UnlockAchievement(EAchievement.Perfectionist);
         }
 
         public IEnumerable<EAchievement> GetRandomEAchievements(int amt)

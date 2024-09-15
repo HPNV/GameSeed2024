@@ -90,6 +90,7 @@ public class PlayerManager
     private int plantAlocure = 0;
     private int plantcocoWall = 0;
     public DateTime LastHitTimeStamp = new();
+    private int plantPlant = 0;
     
     public void OnPlantPlanted()
     {
@@ -151,7 +152,8 @@ public class PlayerManager
     public void OnPlantSacrifice()
     {
         sacrificeCounter++;
-        CheckSpecialChallengesAchievements();
+        if (sacrificeCounter == 5) achievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
+        else if (sacrificeCounter == 5000) achievementManager.UnlockAchievement(EAchievement.AgainstAllOdds);
     }
 
     public void OnRafflesiaDamage(int amount)
@@ -228,25 +230,6 @@ public class PlayerManager
         var now = DateTime.Now;
         killEnemyTimeStamps.RemoveAll(t => (now - t).TotalMinutes > 10);
         return killEnemyTimeStamps.Count;
-    }
-
-    private bool CheckUnlockAllAchievement()
-    {
-        return SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count == 49;
-    }
-    
-    private void CheckSpecialChallengesAchievements()
-    {
-        // Plant Sacrificer: Sacrifice/Kill 5 of your plants
-        if (sacrificeCounter == 5)
-        {
-            achievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
-        }
-        // Perfectionist: Achieve 100% completion in the game
-        if (CheckUnlockAllAchievement())
-        {
-            achievementManager.UnlockAchievement(EAchievement.Perfectionist);
-        }
     }
     
     private void CheckEnemyExplodeAchievements()
