@@ -21,7 +21,7 @@ namespace Plant.Factory
         [SerializeField] private PlantPlacementService plantPlacementService;
         private Dictionary<EPlant, PlantData> _plantsData;
 
-        private const int UNLOCKED = 6;
+        private const int UNLOCKED = 5;
         private const int STEP = 5;
 
         private void Start()
