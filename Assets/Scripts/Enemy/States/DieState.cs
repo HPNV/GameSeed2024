@@ -15,6 +15,7 @@ namespace Enemy.States
             SingletonGame.Instance.addEnemyKilled();
             Enemy.InnerCircleCollider.enabled = false;
             var position = Enemy.transform.position;
+            SingletonGame.Instance.homeBase.GainScore(Enemy.enemyData.maxExperienceDrop * 20);
             SingletonGame.Instance.ExperienceManager.SpawnBatch(Random.Range(1, Enemy.enemyData.maxExperienceDrop), new Vector3(position.x, position.y, position.z));
             SingletonGame.Instance.ResourceManager.SpawnBatchWithChance(1, new Vector3(position.x, position.y, position.z));
         }
@@ -26,8 +27,6 @@ namespace Enemy.States
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1f)
             {
                 PlayerManager.Instance.OnEnemyKill();
-                SoundFXManager.instance.PlayGameSoundOnce("Audio/Enemy/Slime Death");
-                SingletonGame.Instance.homeBase.GainScore(Enemy.enemyData.maxExperienceDrop * 20);
                 SingletonGame.Instance.EnemyManager.Despawn(Enemy);
             }
         }
