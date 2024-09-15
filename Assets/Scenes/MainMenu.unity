@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.44654083, g: 0.24902974, b: 0.16429326, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26225,7 +26225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.32704395, g: 0.11621371, b: 0.11621371, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -27009,7 +27009,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3138309888988660588, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2029360270}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8599742341139109457, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
 --- !u!1 &1974219225 stripped
 GameObject:
