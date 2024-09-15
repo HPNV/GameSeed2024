@@ -147,6 +147,11 @@ public class PlayerManager : MonoBehaviour
         // }
     }
 
+    private void Start()
+    {
+        Initialize();
+    }
+
     private void Initialize()
     {
         AchievementManager = AchievementManager.Instance;
