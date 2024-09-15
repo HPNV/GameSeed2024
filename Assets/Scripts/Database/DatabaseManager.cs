@@ -99,15 +99,11 @@ public class DatabaseManager : MonoBehaviour
                     {
                         if (task.IsCompleted)
                         {
-                            SingletonGame.Instance.PlayerManager.Die = 0;
-                            SingletonGame.Instance.PlayerManager.Kill = 0;
-                            SingletonGame.Instance.PlayerManager.Planted = 0;
-                            SingletonGame.Instance.PlayerManager.UpgradePlantCounter = 0;
-                            SingletonGame.Instance.PlayerManager.FullyUpgrade = 0;
-                        }
-                        else
-                        {
-                            Debug.LogError("Failed to write user data: " + task.Exception);
+                            PlayerManager.Instance.Die = 0;
+                            PlayerManager.Instance.Kill = 0;
+                            PlayerManager.Instance.Planted = 0;
+                            PlayerManager.Instance.UpgradePlantCounter = 0;
+                            PlayerManager.Instance.FullyUpgrade = 0;
                         }
                     });
                 }

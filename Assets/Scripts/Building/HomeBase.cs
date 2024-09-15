@@ -58,10 +58,10 @@ public class HomeBase : Entity
         timeText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
         SingletonGame.Instance.loseScreen.time = $"{hours:00}:{minutes:00}:{seconds:00}";
         
-        if(minutes == 1) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.BareMinimum);
-        if(minutes == 10) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.SurvivalNotice);
-        if(minutes == 30) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.Survivalist);
-        if(hours == 1) SingletonGame.Instance.PlayerManager.OnSurviveAchievement(EAchievement.EnduranceExpert);
+        if(minutes == 1) PlayerManager.Instance.OnSurviveAchievement(EAchievement.BareMinimum);
+        if(minutes == 10) PlayerManager.Instance.OnSurviveAchievement(EAchievement.SurvivalNotice);
+        if(minutes == 30) PlayerManager.Instance.OnSurviveAchievement(EAchievement.Survivalist);
+        if(hours == 1) PlayerManager.Instance.OnSurviveAchievement(EAchievement.EnduranceExpert);
     }
 
     private void LevelUp() {
@@ -70,7 +70,7 @@ public class HomeBase : Entity
             currentExp -= expToNextLevel;
             expToNextLevel += 50;
             UpdateUI();
-            SingletonGame.Instance.PlayerManager.OnPlayerLevelUp();
+            PlayerManager.Instance.OnPlayerLevelUp();
             SingletonGame.Instance.SpawnPlant();
         }
     }

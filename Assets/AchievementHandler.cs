@@ -35,16 +35,16 @@ public class AchievementHandler : MonoBehaviour
             if (snapshot.Exists)
             {
                 Dictionary<string, object> data = snapshot.ToDictionary();
-                SingletonGame.Instance.PlayerManager.Die = Convert.ToInt32(data["die_counter"]);
-                SingletonGame.Instance.PlayerManager.Kill = Convert.ToInt32(data["kill_counter"]);
-                SingletonGame.Instance.PlayerManager.PlantedPlants = Convert.ToInt32(data["plant_counter"]);
-                SingletonGame.Instance.PlayerManager.EnemyExplodeCounter = Convert.ToInt32(data["explode_counter"]);
-                SingletonGame.Instance.PlayerManager.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
-                SingletonGame.Instance.PlayerManager.UpgradePlantCounter = Convert.ToInt32(data["upgrade_counter"]);
-                SingletonGame.Instance.PlayerManager.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
-                // SingletonGame.Instance.PlayerManager.HighestScore = Convert.ToInt32(data["highest_score"]);
-                SingletonGame.Instance.PlayerManager.FullUpgradePlantCounter = Convert.ToInt32(data["max_upgrade"]);
-                SingletonGame.Instance.PlayerManager.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
+                PlayerManager.Instance.Die = Convert.ToInt32(data["die_counter"]);
+                PlayerManager.Instance.Kill = Convert.ToInt32(data["kill_counter"]);
+                PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["plant_counter"]);
+                PlayerManager.Instance.EnemyExplodeCounter = Convert.ToInt32(data["explode_counter"]);
+                PlayerManager.Instance.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
+                PlayerManager.Instance.UpgradePlantCounter = Convert.ToInt32(data["upgrade_counter"]);
+                PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
+                // PlayerManager.Instance.HighestScore = Convert.ToInt32(data["highest_score"]);
+                PlayerManager.Instance.FullUpgradePlantCounter = Convert.ToInt32(data["max_upgrade"]);
+                PlayerManager.Instance.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
             }
             else
             {
@@ -67,7 +67,7 @@ public class AchievementHandler : MonoBehaviour
         new() { { "name", "endurance_expert" }, { "description", "Demonstrate exceptional stamina and resilience." } },
         new() { { "name", "explosive_expertise" }, { "description", "Master the use of explosives in battle."} , {"counter", 5} },
         new() { { "name", "first_blood" }, { "description", "Be the first to deal damage in a battle." }, {"counter", 1} },
-        new() { { "name", "first_fall" }, { "description", "Experience your first defeat." }, {"die", 1} },
+        new() { { "name", "first_fall" }, { "description", "Experience your first defeat." }, {"counter", 1} },
         new() { { "name", "flawless_defense" }, { "description", "Defend an area without taking any damaRge." } },
         new() { { "name", "frenzied_farmer" }, { "description", "Harvest an enormous number of plants in a short time." }, {"counter", 50} },
         new() { { "name", "fully bloomed" }, { "description", "Grow all plants to their full potential." }, {"counter", 1} },
@@ -163,25 +163,32 @@ public class AchievementHandler : MonoBehaviour
                             {
                                 int achievementCounter = 0;
                                 int counter = Convert.ToInt32(achievementList[i]["counter"]);
-
+                                
                                 if (achievementList[i]["name"] is "new_gardener" || achievementList[i]["name"] is "bloom_booster" || achievementList[i]["name"] is "gardening_guru" || achievementList[i]["name"] is "perfect_planter" || achievementList[i]["name"] is "plant_invasion" || achievementList[i]["name"] is "master_gardener")
                                 {
-                                    achievementCounter = (SingletonGame.Instance.PlayerManager.PlantedPlants > counter) ? counter : SingletonGame.Instance.PlayerManager.PlantedPlants;
-                                } else if(achievementList[i]["name"] is "quick_learner" || achievementList[i]["name"] is "plant_potential" || achievementList[i]["name"] is "level_up_enthusiast" || achievementList[i]["name"] is "level_up_veteran")
+                                    achievementCounter = (PlayerManager.Instance.PlantedPlants > counter) ? counter : PlayerManager.Instance.PlantedPlants;
+                                } 
+                                else if(achievementList[i]["name"] is "quick_learner" || achievementList[i]["name"] is "plant_potential" || achievementList[i]["name"] is "level_up_enthusiast" || achievementList[i]["name"] is "level_up_veteran")
                                 {
-                                    achievementCounter = (SingletonGame.Instance.PlayerManager.LevelUpCounter > counter) ? counter : SingletonGame.Instance.PlayerManager.LevelUpCounter;
-                                } else if(achievementList[i]["name"] is "upgrade_apprentice" || achievementList[i]["name"] is "upgrade_master" || achievementList[i]["name"] is "upgrade_overarchieve")
+                                    achievementCounter = (PlayerManager.Instance.LevelUpCounter > counter) ? counter : PlayerManager.Instance.LevelUpCounter;
+                                } 
+                                else if(achievementList[i]["name"] is "upgrade_apprentice" || achievementList[i]["name"] is "upgrade_master" || achievementList[i]["name"] is "upgrade_overarchieve")
                                 {
-                                    achievementCounter = (SingletonGame.Instance.PlayerManager.UpgradePlantCounter > counter) ? counter : SingletonGame.Instance.PlayerManager.UpgradePlantCounter;
-                                } else if(achievementList[i]["name"] is "fully_bloomed" || achievementList[i]["name"] is "gardening_glory")
+                                    achievementCounter = (PlayerManager.Instance.UpgradePlantCounter > counter) ? counter : PlayerManager.Instance.UpgradePlantCounter;
+                                } 
+                                else if(achievementList[i]["name"] is "fully_bloomed" || achievementList[i]["name"] is "gardening_glory")
                                 {
-                                    achievementCounter = (SingletonGame.Instance.PlayerManager.FullUpgradePlantCounter > counter) ? counter : SingletonGame.Instance.PlayerManager.FullUpgradePlantCounter;
-                                } else if(achievementList[i]["name"] is "first_fall")
+                                    achievementCounter = (PlayerManager.Instance.FullUpgradePlantCounter > counter) ? counter : PlayerManager.Instance.FullUpgradePlantCounter;
+                                } 
+                                else if(achievementList[i]["name"].ToString() == "first_fall")
                                 {
-                                    achievementCounter = (SingletonGame.Instance.PlayerManager.Die > counter) ? counter : SingletonGame.Instance.PlayerManager.Die;
-                                } else if(achievementList[i]["name"] is "first_blood" || achievementList[i]["name"] is "killer_seed" || achievementList[i]["name"] is "efficient_killer" || achievementList[i]["name"] is "monster_frenzy" || achievementList[i]["name"] is "monster_slayer" || achievementList[i]["name"] is "unstoppable_force" || achievementList[i]["name"] is "endless_onslaught")
+                                  
+                                    achievementCounter = (PlayerManager.Instance.Die > counter) ? counter : PlayerManager.Instance.Die;
+                                    Debug.Log("FIRST FALLL" + achievementCounter);
+                                } 
+                                else if(achievementList[i]["name"] is "first_blood" || achievementList[i]["name"] is "killer_seed" || achievementList[i]["name"] is "efficient_killer" || achievementList[i]["name"] is "monster_frenzy" || achievementList[i]["name"] is "monster_slayer" || achievementList[i]["name"] is "unstoppable_force" || achievementList[i]["name"] is "endless_onslaught")
                                 {
-                                    achievementCounter = (SingletonGame.Instance.PlayerManager.Kill > counter) ? counter : SingletonGame.Instance.PlayerManager.Kill;
+                                    achievementCounter = (PlayerManager.Instance.Kill > counter) ? counter : PlayerManager.Instance.Kill;
                                 }
                                 
                                 texts[1].text = achievementCounter + "/" + achievementList[i]["counter"];

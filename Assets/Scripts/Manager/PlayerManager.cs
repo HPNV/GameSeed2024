@@ -13,8 +13,9 @@ using Manager;
 using Script; // Assuming your AchievementManager is under Manager namespace
 
 
-public class PlayerManager
+public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager Instance { get; private set; }
     private int enemyKillCounter = 0;
 
     public int Kill
@@ -47,6 +48,7 @@ public class PlayerManager
 
     // Planting category
     private int plantedPlants = 0;
+
     public int PlantedPlants
     {
         get => plantedPlants;
@@ -121,6 +123,19 @@ public class PlayerManager
     private int plantAlocure = 0;
     private int plantcocoWall = 0;
     
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+            // DontDestroyOnLoad(gameObject);
+        }
+        else
+        {   
+            Destroy(gameObject);
+        }
+    }
     
     public void OnPlantPlanted()
     {
