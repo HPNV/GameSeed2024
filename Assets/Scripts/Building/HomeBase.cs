@@ -21,6 +21,7 @@ public class HomeBase : Entity
     [SerializeField] TextMeshPro scoreText;
     [SerializeField] TextMeshPro timeText;
     [SerializeField] TextMeshPro healthText;
+    [SerializeField] private TakeDamageScript _takeDamageScript;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
@@ -119,7 +120,7 @@ public class HomeBase : Entity
     protected override void OnDamage(float dmg)
     {
         StartCoroutine(Flash(Color.red));
-        TakeDamageScript.Instance.StartEffect();
+        _takeDamageScript.StartEffect();
         CameraController.Instance.ShakeCamera();
         UpdateUI();
         PlayerManager.Instance.LastHitTimeStamp = DateTime.Now;
