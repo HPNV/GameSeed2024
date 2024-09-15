@@ -65,5 +65,8 @@
         BareMinimum,
         ZenMaster,
         EcoWarrior,
+        Untouchable,
+        AgainstAllOdds,
+        PlantCollector,
     }
 }
