@@ -48,10 +48,10 @@ namespace Manager
             if (UnlockedEAchievements.Contains(achievement)) return;
             
             PlayerManager.Instance.UnlockedAchievements += 1;
-            Debug.Log($"befcount: {UnlockedEAchievements.Count}");
+            // Debug.Log($"befcount: {UnlockedEAchievements.Count}");
             UnlockedEAchievements.Add(achievement);
-            Debug.Log($"aftcount: {UnlockedEAchievements.Count}");
-            Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
+            // Debug.Log($"aftcount: {UnlockedEAchievements.Count}");
+            // Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
             StartCoroutine(ShowAchievement(achievement));
             
             CheckUnlockAllAchievement();

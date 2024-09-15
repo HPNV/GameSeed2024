@@ -61,7 +61,7 @@ public class Spawner : MonoBehaviour
         {
             spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.SlimeSpitter, EnemyName.GlobLobber, EnemyName.GelGrenadier });
         }
-        else if (enemyGacha < 80)
+        else if (enemyGacha < 95)
         {
             spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.SludgeGrunt, EnemyName.SwiftSlimer, EnemyName.GooGuardian });
         }

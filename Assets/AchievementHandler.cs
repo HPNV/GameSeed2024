@@ -193,7 +193,7 @@ public class AchievementHandler : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning("No Image component found in the child of the button.");
+                        // Debug.LogWarning("No Image component found in the child of the button.");
                     }
 
                     i++;
@@ -297,7 +297,7 @@ public class AchievementHandler : MonoBehaviour
         if (_dieAchievements.Contains(achievement))
         {
             var dieCount = PlayerManager.Instance.Die;
-            Debug.Log("Die Counts" + dieCount);
+            // Debug.Log("Die Counts" + dieCount);
             return Math.Min(dataCount, dieCount);
         }
         if (_killAchievements.Contains(achievement))

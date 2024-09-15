@@ -39,13 +39,13 @@ public class HomeBase : Entity
     {
         time += Time.deltaTime;
         UpdateTimeText();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            mousePosition.z = -2;
-            SingletonGame.Instance.ExperienceManager.SpawnBatch(5, mousePosition);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     Vector3 mousePosition = Input.mousePosition;
+        //     mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        //     mousePosition.z = -2;
+        //     SingletonGame.Instance.ExperienceManager.SpawnBatch(5, mousePosition);
+        // }
 
         LevelUp();
     }
@@ -154,7 +154,7 @@ public class HomeBase : Entity
             }
             else
             {
-                Debug.LogError("Failed to fetch data: " + task.Exception);
+                // Debug.LogError("Failed to fetch data: " + task.Exception);
             }
         });
     }
@@ -170,11 +170,11 @@ public class HomeBase : Entity
         {
             if (task.IsCompleted)
             {
-                Debug.Log("High Score Updated");
+                // Debug.Log("High Score Updated");
             }
             else
             {
-                Debug.LogError("Failed to update high score: " + task.Exception);
+                // Debug.LogError("Failed to update high score: " + task.Exception);
             }
         });
     }
