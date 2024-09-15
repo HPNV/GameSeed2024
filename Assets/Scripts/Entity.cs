@@ -70,9 +70,9 @@ public abstract class Entity : MonoBehaviour
     
     protected IEnumerator Flash(Color color)
     {
-        SpriteRenderer.color = color;
+        //SpriteRenderer.color = color;
         yield return new WaitForSeconds(0.1f);
-        SpriteRenderer.color = Color.white;
+        //SpriteRenderer.color = Color.white;
     }
 
     protected abstract bool ValidateDamage();
