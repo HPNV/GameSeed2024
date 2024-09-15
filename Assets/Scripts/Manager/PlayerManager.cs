@@ -89,7 +89,7 @@ public class PlayerManager
     private int plantHeal = 0;
     private int plantAlocure = 0;
     private int plantcocoWall = 0;
-    
+    public DateTime LastHitTimeStamp = new();
     
     public void OnPlantPlanted()
     {
@@ -178,7 +178,8 @@ public class PlayerManager
             achievement != EAchievement.SurvivalNotice &&
             achievement != EAchievement.Survivalist &&
             achievement != EAchievement.EnduranceExpert &&
-            achievement != EAchievement.BareMinimum
+            achievement != EAchievement.BareMinimum &&
+            achievement != EAchievement.Untouchable
         ) return;
         achievementManager.UnlockAchievement(achievement);
     }

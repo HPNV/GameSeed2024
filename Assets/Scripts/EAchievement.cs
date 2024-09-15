@@ -65,5 +65,6 @@
         BareMinimum,
         ZenMaster,
         EcoWarrior,
+        Untouchable,
     }
 }
