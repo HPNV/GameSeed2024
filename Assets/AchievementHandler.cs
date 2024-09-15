@@ -47,11 +47,27 @@ public class AchievementHandler : MonoBehaviour
                 PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["planted_plants_counter"]);
                 PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
                 PlayerManager.Instance.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
-                PlayerManager.Instance.SurvivalData = data["survival_data"] as List<bool>;
-                PlayerManager.Instance.ActivePlantData = data["active_plant_data"] as List<bool>;
-                PlayerManager.Instance.ExplosiveData = data["explosive_data"] as List<bool>;
-                PlayerManager.Instance.PlantedInTimeData = data["planted_in_time_data"] as List<bool>;
-                PlayerManager.Instance.UtilsData = data["utils_data"] as List<bool>;
+                // make the survival data a list of bools
+                // Debug.Log("SURVIVALLLLLLLLLLLLL" + data["survival_data"]);
+                List<object> survivalDataFromFirebase = data["survival_data"] as List<object>;
+                List<bool> survivalData = survivalDataFromFirebase.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.SurvivalData = survivalData;
+                
+                List<object> test1 = data["active_plant_data"] as List<object>;
+                List<bool> test2 = test1.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.ActivePlantData = test2;
+                
+                List<object> test3 = data["explosive_data"] as List<object>;
+                List<bool> test4 = test3.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.ExplosiveData = test4;
+                
+                List<object> test5 = data["planted_in_time_data"] as List<object>;
+                List<bool> test6 = test5.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.PlantedInTimeData = test6;
+                
+                List<object> test7 = data["utils_data"] as List<object>;
+                List<bool> test8 = test7.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.UtilsData = test8;
                 Debug.Log("User data fetched successfully.");
 
                 // Trigger the callback or event when data is fetched
@@ -183,6 +199,27 @@ public class AchievementHandler : MonoBehaviour
                                 sliders[0].value = achievementCounter;
                                 texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
+                            else
+                            {
+                                
+                                var unlock = GetAchievementCompleteness(selectedKey);
+                                 
+                                if (unlock)
+                                {
+                                    sliders[0].maxValue = 1;
+                                    sliders[0].value = 1;
+                                    texts[1].text = "1/1";
+                                }
+                                else
+                                {
+                                    sliders[0].maxValue = 1;
+                                    sliders[0].value = 0;
+                                    texts[1].text = "0/1";
+                                }
+                                
+                            }
+                            
+                            
                             
                             texts[2].text = data[selectedKey].description;
                         }
@@ -364,13 +401,15 @@ public class AchievementHandler : MonoBehaviour
     
     private bool GetAchievementCompleteness(EAchievement achievement)
     {
-
+        
         if (_survivalAchievements.Contains(achievement))
         {
             var survivalData = PlayerManager.Instance.SurvivalData;
+            Debug.Log("UNLOCKEDDDDDD");  
             var index = _survivalAchievements.IndexOf(achievement);
+            Debug.Log("UNLOCKEDDDDD" + survivalData.ToString());
             return survivalData[index];
-        }
+        }  
         if (_activePlantAchievements.Contains(achievement))
         {
             var activePlantData = PlayerManager.Instance.ActivePlantData;
