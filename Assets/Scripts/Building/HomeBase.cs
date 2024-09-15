@@ -43,7 +43,8 @@ public class HomeBase : Entity
         UpdateTimeText();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            this.Health = 0;
+            // this.Health = 0;
+           GainExp(20); 
         }
 
         LevelUp();
