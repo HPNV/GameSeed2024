@@ -34,7 +34,7 @@ namespace Plant
 
         private void Update()
         {
-            plantLevel.text = $"Lvl {plant.Data.level + 1}";
+            plantLevel.text = $"Lvl {plant.level + 1}";
             if (Input.GetMouseButtonDown(0))
             {
                 Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
