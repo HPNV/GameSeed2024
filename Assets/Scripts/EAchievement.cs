@@ -8,7 +8,8 @@
         GardeningGuru,          // Plant 50 plants
         PerfectPlanter,         // Plant 100 plants
         PlantInvasion,          // Plant 1000 plants
-        MasterGardener,         // Plant 5000 plants
+        BotanicalDiversity,     // Plant 5000 plants
+        MasterGardener,         // Plant 10000 plants
         SpeedPlanter,           // Plant 10 plants in 1 minute
         FrenziedFarmer,         // Plant 50 plants in under 5 minutes
         PlantCommander,         // Have 50 plants on the field at once

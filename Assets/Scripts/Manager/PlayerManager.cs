@@ -422,9 +422,15 @@ public class PlayerManager
         {
             achievementManager.UnlockAchievement(EAchievement.PlantInvasion);
         }
-
-        // Master Gardener: Plant 5000 plants in total
+        
+        // Botanical Diversity: Plant 5000 plants
         if (plantedPlants == 5000)
+        {
+            achievementManager.UnlockAchievement(EAchievement.BotanicalDiversity);
+        }
+        
+        // Master Gardener: Plant 10000 plants in total
+        if (plantedPlants == 10000)
         {
             achievementManager.UnlockAchievement(EAchievement.MasterGardener);
         }
