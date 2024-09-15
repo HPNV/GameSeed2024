@@ -82,6 +82,13 @@ public class PlayerManager : MonoBehaviour
         set => fullUpgradePlantCounter = value;
     }
     
+    public List<bool> SurvivalData { get; set; } = new() { false, false, false, false, false, false };
+    public List<bool> ActivePlantData { get; set; } = new() { false, false };
+    public List<bool> ExplosiveData { get; set; } = new() { false };
+    public List<bool> PlantedInTimeData { get; set; } = new() { false, false };
+    public List<bool> UtilsData { get; set; } = new() { false, false, false, false, false, false, false };
+    
+    public int UnlockedAchievements { get; set; } = 0;
     // Kill enemy category
     private int killEnemyCounter = 0;
     private List<DateTime> killEnemyTimeStamps = new();
@@ -105,6 +112,11 @@ public class PlayerManager : MonoBehaviour
     
     // Special Challenges
     private int sacrificeCounter = 0;
+    public int SacrificeCounter
+    {
+        get => sacrificeCounter;
+        set => sacrificeCounter = value;
+    }
     
     private int firstDie = 0;
 
@@ -207,43 +219,69 @@ public class PlayerManager : MonoBehaviour
     public void OnRafflesiaDamage(float amount)
     {
         rafflesiaDmg += (int)amount;
-        if(rafflesiaDmg >= 1000) AchievementManager.UnlockAchievement(EAchievement.TauntMaster);
+        if (rafflesiaDmg >= 1000)
+        {
+            UtilsData[0] = true;
+            AchievementManager.UnlockAchievement(EAchievement.TauntMaster);
+        }
     }
 
     public void OnPlantDie()
     {
         plantDie++;
-        if(plantDie >= 500) AchievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+        if (plantDie >= 500)
+        {
+            UtilsData[1] = true;
+            AchievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+        }
     }
 
     public void OnPlantHeal(int amt)
     {
         plantHeal += amt;
-        if(plantHeal >= 500) AchievementManager.UnlockAchievement(EAchievement.GreenThumb);
+        if (plantHeal >= 500)
+        {
+            UtilsData[2] = true;
+            AchievementManager.UnlockAchievement(EAchievement.GreenThumb);
+        }
     }
 
     public void OnSurviveAchievement(EAchievement achievement)
     {
-        if (
-            achievement != EAchievement.SurvivalNotice &&
-            achievement != EAchievement.Survivalist &&
-            achievement != EAchievement.EnduranceExpert &&
-            achievement != EAchievement.BareMinimum &&
-            achievement != EAchievement.Untouchable
-        ) return;
+        var survivalList = new List<EAchievement>
+        {
+            EAchievement.SurvivalNotice,
+            EAchievement.Survivalist,
+            EAchievement.EnduranceExpert,
+            EAchievement.BareMinimum,
+            EAchievement.Untouchable,
+            EAchievement.FlawlessDefense
+        };
+        if (!survivalList.Contains(achievement)) 
+            return;
+        
+        SurvivalData[survivalList.IndexOf(achievement)] = true;
         AchievementManager.UnlockAchievement(achievement);
     }
 
     public void OnPlantAlocure()
     {
         plantAlocure++;
-        if(plantAlocure == 100) AchievementManager.UnlockAchievement(EAchievement.ZenMaster);
+        if (plantAlocure == 100)
+        {
+            UtilsData[5] = true;
+            AchievementManager.UnlockAchievement(EAchievement.ZenMaster);
+        }
     }
 
     public void OnPlantCocoWall()
     {
         plantcocoWall++;
-        if(plantcocoWall == 100) AchievementManager.UnlockAchievement(EAchievement.EcoWarrior);
+        if (plantcocoWall == 100)
+        {
+            UtilsData[6] = true;
+            AchievementManager.UnlockAchievement(EAchievement.EcoWarrior);
+        }
     }
     
     private int GetPlantsPlantedInLast5Minutes()
@@ -285,6 +323,7 @@ public class PlayerManager : MonoBehaviour
         // Explosive Expertise: Explode 5 enemies
         if (enemyExplodeCounter == 5)
         {
+            ExplosiveData[0] = true;
             AchievementManager.UnlockAchievement(EAchievement.ExplosiveExpertise);
         }
     }
@@ -369,12 +408,14 @@ public class PlayerManager : MonoBehaviour
         // Doomsday Gardener: Kill 200 enemies using explosive plants
         if (killEnemyExplosiveCounter == 200)
         {
+            UtilsData[3] = true;
             AchievementManager.UnlockAchievement(EAchievement.DoomsdayGardener);
         }
 
         // Trap Specialist: Kill 50 enemies with Boomkin
         if (killEnemyExplosiveCounter == 50)
         {
+            UtilsData[4] = true;
             AchievementManager.UnlockAchievement(EAchievement.TrapSpecialist);
         }
     }
@@ -498,12 +539,14 @@ public class PlayerManager : MonoBehaviour
         // Plant Commander: Have 50 plants on the field at once
         if (activePlants == 50)
         {
+            ActivePlantData[0] = true;
             AchievementManager.UnlockAchievement(EAchievement.PlantCommander);
         }
 
         // Plant Hoarder: Have 100 plants on the field at once
         if (activePlants == 100)
         {
+            ActivePlantData[1] = true;
             AchievementManager.UnlockAchievement(EAchievement.PlantHoarder);
         }
     }   

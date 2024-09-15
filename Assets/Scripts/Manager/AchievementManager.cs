@@ -36,6 +36,7 @@ namespace Manager
                 return;
             }
             
+            PlayerManager.Instance.UnlockedAchievements += 1;
             UnlockedEAchievements.Add(achievement);
             UnlockedAchievements.Add(Achievements[achievement]);
             Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);

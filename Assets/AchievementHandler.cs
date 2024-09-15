@@ -54,63 +54,63 @@ public class AchievementHandler : MonoBehaviour
             }
         });
     }
+    
 
     private static Dictionary<EAchievement, Dictionary<string, object>> _achievementData = new()
     {
-        { EAchievement.NewGardener, new Dictionary<string, object>() { { "counter", 2 } } },
-        { EAchievement.KillerSeed, new Dictionary<string, object>() { { "counter", 10 } } },
-        { EAchievement.PlantPotential, new Dictionary<string, object>() { { "counter", 5 } } },
-        { EAchievement.UpgradeApprentice, new Dictionary<string, object>() { { "counter", 3 } } },
-        { EAchievement.FirstFall, new Dictionary<string, object>() { { "counter", 1 } } },
-        { EAchievement.BloomBooster, new Dictionary<string, object>() { { "counter", 20 } } },
-        { EAchievement.SurvivalNotice, new Dictionary<string, object>() { } },
-        { EAchievement.Survivalist, new Dictionary<string, object>() { } },
-        { EAchievement.LevelUpEnthusiast, new Dictionary<string, object>() { { "counter", 20 } } },
-        { EAchievement.LevelUpVeteran, new Dictionary<string, object>() { { "counter", 50 } } },
-        { EAchievement.GardeningGuru, new Dictionary<string, object>() { { "counter", 50 } } },
-        { EAchievement.EnduranceExpert, new Dictionary<string, object>() { } },
-        { EAchievement.UpgradeMaster, new Dictionary<string, object>() { { "counter", 10 } } },
-        { EAchievement.UpgradeOverachiever, new Dictionary<string, object>() { { "counter", 30 } } },
-        { EAchievement.ExplosiveExpertise, new Dictionary<string, object>() { { "counter", 5 } } },
-        { EAchievement.ResourceCollector, new Dictionary<string, object>() { { "counter", 15 } } },
-        { EAchievement.ResourceHoarder, new Dictionary<string, object>() { { "counter", 30 } } },
-        { EAchievement.PlantSacrifice, new Dictionary<string, object>() { } },
-        { EAchievement.BotanicalDiversity, new Dictionary<string, object>() { } },
-        { EAchievement.HerbalHarvester, new Dictionary<string, object>() { { "counter", 50 } } },
-        { EAchievement.MonsterSlayer, new Dictionary<string, object>() { { "counter", 500 } } },
-        { EAchievement.PerfectPlanter, new Dictionary<string, object>() { { "counter", 100 } } },
-        { EAchievement.FlawlessDefense, new Dictionary<string, object>() { } },
-        { EAchievement.SpeedPlanter, new Dictionary<string, object>() { { "counter", 10 } } },
-        { EAchievement.EfficientKiller, new Dictionary<string, object>() { { "counter", 50 } } },
+        { EAchievement.NewGardener, new Dictionary<string, object>() { { "counter", 2 } } }, // v
+        { EAchievement.KillerSeed, new Dictionary<string, object>() { { "counter", 10 } } }, // v
+        { EAchievement.PlantPotential, new Dictionary<string, object>() { { "counter", 5 } } }, // v
+        { EAchievement.UpgradeApprentice, new Dictionary<string, object>() { { "counter", 3 } } }, // v
+        { EAchievement.FirstFall, new Dictionary<string, object>() { { "counter", 1 } } }, // v
+        { EAchievement.BloomBooster, new Dictionary<string, object>() { { "counter", 20 } } }, // v
+        { EAchievement.SurvivalNotice, new Dictionary<string, object>() }, // v
+        { EAchievement.Survivalist, new Dictionary<string, object>() { } }, // v
+        { EAchievement.LevelUpEnthusiast, new Dictionary<string, object>() { { "counter", 20 } } }, // v
+        { EAchievement.LevelUpVeteran, new Dictionary<string, object>() { { "counter", 50 } } }, // v
+        { EAchievement.GardeningGuru, new Dictionary<string, object>() { { "counter", 50 } } }, // v
+        { EAchievement.EnduranceExpert, new Dictionary<string, object>() { } }, // v
+        { EAchievement.UpgradeMaster, new Dictionary<string, object>() { { "counter", 10 } } }, // v
+        { EAchievement.UpgradeOverachiever, new Dictionary<string, object>() { { "counter", 30 } } }, // v
+        { EAchievement.ExplosiveExpertise, new Dictionary<string, object>() { { "counter", 5 } } }, // v
+        { EAchievement.ResourceCollector, new Dictionary<string, object>() { { "counter", 15 } } },  // v
+        { EAchievement.ResourceHoarder, new Dictionary<string, object>() { { "counter", 30 } } },  // v
+        { EAchievement.PlantSacrifice, new Dictionary<string, object>() { { "counter", 5 } } }, // v
+        { EAchievement.BotanicalDiversity, new Dictionary<string, object>() { { "counter", 5000 } } }, // v
+        { EAchievement.HerbalHarvester, new Dictionary<string, object>() { { "counter", 50 } } },  // v
+        { EAchievement.MonsterSlayer, new Dictionary<string, object>() { { "counter", 500 } } }, // v
+        { EAchievement.PerfectPlanter, new Dictionary<string, object>() { { "counter", 100 } } }, // v
+        { EAchievement.FlawlessDefense, new Dictionary<string, object>() { } }, // v
+        { EAchievement.SpeedPlanter, new Dictionary<string, object>() { { "counter", 10 } } },  // v
+        { EAchievement.EfficientKiller, new Dictionary<string, object>() { { "counter", 50 } } }, // v
         { EAchievement.TauntMaster, new Dictionary<string, object>() { } },
-        { EAchievement.ResourceTycoon, new Dictionary<string, object>() { { "counter", 1000 } } },
-        { EAchievement.PlantCollector, new Dictionary<string, object>() { } },
-        { EAchievement.UnstoppableForce, new Dictionary<string, object>() { { "counter", 1000 } } },
-        { EAchievement.GardenersGlory, new Dictionary<string, object>() {  } },
+        { EAchievement.ResourceTycoon, new Dictionary<string, object>() { { "counter", 1000 } } },  // v
+        { EAchievement.PlantCollector, new Dictionary<string, object>() { { "counter", 10 }} }, // v
+        { EAchievement.UnstoppableForce, new Dictionary<string, object>() { { "counter", 1000 } } }, // v
+        { EAchievement.GardenersGlory, new Dictionary<string, object>() {  } }, // v
         { EAchievement.TrapSpecialist, new Dictionary<string, object>() { { "counter", 50 } } },
-        { EAchievement.FirstBlood, new Dictionary<string, object>() { { "counter", 1 } } },
-        { EAchievement.PlantInvasion, new Dictionary<string, object>() { { "counter", 1000 } } },
+        { EAchievement.FirstBlood, new Dictionary<string, object>() { { "counter", 1 } } }, // v
+        { EAchievement.PlantInvasion, new Dictionary<string, object>() { { "counter", 1000 } } }, // v
         { EAchievement.NaturesAvatar, new Dictionary<string, object>() { } },
         { EAchievement.GreenThumb, new Dictionary<string, object>() { } },
-        { EAchievement.MonsterFrenzy, new Dictionary<string, object>() { { "counter", 200 } } },
-        { EAchievement.PlantCommander, new Dictionary<string, object>() { { "counter", 50 } } },
-        { EAchievement.AgainstAllOdds, new Dictionary<string, object>() { } },
+        { EAchievement.MonsterFrenzy, new Dictionary<string, object>() { { "counter", 200 } } }, // v
+        { EAchievement.PlantCommander, new Dictionary<string, object>() { { "counter", 50 } } }, // v
+        { EAchievement.AgainstAllOdds, new Dictionary<string, object>() { { "counter", 5000 } } }, // v
         { EAchievement.DoomsdayGardener, new Dictionary<string, object>() { { "counter", 200 } } },
         { EAchievement.ZenMaster, new Dictionary<string, object>() { } },
         { EAchievement.EcoWarrior, new Dictionary<string, object>() { } },
-        { EAchievement.BareMinimum, new Dictionary<string, object>() { } },
-        { EAchievement.PlantHoarder, new Dictionary<string, object>() { { "counter", 100 } } },
-        { EAchievement.MasterGardener, new Dictionary<string, object>() { { "counter", 5000 } } },
-        { EAchievement.ResourcefulMind, new Dictionary<string, object>() { { "counter", 5000 } } },
-        { EAchievement.EndlessOnslaught, new Dictionary<string, object>() { { "counter", 5000 } } },
-        { EAchievement.FrenziedFarmer, new Dictionary<string, object>() { { "counter", 50 } } },
-        { EAchievement.Untouchable, new Dictionary<string, object>() { } },
-        { EAchievement.UltimateGardener, new Dictionary<string, object>() { } },
-        { EAchievement.QuickLearner, new Dictionary<string, object>() { { "counter", 3 } } },
-        { EAchievement.FullyBloomed, new Dictionary<string, object>() { { "counter", 1 } } },
+        { EAchievement.BareMinimum, new Dictionary<string, object>() { } }, // v
+        { EAchievement.PlantHoarder, new Dictionary<string, object>() { { "counter", 100 } } }, // v
+        { EAchievement.MasterGardener, new Dictionary<string, object>() { { "counter", 10000 } } }, // v
+        { EAchievement.ResourcefulMind, new Dictionary<string, object>() { { "counter", 5000 } } },  // v
+        { EAchievement.EndlessOnslaught, new Dictionary<string, object>() { { "counter", 5000 } } }, // v
+        { EAchievement.FrenziedFarmer, new Dictionary<string, object>() { { "counter", 50 } } }, // v
+        { EAchievement.Untouchable, new Dictionary<string, object>() { } }, // v
+        { EAchievement.UltimateGardener, new Dictionary<string, object>() { { "counter", 49 }} }, // v
+        { EAchievement.QuickLearner, new Dictionary<string, object>() { { "counter", 3 } } }, // v
+        { EAchievement.FullyBloomed, new Dictionary<string, object>() { { "counter", 1 } } }, // v
     };
-  
-
+    
     private void ReconcileAchievement()
     {
         var data = PlayerManager.Instance.AchievementManager.Achievements;
@@ -158,36 +158,9 @@ public class AchievementHandler : MonoBehaviour
                             texts[0].text = formattedName;
                             if(_achievementData[selectedKey].ContainsKey("counter"))
                             {
-                                int achievementCounter = 0;
-                                int counter = Convert.ToInt32(_achievementData[selectedKey]["counter"]);
-                                
-                                if (data[selectedKey].name is "new_gardener" || data[selectedKey].name is "bloom_booster" || data[selectedKey].name is "gardening_guru" || data[selectedKey].name is "perfect_planter" || data[selectedKey].name is "plant_invasion" || data[selectedKey].name is "master_gardener")
-                                {
-                                    achievementCounter = (PlayerManager.Instance.PlantedPlants > counter) ? counter : PlayerManager.Instance.PlantedPlants;
-                                } 
-                                else if(data[selectedKey].name is "quick_learner" || data[selectedKey].name is "plant_potential" || data[selectedKey].name is "level_up_enthusiast" || data[selectedKey].name is "level_up_veteran")
-                                {
-                                    achievementCounter = (PlayerManager.Instance.LevelUpCounter > counter) ? counter : PlayerManager.Instance.LevelUpCounter;
-                                } 
-                                else if(data[selectedKey].name is "upgrade_apprentice" || data[selectedKey].name is "upgrade_master" || data[selectedKey].name is "upgrade_overarchieve")
-                                {
-                                    achievementCounter = (PlayerManager.Instance.UpgradePlantCounter > counter) ? counter : PlayerManager.Instance.UpgradePlantCounter;
-                                } 
-                                else if(data[selectedKey].name is "fully_bloomed" || data[selectedKey].name is "gardening_glory")
-                                {
-                                    achievementCounter = (PlayerManager.Instance.FullUpgradePlantCounter > counter) ? counter : PlayerManager.Instance.FullUpgradePlantCounter;
-                                } 
-                                else if(data[selectedKey].name.ToString() == "first_fall")
-                                {
-                                  
-                                    achievementCounter = (PlayerManager.Instance.Die > counter) ? counter : PlayerManager.Instance.Die;
-                                    Debug.Log("FIRST FALLL" + achievementCounter);
-                                } 
-                                else if(data[selectedKey].name is "first_blood" || data[selectedKey].name is "killer_seed" || data[selectedKey].name is "efficient_killer" || data[selectedKey].name is "monster_frenzy" || data[selectedKey].name is "monster_slayer" || data[selectedKey].name is "unstoppable_force" || data[selectedKey].name is "endless_onslaught")
-                                {
-                                    achievementCounter = (PlayerManager.Instance.Kill > counter) ? counter : PlayerManager.Instance.Kill;
-                                }
-                                
+                                var counter = Convert.ToInt32(_achievementData[selectedKey]["counter"]);
+                                var achievementCounter = GetAchievementCounter(selectedKey, counter);
+                               
                                 texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
                             
@@ -220,5 +193,202 @@ public class AchievementHandler : MonoBehaviour
         }
     }
 
+    private readonly List<EAchievement> _plantAchievements = new()
+    {
+        EAchievement.NewGardener,
+        EAchievement.BloomBooster,
+        EAchievement.GardeningGuru,
+        EAchievement.PerfectPlanter,
+        EAchievement.PlantInvasion,
+        EAchievement.BotanicalDiversity,
+        EAchievement.MasterGardener
+    };
+        
+    private readonly List<EAchievement> _levelUpAchievements = new()
+    {
+        EAchievement.QuickLearner,
+        EAchievement.PlantPotential,
+        EAchievement.LevelUpEnthusiast,
+        EAchievement.LevelUpVeteran
+    };
     
+    private readonly List<EAchievement> _upgradeAchievements = new()
+    {
+        EAchievement.UpgradeApprentice,
+        EAchievement.UpgradeMaster,
+        EAchievement.UpgradeOverachiever
+    };
+    
+    private readonly List<EAchievement> _fullyUpgradeAchievements = new()
+    {
+        EAchievement.FullyBloomed,
+        EAchievement.GardenersGlory
+    };
+    
+    private readonly List<EAchievement> _dieAchievements = new()
+    {
+        EAchievement.FirstFall
+    };
+    
+    private readonly List<EAchievement> _killAchievements = new()
+    {
+        EAchievement.FirstBlood,
+        EAchievement.KillerSeed,
+        EAchievement.EfficientKiller,
+        EAchievement.MonsterFrenzy,
+        EAchievement.MonsterSlayer,
+        EAchievement.UnstoppableForce,
+        EAchievement.EndlessOnslaught
+    };
+
+    private readonly List<EAchievement> _resourceAchievements = new()
+    {
+        EAchievement.ResourceCollector,
+        EAchievement.ResourceHoarder,
+        EAchievement.HerbalHarvester,
+        EAchievement.ResourceTycoon,
+        EAchievement.ResourcefulMind,
+    };
+    
+    private readonly List<EAchievement> _sacrificeAchievements = new()
+    {
+        EAchievement.PlantSacrifice,
+        EAchievement.AgainstAllOdds,
+    };
+    
+    private readonly List<EAchievement> _unlockAchievements = new()
+    {
+        EAchievement.PlantCollector,
+        EAchievement.UltimateGardener,
+    };
+    
+    
+    private int GetAchievementCounter(EAchievement achievement, int dataCount)
+    {
+        if (_plantAchievements.Contains(achievement))
+        {
+            var plantedPlantCount = PlayerManager.Instance.PlantedPlants;
+            return Math.Min(dataCount, plantedPlantCount);
+        }
+        if (_levelUpAchievements.Contains(achievement))
+        {
+            var levelUpCount = PlayerManager.Instance.LevelUpCounter;
+            return Math.Min(dataCount, levelUpCount);
+        }
+        if (_upgradeAchievements.Contains(achievement))
+        {
+            var upgradeCount = PlayerManager.Instance.UpgradePlantCounter;
+            return Math.Min(dataCount, upgradeCount);
+        }
+        if (_fullyUpgradeAchievements.Contains(achievement))
+        {
+            var fullyUpgradeCount = PlayerManager.Instance.FullUpgradePlantCounter;
+            return Math.Min(dataCount, fullyUpgradeCount);
+        }
+        if (_dieAchievements.Contains(achievement))
+        {
+            var dieCount = PlayerManager.Instance.Die;
+            return Math.Min(dataCount, dieCount);
+        }
+        if (_killAchievements.Contains(achievement))
+        {
+            var killCount = PlayerManager.Instance.Kill;
+            return Math.Min(dataCount, killCount);
+        }
+        if (_resourceAchievements.Contains(achievement))
+        {
+            var resourceCount = PlayerManager.Instance.CollectResourceCounter;
+            return Math.Min(dataCount, resourceCount);
+        }
+        if (_sacrificeAchievements.Contains(achievement))
+        {
+            var sacrificeCount = PlayerManager.Instance.SacrificeCounter;
+            return Math.Min(dataCount, sacrificeCount);
+        }
+        if (_unlockAchievements.Contains(achievement))
+        {
+            var unlockCount = PlayerManager.Instance.UnlockedAchievements;
+            return Math.Min(dataCount, unlockCount);
+        }
+        
+        return 0;
+    }
+    
+    private readonly List<EAchievement> _survivalAchievements = new()
+    {
+        EAchievement.SurvivalNotice,
+        EAchievement.Survivalist,
+        EAchievement.EnduranceExpert,
+        EAchievement.BareMinimum,
+        EAchievement.Untouchable,
+        EAchievement.FlawlessDefense
+    };
+    
+    private readonly List<EAchievement> _activePlantAchievements = new()
+    {
+        EAchievement.PlantCommander,
+        EAchievement.PlantHoarder,
+    };
+    
+    private readonly List<EAchievement> _explosiveAchievements = new()
+    {
+        EAchievement.ExplosiveExpertise,
+    };
+    
+    private readonly List<EAchievement> _plantedInTimeAchievements = new()
+    {
+        EAchievement.SpeedPlanter,
+        EAchievement.FrenziedFarmer,
+    };
+    
+    private readonly List<EAchievement> _utilsAchievements = new()
+    {
+        EAchievement.TauntMaster,
+        EAchievement.NaturesAvatar,
+        EAchievement.GreenThumb,
+        EAchievement.DoomsdayGardener,
+        EAchievement.TrapSpecialist,
+        EAchievement.ZenMaster,
+        EAchievement.EcoWarrior
+    };
+    
+    private bool GetAchievementCompleteness(EAchievement achievement)
+    {
+
+        if (_survivalAchievements.Contains(achievement))
+        {
+            var survivalData = PlayerManager.Instance.SurvivalData;
+            var index = _survivalAchievements.IndexOf(achievement);
+            return survivalData[index];
+        }
+        if (_activePlantAchievements.Contains(achievement))
+        {
+            var activePlantData = PlayerManager.Instance.ActivePlantData;
+            var index = _activePlantAchievements.IndexOf(achievement);
+            return activePlantData[index];
+        }
+        if (_explosiveAchievements.Contains(achievement))
+        {
+            var explodeCount = PlayerManager.Instance.ExplosiveData;
+            var index = _explosiveAchievements.IndexOf(achievement);
+            return explodeCount[index];
+        }
+        if (_plantedInTimeAchievements.Contains(achievement))
+        {
+            var plantedInTimeData = PlayerManager.Instance.PlantedInTimeData;
+            var index = _plantedInTimeAchievements.IndexOf(achievement);
+            return plantedInTimeData[index];
+        }
+        if (_utilsAchievements.Contains(achievement))
+        {
+            var utilsData = PlayerManager.Instance.UtilsData;
+            var index = _utilsAchievements.IndexOf(achievement);
+            return utilsData[index];
+        }
+        
+        return false;
+    }
 }
+
+    
+

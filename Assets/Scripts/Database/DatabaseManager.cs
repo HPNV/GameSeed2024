@@ -92,7 +92,9 @@ public class DatabaseManager : MonoBehaviour
                         { "level_up_counter", 0 },
                         { "highest_score", 0 },
                         { "max_upgrade", 0 },
-                        { "complete_tutorial", false }
+                        { "sacrifice_counter", 0 },
+                        { "complete_tutorial", false },
+                        { "survival_data", new List<bool> { false, false, false, false, false } }
                     };
 
                     docRef.SetAsync(data).ContinueWithOnMainThread(task =>
@@ -104,6 +106,8 @@ public class DatabaseManager : MonoBehaviour
                             PlayerManager.Instance.Planted = 0;
                             PlayerManager.Instance.UpgradePlantCounter = 0;
                             PlayerManager.Instance.FullyUpgrade = 0;
+                            PlayerManager.Instance.SacrificeCounter = 0;
+                            PlayerManager.Instance.SurvivalData = new List<bool> { false, false, false, false, false };
                         }
                     });
                 }
