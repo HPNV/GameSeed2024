@@ -2172,7 +2172,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -210.02042, y: 227.29936, z: 0}
-  m_LocalScale: {x: 37.248425, y: 37.248425, z: 51.025238}
+  m_LocalScale: {x: 37.248425, y: 37.248425, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1791348759}
@@ -8753,9 +8753,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1321850312}
+  - {fileID: 1816385942}
   - {fileID: 190707767}
   - {fileID: 1159782205}
-  - {fileID: 1597950613}
   - {fileID: 338467896}
   m_Father: {fileID: 1019872409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23551,38 +23551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1597950612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1597950613}
-  m_Layer: 10
-  m_Name: EXP_Bar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1597950613
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597950612}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -70, y: 228, z: 0}
-  m_LocalScale: {x: 0.73, y: 0.73, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1816385942}
-  m_Father: {fileID: 710772601}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604536781
 GameObject:
   m_ObjectHideFlags: 0
@@ -26886,18 +26854,18 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816385941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1000}
-  m_LocalScale: {x: 1.0000798, y: 1.0000798, z: 55.300312}
+  m_LocalPosition: {x: 0, y: 0, z: 208}
+  m_LocalScale: {x: 0.73005825, y: 0.73005825, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 317637582}
   - {fileID: 401658583}
   - {fileID: 931740495}
-  m_Father: {fileID: 1597950613}
+  m_Father: {fileID: 710772601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.31, y: 0}
+  m_AnchoredPosition: {x: -55.903732, y: 227.99997}
   m_SizeDelta: {x: 617.8, y: 82.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816385943

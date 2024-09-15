@@ -35,35 +35,49 @@ public class PlayerManager
         get => fullyUpgrade;
         set => fullyUpgrade = value;
     }
-    
-    private int upgradedPlants = 0;
-    public int Upgraded
+
+    private bool completeTutorial = false;
+    public bool CompleteTutorial
     {
-        get => upgradedPlants;
-        set => upgradedPlants = value;
-    }
-    
-    private int die = 0;
-    public int Die
-    {
-        get => die;
-        set => die = value;
+        get => completeTutorial;
+        set => completeTutorial = value;
     }
 
     private GameState _gameState;
 
     // Planting category
     private int plantedPlants = 0;
+    public int PlantedPlants
+    {
+        get => plantedPlants;
+        set => plantedPlants = value;
+    }
+    
     private List<DateTime> plantTimeStamps = new();
     private int activePlants = 0;
     
     // Level up category
     private List<DateTime> levelupTimeStamps = new();
     private int levelupCounter = 0;
+    public int LevelUpCounter
+    {
+        get => levelupCounter;
+        set => levelupCounter = value;
+    }
     
     // Upgrade Plant category
     private int upgradePlantCounter = 0;
+    public int UpgradePlantCounter
+    {
+        get => upgradePlantCounter;
+        set => upgradePlantCounter = value;
+    }
     private int fullUpgradePlantCounter = 0;
+    public int FullUpgradePlantCounter
+    {
+        get => fullUpgradePlantCounter;
+        set => fullUpgradePlantCounter = value;
+    }
     
     // Kill enemy category
     private int killEnemyCounter = 0;
@@ -72,14 +86,31 @@ public class PlayerManager
     
     // Explosive
     private int enemyExplodeCounter = 0;
+    public int EnemyExplodeCounter
+    {
+        get => enemyExplodeCounter;
+        set => enemyExplodeCounter = value;
+    }
     
     // Resources
     private int collectResourceCounter = 0;
+    public int CollectResourceCounter
+    {
+        get => collectResourceCounter;
+        set => collectResourceCounter = value;
+    }
     
     // Special Challenges
     private int sacrificeCounter = 0;
     
     private int firstDie = 0;
+
+    public int Die
+    {
+        get => firstDie;
+        set => firstDie = value;
+    }
+    
     public int tutorialCompleted = 0;
     private AchievementManager achievementManager  = new();
     
