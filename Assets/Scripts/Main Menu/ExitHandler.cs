@@ -7,8 +7,8 @@ public class ExitHandler : MonoBehaviour
 {
     public Button quitButton;
 
-    public void Start()
+    public void OnClickButton()
     {
-        quitButton.onClick.AddListener(Application.Quit);
+        Application.Quit();
     }
 }
