@@ -88,8 +88,26 @@ namespace Plant.Factory
             // Debug.Log($"count: {SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count}");
             var count = SingletonGame.Instance.AchievementManager.UnlockedEAchievements.Count;
             var unlocked = UNLOCKED + (count / STEP);
-            var temp = data.Take(unlocked);
-            return temp.OrderBy(x => Guid.NewGuid()).Take(amt).ToList();
+            var temp = data.Take(unlocked).OrderBy(x => Guid.NewGuid()).ToList();
+            var res = new List<PlantData>();
+            for (int i = 0; i < amt;)
+            {
+                var rand = SingletonGame.Instance.Random.Next(1, 11);
+
+                var selected = rand switch
+                {
+                    <= 4 => temp.FirstOrDefault(o => o.rarity == ERarity.Common),
+                    <= 7 => temp.FirstOrDefault(o => o.rarity == ERarity.Rare),
+                    <= 9 => temp.FirstOrDefault(o => o.rarity == ERarity.Epic),
+                    10 => temp.FirstOrDefault(o => o.rarity == ERarity.Legendary),
+                    _ => null
+                };
+
+                if (selected == null) continue;
+                res.Add(selected);
+                i++;
+            }
+            return res;
         }
     }
 }
