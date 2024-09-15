@@ -116,6 +116,7 @@ public class HomeBase : Entity
     protected override void OnDamage(float dmg)
     {
         StartCoroutine(Flash(Color.red));
+        TakeDamageScript.Instance.StartEffect();
         CameraController.Instance.ShakeCamera();
         UpdateUI();
         PlayerManager.Instance.LastHitTimeStamp = DateTime.Now;
