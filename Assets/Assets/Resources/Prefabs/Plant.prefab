@@ -162,6 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5141593892528665881}
+  health: 0
+  damage: 0
+  level: 0
 --- !u!114 &2851565203643474574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,7 +1287,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.03, z: -2.03}
-  m_LocalScale: {x: 1.89887, y: 1.89887, z: 1.1239253}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1.1239253}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1017849504198143353}
