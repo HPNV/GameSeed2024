@@ -57,7 +57,7 @@ namespace Manager
             // Debug.Log($"aftcount: {UnlockedEAchievements.Count}");
             // Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
             StartCoroutine(ShowAchievement(achievement));
-            
+            SoundFXManager.instance.PlayGameSound("Audio/achivement");
             CheckUnlockAllAchievement();
             CheckUnlock8Plants();
             SingletonGame.Instance.SaveData();
