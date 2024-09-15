@@ -18,25 +18,16 @@ public class AchievementHandler : MonoBehaviour
     [SerializeField] private Sprite backgroundSprite;
     [SerializeField] private Slider totalAchievementSlider;
     [SerializeField] private TextMeshPro totalAchievementText;
+    [SerializeField] private Button achievementButton;
 
     private int completedAchievements = 0;
-
-
-    private void Awake()
-    {
-        Debug.Log("AWAKE");
-        db = FirebaseFirestore.DefaultInstance;
-
-        Debug.Log("rawrr");
-        fetchUserData(ReconcileAchievement);
-    }
-
+    
     void Start()
     {
-        Debug.Log("starttt");
         db = FirebaseFirestore.DefaultInstance;
-
-        Debug.Log("rawrr");
+        
+        achievementButton.interactable = false;
+        
         fetchUserData(ReconcileAchievement);
     }
 
@@ -48,10 +39,10 @@ public class AchievementHandler : MonoBehaviour
         docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             DocumentSnapshot snapshot = task.Result;
-            Debug.Log($"Fetching user data... {snapshot.Exists}");
             if (snapshot.Exists)
             {
                 Dictionary<string, object> data = snapshot.ToDictionary();
+                
                 PlayerManager.Instance.Die = Convert.ToInt32(data["die_counter"]);
                 PlayerManager.Instance.Kill = Convert.ToInt32(data["kill_counter"]);
                 
@@ -63,14 +54,19 @@ public class AchievementHandler : MonoBehaviour
                 PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["planted_plants_counter"]);
                 PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
                 PlayerManager.Instance.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
-                PlayerManager.Instance.SurvivalData = (data["survival_data"] as List<object>)!.Select(Convert.ToBoolean).ToList();
-                PlayerManager.Instance.ActivePlantData = (data["active_plant_data"] as List<object>)!.Select(Convert.ToBoolean).ToList();
-                PlayerManager.Instance.ExplosiveData = (data["explosive_data"] as List<object>)!.Select(Convert.ToBoolean).ToList();
-                PlayerManager.Instance.PlantedInTimeData = (data["planted_in_time_data"] as List<object>)!.Select(Convert.ToBoolean).ToList();
-                PlayerManager.Instance.UtilsData = (data["utils_data"] as List<object>)!.Select(Convert.ToBoolean).ToList();
+                PlayerManager.Instance.SurvivalData = (data["survival_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.ActivePlantData = (data["active_plant_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.ExplosiveData = (data["explosive_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.PlantedInTimeData = (data["planted_in_time_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.UtilsData = (data["utils_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                Debug.Log("User data fetched successfully.");
+
+                onUserDataFetched?.Invoke();
             }
-            
-            onUserDataFetched?.Invoke();
+            else
+            {
+                Debug.Log("Document " + snapshot.Id + " does not exist!");
+            }
         });
     }
 
@@ -132,7 +128,6 @@ public class AchievementHandler : MonoBehaviour
     
     private void ReconcileAchievement()
     {
-        Debug.Log("rawrrr");
         var data = AchievementManager.Instance.Achievements;
         
         Debug.Log($"datata {data}");
@@ -240,6 +235,8 @@ public class AchievementHandler : MonoBehaviour
         totalAchievementSlider.value = completedAchievements;
         
         totalAchievementText.text = ((float)completedAchievements / 50f * 100f) + "%";
+        
+        achievementButton.interactable = true;
     }
 
 

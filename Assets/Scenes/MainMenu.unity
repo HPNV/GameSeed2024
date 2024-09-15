@@ -2664,6 +2664,7 @@ GameObject:
   - component: {fileID: 181628075}
   - component: {fileID: 181628077}
   - component: {fileID: 181628076}
+  - component: {fileID: 181628078}
   m_Layer: 5
   m_Name: Main Panel (1)
   m_TagString: Untagged
@@ -2729,6 +2730,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181628074}
   m_CullTransparentMesh: 1
+--- !u!114 &181628078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181628074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f71d28b9ac10d419d6615a7fac5ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedpediaPanel: {fileID: 1125121210}
+  backgroundSprite: {fileID: 21300000, guid: 198bb6685d0e0244896f800e474eb93a, type: 3}
+  totalAchievementSlider: {fileID: 1166905345}
+  totalAchievementText: {fileID: 1772884444}
+  achievementButton: {fileID: 1556314701}
 --- !u!1 &183998230
 GameObject:
   m_ObjectHideFlags: 0
@@ -13372,7 +13390,6 @@ GameObject:
   - component: {fileID: 1125121214}
   - component: {fileID: 1125121213}
   - component: {fileID: 1125121212}
-  - component: {fileID: 1125121215}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -13473,22 +13490,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125121210}
   m_CullTransparentMesh: 1
---- !u!114 &1125121215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125121210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f71d28b9ac10d419d6615a7fac5ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seedpediaPanel: {fileID: 1125121210}
-  backgroundSprite: {fileID: 21300000, guid: 198bb6685d0e0244896f800e474eb93a, type: 3}
-  totalAchievementSlider: {fileID: 1166905345}
-  totalAchievementText: {fileID: 1772884444}
 --- !u!1 &1128711367
 GameObject:
   m_ObjectHideFlags: 0
