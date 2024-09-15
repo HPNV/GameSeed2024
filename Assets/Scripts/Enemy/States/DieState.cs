@@ -10,6 +10,7 @@ namespace Enemy.States
 
         public override void OnEnter()
         {
+            Enemy.ParticleSystem.Pause();
             Enemy.Animator.SetTrigger(Die);
             SingletonGame.Instance.addEnemyKilled();
             Enemy.InnerCircleCollider.enabled = false;

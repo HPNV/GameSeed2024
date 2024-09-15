@@ -31,7 +31,7 @@ namespace Projectile.Behaviour
                 return;
             
             var color = spriteRenderer.color;
-            color.a -= Time.deltaTime / 2;
+            color.a -= Time.deltaTime / 3;
             spriteRenderer.color = color;
         }
 

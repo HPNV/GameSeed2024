@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Enemy;
 using Unity.VisualScripting;
@@ -55,11 +56,22 @@ namespace Manager
             enemy.Initialize();
         }
         
+        
+        private IEnumerator TeleportAndDestroy(EnemyBehaviour enemy)
+        {
+            if (!enemy.gameObject.activeSelf)
+                yield break;
+            
+            enemy.transform.position = new Vector3(-1000, -1000, enemy.transform.position.z);
+            yield return new WaitForSeconds(1);
+            enemy.gameObject.SetActive(false);
+            _enemyPool.Enqueue(enemy);
+        }
+        
         public void Despawn(EnemyBehaviour enemy)
         {
-            enemy.gameObject.SetActive(false);
-            enemy.enemyData = enemy.baseData;
-            _enemyPool.Enqueue(enemy);
+            enemy.StartCoroutine(TeleportAndDestroy(enemy));
+           
         }
     }
 }

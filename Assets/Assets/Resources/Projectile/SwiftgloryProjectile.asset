@@ -15,7 +15,7 @@ MonoBehaviour:
   projectileType: 5
   movementSpeed: 8
   attackRadius: 0.5
-  lifetime: 2
+  lifetime: 1
   sprite: {fileID: -2413806693520163455, guid: f489a437cde9e5e45ac665e2c7283ce3, type: 3}
   animatorController: {fileID: 0}
   textureType: 1
