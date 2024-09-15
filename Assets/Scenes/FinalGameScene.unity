@@ -5949,9 +5949,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4794819173144291379, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
+      propertyPath: loading
+      value: 
+      objectReference: {fileID: 147451890}
+    - target: {fileID: 4794819173144291379, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
       propertyPath: cutscene
       value: 
       objectReference: {fileID: 419712012}
+    - target: {fileID: 4794819173144291379, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
+      propertyPath: mainMenu
+      value: 
+      objectReference: {fileID: 344360207}
     - target: {fileID: 4794819173144291379, guid: f9368ccb87a3f184c8c257a067f23bda, type: 3}
       propertyPath: skipButton
       value: 
