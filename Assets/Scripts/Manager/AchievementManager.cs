@@ -15,12 +15,10 @@ namespace Manager
         [SerializeField]
         private List<AchievementData> data;
         public Dictionary<EAchievement, AchievementData> Achievements = new();
-        public List<AchievementData> UnlockedAchievements { get; private set; } = new();
-        public List<EAchievement> UnlockedEAchievements { get; private set; } = new();
+        public List<EAchievement> UnlockedEAchievements { get; private set; }
 
         private void Start()
         {
-            UnlockedAchievements = new List<AchievementData>();
             UnlockedEAchievements = new List<EAchievement>();
             Achievements = new Dictionary<EAchievement, AchievementData>();
             for (var i = 0; i < enums.Count; i++)
@@ -38,7 +36,6 @@ namespace Manager
             
             PlayerManager.Instance.UnlockedAchievements += 1;
             UnlockedEAchievements.Add(achievement);
-            UnlockedAchievements.Add(Achievements[achievement]);
             Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
             StartCoroutine(ShowAchievement(achievement));
             

@@ -139,7 +139,6 @@ public class AchievementHandler : MonoBehaviour
         var data = PlayerManager.Instance.AchievementManager.Achievements;
         var keys = data.Keys.ToList();
         int i = 0;
-        var selectedKey = keys[i];
         
         // Loop through each child (row) of the seedpediaPanel
         foreach (Transform child in seedpediaPanel.transform)
@@ -148,7 +147,7 @@ public class AchievementHandler : MonoBehaviour
             // Iterate through buttons in each row (grandchildren of seedpediaPanel)
             foreach (Transform grandchild in child)
             {
-
+                var selectedKey = keys[i];
                 Button button = grandchild.GetComponent<Button>();
                 if (button != null)
                 {
@@ -183,7 +182,7 @@ public class AchievementHandler : MonoBehaviour
                             {
                                 var counter = Convert.ToInt32(_achievementData[selectedKey]["counter"]);
                                 var achievementCounter = GetAchievementCounter(selectedKey, counter);
-                               
+                                
                                 texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
                             
@@ -195,7 +194,7 @@ public class AchievementHandler : MonoBehaviour
                         }
                     
                         // Debug log for the loaded ID
-                        Debug.Log("Loaded Plant ID: " + plantId);
+                        // Debug.Log("Loaded Plant ID: " + plantId);
                     }
                     else
                     {
@@ -291,6 +290,7 @@ public class AchievementHandler : MonoBehaviour
         if (_plantAchievements.Contains(achievement))
         {
             var plantedPlantCount = PlayerManager.Instance.PlantedPlants;
+            Debug.Log("fdsafdsafdsfasfdsa" + plantedPlantCount);
             return Math.Min(dataCount, plantedPlantCount);
         }
         if (_levelUpAchievements.Contains(achievement))
@@ -311,6 +311,7 @@ public class AchievementHandler : MonoBehaviour
         if (_dieAchievements.Contains(achievement))
         {
             var dieCount = PlayerManager.Instance.Die;
+            Debug.Log("Die Counts" + dieCount);
             return Math.Min(dataCount, dieCount);
         }
         if (_killAchievements.Contains(achievement))

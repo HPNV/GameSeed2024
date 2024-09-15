@@ -139,10 +139,10 @@ public class PlayerManager : MonoBehaviour
 
             // DontDestroyOnLoad(gameObject);
         }
-        else
-        {   
-            Destroy(gameObject);
-        }
+        // else
+        // {   
+        //     Destroy(gameObject);
+        // }
     }
     
     public void OnPlantPlanted()
