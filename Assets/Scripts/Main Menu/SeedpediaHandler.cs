@@ -22,6 +22,7 @@ public class SeedpediaHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI atkValue;
     [SerializeField] private TextMeshProUGUI atkSpeedValue;
     [SerializeField] private TextMeshProUGUI growTimeValue;
+    [SerializeField] private Image plantRarity;
 
     private List<Dictionary<string, object>> seedpediaList = new List<Dictionary<string, object>>();
     
@@ -188,7 +189,7 @@ public class SeedpediaHandler : MonoBehaviour
 
                         // Load the sprite from the Resources folder
                         Sprite plantSprite = Resources.Load<Sprite>(imagePath);
-
+                        
                         if (plantSprite != null)
                         {
                             // Set the plant image sprite
@@ -232,15 +233,21 @@ public class SeedpediaHandler : MonoBehaviour
         string imagePath = "Images/Plant/" + plantId + "/Idle/idle_2";
     
         Sprite plantSprite = Resources.Load<Sprite>(imagePath);
+        Sprite raritySprite = Resources.Load<Sprite>("Rarity/card_" + data["rarity"]);
         
         Debug.Log("Image Path: " + plantSprite);
 
         var plantSpriteRenderer = plantImage.GetComponent<SpriteRenderer>();
         var plantAnimator = plantImage.GetComponent<Animator>();
+        
+        var rarity = plantRarity.GetComponent<Image>();
     
         if (plantSprite != null)
         {
             plantSpriteRenderer.sprite = plantSprite;
+            rarity.sprite = raritySprite;
+            
+            rarity.color = new Color(1, 1, 1, 1);
             
             plantSpriteRenderer.transform.localScale = new Vector3(320f, 320f, 4f);
             plantSpriteRenderer.transform.localPosition = new Vector3(0f, 121.999f, -201f);
