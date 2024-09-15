@@ -21,12 +21,10 @@ public class AchievementHandler : MonoBehaviour
     {
         db = FirebaseFirestore.DefaultInstance;
 
-        fetchUserData();
-        
-        ReconcileAchievement();
+        fetchUserData(ReconcileAchievement);
     }
 
-    private void fetchUserData()
+    private void fetchUserData(Action onUserDataFetched = null)
     {
         string hostname = System.Environment.MachineName;
         DocumentReference docRef = db.Collection("users").Document(hostname);
@@ -34,43 +32,30 @@ public class AchievementHandler : MonoBehaviour
         docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             DocumentSnapshot snapshot = task.Result;
-
-            // { "die_counter", 0 },
-            // { "kill_counter", 0 },
-            // { "planted_counter", 0 },
-            // { "upgrade_plant_counter", 0 },
-            // { "full_upgrade_plant_counter", 0 },
-            // { "collect_resource_counter", 0 },
-            // { "unlocked_achievements", 0 },
-            // { "sacrifice_counter", 0 },
-            // { "planted_plants_counter", 0 },
-            // { "level_up_counter", 0 },
-            // { "highest_score", 0 },
-            // { "complete_tutorial", false },
-            // { "survival_data", new List<bool> { false, false, false, false, false } },
-            // { "active_plant_data", new List<bool> { false, false } },
-            // { "explosive_data", new List<bool> { false } },
-            // { "planted_in_time_data", new List<bool> { false, false } },
-            // { "utils_data", new List<bool> { false, false, false, false, false, false, false } }
             if (snapshot.Exists)
             {
                 Dictionary<string, object> data = snapshot.ToDictionary();
+                
                 PlayerManager.Instance.Die = Convert.ToInt32(data["die_counter"]);
                 PlayerManager.Instance.Kill = Convert.ToInt32(data["kill_counter"]);
-                PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["plant_counter"]);
-                PlayerManager.Instance.UpgradePlantCounter = Convert.ToInt32(data["upgrade_counter"]);
-                PlayerManager.Instance.FullUpgradePlantCounter = Convert.ToInt32(data["max_upgrade"]);
-                PlayerManager.Instance.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
+                
+                PlayerManager.Instance.UpgradePlantCounter = Convert.ToInt32(data["upgrade_plant_counter"]);
+                PlayerManager.Instance.FullUpgradePlantCounter = Convert.ToInt32(data["full_upgrade_plant_counter"]);
+                PlayerManager.Instance.CollectResourceCounter = Convert.ToInt32(data["collect_resource_counter"]);
                 PlayerManager.Instance.UnlockedAchievements = Convert.ToInt32(data["unlocked_achievements"]);
                 PlayerManager.Instance.SacrificeCounter = Convert.ToInt32(data["sacrifice_counter"]);
                 PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["planted_plants_counter"]);
                 PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
                 PlayerManager.Instance.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
-                PlayerManager.Instance.SurvivalData =data["survival_data"] as List<bool>;
+                PlayerManager.Instance.SurvivalData = data["survival_data"] as List<bool>;
                 PlayerManager.Instance.ActivePlantData = data["active_plant_data"] as List<bool>;
                 PlayerManager.Instance.ExplosiveData = data["explosive_data"] as List<bool>;
                 PlayerManager.Instance.PlantedInTimeData = data["planted_in_time_data"] as List<bool>;
                 PlayerManager.Instance.UtilsData = data["utils_data"] as List<bool>;
+                Debug.Log("User data fetched successfully.");
+
+                // Trigger the callback or event when data is fetched
+                onUserDataFetched?.Invoke();
             }
             else
             {
@@ -78,6 +63,7 @@ public class AchievementHandler : MonoBehaviour
             }
         });
     }
+
     
 
     private static Dictionary<EAchievement, Dictionary<string, object>> _achievementData = new()
@@ -137,16 +123,31 @@ public class AchievementHandler : MonoBehaviour
     private void ReconcileAchievement()
     {
         var data = AchievementManager.Instance.Achievements;
+        
+        // Check if the achievement data exists and is populated
+        if (data == null || data.Count == 0)
+        {
+            Debug.LogError("Achievement data is null or empty.");
+            return;
+        }
+
         var keys = data.Keys.ToList();
         int i = 0;
+        
+        Debug.Log("ReconcileAchievement called. Processing UI...");
         
         // Loop through each child (row) of the seedpediaPanel
         foreach (Transform child in seedpediaPanel.transform)
         {
-
             // Iterate through buttons in each row (grandchildren of seedpediaPanel)
             foreach (Transform grandchild in child)
             {
+                if (i >= keys.Count)
+                {
+                    Debug.LogWarning("Index out of range: No more achievements to process.");
+                    break;
+                }
+
                 var selectedKey = keys[i];
                 Button button = grandchild.GetComponent<Button>();
                 if (button != null)
@@ -158,31 +159,28 @@ public class AchievementHandler : MonoBehaviour
                     Image[] images = button.GetComponentsInChildren<Image>();
                     TextMeshProUGUI[] texts = button.GetComponentsInChildren<TextMeshProUGUI>();
                     Slider[] sliders = button.GetComponentsInChildren<Slider>();
-                    //
-                    // // Ensure the second image exists (assuming the plant image is in the second position)
+
                     if (images.Length > 1)
                     {
-                        
                         string plantId = data[selectedKey].name;
-                    
+                        Debug.Log($"Loading achievement: {plantId}");
+
                         // Construct the image path for the plant sprite
                         string imagePath = "Images/Achievements/" + plantId.Replace(' ', '_').ToLower();
-                        
-                        string formattedName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(data[selectedKey].name.Replace('_', ' '));
-                    
-                        // Load the sprite from the Resources folder
                         Sprite plantSprite = Resources.Load<Sprite>(imagePath);
-                    
+
                         if (plantSprite != null)
                         {
                             // Set the plant image sprite
                             images[1].sprite = plantSprite;
-                            texts[0].text = formattedName;
-                            if(_achievementData[selectedKey].ContainsKey("counter"))
+                            texts[0].text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(plantId.Replace('_', ' '));
+
+                            if (_achievementData[selectedKey].ContainsKey("counter"))
                             {
                                 var counter = Convert.ToInt32(_achievementData[selectedKey]["counter"]);
                                 var achievementCounter = GetAchievementCounter(selectedKey, counter);
-                                
+                                sliders[0].maxValue = counter;
+                                sliders[0].value = achievementCounter;
                                 texts[1].text = achievementCounter + "/" + _achievementData[selectedKey]["counter"];
                             }
                             
@@ -190,30 +188,20 @@ public class AchievementHandler : MonoBehaviour
                         }
                         else
                         {
-                            // Debug.LogError("Sprite not found at path: " + imagePath);
+                            Debug.LogError($"Sprite not found at path: {imagePath}");
                         }
-                    
-                        // Debug log for the loaded ID
-                        // Debug.Log("Loaded Plant ID: " + plantId);
                     }
                     else
                     {
                         // Debug.LogWarning("No Image component found in the child of the button.");
                     }
-                    //
-                    // // Clear previous listeners to avoid multiple events triggering
-                    // button.onClick.RemoveAllListeners();
-                    //
-                    // // Use a local copy of i for the lambda closure
-                    int index = i;
-                    // Debug.Log(achievementList[index]);
-                    // // button.onClick.AddListener(() => OnButtonClick(seedpediaList[index]));
-                    //
-                    selectedKey = keys[++i];
+
+                    i++;
                 }
             }
         }
     }
+
 
     private readonly List<EAchievement> _plantAchievements = new()
     {
@@ -289,7 +277,6 @@ public class AchievementHandler : MonoBehaviour
         if (_plantAchievements.Contains(achievement))
         {
             var plantedPlantCount = PlayerManager.Instance.PlantedPlants;
-            // Debug.Log("fdsafdsafdsfasfdsa" + plantedPlantCount);
             return Math.Min(dataCount, plantedPlantCount);
         }
         if (_levelUpAchievements.Contains(achievement))
