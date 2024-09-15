@@ -14,7 +14,7 @@ namespace Manager
         private List<EAchievement> enums;
         [SerializeField]
         private List<AchievementData> data;
-        private Dictionary<EAchievement, AchievementData> _achievements = new();
+        public Dictionary<EAchievement, AchievementData> Achievements = new();
         public List<AchievementData> UnlockedAchievements { get; private set; } = new();
         public List<EAchievement> UnlockedEAchievements { get; private set; } = new();
 
@@ -22,10 +22,10 @@ namespace Manager
         {
             UnlockedAchievements = new List<AchievementData>();
             UnlockedEAchievements = new List<EAchievement>();
-            _achievements = new Dictionary<EAchievement, AchievementData>();
+            Achievements = new Dictionary<EAchievement, AchievementData>();
             for (var i = 0; i < enums.Count; i++)
             {
-                _achievements[enums[i]] = data[i];
+                Achievements[enums[i]] = data[i];
             }
         }
 
@@ -36,9 +36,10 @@ namespace Manager
                 return;
             }
             
+            PlayerManager.Instance.UnlockedAchievements += 1;
             UnlockedEAchievements.Add(achievement);
-            UnlockedAchievements.Add(_achievements[achievement]);
-            Debug.Log("Achievement Unlocked: " + _achievements[achievement].name);
+            UnlockedAchievements.Add(Achievements[achievement]);
+            Debug.Log("Achievement Unlocked: " + Achievements[achievement].name);
             ShowAchievement(achievement);
             
             CheckUnlockAllAchievement();
@@ -63,7 +64,7 @@ namespace Manager
 
         public IEnumerator ShowAchievement(EAchievement achievement)
         {
-            SingletonGame.Instance.AchivementPrefab.SetAchievement(_achievements[achievement].achievementImage, _achievements[achievement].name);
+            SingletonGame.Instance.AchivementPrefab.SetAchievement(Achievements[achievement].achievementImage, Achievements[achievement].name);
             SingletonGame.Instance.AchivementPrefab.gameObject.SetActive(true);
             yield return new WaitForSeconds(3);
             SingletonGame.Instance.AchivementPrefab.gameObject.SetActive(false);

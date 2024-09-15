@@ -5,13 +5,15 @@ using UnityEngine;
 public class GameGrid : MonoBehaviour
 {
     [SerializeField] 
+    private int tileScale;
+    [SerializeField] 
     private int width, height;
     [SerializeField]
     private int offsetX, offsetY;
     [SerializeField]
     private int zPos;
-    [SerializeField]
-    private Transform homeBase;
+    // [SerializeField]
+    // private Transform homeBase;
     [SerializeField] 
     private List<Vector2> blockedTiles;
     
@@ -44,8 +46,8 @@ public class GameGrid : MonoBehaviour
         {
             for (int y = -cornerSpritesCount; y < height + cornerSpritesCount; y++)
             {
-                int a = x + offsetX;
-                int b = y + offsetY;
+                int a = (x + offsetX) * tileScale;
+                int b = (y + offsetY) * tileScale;
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(a, b, 200), Quaternion.identity);
                 
                 spawnedTile.Init();

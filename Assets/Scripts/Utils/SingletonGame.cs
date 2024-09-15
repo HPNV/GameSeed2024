@@ -5,6 +5,9 @@ using System.Linq;
 using System.Resources;
 using Card;
 using Enemy;
+using Firebase.Extensions;
+using Firebase.Firestore;
+using JetBrains.Annotations;
 using Manager;
 using Particles;
 using Plant;
@@ -13,13 +16,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using ResourceManager = Manager.ResourceManager;
 using Script;
+using UnityEngine.SceneManagement;
 
 public class SingletonGame : MonoBehaviour
 {
     public static SingletonGame Instance { get; private set; }
     [SerializeField] public HomeBase homeBase;
     [SerializeField] public PlantFactory plantFactory;
-    [SerializeField] public GameObject PickCardObject;
+    [SerializeField] [CanBeNull] public GameObject PickCardObject;
     [SerializeField] public CardDisplay card1;
     [SerializeField] public CardDisplay card2;
     [SerializeField] public CardDisplay card3;
@@ -28,6 +32,8 @@ public class SingletonGame : MonoBehaviour
     [SerializeField] private GameObject Tutorial2;
     [SerializeField] private GameObject Tutorial3;
     [SerializeField] public AchivementHolder AchivementPrefab;
+    
+    FirebaseFirestore db;
 
     private const int CARD_AMOUNT = 3;
     private int Tutorial1Check = 0;
@@ -50,7 +56,6 @@ public class SingletonGame : MonoBehaviour
     public ExperienceManager ExperienceManager { get; set; } = new();
     public ProjectileManager ProjectileManager { get; set; } = new();
     public EnemyManager EnemyManager { get; set; } = new();
-    public PlayerManager PlayerManager { get; set; } = new();
     public AchievementManager AchievementManager { get; set; } = new();
     public ParticleManager ParticleManager { get; set; } = new();
     public CursorManager CursorManager { get; set; } = new();
@@ -73,6 +78,7 @@ public class SingletonGame : MonoBehaviour
 
     private void Initialize()
     {
+        db = FirebaseFirestore.DefaultInstance;
         ResourceManager.Initialize();
         ExperienceManager.Initialize();
         ProjectileManager.Initialize();
@@ -81,14 +87,15 @@ public class SingletonGame : MonoBehaviour
         CursorManager.Initialize();
         SoundFXManager.Initialize();
         SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
-        PickCardObject.SetActive(false);
+        if (PickCardObject != null)
+            PickCardObject.SetActive(false);
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);
         cardDisplays.Add(card3);
         
         _gameState = GameState.Play;
 
-        if(true && PlayerManager.tutorialCompleted == 0) {
+        if(true && PlayerManager.Instance.tutorialCompleted == 0) {
             Tutorial();
         } else {
             // SpawnPlant();
@@ -99,15 +106,55 @@ public class SingletonGame : MonoBehaviour
             Tutorial3Check = 5;
         }
         
+        fetchUserData();
+        
         CursorManager.ChangeCursor(CursorType.Arrow);
     }
+    
+    private void fetchUserData()
+    {
+        string hostname = System.Environment.MachineName;
+        DocumentReference docRef = db.Collection("users").Document(hostname);
 
-    private void Tutorial() {
-        PauseGame();
-        Tutorial1.SetActive(true);
+        docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            DocumentSnapshot snapshot = task.Result;
+
+            if (snapshot.Exists)
+            {
+                Dictionary<string, object> data = snapshot.ToDictionary();
+                Debug.Log($"RWARRRR {data["die_counter"]}");
+                var player = PlayerManager.Instance;
+                player.Die = Convert.ToInt32(data["die_counter"]);
+                player.Kill = Convert.ToInt32(data["kill_counter"]);
+                player.PlantedPlants = Convert.ToInt32(data["plant_counter"]);
+                player.EnemyExplodeCounter = Convert.ToInt32(data["explode_counter"]);
+                player.CollectResourceCounter = Convert.ToInt32(data["resource_counter"]);
+                player.UpgradePlantCounter = Convert.ToInt32(data["upgrade_counter"]);
+                player.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
+                // SingletonGame.Instance.PlayerManager.HighestScore = Convert.ToInt32(data["highest_score"]);
+                player.FullUpgradePlantCounter = Convert.ToInt32(data["max_upgrade"]);
+                player.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
+            }
+            else
+            {
+                Debug.Log("Document " + snapshot.Id + " does not exist!");
+            }
+        });
     }
 
-    private void checkTutorial() {
+    private void Tutorial()     
+    {
+        PauseGame();
+        if (Tutorial1 != null)
+            Tutorial1.SetActive(true);
+    }
+
+    private void checkTutorial()
+    {
+        if (homeBase == null)
+            return;
+        
         if(Tutorial1Check == 0) {
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial1Check = 1;
@@ -140,7 +187,7 @@ public class SingletonGame : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
                 Tutorial3Check = 2;
                 Tutorial3.SetActive(false);
-                PlayerManager.tutorialCompleted = 1;
+                PlayerManager.Instance.tutorialCompleted = 1;
                 ResumeGame();
             }
         }
@@ -149,7 +196,7 @@ public class SingletonGame : MonoBehaviour
 
     private void Update()
     {
-        if(true && PlayerManager.tutorialCompleted == 0) {
+        if(true && PlayerManager.Instance.tutorialCompleted == 0) {
             checkTutorial();
         }
     }
@@ -209,9 +256,55 @@ public class SingletonGame : MonoBehaviour
 
     public void LoseGame()
     {
+        Dictionary<string, object> data = new Dictionary<string, object>
+        {
+            { "die_counter", PlayerManager.Instance.Die + 1 },
+            { "kill_counter", PlayerManager.Instance.Kill },
+            { "plant_counter", PlayerManager.Instance.Planted },
+            { "explode_counter", PlayerManager.Instance.EnemyExplodeCounter },
+            { "resource_counter", PlayerManager.Instance.CollectResourceCounter },
+            { "upgrade_counter", PlayerManager.Instance.UpgradePlantCounter },
+            { "level_up_counter", PlayerManager.Instance.LevelUpCounter },
+            { "max_upgrade", PlayerManager.Instance.UpgradePlantCounter }
+        };
+        
+        DocumentReference docRef = db.Collection("users").Document(System.Environment.MachineName);
+        
+        docRef.SetAsync(data).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("Document written with ID: " + docRef.Id);
+            }
+        });
+        
         PauseGame();
         loseScreen.gameObject.SetActive(true);
         loseScreen.UpdateUI(homeBase.score, enemyKilled, plantPlanted);
-        PlayerManager.OnPlayerDied();
+        PlayerManager.Instance.OnPlayerDied();
+
+        if (Input.GetMouseButton(0))
+        {
+            StartCoroutine(LoadScene(0));
+        }
+    }
+    
+    IEnumerator LoadScene(int sceneId)
+    {
+        // Now load the scene asynchronously
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneId);
+
+        // Deactivate automatic scene activation
+        asyncLoad.allowSceneActivation = false;
+        
+        while (asyncLoad.progress < 0.9f)
+        {
+            float loadProgress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            yield return null;
+        }
+        
+        StopAllCoroutines();
+        Time.timeScale = 1;
+        asyncLoad.allowSceneActivation = true;
     }
 }

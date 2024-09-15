@@ -60,7 +60,7 @@ namespace Plant
                 if (removeButton.OverlapPoint(mousePos))
                 {
                     Destroy(plantObject);
-                    SingletonGame.Instance.PlayerManager.OnPlantSacrifice();
+                    PlayerManager.Instance.OnPlantSacrifice();
                 }
 
                 if (waterButton.OverlapPoint(mousePos))
@@ -82,8 +82,8 @@ namespace Plant
             SingletonGame.Instance.homeBase.sun -= 5;
             plant.Data = plantData;
             
-            SingletonGame.Instance.PlayerManager.OnPlantUpgraded();
-            if(plantData.level == 3) SingletonGame.Instance.PlayerManager.OnPlantFullyUpgraded();
+            PlayerManager.Instance.OnPlantUpgraded();
+            if(plantData.level == 3) PlayerManager.Instance.OnPlantFullyUpgraded();
             
             SingletonGame.Instance.ParticleManager.Spawn(ParticleName.LevelUp, plant.transform.position, 2);
         }

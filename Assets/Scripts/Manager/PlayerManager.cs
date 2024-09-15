@@ -10,11 +10,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Manager;
-using Script; // Assuming your AchievementManager is under Manager namespace
+using Script;
+using UnityEngine.Serialization; // Assuming your AchievementManager is under Manager namespace
 
 
-public class PlayerManager
+public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager Instance { get; private set; }
     private int enemyKillCounter = 0;
 
     public int Kill
@@ -28,43 +30,58 @@ public class PlayerManager
         get => plantedPlants;
         set => plantedPlants = value;
     }
-    
-    private int fullyUpgrade = 0;
-    public int FullyUpgrade
+
+    private bool completeTutorial = false;
+    public bool CompleteTutorial
     {
-        get => fullyUpgrade;
-        set => fullyUpgrade = value;
-    }
-    
-    private int upgradedPlants = 0;
-    public int Upgraded
-    {
-        get => upgradedPlants;
-        set => upgradedPlants = value;
-    }
-    
-    private int die = 0;
-    public int Die
-    {
-        get => die;
-        set => die = value;
+        get => completeTutorial;
+        set => completeTutorial = value;
     }
 
     private GameState _gameState;
 
     // Planting category
     private int plantedPlants = 0;
+
+    public int PlantedPlants
+    {
+        get => plantedPlants;
+        set => plantedPlants = value;
+    }
+    
     private List<DateTime> plantTimeStamps = new();
     private int activePlants = 0;
     
     // Level up category
     private List<DateTime> levelupTimeStamps = new();
     private int levelupCounter = 0;
+    public int LevelUpCounter
+    {
+        get => levelupCounter;
+        set => levelupCounter = value;
+    }
     
     // Upgrade Plant category
     private int upgradePlantCounter = 0;
+    public int UpgradePlantCounter
+    {
+        get => upgradePlantCounter;
+        set => upgradePlantCounter = value;
+    }
     private int fullUpgradePlantCounter = 0;
+    public int FullUpgradePlantCounter
+    {
+        get => fullUpgradePlantCounter;
+        set => fullUpgradePlantCounter = value;
+    }
     
+    public List<bool> SurvivalData { get; set; } = new() { false, false, false, false, false, false };
+    public List<bool> ActivePlantData { get; set; } = new() { false, false };
+    public List<bool> ExplosiveData { get; set; } = new() { false };
+    public List<bool> PlantedInTimeData { get; set; } = new() { false, false };
+    public List<bool> UtilsData { get; set; } = new() { false, false, false, false, false, false, false };
+    
+    public int UnlockedAchievements { get; set; } = 0;
     // Kill enemy category
     private int killEnemyCounter = 0;
     private List<DateTime> killEnemyTimeStamps = new();
@@ -72,16 +89,38 @@ public class PlayerManager
     
     // Explosive
     private int enemyExplodeCounter = 0;
+    public int EnemyExplodeCounter
+    {
+        get => enemyExplodeCounter;
+        set => enemyExplodeCounter = value;
+    }
     
     // Resources
     private int collectResourceCounter = 0;
+    public int CollectResourceCounter
+    {
+        get => collectResourceCounter;
+        set => collectResourceCounter = value;
+    }
     
     // Special Challenges
     private int sacrificeCounter = 0;
+    public int SacrificeCounter
+    {
+        get => sacrificeCounter;
+        set => sacrificeCounter = value;
+    }
     
     private int firstDie = 0;
+
+    public int Die
+    {
+        get => firstDie;
+        set => firstDie = value;
+    }
+    
     public int tutorialCompleted = 0;
-    private AchievementManager achievementManager  = new();
+    public AchievementManager AchievementManager  = new();
     
     // Remake
     private int rafflesiaDmg = 0;
@@ -91,6 +130,20 @@ public class PlayerManager
     private int plantcocoWall = 0;
     public DateTime LastHitTimeStamp = new();
     private int plantPlant = 0;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+            // DontDestroyOnLoad(gameObject);
+        }
+        else
+        {   
+            Destroy(gameObject);
+        }
+    }
     
     public void OnPlantPlanted()
     {
@@ -152,50 +205,76 @@ public class PlayerManager
     public void OnPlantSacrifice()
     {
         sacrificeCounter++;
-        if (sacrificeCounter == 5) achievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
-        else if (sacrificeCounter == 5000) achievementManager.UnlockAchievement(EAchievement.AgainstAllOdds);
+        if (sacrificeCounter == 5) AchievementManager.UnlockAchievement(EAchievement.PlantSacrifice);
+        else if (sacrificeCounter == 5000) AchievementManager.UnlockAchievement(EAchievement.AgainstAllOdds);
     }
 
     public void OnRafflesiaDamage(float amount)
     {
         rafflesiaDmg += (int)amount;
-        if(rafflesiaDmg >= 1000) achievementManager.UnlockAchievement(EAchievement.TauntMaster);
+        if (rafflesiaDmg >= 1000)
+        {
+            UtilsData[0] = true;
+            AchievementManager.UnlockAchievement(EAchievement.TauntMaster);
+        }
     }
 
     public void OnPlantDie()
     {
         plantDie++;
-        if(plantDie >= 500) achievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+        if (plantDie >= 500)
+        {
+            UtilsData[1] = true;
+            AchievementManager.UnlockAchievement(EAchievement.NaturesAvatar);
+        }
     }
 
     public void OnPlantHeal(int amt)
     {
         plantHeal += amt;
-        if(plantHeal >= 500) achievementManager.UnlockAchievement(EAchievement.GreenThumb);
+        if (plantHeal >= 500)
+        {
+            UtilsData[2] = true;
+            AchievementManager.UnlockAchievement(EAchievement.GreenThumb);
+        }
     }
 
     public void OnSurviveAchievement(EAchievement achievement)
     {
-        if (
-            achievement != EAchievement.SurvivalNotice &&
-            achievement != EAchievement.Survivalist &&
-            achievement != EAchievement.EnduranceExpert &&
-            achievement != EAchievement.BareMinimum &&
-            achievement != EAchievement.Untouchable
-        ) return;
-        achievementManager.UnlockAchievement(achievement);
+        var survivalList = new List<EAchievement>
+        {
+            EAchievement.SurvivalNotice,
+            EAchievement.Survivalist,
+            EAchievement.EnduranceExpert,
+            EAchievement.BareMinimum,
+            EAchievement.Untouchable,
+            EAchievement.FlawlessDefense
+        };
+        if (!survivalList.Contains(achievement)) 
+            return;
+        
+        SurvivalData[survivalList.IndexOf(achievement)] = true;
+        AchievementManager.UnlockAchievement(achievement);
     }
 
     public void OnPlantAlocure()
     {
         plantAlocure++;
-        if(plantAlocure == 100) achievementManager.UnlockAchievement(EAchievement.ZenMaster);
+        if (plantAlocure == 100)
+        {
+            UtilsData[5] = true;
+            AchievementManager.UnlockAchievement(EAchievement.ZenMaster);
+        }
     }
 
     public void OnPlantCocoWall()
     {
         plantcocoWall++;
-        if(plantcocoWall == 100) achievementManager.UnlockAchievement(EAchievement.EcoWarrior);
+        if (plantcocoWall == 100)
+        {
+            UtilsData[6] = true;
+            AchievementManager.UnlockAchievement(EAchievement.EcoWarrior);
+        }
     }
     
     private int GetPlantsPlantedInLast5Minutes()
@@ -237,7 +316,8 @@ public class PlayerManager
         // Explosive Expertise: Explode 5 enemies
         if (enemyExplodeCounter == 5)
         {
-            achievementManager.UnlockAchievement(EAchievement.ExplosiveExpertise);
+            ExplosiveData[0] = true;
+            AchievementManager.UnlockAchievement(EAchievement.ExplosiveExpertise);
         }
     }
 
@@ -246,31 +326,31 @@ public class PlayerManager
         // Resource Collector: Collect 15 resources
         if (collectResourceCounter == 15)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourceCollector);
+            AchievementManager.UnlockAchievement(EAchievement.ResourceCollector);
         }
 
         // Resource Hoarder: Collect 30 resources
         if (collectResourceCounter == 30)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourceHoarder);
+            AchievementManager.UnlockAchievement(EAchievement.ResourceHoarder);
         }
 
         // Herbal Harvester: Collect 50 resources
         if (collectResourceCounter == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.HerbalHarvester);
+            AchievementManager.UnlockAchievement(EAchievement.HerbalHarvester);
         }
 
         // Resource Tycoon: Collect 1000 resources
         if (collectResourceCounter == 1000)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourceTycoon);
+            AchievementManager.UnlockAchievement(EAchievement.ResourceTycoon);
         }
 
         // Resourceful Mind: Collect 5000 resources in total
         if (collectResourceCounter == 5000)
         {
-            achievementManager.UnlockAchievement(EAchievement.ResourcefulMind);
+            AchievementManager.UnlockAchievement(EAchievement.ResourcefulMind);
         }
     }
 
@@ -279,55 +359,57 @@ public class PlayerManager
         // First Blood: Kill your first enemy
         if (killEnemyCounter == 1)
         {
-            achievementManager.UnlockAchievement(EAchievement.FirstBlood);
+            AchievementManager.UnlockAchievement(EAchievement.FirstBlood);
         }
 
         // Killer Seed: Kill 10 enemies
         if (killEnemyCounter == 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.KillerSeed);
+            AchievementManager.UnlockAchievement(EAchievement.KillerSeed);
         }
 
         // Efficient Killer: Kill 50 enemies in 5 minutes
         if (GetEnemyKilledInLast5Minutes() >= 50)
         {   
-            achievementManager.UnlockAchievement(EAchievement.EfficientKiller);
+            AchievementManager.UnlockAchievement(EAchievement.EfficientKiller);
         }
 
         // Monster Slayer: Kill 500 enemies
         if (killEnemyCounter == 500)
         {
-            achievementManager.UnlockAchievement(EAchievement.MonsterSlayer);
+            AchievementManager.UnlockAchievement(EAchievement.MonsterSlayer);
         }
 
         // Unstoppable Force: Defeat 1000 enemies in total
         if (killEnemyCounter == 1000)
         {
-            achievementManager.UnlockAchievement(EAchievement.UnstoppableForce);
+            AchievementManager.UnlockAchievement(EAchievement.UnstoppableForce);
         }
 
         // Endless Onslaught: Kill 5000 enemies in total
         if (killEnemyCounter == 5000)
         {
-            achievementManager.UnlockAchievement(EAchievement.EndlessOnslaught);
+            AchievementManager.UnlockAchievement(EAchievement.EndlessOnslaught);
         }
 
         // Monster Frenzy: Kill 200 enemies in under 10 minutes
         if (GetEnemyKilledInLast10Minutes() >= 200)
         {
-            achievementManager.UnlockAchievement(EAchievement.MonsterFrenzy);
+            AchievementManager.UnlockAchievement(EAchievement.MonsterFrenzy);
         }
 
         // Doomsday Gardener: Kill 200 enemies using explosive plants
         if (killEnemyExplosiveCounter == 200)
         {
-            achievementManager.UnlockAchievement(EAchievement.DoomsdayGardener);
+            UtilsData[3] = true;
+            AchievementManager.UnlockAchievement(EAchievement.DoomsdayGardener);
         }
 
         // Trap Specialist: Kill 50 enemies with Boomkin
         if (killEnemyExplosiveCounter == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.TrapSpecialist);
+            UtilsData[4] = true;
+            AchievementManager.UnlockAchievement(EAchievement.TrapSpecialist);
         }
     }
 
@@ -336,31 +418,31 @@ public class PlayerManager
         // Upgrade Apprentice: Upgrade at least 3 plants
         if (upgradePlantCounter == 3)
         {
-            achievementManager.UnlockAchievement(EAchievement.UpgradeApprentice);
+            AchievementManager.UnlockAchievement(EAchievement.UpgradeApprentice);
         }
 
         // Upgrade Master: Upgrade at least 10 plants
         if (upgradePlantCounter == 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.UpgradeMaster);
+            AchievementManager.UnlockAchievement(EAchievement.UpgradeMaster);
         }
 
         // Upgrade Overachiever: Upgrade at least 30 plants
         if (upgradePlantCounter == 30)
         {
-            achievementManager.UnlockAchievement(EAchievement.UpgradeOverachiever);
+            AchievementManager.UnlockAchievement(EAchievement.UpgradeOverachiever);
         }
 
         // Fully Bloomed: Fully upgrade any plant
         if (fullUpgradePlantCounter >= 1)
         {
-            achievementManager.UnlockAchievement(EAchievement.FullyBloomed);
+            AchievementManager.UnlockAchievement(EAchievement.FullyBloomed);
         }
 
         // Gardener's Glory: Achieve 10 upgraded plants
         if (fullUpgradePlantCounter >= 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.GardenersGlory);
+            AchievementManager.UnlockAchievement(EAchievement.GardenersGlory);
         }
     }
 
@@ -369,25 +451,25 @@ public class PlayerManager
         // Quick Learner: Level up 3 times in under 1 minute
         if (GetLevelUpInLast1Minutes() == 3)
         {
-            achievementManager.UnlockAchievement(EAchievement.QuickLearner);
+            AchievementManager.UnlockAchievement(EAchievement.QuickLearner);
         }
 
         // Plant Potential: Level up 5 times
         if (levelupCounter == 5)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantPotential);
+            AchievementManager.UnlockAchievement(EAchievement.PlantPotential);
         }
 
         // Level Up Enthusiast: Level up 20 times
         if (levelupCounter == 20)
         {
-            achievementManager.UnlockAchievement(EAchievement.LevelUpEnthusiast);
+            AchievementManager.UnlockAchievement(EAchievement.LevelUpEnthusiast);
         }
 
         // Level Up Veteran: Level up 50 times
         if (levelupCounter == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.LevelUpVeteran);
+            AchievementManager.UnlockAchievement(EAchievement.LevelUpVeteran);
         }
     }
 
@@ -396,67 +478,69 @@ public class PlayerManager
         // New Gardener: Plant 2 plants
         if (plantedPlants == 2)
         {
-            achievementManager.UnlockAchievement(EAchievement.NewGardener);
+            AchievementManager.UnlockAchievement(EAchievement.NewGardener);
         }
 
         // Bloom Booster: Plant 20 plants
         if (plantedPlants == 20)
         {
-            achievementManager.UnlockAchievement(EAchievement.BloomBooster);
+            AchievementManager.UnlockAchievement(EAchievement.BloomBooster);
         }
 
         // Gardening Guru: Plant 50 plants
         if (plantedPlants == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.GardeningGuru);
+            AchievementManager.UnlockAchievement(EAchievement.GardeningGuru);
         }
 
         // Perfect Planter: Plant 100 plants
         if (plantedPlants == 100)
         {
-            achievementManager.UnlockAchievement(EAchievement.PerfectPlanter);
+            AchievementManager.UnlockAchievement(EAchievement.PerfectPlanter);
         }
 
         // Plant Invasion: Plant 1000 plants in total
         if (plantedPlants == 1000)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantInvasion);
+            AchievementManager.UnlockAchievement(EAchievement.PlantInvasion);
         }
         
         // Botanical Diversity: Plant 5000 plants
         if (plantedPlants == 5000)
         {
-            achievementManager.UnlockAchievement(EAchievement.BotanicalDiversity);
+            AchievementManager.UnlockAchievement(EAchievement.BotanicalDiversity);
         }
         
         // Master Gardener: Plant 10000 plants in total
         if (plantedPlants == 10000)
         {
-            achievementManager.UnlockAchievement(EAchievement.MasterGardener);
+            AchievementManager.UnlockAchievement(EAchievement.MasterGardener);
         }
 
         // Speed Planter: Plant 10 plants in 1 minute
         if (GetPlantsPlantedInLast1Minutes() == 10)
         {
-            achievementManager.UnlockAchievement(EAchievement.SpeedPlanter);
+            AchievementManager.UnlockAchievement(EAchievement.SpeedPlanter);
         }
 
         // Frenzied Farmer: Plant 50 plants in under 5 minutes
         if (GetPlantsPlantedInLast5Minutes() == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.FrenziedFarmer);
+            AchievementManager.UnlockAchievement(EAchievement.FrenziedFarmer);
         }
 
         // Plant Commander: Have 50 plants on the field at once
         if (activePlants == 50)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantCommander);
+            ActivePlantData[0] = true;
+            AchievementManager.UnlockAchievement(EAchievement.PlantCommander);
         }
 
         // Plant Hoarder: Have 100 plants on the field at once
         if (activePlants == 100)
         {
-            achievementManager.UnlockAchievement(EAchievement.PlantHoarder);
+            ActivePlantData[1] = true;
+            AchievementManager.UnlockAchievement(EAchievement.PlantHoarder);
         }
     }   
 
@@ -465,7 +549,7 @@ public class PlayerManager
         // First Fall: Die for the first time
         if (firstDie == 1)
         {
-            achievementManager.UnlockAchievement(EAchievement.FirstFall);
+            AchievementManager.UnlockAchievement(EAchievement.FirstFall);
         }
     }
 
