@@ -23,8 +23,8 @@ namespace Service
             
             var taunter = plants
                 .Select(p => p.GetComponent<Plant.Plant>())
-                .FirstOrDefault(p => p != null 
-                     && p.Data.plantType.Equals(EPlant.Raflessnare) 
+                .FirstOrDefault(p => p != null
+                     && p.Data.plantType.Equals(EPlant.Raflessnare) && p.CurrentState != EPlantState.Grow
                      && Vector2.Distance(p.transform.position, transform.position) < p.Data.range);
             
 

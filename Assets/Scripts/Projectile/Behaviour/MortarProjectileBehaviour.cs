@@ -58,7 +58,6 @@ namespace Projectile.Behaviour
             if (enemy is null)
                 return;
             
-            
             if (enemy.CurrentState == State.Die)
                 return;
             

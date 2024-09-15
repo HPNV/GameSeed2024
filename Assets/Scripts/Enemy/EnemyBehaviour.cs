@@ -22,6 +22,7 @@ namespace Enemy
         public PlantTargetService PlantTargetService { get; private set; }
         public CircleCollider2D InnerCircleCollider { get; private set; }
         public const string TargetTag = "Plant";
+        public ParticleSystem ParticleSystem;
         
         private IState _currentState;
         private Dictionary<State, IState> _states;
@@ -41,6 +42,8 @@ namespace Enemy
             PlantTargetService = GetComponentInChildren<PlantTargetService>(); 
             InnerCircleCollider = GetComponent<CircleCollider2D>();
             _originalColor = SpriteRenderer.color;
+            ParticleSystem = GetComponentInChildren<ParticleSystem>();
+            ParticleSystem.Play();
             
             
             InnerCircleCollider.enabled = true;

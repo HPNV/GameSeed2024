@@ -304,7 +304,7 @@ public class SingletonGame : MonoBehaviour
     
     IEnumerator WaitForInputAndLoadScene(int sceneId)
     {
-        // Wait for the player to click the left mouse button (button 0)
+        Debug.Log("taet");
         while (!Input.GetMouseButtonDown(0))
         {
             yield return null;  // Wait for the next frame

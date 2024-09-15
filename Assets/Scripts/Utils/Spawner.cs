@@ -36,12 +36,7 @@ public class Spawner : MonoBehaviour
             // Gradually decrease the spawn rate, but not below minSpawnRate
             spawnRate = Mathf.Max(spawnRate * spawnRateDecrease, minSpawnRate);
         }
-
-        // Manual spawn for testing
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SpawnEnemy();
-        }
+        
     }
 
     private void SpawnEnemy()
@@ -49,7 +44,7 @@ public class Spawner : MonoBehaviour
         // Update enemy count
 
         // Random spawn position within radius
-        Vector3 spawnPosition = transform.position + Random.onUnitSphere * spawnRadius;
+        Vector2 spawnPosition = transform.position + Random.onUnitSphere * spawnRadius;
 
         // Decide enemy type using random
         int enemyGacha = Random.Range(0, 100);
