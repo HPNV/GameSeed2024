@@ -47,12 +47,8 @@ public class SingletonGame : MonoBehaviour
     
     public TileService TileProvider;
     public GameGrid GameGrid;
-<<<<<<< Updated upstream
     public bool IsPaused { get; set; }
-=======
     public System.Random Random = new System.Random();
-    public bool IsPaused { get; private set; }
->>>>>>> Stashed changes
 
     public int ExpPoint;
 
