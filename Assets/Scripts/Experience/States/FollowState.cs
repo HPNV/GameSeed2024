@@ -24,7 +24,7 @@ namespace Experience.States
             
             if (distance < Orb.collectDistance)
             {
-                SingletonGame.Instance.homeBase.GainExp(Orb.experienceValue);
+                SingletonGame.Instance.homeBase.GainExp(Orb.experienceValue * 5);
                 SingletonGame.Instance.ExperienceManager.Despawn(Orb);
             } 
         }

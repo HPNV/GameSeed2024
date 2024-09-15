@@ -107,6 +107,7 @@ namespace Plant
                 waterButton.gameObject.SetActive(true);
             } else {
                 waterButton.gameObject.SetActive(false);
+                removeButton.gameObject.transform.position = waterButton.gameObject.transform.position;
             }
 
             Vector3 targetScale = onShow ? hiddenScale : originalScale;
