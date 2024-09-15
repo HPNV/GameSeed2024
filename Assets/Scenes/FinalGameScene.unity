@@ -11478,6 +11478,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1121730282}
     - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
+      propertyPath: tileScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086749074849336499, guid: 13de62731bee3ce4cb79ca98ae196341, type: 3}
       propertyPath: sideSpritesCount
       value: 4
       objectReference: {fileID: 0}
