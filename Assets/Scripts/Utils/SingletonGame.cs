@@ -125,7 +125,7 @@ public class SingletonGame : MonoBehaviour
             if (snapshot.Exists)
             {
                 Dictionary<string, object> data = snapshot.ToDictionary();
-                Debug.Log($"RWARRRR {data["die_counter"]}");
+                // Debug.Log($"RWARRRR {data["die_counter"]}");
                 var player = PlayerManager.Instance;
                 player.Die = Convert.ToInt32(data["die_counter"]);
                 player.Kill = Convert.ToInt32(data["kill_counter"]);
@@ -140,7 +140,7 @@ public class SingletonGame : MonoBehaviour
             }
             else
             {
-                Debug.Log("Document " + snapshot.Id + " does not exist!");
+                // Debug.Log("Document " + snapshot.Id + " does not exist!");
             }
         });
     }
@@ -276,7 +276,7 @@ public class SingletonGame : MonoBehaviour
         {
             if (task.IsCompleted)
             {
-                Debug.Log("Document written with ID: " + docRef.Id);
+                // Debug.Log("Document written with ID: " + docRef.Id);
             }
         });
         
