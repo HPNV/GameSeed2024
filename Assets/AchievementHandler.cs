@@ -111,7 +111,6 @@ public class AchievementHandler : MonoBehaviour
         { EAchievement.ResourceTycoon, new Dictionary<string, object>() { { "counter", 1000 } } },  // v
         { EAchievement.PlantCollector, new Dictionary<string, object>() { { "counter", 10 }} }, // v
         { EAchievement.UnstoppableForce, new Dictionary<string, object>() { { "counter", 1000 } } }, // v
-        { EAchievement.GardenersGlory, new Dictionary<string, object>() {  } }, // v
         { EAchievement.TrapSpecialist, new Dictionary<string, object>() { { "counter", 50 } } },
         { EAchievement.FirstBlood, new Dictionary<string, object>() { { "counter", 1 } } }, // v
         { EAchievement.PlantInvasion, new Dictionary<string, object>() { { "counter", 1000 } } }, // v
@@ -245,7 +244,6 @@ public class AchievementHandler : MonoBehaviour
     private readonly List<EAchievement> _fullyUpgradeAchievements = new()
     {
         EAchievement.FullyBloomed,
-        EAchievement.GardenersGlory
     };
     
     private readonly List<EAchievement> _dieAchievements = new()
