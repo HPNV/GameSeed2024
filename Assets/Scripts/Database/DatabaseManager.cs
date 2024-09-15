@@ -116,7 +116,7 @@ public class DatabaseManager : MonoBehaviour
                             PlayerManager.Instance.SacrificeCounter = 0;
                             PlayerManager.Instance.PlantedPlants = 0;
                             PlayerManager.Instance.LevelUpCounter = 0;
-                            PlayerManager.Instance.SurvivalData = new List<bool> { false, false, false, false, false };
+                            PlayerManager.Instance.SurvivalData = new List<bool> { false, false, false, false, false, false };
                             PlayerManager.Instance.ActivePlantData = new List<bool> { false, false };
                             PlayerManager.Instance.ExplosiveData = new List<bool> { false };
                             PlayerManager.Instance.PlantedInTimeData = new List<bool> { false, false };

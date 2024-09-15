@@ -47,30 +47,13 @@ public class AchievementHandler : MonoBehaviour
                 PlayerManager.Instance.PlantedPlants = Convert.ToInt32(data["planted_plants_counter"]);
                 PlayerManager.Instance.LevelUpCounter = Convert.ToInt32(data["level_up_counter"]);
                 PlayerManager.Instance.CompleteTutorial = Convert.ToBoolean(data["complete_tutorial"]);
-                // make the survival data a list of bools
-                // Debug.Log("SURVIVALLLLLLLLLLLLL" + data["survival_data"]);
-                List<object> survivalDataFromFirebase = data["survival_data"] as List<object>;
-                List<bool> survivalData = survivalDataFromFirebase.Select(item => Convert.ToBoolean(item)).ToList();
-                PlayerManager.Instance.SurvivalData = survivalData;
-                
-                List<object> test1 = data["active_plant_data"] as List<object>;
-                List<bool> test2 = test1.Select(item => Convert.ToBoolean(item)).ToList();
-                PlayerManager.Instance.ActivePlantData = test2;
-                
-                List<object> test3 = data["explosive_data"] as List<object>;
-                List<bool> test4 = test3.Select(item => Convert.ToBoolean(item)).ToList();
-                PlayerManager.Instance.ExplosiveData = test4;
-                
-                List<object> test5 = data["planted_in_time_data"] as List<object>;
-                List<bool> test6 = test5.Select(item => Convert.ToBoolean(item)).ToList();
-                PlayerManager.Instance.PlantedInTimeData = test6;
-                
-                List<object> test7 = data["utils_data"] as List<object>;
-                List<bool> test8 = test7.Select(item => Convert.ToBoolean(item)).ToList();
-                PlayerManager.Instance.UtilsData = test8;
+                PlayerManager.Instance.SurvivalData = (data["survival_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.ActivePlantData = (data["active_plant_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.ExplosiveData = (data["explosive_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.PlantedInTimeData = (data["planted_in_time_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
+                PlayerManager.Instance.UtilsData = (data["utils_data"] as List<object>)!.Select(item => Convert.ToBoolean(item)).ToList();
                 Debug.Log("User data fetched successfully.");
 
-                // Trigger the callback or event when data is fetched
                 onUserDataFetched?.Invoke();
             }
             else
@@ -140,6 +123,7 @@ public class AchievementHandler : MonoBehaviour
     {
         var data = AchievementManager.Instance.Achievements;
         
+        Debug.Log($"datata {data}");
         // Check if the achievement data exists and is populated
         if (data == null || data.Count == 0)
         {
@@ -227,10 +211,6 @@ public class AchievementHandler : MonoBehaviour
                         {
                             Debug.LogError($"Sprite not found at path: {imagePath}");
                         }
-                    }
-                    else
-                    {
-                        // Debug.LogWarning("No Image component found in the child of the button.");
                     }
 
                     i++;
