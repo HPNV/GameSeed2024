@@ -203,7 +203,6 @@ public class AchievementHandler : MonoBehaviour
                                 if (unlock)
                                 {
                                     completedAchievements++;
-                                    _unlockAchievements.Add(selectedKey);
                                     sliders[0].maxValue = 1;
                                     sliders[0].value = 1;
                                     texts[1].text = "1/1";

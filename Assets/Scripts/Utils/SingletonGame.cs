@@ -265,6 +265,7 @@ public class SingletonGame : MonoBehaviour
             { "die_counter", PlayerManager.Instance.Die + 1 },
             { "kill_counter", PlayerManager.Instance.Kill },
             { "plant_counter", PlayerManager.Instance.Planted },
+            { "upgrade_plant_counter", PlayerManager.Instance.UpgradePlantCounter },
             { "full_upgrade_plant_counter", PlayerManager.Instance.FullUpgradePlantCounter },
             { "collect_resource_counter", PlayerManager.Instance.CollectResourceCounter },
             { "unlocked_achievements", PlayerManager.Instance.UnlockedAchievements },
