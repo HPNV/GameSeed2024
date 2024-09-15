@@ -9,6 +9,7 @@ public class PlayButtonHandler : MonoBehaviour
 {
     public GameObject LoadingScreen;
     public Image LoadingBarFill;
+    public Cutscene cutscene;
 
     public void PlayGame(int sceneId)
     {
