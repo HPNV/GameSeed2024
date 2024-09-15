@@ -63,7 +63,7 @@ public class SingletonGame : MonoBehaviour
         {
             Instance = this;
             Initialize();
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {   
@@ -80,7 +80,7 @@ public class SingletonGame : MonoBehaviour
         ParticleManager.Initialize();
         CursorManager.Initialize();
         SoundFXManager.Initialize();
-        SoundFXManager.instance.PlayMusic("Audio/Game Music"); 
+        SoundFXManager.instance.PlayGameSound("Audio/Game Music"); 
         PickCardObject.SetActive(false);
         cardDisplays.Add(card1);
         cardDisplays.Add(card2);

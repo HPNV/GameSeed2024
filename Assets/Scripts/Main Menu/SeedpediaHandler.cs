@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Firestore;
@@ -111,7 +112,7 @@ public class SeedpediaHandler : MonoBehaviour
                         string plantId = seedpediaList[i]["id"].ToString();
 
                         // Construct the image path for the plant sprite
-                        string imagePath = $"Images/Enemy/{plantId}";
+                        string imagePath = "Images/Enemy/" + plantId;
 
                         // Load the sprite from the Resources folde
                         Sprite plantSprite = Resources.Load<Sprite>(imagePath);
@@ -139,8 +140,7 @@ public class SeedpediaHandler : MonoBehaviour
 
                     // Use a local copy of i for the lambda closure
                     int index = i;
-                    Debug.Log(seedpediaList[index]);
-                    // button.onClick.AddListener(() => OnButtonClick(seedpediaList[index]));
+                    button.onClick.AddListener(() => OnButtonClickSlime(seedpediaList[index]));
 
                     i++; // Move to the next plant in the list
                 }
@@ -201,7 +201,7 @@ public class SeedpediaHandler : MonoBehaviour
                         }
 
                         // Debug log for the loaded ID
-                        Debug.Log("Loaded Plant ID: " + plantId);
+                        // Debug.Log("Loaded Plant ID: " + plantId);
                     }
                     else
                     {
@@ -262,5 +262,40 @@ public class SeedpediaHandler : MonoBehaviour
         this.atkValue.text = atkValue;
         this.atkSpeedValue.text = atkSpeedValue;
         this.growTimeValue.text = growTimeValue;
+    }
+    
+    private void OnButtonClickSlime(Dictionary<string, object> data)
+    {
+        string plantId = data["id"].ToString();
+        string plantDescriptionText = data["description"].ToString();
+    
+        string imagePath = "Images/Enemy/" + plantId + "/Walk/walk_2";
+    
+        Sprite plantSprite = Resources.Load<Sprite>(imagePath);
+        
+        Debug.Log("Image Path: " + plantSprite);
+
+        var plantSpriteRenderer = plantImage.GetComponent<SpriteRenderer>();
+        var plantAnimator = plantImage.GetComponent<Animator>();
+    
+        if (plantSprite != null)
+        {
+            plantSpriteRenderer.sprite = plantSprite;
+            
+            plantSpriteRenderer.transform.localScale = new Vector3(320f, 320f, 4f);
+            plantSpriteRenderer.transform.localPosition = new Vector3(0f, 121.999f, -201f);
+            
+            EnemyData a = Resources.Load<EnemyData>("Enemy/" + plantId);
+            Debug.Log("Enemy/" + plantId);
+            plantAnimator.runtimeAnimatorController = a.animatorController;
+            plantAnimator.Play("Walk");
+        }
+        else
+        {
+            Debug.LogError("Sprite not found at path: " + imagePath);
+        }
+        
+        this.plantName.text = plantId;
+        this.plantDescription.text = plantDescriptionText;
     }
 }

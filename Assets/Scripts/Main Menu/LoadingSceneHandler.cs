@@ -34,6 +34,9 @@ public class PlayButtonHandler : MonoBehaviour
             yield return null;
         }
         
+        StopAllCoroutines();
+        Time.timeScale = 1;
         asyncLoad.allowSceneActivation = true;
+        
     }
 }

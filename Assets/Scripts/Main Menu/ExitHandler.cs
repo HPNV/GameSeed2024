@@ -9,6 +9,6 @@ public class ExitHandler : MonoBehaviour
 
     public void Start()
     {
-        Application.Quit();
+        quitButton.onClick.AddListener(Application.Quit);
     }
 }
