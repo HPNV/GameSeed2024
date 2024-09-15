@@ -215,7 +215,6 @@ public class AchievementHandler : MonoBehaviour
                             
                             
                             texts[2].text = data[selectedKey].description;
-                            Debug.Log("ACUHFEIUSAHFIUEHAYUFA" + completedAchievements);
                         }
                         else
                         {
@@ -230,9 +229,6 @@ public class AchievementHandler : MonoBehaviour
         totalAchievementSlider.maxValue = 50;
         totalAchievementSlider.minValue = 0;
         totalAchievementSlider.value = completedAchievements;
-        
-        Debug.Log(completedAchievements);
-        Debug.Log(totalAchievementSlider.value);
         
         totalAchievementText.text = ((float)completedAchievements / 50f * 100f) + "%";
     }

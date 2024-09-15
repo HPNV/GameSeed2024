@@ -73,7 +73,7 @@ namespace Plant
         public void Upgrade() {
             if(SingletonGame.Instance.homeBase.sun < 5) 
                 return;
-            if(plant.Data.level >= 2) 
+            if(plant.level >= 2) 
                 return;
             plant.health += plant.health * 0.3f;
             plant.damage += plant.damage * 0.3f;

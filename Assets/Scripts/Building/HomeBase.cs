@@ -21,6 +21,7 @@ public class HomeBase : Entity
     [SerializeField] TextMeshPro scoreText;
     [SerializeField] TextMeshPro timeText;
     [SerializeField] TextMeshPro healthText;
+    [SerializeField] private TakeDamageScript _takeDamageScript;
     private int currentLevel = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
@@ -40,13 +41,10 @@ public class HomeBase : Entity
     {
         time += Time.deltaTime;
         UpdateTimeText();
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     Vector3 mousePosition = Input.mousePosition;
-        //     mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //     mousePosition.z = -2;
-        //     SingletonGame.Instance.ExperienceManager.SpawnBatch(5, mousePosition);
-        // }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.Health = 0;
+        }
 
         LevelUp();
     }
@@ -89,6 +87,7 @@ public class HomeBase : Entity
     {
         this.score += score;
         PlayerManager.Instance.HighScore = Math.Max(PlayerManager.Instance.HighScore, this.score);
+        SoundFXManager.instance.PlayGameSoundOnce("Audio/Enemy/Slime Death");
         UpdateUI();
     }
 
@@ -121,6 +120,7 @@ public class HomeBase : Entity
     protected override void OnDamage(float dmg)
     {
         StartCoroutine(Flash(Color.red));
+        _takeDamageScript.StartEffect();
         CameraController.Instance.ShakeCamera();
         UpdateUI();
         PlayerManager.Instance.LastHitTimeStamp = DateTime.Now;

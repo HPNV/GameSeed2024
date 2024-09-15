@@ -68,7 +68,7 @@ public class SingletonGame : MonoBehaviour
         {
             Instance = this;
             Initialize();
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {   
