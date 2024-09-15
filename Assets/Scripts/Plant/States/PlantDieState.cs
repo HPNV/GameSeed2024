@@ -21,6 +21,8 @@ namespace Plant.States
         public override void OnEnter()
         {
             Object.Destroy(Plant.gameObject);
+            
+            SingletonGame.Instance.PlayerManager.OnPlantDie();
         }
 
         public override void OnExit()

@@ -112,7 +112,7 @@ public class HomeBase : Entity
         return true;
     }
 
-    protected override void OnDamage()
+    protected override void OnDamage(float dmg)
     {
         StartCoroutine(Flash(Color.red));
         UpdateUI();

@@ -24,7 +24,7 @@ public abstract class Entity : MonoBehaviour
     {
         if (!ValidateDamage()) return;
         Health -= damage;
-        OnDamage();
+        OnDamage(damage);
         
         if (Health <= 0) 
             OnDie();
@@ -37,6 +37,8 @@ public abstract class Entity : MonoBehaviour
         Health += heal;
         Health = Mathf.Min(Health, MaxHealth);
         OnHeal();
+        
+        SingletonGame.Instance.PlayerManager.OnPlantHeal(1);
     }
 
     public void SpeedUp(float duration)
@@ -74,7 +76,7 @@ public abstract class Entity : MonoBehaviour
     }
 
     protected abstract bool ValidateDamage();
-    protected abstract void OnDamage();
+    protected abstract void OnDamage(float dmg);
     protected abstract void OnHeal();
     protected abstract void OnDie();
     protected abstract void OnSpeedUp();
