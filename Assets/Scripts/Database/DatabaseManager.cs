@@ -95,7 +95,7 @@ public class DatabaseManager : MonoBehaviour
                         { "level_up_counter", 0 },
                         { "highest_score", 0 },
                         { "complete_tutorial", false },
-                        { "survival_data", new List<bool> { false, false, false, false, false } },
+                        { "survival_data", new List<bool> { false, false, false, false, false, false } },
                         { "active_plant_data", new List<bool> { false, false } },
                         { "explosive_data", new List<bool> { false } },
                         { "planted_in_time_data", new List<bool> { false, false } },
