@@ -68,7 +68,7 @@ public class SingletonGame : MonoBehaviour
         {
             Instance = this;
             Initialize();
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {   
@@ -154,8 +154,8 @@ public class SingletonGame : MonoBehaviour
 
     private void checkTutorial()
     {
-        if (homeBase == null)
-            return;
+        // if (homeBase == null)
+        //     return;
         
         if(Tutorial1Check == 0) {
             if(Input.GetKeyDown(KeyCode.Mouse0)) {
