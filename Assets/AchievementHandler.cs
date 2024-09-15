@@ -140,8 +140,6 @@ public class AchievementHandler : MonoBehaviour
                     // // Ensure the second image exists (assuming the plant image is in the second position)
                     if (images.Length > 1)
                     {
-                        if (data[selectedKey] == null)
-                            continue;
                         
                         string plantId = data[selectedKey].name;
                     
