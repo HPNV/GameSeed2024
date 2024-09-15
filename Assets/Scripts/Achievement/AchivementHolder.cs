@@ -19,6 +19,7 @@ public class AchivementHolder : MonoBehaviour
 
     public void SetAchievement(Sprite sprite, string name)
     {
+        SoundFXManager.instance.PlayGameSound("Audio/achivement");
         this.sprite.sprite = sprite;
         AchievementName.text = name;
     }
