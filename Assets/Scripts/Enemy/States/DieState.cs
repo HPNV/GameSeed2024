@@ -23,7 +23,6 @@ namespace Enemy.States
         public override void OnUpdate()
         {
             var stateInfo = Enemy.Animator.GetCurrentAnimatorStateInfo(0);
-            
             if (stateInfo.IsName("Die") && stateInfo.normalizedTime >= 1f)
             {
                 PlayerManager.Instance.OnEnemyKill();
