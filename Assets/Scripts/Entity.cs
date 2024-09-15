@@ -38,7 +38,7 @@ public abstract class Entity : MonoBehaviour
         Health = Mathf.Min(Health, MaxHealth);
         OnHeal();
         
-        SingletonGame.Instance.PlayerManager.OnPlantHeal(1);
+        PlayerManager.Instance.OnPlantHeal(1);
     }
 
     public void SpeedUp(float duration)

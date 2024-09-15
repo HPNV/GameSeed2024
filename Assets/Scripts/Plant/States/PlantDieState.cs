@@ -22,7 +22,7 @@ namespace Plant.States
         {
             Object.Destroy(Plant.gameObject);
             
-            SingletonGame.Instance.PlayerManager.OnPlantDie();
+            PlayerManager.Instance.OnPlantDie();
         }
 
         public override void OnExit()

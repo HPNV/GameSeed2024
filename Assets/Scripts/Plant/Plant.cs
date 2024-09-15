@@ -125,7 +125,7 @@ namespace Plant
         {
             StartCoroutine(Flash(Color.red));
             
-            if(_data.plantType == EPlant.Raflessnare) SingletonGame.Instance.PlayerManager.OnRafflesiaDamage(dmg);
+            if(_data.plantType == EPlant.Raflessnare) PlayerManager.Instance.OnRafflesiaDamage(dmg);
         }
 
         protected override void OnHeal()

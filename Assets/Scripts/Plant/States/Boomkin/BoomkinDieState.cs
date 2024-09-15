@@ -43,7 +43,7 @@ namespace Plant.States.Boomkin
             foreach (var target in targets)
                 target.Damage(Plant.Data.damage);
             
-            SingletonGame.Instance.PlayerManager.OnEnemyExploded(targets.Count);
+            PlayerManager.Instance.OnEnemyExploded(targets.Count);
         }
     }
 }
