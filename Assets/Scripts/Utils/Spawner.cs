@@ -49,28 +49,53 @@ public class Spawner : MonoBehaviour
         // Update enemy count
 
         // Random spawn position within radius
-        Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;
-        spawnPosition.y = Random.Range(spawnRadius * -1, spawnRadius);
+        Vector3 spawnPosition = transform.position + Random.onUnitSphere * spawnRadius;
 
         // Decide enemy type using random
         int enemyGacha = Random.Range(0, 100);
 
         var spawnedEnemyType = new List<EnemyName>();
-        
+
+        var time = SingletonGame.Instance.homeBase.time;
         if (enemyGacha < 40)
         {
-            spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.SlimeSpitter, EnemyName.GlobLobber, EnemyName.GelGrenadier });
+            spawnedEnemyType.Add(EnemyName.SlimeSpitter);
+            
+            if (enemyGacha - (time / 100) < 30)
+            {
+                spawnedEnemyType.Add(EnemyName.SlimeSpitter);
+            }
+            if (enemyGacha - (time / 100) < 20)
+            {
+                spawnedEnemyType.Add(EnemyName.GlobLobber);
+            }
+
         }
         else if (enemyGacha < 95)
         {
-            spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.SludgeGrunt, EnemyName.SwiftSlimer, EnemyName.GooGuardian });
+            spawnedEnemyType.Add(EnemyName.SludgeGrunt);
+            
+            if (enemyGacha - (time / 100) < 80)
+            {
+                spawnedEnemyType.Add(EnemyName.SludgeGrunt);
+            }
+            
+            if (enemyGacha - (time / 100) < 60)
+            {
+                spawnedEnemyType.Add(EnemyName.SwiftSlimer);
+            }
         }
         else
         {
-            spawnedEnemyType.AddRange(new List<EnemyName> { EnemyName.BlastBlob, EnemyName.GoliathOoze });
+            spawnedEnemyType.Add(EnemyName.BlastBlob);
+            
+            if (enemyGacha - (time / 100) < 92)
+            {
+                spawnedEnemyType.Add(EnemyName.GoliathOoze);
+            }
         }
         
-        SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition,multiplier);
+        SingletonGame.Instance.EnemyManager.Spawn(spawnedEnemyType[Random.Range(0, spawnedEnemyType.Count)], spawnPosition, multiplier);
     }
 
     private void OnDrawGizmos()
