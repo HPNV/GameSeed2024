@@ -19,8 +19,9 @@ MonoBehaviour:
   range: 15
   description: Shoots one direction
   hasCollider: 1
-  growTimeMultiplier: 5
+  growTimeMultiplier: 10
   level: 0
+  rarity: 0
   sprite: {fileID: 21300000, guid: b71d9b39d4720c04ab9d76b919193dc6, type: 3}
   animatorController: {fileID: 9100000, guid: aa5dcc27b41ba7a4385a782c9671bb81, type: 2}
   targetType: 0
